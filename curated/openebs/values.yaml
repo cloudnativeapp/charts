@@ -1,0 +1,1111 @@
+# Default values for openebs.
+# Default values for openebs.
+# Default values for openebs.
+# Default values for openebs.
+# Default values for openebs.
+# Default values for openebs.
+# Default values for openebs.
+# Default values for openebs.
+# Default values for openebs.
+# Default values for openebs.
+# Default values for openebs.
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+# Declare variables to be passed into your templates.
+# Declare variables to be passed into your templates.
+# Declare variables to be passed into your templates.
+# Declare variables to be passed into your templates.
+# Declare variables to be passed into your templates.
+# Declare variables to be passed into your templates.
+# Declare variables to be passed into your templates.
+# Declare variables to be passed into your templates.
+# Declare variables to be passed into your templates.
+# Declare variables to be passed into your templates.
+
+
+
+
+
+
+
+
+
+
+
+rbac:
+rbac:
+rbac:
+rbac:
+rbac:
+rbac:
+rbac:
+rbac:
+rbac:
+rbac:
+rbac:
+  # Specifies whether RBAC resources should be created
+  # Specifies whether RBAC resources should be created
+  # Specifies whether RBAC resources should be created
+  # Specifies whether RBAC resources should be created
+  # Specifies whether RBAC resources should be created
+  # Specifies whether RBAC resources should be created
+  # Specifies whether RBAC resources should be created
+  # Specifies whether RBAC resources should be created
+  # Specifies whether RBAC resources should be created
+  # Specifies whether RBAC resources should be created
+  # Specifies whether RBAC resources should be created
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+
+
+
+
+
+
+
+
+
+
+
+serviceAccount:
+serviceAccount:
+serviceAccount:
+serviceAccount:
+serviceAccount:
+serviceAccount:
+serviceAccount:
+serviceAccount:
+serviceAccount:
+serviceAccount:
+serviceAccount:
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  create: true
+  name:
+  name:
+  name:
+  name:
+  name:
+  name:
+  name:
+  name:
+  name:
+  name:
+  name:
+
+
+
+
+
+
+
+
+
+
+
+image:
+image:
+image:
+image:
+image:
+image:
+image:
+image:
+image:
+image:
+image:
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+
+
+
+
+
+
+
+
+
+
+
+apiserver:
+apiserver:
+apiserver:
+apiserver:
+apiserver:
+apiserver:
+apiserver:
+apiserver:
+apiserver:
+apiserver:
+apiserver:
+  image: "quay.io/openebs/m-apiserver"
+  image: "registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-m-apiserver"
+  image: "quay.io/openebs/m-apiserver"
+  image: "quay.io/openebs/m-apiserver"
+  image: "quay.io/openebs/m-apiserver"
+  image: "quay.io/openebs/m-apiserver"
+  image: "quay.io/openebs/m-apiserver"
+  image: "quay.io/openebs/m-apiserver"
+  image: "quay.io/openebs/m-apiserver"
+  image: "quay.io/openebs/m-apiserver"
+  image: "quay.io/openebs/m-apiserver"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  ports:
+  ports:
+  ports:
+  ports:
+  ports:
+  ports:
+  ports:
+  ports:
+  ports:
+  ports:
+  ports:
+    externalPort: 5656
+    externalPort: 5656
+    externalPort: 5656
+    externalPort: 5656
+    externalPort: 5656
+    externalPort: 5656
+    externalPort: 5656
+    externalPort: 5656
+    externalPort: 5656
+    externalPort: 5656
+    externalPort: 5656
+    internalPort: 5656
+    internalPort: 5656
+    internalPort: 5656
+    internalPort: 5656
+    internalPort: 5656
+    internalPort: 5656
+    internalPort: 5656
+    internalPort: 5656
+    internalPort: 5656
+    internalPort: 5656
+    internalPort: 5656
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+
+
+
+
+
+
+
+
+
+
+
+provisioner:
+provisioner:
+provisioner:
+provisioner:
+provisioner:
+provisioner:
+provisioner:
+provisioner:
+provisioner:
+provisioner:
+provisioner:
+  image: "quay.io/openebs/openebs-k8s-provisioner"
+  image: "quay.io/openebs/openebs-k8s-provisioner"
+  image: "quay.io/openebs/openebs-k8s-provisioner"
+  image: "quay.io/openebs/openebs-k8s-provisioner"
+  image: "quay.io/openebs/openebs-k8s-provisioner"
+  image: "quay.io/openebs/openebs-k8s-provisioner"
+  image: "quay.io/openebs/openebs-k8s-provisioner"
+  image: "quay.io/openebs/openebs-k8s-provisioner"
+  image: "quay.io/openebs/openebs-k8s-provisioner"
+  image: "registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-openebs-k8s-provisioner"
+  image: "quay.io/openebs/openebs-k8s-provisioner"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+
+
+
+
+
+
+
+
+
+
+
+snapshotOperator:
+snapshotOperator:
+snapshotOperator:
+snapshotOperator:
+snapshotOperator:
+snapshotOperator:
+snapshotOperator:
+snapshotOperator:
+snapshotOperator:
+snapshotOperator:
+snapshotOperator:
+  controller:
+  controller:
+  controller:
+  controller:
+  controller:
+  controller:
+  controller:
+  controller:
+  controller:
+  controller:
+  controller:
+    image: "quay.io/openebs/snapshot-controller"
+    image: "quay.io/openebs/snapshot-controller"
+    image: "quay.io/openebs/snapshot-controller"
+    image: "quay.io/openebs/snapshot-controller"
+    image: "quay.io/openebs/snapshot-controller"
+    image: "quay.io/openebs/snapshot-controller"
+    image: "quay.io/openebs/snapshot-controller"
+    image: "quay.io/openebs/snapshot-controller"
+    image: "quay.io/openebs/snapshot-controller"
+    image: "quay.io/openebs/snapshot-controller"
+    image: "registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-snapshot-controller"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+  provisioner:
+  provisioner:
+  provisioner:
+  provisioner:
+  provisioner:
+  provisioner:
+  provisioner:
+  provisioner:
+  provisioner:
+  provisioner:
+  provisioner:
+    image: "quay.io/openebs/snapshot-provisioner"
+    image: "quay.io/openebs/snapshot-provisioner"
+    image: "registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-snapshot-provisioner"
+    image: "quay.io/openebs/snapshot-provisioner"
+    image: "quay.io/openebs/snapshot-provisioner"
+    image: "quay.io/openebs/snapshot-provisioner"
+    image: "quay.io/openebs/snapshot-provisioner"
+    image: "quay.io/openebs/snapshot-provisioner"
+    image: "quay.io/openebs/snapshot-provisioner"
+    image: "quay.io/openebs/snapshot-provisioner"
+    image: "quay.io/openebs/snapshot-provisioner"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  replicas: 1
+  upgradeStrategy: "Recreate"
+  upgradeStrategy: "Recreate"
+  upgradeStrategy: "Recreate"
+  upgradeStrategy: "Recreate"
+  upgradeStrategy: "Recreate"
+  upgradeStrategy: "Recreate"
+  upgradeStrategy: "Recreate"
+  upgradeStrategy: "Recreate"
+  upgradeStrategy: "Recreate"
+  upgradeStrategy: "Recreate"
+  upgradeStrategy: "Recreate"
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  affinity: {}
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+
+
+
+
+
+
+
+
+
+
+
+ndm:
+ndm:
+ndm:
+ndm:
+ndm:
+ndm:
+ndm:
+ndm:
+ndm:
+ndm:
+ndm:
+  image: "quay.io/openebs/node-disk-manager-amd64"
+  image: "registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-node-disk-manager-amd64"
+  image: "quay.io/openebs/node-disk-manager-amd64"
+  image: "quay.io/openebs/node-disk-manager-amd64"
+  image: "quay.io/openebs/node-disk-manager-amd64"
+  image: "quay.io/openebs/node-disk-manager-amd64"
+  image: "quay.io/openebs/node-disk-manager-amd64"
+  image: "quay.io/openebs/node-disk-manager-amd64"
+  image: "quay.io/openebs/node-disk-manager-amd64"
+  image: "quay.io/openebs/node-disk-manager-amd64"
+  image: "quay.io/openebs/node-disk-manager-amd64"
+  imageTag: "v0.3.5"
+  imageTag: "v0.3.5"
+  imageTag: "v0.3.5"
+  imageTag: "v0.3.5"
+  imageTag: "v0.3.5"
+  imageTag: "v0.3.5"
+  imageTag: "v0.3.5"
+  imageTag: "v0.3.5"
+  imageTag: "v0.3.5"
+  imageTag: "v0.3.5"
+  imageTag: "v0.3.5"
+  sparse:
+  sparse:
+  sparse:
+  sparse:
+  sparse:
+  sparse:
+  sparse:
+  sparse:
+  sparse:
+  sparse:
+  sparse:
+    enabled: "true"
+    enabled: "true"
+    enabled: "true"
+    enabled: "true"
+    enabled: "true"
+    enabled: "true"
+    enabled: "true"
+    enabled: "true"
+    enabled: "true"
+    enabled: "true"
+    enabled: "true"
+    path: "/var/openebs/sparse"
+    path: "/var/openebs/sparse"
+    path: "/var/openebs/sparse"
+    path: "/var/openebs/sparse"
+    path: "/var/openebs/sparse"
+    path: "/var/openebs/sparse"
+    path: "/var/openebs/sparse"
+    path: "/var/openebs/sparse"
+    path: "/var/openebs/sparse"
+    path: "/var/openebs/sparse"
+    path: "/var/openebs/sparse"
+    size: "10737418240"
+    size: "10737418240"
+    size: "10737418240"
+    size: "10737418240"
+    size: "10737418240"
+    size: "10737418240"
+    size: "10737418240"
+    size: "10737418240"
+    size: "10737418240"
+    size: "10737418240"
+    size: "10737418240"
+    count: "1"
+    count: "1"
+    count: "1"
+    count: "1"
+    count: "1"
+    count: "1"
+    count: "1"
+    count: "1"
+    count: "1"
+    count: "1"
+    count: "1"
+  filters:
+  filters:
+  filters:
+  filters:
+  filters:
+  filters:
+  filters:
+  filters:
+  filters:
+  filters:
+  filters:
+    excludeVendors: "CLOUDBYT,OpenEBS"
+    excludeVendors: "CLOUDBYT,OpenEBS"
+    excludeVendors: "CLOUDBYT,OpenEBS"
+    excludeVendors: "CLOUDBYT,OpenEBS"
+    excludeVendors: "CLOUDBYT,OpenEBS"
+    excludeVendors: "CLOUDBYT,OpenEBS"
+    excludeVendors: "CLOUDBYT,OpenEBS"
+    excludeVendors: "CLOUDBYT,OpenEBS"
+    excludeVendors: "CLOUDBYT,OpenEBS"
+    excludeVendors: "CLOUDBYT,OpenEBS"
+    excludeVendors: "CLOUDBYT,OpenEBS"
+    excludePaths: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
+    excludePaths: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
+    excludePaths: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
+    excludePaths: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
+    excludePaths: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
+    excludePaths: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
+    excludePaths: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
+    excludePaths: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
+    excludePaths: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
+    excludePaths: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
+    excludePaths: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+  healthCheck:
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+    periodSeconds: 60
+
+
+
+
+
+
+
+
+
+
+
+jiva:
+jiva:
+jiva:
+jiva:
+jiva:
+jiva:
+jiva:
+jiva:
+jiva:
+jiva:
+jiva:
+  image: "quay.io/openebs/jiva"
+  image: "quay.io/openebs/jiva"
+  image: "quay.io/openebs/jiva"
+  image: "quay.io/openebs/jiva"
+  image: "registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-jiva"
+  image: "quay.io/openebs/jiva"
+  image: "quay.io/openebs/jiva"
+  image: "quay.io/openebs/jiva"
+  image: "quay.io/openebs/jiva"
+  image: "quay.io/openebs/jiva"
+  image: "quay.io/openebs/jiva"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  imageTag: "0.8.2"
+  replicas: 3
+  replicas: 3
+  replicas: 3
+  replicas: 3
+  replicas: 3
+  replicas: 3
+  replicas: 3
+  replicas: 3
+  replicas: 3
+  replicas: 3
+  replicas: 3
+
+
+
+
+
+
+
+
+
+
+
+cstor:
+cstor:
+cstor:
+cstor:
+cstor:
+cstor:
+cstor:
+cstor:
+cstor:
+cstor:
+cstor:
+  pool:
+  pool:
+  pool:
+  pool:
+  pool:
+  pool:
+  pool:
+  pool:
+  pool:
+  pool:
+  pool:
+    image: "quay.io/openebs/cstor-pool"
+    image: "quay.io/openebs/cstor-pool"
+    image: "quay.io/openebs/cstor-pool"
+    image: "quay.io/openebs/cstor-pool"
+    image: "quay.io/openebs/cstor-pool"
+    image: "quay.io/openebs/cstor-pool"
+    image: "quay.io/openebs/cstor-pool"
+    image: "quay.io/openebs/cstor-pool"
+    image: "quay.io/openebs/cstor-pool"
+    image: "registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-cstor-pool"
+    image: "quay.io/openebs/cstor-pool"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+  poolMgmt:
+  poolMgmt:
+  poolMgmt:
+  poolMgmt:
+  poolMgmt:
+  poolMgmt:
+  poolMgmt:
+  poolMgmt:
+  poolMgmt:
+  poolMgmt:
+  poolMgmt:
+    image: "quay.io/openebs/cstor-pool-mgmt"
+    image: "registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-cstor-pool-mgmt"
+    image: "registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-cstor-pool-mgmt"
+    image: "quay.io/openebs/cstor-pool-mgmt"
+    image: "quay.io/openebs/cstor-pool-mgmt"
+    image: "quay.io/openebs/cstor-pool-mgmt"
+    image: "quay.io/openebs/cstor-pool-mgmt"
+    image: "quay.io/openebs/cstor-pool-mgmt"
+    image: "quay.io/openebs/cstor-pool-mgmt"
+    image: "quay.io/openebs/cstor-pool-mgmt"
+    image: "quay.io/openebs/cstor-pool-mgmt"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+  target:
+  target:
+  target:
+  target:
+  target:
+  target:
+  target:
+  target:
+  target:
+  target:
+  target:
+    image: "quay.io/openebs/cstor-istgt"
+    image: "registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-cstor-istgt"
+    image: "quay.io/openebs/cstor-istgt"
+    image: "quay.io/openebs/cstor-istgt"
+    image: "quay.io/openebs/cstor-istgt"
+    image: "quay.io/openebs/cstor-istgt"
+    image: "quay.io/openebs/cstor-istgt"
+    image: "quay.io/openebs/cstor-istgt"
+    image: "quay.io/openebs/cstor-istgt"
+    image: "quay.io/openebs/cstor-istgt"
+    image: "quay.io/openebs/cstor-istgt"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+  volumeMgmt:
+  volumeMgmt:
+  volumeMgmt:
+  volumeMgmt:
+  volumeMgmt:
+  volumeMgmt:
+  volumeMgmt:
+  volumeMgmt:
+  volumeMgmt:
+  volumeMgmt:
+  volumeMgmt:
+    image: "quay.io/openebs/cstor-volume-mgmt"
+    image: "quay.io/openebs/cstor-volume-mgmt"
+    image: "quay.io/openebs/cstor-volume-mgmt"
+    image: "quay.io/openebs/cstor-volume-mgmt"
+    image: "quay.io/openebs/cstor-volume-mgmt"
+    image: "quay.io/openebs/cstor-volume-mgmt"
+    image: "quay.io/openebs/cstor-volume-mgmt"
+    image: "quay.io/openebs/cstor-volume-mgmt"
+    image: "quay.io/openebs/cstor-volume-mgmt"
+    image: "registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-cstor-volume-mgmt"
+    image: "quay.io/openebs/cstor-volume-mgmt"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+
+
+
+
+
+
+
+
+
+
+
+policies:
+policies:
+policies:
+policies:
+policies:
+policies:
+policies:
+policies:
+policies:
+policies:
+policies:
+  monitoring:
+  monitoring:
+  monitoring:
+  monitoring:
+  monitoring:
+  monitoring:
+  monitoring:
+  monitoring:
+  monitoring:
+  monitoring:
+  monitoring:
+    enabled: true
+    enabled: true
+    enabled: true
+    enabled: true
+    enabled: true
+    enabled: true
+    enabled: true
+    enabled: true
+    enabled: true
+    enabled: true
+    enabled: true
+    image: "registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-m-exporter"
+    image: "quay.io/openebs/m-exporter"
+    image: "quay.io/openebs/m-exporter"
+    image: "quay.io/openebs/m-exporter"
+    image: "quay.io/openebs/m-exporter"
+    image: "quay.io/openebs/m-exporter"
+    image: "quay.io/openebs/m-exporter"
+    image: "quay.io/openebs/m-exporter"
+    image: "quay.io/openebs/m-exporter"
+    image: "quay.io/openebs/m-exporter"
+    image: "quay.io/openebs/m-exporter"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+    imageTag: "0.8.2"
+
+
+
+
+
+
+
+
+
+
+
+analytics:
+analytics:
+analytics:
+analytics:
+analytics:
+analytics:
+analytics:
+analytics:
+analytics:
+analytics:
+analytics:
+  enabled: true
+  enabled: true
+  enabled: true
+  enabled: true
+  enabled: true
+  enabled: true
+  enabled: true
+  enabled: true
+  enabled: true
+  enabled: true
+  enabled: true
+  # Specify in hours the duration after which a ping event needs to be sent.
+  # Specify in hours the duration after which a ping event needs to be sent.
+  # Specify in hours the duration after which a ping event needs to be sent.
+  # Specify in hours the duration after which a ping event needs to be sent.
+  # Specify in hours the duration after which a ping event needs to be sent.
+  # Specify in hours the duration after which a ping event needs to be sent.
+  # Specify in hours the duration after which a ping event needs to be sent.
+  # Specify in hours the duration after which a ping event needs to be sent.
+  # Specify in hours the duration after which a ping event needs to be sent.
+  # Specify in hours the duration after which a ping event needs to be sent.
+  # Specify in hours the duration after which a ping event needs to be sent.
+  pingInterval: "24h"
+  pingInterval: "24h"
+  pingInterval: "24h"
+  pingInterval: "24h"
+  pingInterval: "24h"
+  pingInterval: "24h"
+  pingInterval: "24h"
+  pingInterval: "24h"
+  pingInterval: "24h"
+  pingInterval: "24h"
+  pingInterval: "24h"

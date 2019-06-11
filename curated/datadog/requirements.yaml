@@ -1,0 +1,5 @@
+dependencies:
+  - name: kube-state-metrics
+    version: ~0.16.0
+    repository: https://apphub.aliyuncs.com
+    condition: kubeStateMetrics.enabled

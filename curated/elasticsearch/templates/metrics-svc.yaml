@@ -1,0 +1,24 @@
+{{- if .Values.metrics.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "elasticsearch.metrics.fullname" . }}
+  labels:
+    app: {{ template "elasticsearch.name" . }}
+    chart: {{ template "elasticsearch.chart" . }}
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    role: "metrics"
+  annotations:
+{{ toYaml .Values.metrics.annotations | indent 4 }}
+spec:
+  type: {{ .Values.metrics.service.type | quote }}
+  ports:
+  - name: metrics
+    port: 9108
+    targetPort: metrics
+  selector:
+    app: {{ template "elasticsearch.name" . }}
+    release: {{ .Release.Name | quote }}
+    role: "metrics"
+{{- end }}

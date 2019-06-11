@@ -1,0 +1,1077 @@
+# Enable RBAC
+# Enable RBAC
+# Enable RBAC
+rbac:
+rbac:
+rbac:
+  create: true
+  create: true
+  create: true
+  security:
+  security:
+  security:
+    enable: false
+    enable: false
+    enable: false
+
+
+
+# Create ServiceAccount
+# Create ServiceAccount
+# Create ServiceAccount
+serviceAccount:
+serviceAccount:
+serviceAccount:
+  # Specifies whether a ServiceAccount should be created
+  # Specifies whether a ServiceAccount should be created
+  # Specifies whether a ServiceAccount should be created
+  create: true
+  create: true
+  create: true
+  # The name of the ServiceAccount to use.
+  # The name of the ServiceAccount to use.
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  # If not set and create is true, a name is generated using the fullname template
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+  name:
+  name:
+
+
+
+controller:
+controller:
+controller:
+  name: controller
+  name: controller
+  name: controller
+  image:
+  image:
+  image:
+    repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-haproxy-ingress
+    repository: quay.io/jcmoraisjr/haproxy-ingress
+    repository: quay.io/jcmoraisjr/haproxy-ingress
+    tag: "v0.7.1"
+    tag: "v0.7.1"
+    tag: "v0.7.1"
+    pullPolicy: IfNotPresent
+    pullPolicy: IfNotPresent
+    pullPolicy: IfNotPresent
+
+
+
+  ## Additional command line arguments to pass to haproxy-ingress-controller
+  ## Additional command line arguments to pass to haproxy-ingress-controller
+  ## Additional command line arguments to pass to haproxy-ingress-controller
+  ## E.g. to specify the default SSL certificate you can use
+  ## E.g. to specify the default SSL certificate you can use
+  ## E.g. to specify the default SSL certificate you can use
+  ## extraArgs:
+  ## extraArgs:
+  ## extraArgs:
+  ##   default-ssl-certificate: "<namespace>/<secret_name>"
+  ##   default-ssl-certificate: "<namespace>/<secret_name>"
+  ##   default-ssl-certificate: "<namespace>/<secret_name>"
+  ##   reload-strategy: "reusesocket"
+  ##   reload-strategy: "reusesocket"
+  ##   reload-strategy: "reusesocket"
+  extraArgs: {}
+  extraArgs: {}
+  extraArgs: {}
+
+
+
+  ## Additional environment variables to set
+  ## Additional environment variables to set
+  ## Additional environment variables to set
+  extraEnvs: []
+  extraEnvs: []
+  extraEnvs: []
+  # extraEnvs:
+  # extraEnvs:
+  # extraEnvs:
+  #   - name: FOO
+  #   - name: FOO
+  #   - name: FOO
+  #     valueFrom:
+  #     valueFrom:
+  #     valueFrom:
+  #       secretKeyRef:
+  #       secretKeyRef:
+  #       secretKeyRef:
+  #         key: FOO
+  #         key: FOO
+  #         key: FOO
+  #         name: secret-resource
+  #         name: secret-resource
+  #         name: secret-resource
+
+
+
+  ## Additional containers that can initialize the pod.
+  ## Additional containers that can initialize the pod.
+  ## Additional containers that can initialize the pod.
+  initContainers: []
+  initContainers: []
+  initContainers: []
+
+
+
+  # custom haproxy template
+  # custom haproxy template
+  # custom haproxy template
+  template: ""
+  template: ""
+  template: ""
+
+
+
+  ## Required only if defaultBackend.enabled = false
+  ## Required only if defaultBackend.enabled = false
+  ## Required only if defaultBackend.enabled = false
+  ## Must be <namespace>/<service_name>
+  ## Must be <namespace>/<service_name>
+  ## Must be <namespace>/<service_name>
+  ##
+  ##
+  ##
+  defaultBackendService: ""
+  defaultBackendService: ""
+  defaultBackendService: ""
+
+
+
+  ## Name of the ingress class to route through this controller
+  ## Name of the ingress class to route through this controller
+  ## Name of the ingress class to route through this controller
+  ##
+  ##
+  ##
+  ingressClass: haproxy
+  ingressClass: haproxy
+  ingressClass: haproxy
+
+
+
+  healthzPort: 10253
+  healthzPort: 10253
+  healthzPort: 10253
+
+
+
+  ## Liveness and readiness probe values
+  ## Liveness and readiness probe values
+  ## Liveness and readiness probe values
+  ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+  ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+  ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
+  ##
+  ##
+  ##
+  livenessProbe:
+  livenessProbe:
+  livenessProbe:
+    path: /healthz
+    path: /healthz
+    path: /healthz
+    port: 10253
+    port: 10253
+    port: 10253
+    failureThreshold: 3
+    failureThreshold: 3
+    failureThreshold: 3
+    initialDelaySeconds: 10
+    initialDelaySeconds: 10
+    initialDelaySeconds: 10
+    periodSeconds: 10
+    periodSeconds: 10
+    periodSeconds: 10
+    successThreshold: 1
+    successThreshold: 1
+    successThreshold: 1
+    timeoutSeconds: 1
+    timeoutSeconds: 1
+    timeoutSeconds: 1
+  readinessProbe:
+  readinessProbe:
+  readinessProbe:
+    path: /healthz
+    path: /healthz
+    path: /healthz
+    port: 10253
+    port: 10253
+    port: 10253
+    failureThreshold: 3
+    failureThreshold: 3
+    failureThreshold: 3
+    initialDelaySeconds: 10
+    initialDelaySeconds: 10
+    initialDelaySeconds: 10
+    periodSeconds: 10
+    periodSeconds: 10
+    periodSeconds: 10
+    successThreshold: 1
+    successThreshold: 1
+    successThreshold: 1
+    timeoutSeconds: 1
+    timeoutSeconds: 1
+    timeoutSeconds: 1
+
+
+
+  ## Annotations to be added to controller pods
+  ## Annotations to be added to controller pods
+  ## Annotations to be added to controller pods
+  ##
+  ##
+  ##
+  podAnnotations: {}
+  podAnnotations: {}
+  podAnnotations: {}
+
+
+
+  ## Labels to be added to the controller pods
+  ## Labels to be added to the controller pods
+  ## Labels to be added to the controller pods
+  ##
+  ##
+  ##
+  podLabels: {}
+  podLabels: {}
+  podLabels: {}
+
+
+
+  ## Affinity to be added to controller pods
+  ## Affinity to be added to controller pods
+  ## Affinity to be added to controller pods
+  ##
+  ##
+  ##
+  podAffinity: {}
+  podAffinity: {}
+  podAffinity: {}
+
+
+
+  ## Priority Class to be used
+  ## Priority Class to be used
+  ## Priority Class to be used
+  ##
+  ##
+  ##
+  priorityClassName: ""
+  priorityClassName: ""
+  priorityClassName: ""
+
+
+
+  ## Security context settings to be added to the controller pods
+  ## Security context settings to be added to the controller pods
+  ## Security context settings to be added to the controller pods
+  ##
+  ##
+  ##
+  securityContext: {}
+  securityContext: {}
+  securityContext: {}
+  #  sysctls:
+  #  sysctls:
+  #  sysctls:
+  #  - name: net.ipv4.ip_local_port_range
+  #  - name: net.ipv4.ip_local_port_range
+  #  - name: net.ipv4.ip_local_port_range
+  #    value: "1024 65535"
+  #    value: "1024 65535"
+  #    value: "1024 65535"
+
+
+
+  # ConfigMap to configure haproxy ingress
+  # ConfigMap to configure haproxy ingress
+  # ConfigMap to configure haproxy ingress
+  config: {}
+  config: {}
+  config: {}
+
+
+
+  # Required for use with CNI based kubernetes installations (such as ones set up by kubeadm),
+  # Required for use with CNI based kubernetes installations (such as ones set up by kubeadm),
+  # Required for use with CNI based kubernetes installations (such as ones set up by kubeadm),
+  # since CNI and hostport don't mix yet. Can be deprecated once https://github.com/kubernetes/kubernetes/issues/23920
+  # since CNI and hostport don't mix yet. Can be deprecated once https://github.com/kubernetes/kubernetes/issues/23920
+  # since CNI and hostport don't mix yet. Can be deprecated once https://github.com/kubernetes/kubernetes/issues/23920
+  # is merged
+  # is merged
+  # is merged
+  hostNetwork: false
+  hostNetwork: false
+  hostNetwork: false
+
+
+
+  # Optionally change this to ClusterFirstWithHostNet in case you have 'hostNetwork: true'.
+  # Optionally change this to ClusterFirstWithHostNet in case you have 'hostNetwork: true'.
+  # Optionally change this to ClusterFirstWithHostNet in case you have 'hostNetwork: true'.
+  # By default, while using host network, name resolution uses the host's DNS. If you wish nginx-controller
+  # By default, while using host network, name resolution uses the host's DNS. If you wish nginx-controller
+  # By default, while using host network, name resolution uses the host's DNS. If you wish nginx-controller
+  # to keep resolving names inside the k8s network, use ClusterFirstWithHostNet.
+  # to keep resolving names inside the k8s network, use ClusterFirstWithHostNet.
+  # to keep resolving names inside the k8s network, use ClusterFirstWithHostNet.
+  dnsPolicy: ClusterFirst
+  dnsPolicy: ClusterFirst
+  dnsPolicy: ClusterFirst
+
+
+
+  ## DaemonSet or Deployment
+  ## DaemonSet or Deployment
+  ## DaemonSet or Deployment
+  ##
+  ##
+  ##
+  kind: Deployment
+  kind: Deployment
+  kind: Deployment
+
+
+
+  # TCP service key:value pairs
+  # TCP service key:value pairs
+  # TCP service key:value pairs
+  # <port>: <namespace>/<servicename>:<portnumber>[:[<in-proxy>][:<out-proxy>]]
+  # <port>: <namespace>/<servicename>:<portnumber>[:[<in-proxy>][:<out-proxy>]]
+  # <port>: <namespace>/<servicename>:<portnumber>[:[<in-proxy>][:<out-proxy>]]
+  # https://github.com/jcmoraisjr/haproxy-ingress/tree/v0.6#tcp-services-configmap
+  # https://github.com/jcmoraisjr/haproxy-ingress/tree/v0.6#tcp-services-configmap
+  # https://github.com/jcmoraisjr/haproxy-ingress/tree/v0.6#tcp-services-configmap
+  tcp: {}
+  tcp: {}
+  tcp: {}
+  #  8080: "default/example-tcp-svc:9000"
+  #  8080: "default/example-tcp-svc:9000"
+  #  8080: "default/example-tcp-svc:9000"
+
+
+
+  # optionally disable static ports, including the default 80 and 443
+  # optionally disable static ports, including the default 80 and 443
+  # optionally disable static ports, including the default 80 and 443
+  enableStaticPorts: true
+  enableStaticPorts: true
+  enableStaticPorts: true
+
+
+
+  ## Use host ports 80 and 443
+  ## Use host ports 80 and 443
+  ## Use host ports 80 and 443
+  daemonset:
+  daemonset:
+  daemonset:
+    useHostPort: false
+    useHostPort: false
+    useHostPort: false
+
+
+
+    hostPorts:
+    hostPorts:
+    hostPorts:
+      http: 80
+      http: 80
+      http: 80
+      https: 443
+      https: 443
+      https: 443
+      # List of ports from controller.tcp map
+      # List of ports from controller.tcp map
+      # List of ports from controller.tcp map
+      tcp: []
+      tcp: []
+      tcp: []
+
+
+
+  # The update strategy to apply to the Deployment or DaemonSet
+  # The update strategy to apply to the Deployment or DaemonSet
+  # The update strategy to apply to the Deployment or DaemonSet
+  ##
+  ##
+  ##
+  updateStrategy:
+  updateStrategy:
+  updateStrategy:
+    type: RollingUpdate
+    type: RollingUpdate
+    type: RollingUpdate
+    rollingUpdate:
+    rollingUpdate:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxUnavailable: 1
+      maxUnavailable: 1
+
+
+
+  # minReadySeconds to avoid killing pods before we are ready
+  # minReadySeconds to avoid killing pods before we are ready
+  # minReadySeconds to avoid killing pods before we are ready
+  ##
+  ##
+  ##
+  minReadySeconds: 0
+  minReadySeconds: 0
+  minReadySeconds: 0
+
+
+
+  # Deployment
+  # Deployment
+  # Deployment
+  replicaCount: 1
+  replicaCount: 1
+  replicaCount: 1
+
+
+
+  # PodDisruptionBudget
+  # PodDisruptionBudget
+  # PodDisruptionBudget
+  minAvailable: 1
+  minAvailable: 1
+  minAvailable: 1
+
+
+
+  resources: {}
+  resources: {}
+  resources: {}
+  #  limits:
+  #  limits:
+  #  limits:
+  #    cpu: 100m
+  #    cpu: 100m
+  #    cpu: 100m
+  #    memory: 64Mi
+  #    memory: 64Mi
+  #    memory: 64Mi
+  #  requests:
+  #  requests:
+  #  requests:
+  #    cpu: 100m
+  #    cpu: 100m
+  #    cpu: 100m
+  #    memory: 64Mi
+  #    memory: 64Mi
+  #    memory: 64Mi
+
+
+
+  autoscaling:
+  autoscaling:
+  autoscaling:
+    enabled: false
+    enabled: false
+    enabled: false
+  #  minReplicas: 1
+  #  minReplicas: 1
+  #  minReplicas: 1
+  #  maxReplicas: 11
+  #  maxReplicas: 11
+  #  maxReplicas: 11
+  #  targetCPUUtilizationPercentage: 50
+  #  targetCPUUtilizationPercentage: 50
+  #  targetCPUUtilizationPercentage: 50
+  #  targetMemoryUtilizationPercentage: 50
+  #  targetMemoryUtilizationPercentage: 50
+  #  targetMemoryUtilizationPercentage: 50
+    customMetrics: []
+    customMetrics: []
+    customMetrics: []
+
+
+
+  ## Node tolerations for server scheduling to nodes with taints
+  ## Node tolerations for server scheduling to nodes with taints
+  ## Node tolerations for server scheduling to nodes with taints
+  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+  ##
+  ##
+  ##
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  #  - key: "key"
+  #  - key: "key"
+  #  - key: "key"
+  #    operator: "Equal|Exists"
+  #    operator: "Equal|Exists"
+  #    operator: "Equal|Exists"
+  #    value: "value"
+  #    value: "value"
+  #    value: "value"
+  #    effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+  #    effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+  #    effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+
+
+
+  affinity: {}
+  affinity: {}
+  affinity: {}
+
+
+
+  ## Node labels for controller pod assignment
+  ## Node labels for controller pod assignment
+  ## Node labels for controller pod assignment
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ##
+  ##
+  ##
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+
+
+
+  service:
+  service:
+  service:
+    annotations: {}
+    annotations: {}
+    annotations: {}
+    labels: {}
+    labels: {}
+    labels: {}
+    clusterIP: ""
+    clusterIP: ""
+    clusterIP: ""
+
+
+
+    ## List of IP addresses at which the controller services are available
+    ## List of IP addresses at which the controller services are available
+    ## List of IP addresses at which the controller services are available
+    ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+    ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+    ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+    ##
+    ##
+    ##
+    externalIPs: []
+    externalIPs: []
+    externalIPs: []
+
+
+
+    loadBalancerIP: ""
+    loadBalancerIP: ""
+    loadBalancerIP: ""
+    loadBalancerSourceRanges: []
+    loadBalancerSourceRanges: []
+    loadBalancerSourceRanges: []
+
+
+
+    httpPorts:
+    httpPorts:
+    httpPorts:
+      - port: 80
+      - port: 80
+      - port: 80
+      # nodePort:
+      # nodePort:
+      # nodePort:
+    httpsPorts:
+    httpsPorts:
+    httpsPorts:
+      - port: 443
+      - port: 443
+      - port: 443
+      # nodePort:
+      # nodePort:
+      # nodePort:
+
+
+
+    ## Set external traffic policy to: "Local" to preserve source IP on
+    ## Set external traffic policy to: "Local" to preserve source IP on
+    ## Set external traffic policy to: "Local" to preserve source IP on
+    ## providers supporting it
+    ## providers supporting it
+    ## providers supporting it
+    ## Ref: https://kubernetes.io/docs/tutorials/services/source-ip/#source-ip-for-services-with-typeloadbalancer
+    ## Ref: https://kubernetes.io/docs/tutorials/services/source-ip/#source-ip-for-services-with-typeloadbalancer
+    ## Ref: https://kubernetes.io/docs/tutorials/services/source-ip/#source-ip-for-services-with-typeloadbalancer
+    externalTrafficPolicy: ""
+    externalTrafficPolicy: ""
+    externalTrafficPolicy: ""
+
+
+
+    healthCheckNodePort: 0
+    healthCheckNodePort: 0
+    healthCheckNodePort: 0
+
+
+
+    type: LoadBalancer
+    type: LoadBalancer
+    type: LoadBalancer
+
+
+
+  stats:
+  stats:
+  stats:
+    enabled: false
+    enabled: false
+    enabled: false
+    port: 1936
+    port: 1936
+    port: 1936
+
+
+
+    service:
+    service:
+    service:
+      annotations: {}
+      annotations: {}
+      annotations: {}
+      clusterIP: ""
+      clusterIP: ""
+      clusterIP: ""
+
+
+
+      ## List of IP addresses at which the stats service is available
+      ## List of IP addresses at which the stats service is available
+      ## List of IP addresses at which the stats service is available
+      ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+      ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+      ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+      ##
+      ##
+      ##
+      externalIPs: []
+      externalIPs: []
+      externalIPs: []
+
+
+
+      loadBalancerIP: ""
+      loadBalancerIP: ""
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      loadBalancerSourceRanges: []
+      loadBalancerSourceRanges: []
+      servicePort: 1936
+      servicePort: 1936
+      servicePort: 1936
+      type: ClusterIP
+      type: ClusterIP
+      type: ClusterIP
+
+
+
+  ## If controller.stats.enabled = true and controller.metrics.enabled = true, Prometheus metrics will be exported
+  ## If controller.stats.enabled = true and controller.metrics.enabled = true, Prometheus metrics will be exported
+  ## If controller.stats.enabled = true and controller.metrics.enabled = true, Prometheus metrics will be exported
+  ##
+  ##
+  ##
+  metrics:
+  metrics:
+  metrics:
+    enabled: false
+    enabled: false
+    enabled: false
+
+
+
+    # prometheus exporter for haproxy
+    # prometheus exporter for haproxy
+    # prometheus exporter for haproxy
+    # https://github.com/prometheus/haproxy_exporter
+    # https://github.com/prometheus/haproxy_exporter
+    # https://github.com/prometheus/haproxy_exporter
+    # (scrapes the stats port and exports metrics to prometheus)
+    # (scrapes the stats port and exports metrics to prometheus)
+    # (scrapes the stats port and exports metrics to prometheus)
+    image:
+    image:
+    image:
+      repository: quay.io/prometheus/haproxy-exporter
+      repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-haproxy-exporter
+      repository: quay.io/prometheus/haproxy-exporter
+      tag: "v0.10.0"
+      tag: "v0.10.0"
+      tag: "v0.10.0"
+      pullPolicy: IfNotPresent
+      pullPolicy: IfNotPresent
+      pullPolicy: IfNotPresent
+
+
+
+    ## Additional command line arguments to pass to haproxy_exporter
+    ## Additional command line arguments to pass to haproxy_exporter
+    ## Additional command line arguments to pass to haproxy_exporter
+    ## E.g. to specify the client timeout you can use
+    ## E.g. to specify the client timeout you can use
+    ## E.g. to specify the client timeout you can use
+    ## extraArgs:
+    ## extraArgs:
+    ## extraArgs:
+    ##   haproxy.timeout: 15s
+    ##   haproxy.timeout: 15s
+    ##   haproxy.timeout: 15s
+    extraArgs: {}
+    extraArgs: {}
+    extraArgs: {}
+
+
+
+    resources: {}
+    resources: {}
+    resources: {}
+    #  limits:
+    #  limits:
+    #  limits:
+    #    cpu: 500m
+    #    cpu: 500m
+    #    cpu: 500m
+    #    memory: 600Mi
+    #    memory: 600Mi
+    #    memory: 600Mi
+    #  requests:
+    #  requests:
+    #  requests:
+    #    cpu: 200m
+    #    cpu: 200m
+    #    cpu: 200m
+    #    memory: 400Mi
+    #    memory: 400Mi
+    #    memory: 400Mi
+
+
+
+    service:
+    service:
+    service:
+      annotations: {}
+      annotations: {}
+      annotations: {}
+      # prometheus.io/scrape: "true"
+      # prometheus.io/scrape: "true"
+      # prometheus.io/scrape: "true"
+      # prometheus.io/port: "10254"
+      # prometheus.io/port: "10254"
+      # prometheus.io/port: "10254"
+
+
+
+      clusterIP: ""
+      clusterIP: ""
+      clusterIP: ""
+
+
+
+      ## List of IP addresses at which the stats-exporter service is available
+      ## List of IP addresses at which the stats-exporter service is available
+      ## List of IP addresses at which the stats-exporter service is available
+      ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+      ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+      ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+      ##
+      ##
+      ##
+      externalIPs: []
+      externalIPs: []
+      externalIPs: []
+
+
+
+      loadBalancerIP: ""
+      loadBalancerIP: ""
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      loadBalancerSourceRanges: []
+      loadBalancerSourceRanges: []
+      servicePort: 9101
+      servicePort: 9101
+      servicePort: 9101
+      type: ClusterIP
+      type: ClusterIP
+      type: ClusterIP
+
+
+
+  ## access-logs side-car container for collecting haproxy logs
+  ## access-logs side-car container for collecting haproxy logs
+  ## access-logs side-car container for collecting haproxy logs
+  ## Enabling this will configure haproxy to emit logs to syslog localhost:514 UDP port.
+  ## Enabling this will configure haproxy to emit logs to syslog localhost:514 UDP port.
+  ## Enabling this will configure haproxy to emit logs to syslog localhost:514 UDP port.
+  ## The access-logs container starts a syslog process that listens on UDP 514 and outputs to stdout.
+  ## The access-logs container starts a syslog process that listens on UDP 514 and outputs to stdout.
+  ## The access-logs container starts a syslog process that listens on UDP 514 and outputs to stdout.
+  logs:
+  logs:
+  logs:
+    enabled: false
+    enabled: false
+    enabled: false
+
+
+
+    # syslog for haproxy
+    # syslog for haproxy
+    # syslog for haproxy
+    # https://github.com/whereisaaron/kube-syslog-sidecar
+    # https://github.com/whereisaaron/kube-syslog-sidecar
+    # https://github.com/whereisaaron/kube-syslog-sidecar
+    # (listens on UDP port 514 and outputs to stdout)
+    # (listens on UDP port 514 and outputs to stdout)
+    # (listens on UDP port 514 and outputs to stdout)
+    image:
+    image:
+    image:
+      repository: whereisaaron/kube-syslog-sidecar
+      repository: whereisaaron/kube-syslog-sidecar
+      repository: whereisaaron/kube-syslog-sidecar
+      tag: latest
+      tag: latest
+      tag: latest
+      pullPolicy: IfNotPresent
+      pullPolicy: IfNotPresent
+      pullPolicy: IfNotPresent
+
+
+
+    resources: {}
+    resources: {}
+    resources: {}
+    #  limits:
+    #  limits:
+    #  limits:
+    #    cpu: 200m
+    #    cpu: 200m
+    #    cpu: 200m
+    #    memory: 128Mi
+    #    memory: 128Mi
+    #    memory: 128Mi
+    #  requests:
+    #  requests:
+    #  requests:
+    #    cpu: 100m
+    #    cpu: 100m
+    #    cpu: 100m
+    #    memory: 32Mi
+    #    memory: 32Mi
+    #    memory: 32Mi
+
+
+
+# Default 404 backend
+# Default 404 backend
+# Default 404 backend
+defaultBackend:
+defaultBackend:
+defaultBackend:
+  ## If false, controller.defaultBackendService must be provided
+  ## If false, controller.defaultBackendService must be provided
+  ## If false, controller.defaultBackendService must be provided
+  ##
+  ##
+  ##
+  enabled: true
+  enabled: true
+  enabled: true
+
+
+
+  name: default-backend
+  name: default-backend
+  name: default-backend
+  image:
+  image:
+  image:
+    repository: gcr.io/google_containers/defaultbackend
+    repository: gcr.io/google_containers/defaultbackend
+    repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/gcr-defaultbackend
+    tag: "1.0"
+    tag: "1.0"
+    tag: "1.0"
+    pullPolicy: IfNotPresent
+    pullPolicy: IfNotPresent
+    pullPolicy: IfNotPresent
+
+
+
+  ## Node tolerations for server scheduling to nodes with taints
+  ## Node tolerations for server scheduling to nodes with taints
+  ## Node tolerations for server scheduling to nodes with taints
+  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+  ##
+  ##
+  ##
+  tolerations: []
+  tolerations: []
+  tolerations: []
+  #  - key: "key"
+  #  - key: "key"
+  #  - key: "key"
+  #    operator: "Equal|Exists"
+  #    operator: "Equal|Exists"
+  #    operator: "Equal|Exists"
+  #    value: "value"
+  #    value: "value"
+  #    value: "value"
+  #    effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+  #    effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+  #    effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+
+
+
+  affinity: {}
+  affinity: {}
+  affinity: {}
+
+
+
+  ## Node labels for default backend pod assignment
+  ## Node labels for default backend pod assignment
+  ## Node labels for default backend pod assignment
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ##
+  ##
+  ##
+  nodeSelector: {}
+  nodeSelector: {}
+  nodeSelector: {}
+
+
+
+  ## Annotations to be added to default backend pods
+  ## Annotations to be added to default backend pods
+  ## Annotations to be added to default backend pods
+  ##
+  ##
+  ##
+  podAnnotations: {}
+  podAnnotations: {}
+  podAnnotations: {}
+
+
+
+  # labels to add to the pod container metadata
+  # labels to add to the pod container metadata
+  # labels to add to the pod container metadata
+  podLabels: {}
+  podLabels: {}
+  podLabels: {}
+  #  key: value
+  #  key: value
+  #  key: value
+
+
+
+  # Deployment
+  # Deployment
+  # Deployment
+  replicaCount: 1
+  replicaCount: 1
+  replicaCount: 1
+
+
+
+  # PodDisruptionBudget
+  # PodDisruptionBudget
+  # PodDisruptionBudget
+  minAvailable: 1
+  minAvailable: 1
+  minAvailable: 1
+
+
+
+  resources:
+  resources:
+  resources:
+    limits:
+    limits:
+    limits:
+      cpu: 10m
+      cpu: 10m
+      cpu: 10m
+      memory: 20Mi
+      memory: 20Mi
+      memory: 20Mi
+  # requests:
+  # requests:
+  # requests:
+  #   cpu: 10m
+  #   cpu: 10m
+  #   cpu: 10m
+  #   memory: 20Mi
+  #   memory: 20Mi
+  #   memory: 20Mi
+
+
+
+  service:
+  service:
+  service:
+    name: ingress-default-backend
+    name: ingress-default-backend
+    name: ingress-default-backend
+    annotations: {}
+    annotations: {}
+    annotations: {}
+    clusterIP: ""
+    clusterIP: ""
+    clusterIP: ""
+
+
+
+    ## List of IP addresses at which the default backend service is available
+    ## List of IP addresses at which the default backend service is available
+    ## List of IP addresses at which the default backend service is available
+    ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+    ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+    ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+    ##
+    ##
+    ##
+    externalIPs: []
+    externalIPs: []
+    externalIPs: []
+
+
+
+    loadBalancerIP: ""
+    loadBalancerIP: ""
+    loadBalancerIP: ""
+    loadBalancerSourceRanges: []
+    loadBalancerSourceRanges: []
+    loadBalancerSourceRanges: []
+    servicePort: 8080
+    servicePort: 8080
+    servicePort: 8080
+    type: ClusterIP
+    type: ClusterIP
+    type: ClusterIP

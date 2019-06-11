@@ -1,0 +1,156 @@
+# Default values for gce-ingress.
+# Default values for gce-ingress.
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+# Declare variables to be passed into your templates.
+
+
+
+
+nameOverride: ""
+nameOverride: ""
+fullnameOverride: ""
+fullnameOverride: ""
+
+
+rbac:
+rbac:
+  # Specifies whether RBAC resources should be created
+  # Specifies whether RBAC resources should be created
+  create: true
+  create: true
+
+
+serviceAccount:
+serviceAccount:
+  # Specifies whether a ServiceAccount should be created
+  # Specifies whether a ServiceAccount should be created
+  create: true
+  create: true
+  # The name of the ServiceAccount to use.
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+  name:
+
+
+# gce-ingress needs credentials to log into GCE.  Create a secret with the key
+# gce-ingress needs credentials to log into GCE.  Create a secret with the key
+# of key.json with the contents of a GCE service account that has permissions to create
+# of key.json with the contents of a GCE service account that has permissions to create
+# and modify load balancers.  The key should be in the JSON format.
+# and modify load balancers.  The key should be in the JSON format.
+# Example:
+# Example:
+# Your secret should look like:
+# Your secret should look like:
+# apiVersion: v1
+# apiVersion: v1
+# kind: Secret
+# kind: Secret
+# metadata:
+# metadata:
+#   name: gce-key
+#   name: gce-key
+# type: Opaque
+# type: Opaque
+# data:
+# data:
+#   key.json: < base64 encoded JSON service account key>
+#   key.json: < base64 encoded JSON service account key>
+secret: ~
+secret: ~
+
+
+# gce config, replace values to match your environment
+# gce config, replace values to match your environment
+config:
+config:
+  projectID:
+  projectID:
+  network:
+  network:
+  subnetwork:
+  subnetwork:
+  nodeInstancePrefix:
+  nodeInstancePrefix:
+  nodeTags:
+  nodeTags:
+  # tokenUrl should probably be left as nil
+  # tokenUrl should probably be left as nil
+  tokenUrl: "nil"
+  tokenUrl: "nil"
+
+
+
+
+controller:
+controller:
+  replicaCount: 1
+  replicaCount: 1
+  image:
+  image:
+    repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/k8s-gcr-ingress-gce-glbc-amd64
+    repository: k8s.gcr.io/ingress-gce-glbc-amd64
+    tag: v1.4.0
+    tag: v1.4.0
+    pullPolicy: IfNotPresent
+    pullPolicy: IfNotPresent
+  resources: {}
+  resources: {}
+    # requests:
+    # requests:
+    #   cpu: 10m
+    #   cpu: 10m
+    #   memory: 50Mi
+    #   memory: 50Mi
+  nodeSelector: {}
+  nodeSelector: {}
+  tolerations: []
+  tolerations: []
+  affinity: {}
+  affinity: {}
+
+
+defaultBackend:
+defaultBackend:
+  replicaCount: 1
+  replicaCount: 1
+  image:
+  image:
+    repository: k8s.gcr.io/defaultbackend
+    repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/k8s-gcr-defaultbackend
+    tag: "1.4"
+    tag: "1.4"
+    pullPolicy: IfNotPresent
+    pullPolicy: IfNotPresent
+  resources: {}
+  resources: {}
+    # limits:
+    # limits:
+    #   cpu: 10m
+    #   cpu: 10m
+    #   memory: 20Mi
+    #   memory: 20Mi
+    # requests:
+    # requests:
+    #   cpu: 10m
+    #   cpu: 10m
+    #   memory: 20Mi
+    #   memory: 20Mi
+  nodeSelector: {}
+  nodeSelector: {}
+  tolerations: []
+  tolerations: []
+  affinity: {}
+  affinity: {}
+
+
+service:
+service:
+  type: NodePort
+  type: NodePort
+  port: 80
+  port: 80

@@ -1,0 +1,9 @@
+dependencies:
+- name: mongodb-replicaset
+  version: 3.6.4
+  repository: https://apphub.aliyuncs.com
+  condition: mongodb-replicaset.enabled
+- name: redis-ha
+  version: 3.0.0
+  repository: https://apphub.aliyuncs.com
+  condition: redis-ha.enabled

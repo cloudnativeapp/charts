@@ -1,0 +1,5 @@
+dependencies:
+- name: kafka
+  version: 0.13.2
+  repository: https://apphub.aliyuncs.com
+  condition: kafka.enabled

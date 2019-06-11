@@ -1,0 +1,92 @@
+## Global Docker image parameters
+## Please, note that this will override the image parameters, including dependencies, configured to use the global value
+## Current available global Docker image parameters: imageRegistry and imagePullSecrets
+##
+# global:
+#   imageRegistry: myRegistryName
+#   imagePullSecrets:
+#     - myRegistryKeySecretName
+
+## Bitnami WildFly image version
+## ref: https://hub.docker.com/r/bitnami/wildfly/tags/
+##
+image:
+  registry: docker.io
+  repository: bitnami/wildfly
+  tag: 16.0.0
+  ## Specify a imagePullPolicy
+  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+  ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  pullPolicy: IfNotPresent
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ##
+  # pullSecrets:
+  #   - myRegistryKeySecretName 
+
+## Specify a imagePullPolicy
+## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+##
+imagePullPolicy: IfNotPresent
+
+## Pod Security Context
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+##
+securityContext:
+  enabled: true
+  fsGroup: 1001
+  runAsUser: 1001
+
+## Admin user
+## ref: https://github.com/bitnami/bitnami-docker-wildfly#creating-a-custom-user
+##
+wildflyUsername: user
+
+## Admin password
+## ref: https://github.com/bitnami/bitnami-docker-wildfly#creating-a-custom-user
+##
+# wildflyPassword:
+
+## Kubernetes configuration
+## For minikube, set this to NodePort, elsewhere use LoadBalancer
+##
+service:
+  type: LoadBalancer
+  # HTTP Port
+  port: 80
+  # Management Port
+  mgmtPort: 9990
+  ##
+  ## loadBalancerIP:
+  ## nodePorts:
+  ##   http: <to set explicitly, choose port between 30000-32767>
+  ##   mgmt: <to set explicitly, choose port between 30000-32767>
+  nodePorts:
+    http: ""
+    mgmt: ""
+  ## Enable client source IP preservation
+  ## ref http://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+  ##
+  externalTrafficPolicy: Cluster
+
+## Enable persistence using Persistent Volume Claims
+## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+##
+persistence:
+  enabled: true
+  ## If defined, volume.beta.kubernetes.io/storage-class: <storageClass>
+  ## Default: volume.alpha.kubernetes.io/storage-class: default
+  ##
+  # storageClass:
+  accessMode: ReadWriteOnce
+  size: 8Gi
+
+## Configure resource requests and limits
+## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+##
+resources:
+  requests:
+    memory: 512Mi
+    cpu: 300m

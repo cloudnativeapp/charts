@@ -1,0 +1,5 @@
+dependencies:
+- name: mysql
+  version: 0.10.1
+  repository: https://apphub.aliyuncs.com
+  condition: mysql.enabled

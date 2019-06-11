@@ -1,0 +1,298 @@
+# Default values for dex
+# Default values for dex
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# Declare name/value pairs to be passed into your templates.
+# Declare name/value pairs to be passed into your templates.
+# name: value
+# name: value
+
+
+image: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-dex
+image: quay.io/dexidp/dex
+imageTag: "v2.16.0"
+imageTag: "v2.16.0"
+imagePullPolicy: "IfNotPresent"
+imagePullPolicy: "IfNotPresent"
+
+
+inMiniKube: false
+inMiniKube: false
+
+
+nodeSelector: {}
+nodeSelector: {}
+
+
+replicas: 1
+replicas: 1
+
+
+# resources:
+# resources:
+  # limits:
+  # limits:
+    # cpu: 100m
+    # cpu: 100m
+    # memory: 50Mi
+    # memory: 50Mi
+  # requests:
+  # requests:
+    # cpu: 100m
+    # cpu: 100m
+    # memory: 50Mi
+    # memory: 50Mi
+
+
+ports:
+ports:
+  - name: http
+  - name: http
+    containerPort: 8080
+    containerPort: 8080
+    protocol: TCP
+    protocol: TCP
+#   nodePort: 32080
+#   nodePort: 32080
+  - name: grpc
+  - name: grpc
+    containerPort: 5000
+    containerPort: 5000
+    protocol: TCP
+    protocol: TCP
+
+
+service:
+service:
+  type: ClusterIP
+  type: ClusterIP
+  port: 8080
+  port: 8080
+  annotations: {}
+  annotations: {}
+
+
+ingress:
+ingress:
+  enabled: false
+  enabled: false
+  annotations: {}
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  path: /
+  hosts:
+  hosts:
+    - dex.example.com
+    - dex.example.com
+  tls: []
+  tls: []
+  #  - secretName: dex-example-tls
+  #  - secretName: dex-example-tls
+  #    hosts:
+  #    hosts:
+  #      - dex.example.com
+  #      - dex.example.com
+
+
+extraVolumes: []
+extraVolumes: []
+extraVolumeMounts: []
+extraVolumeMounts: []
+
+
+certs:
+certs:
+  image: gcr.io/google_containers/kubernetes-dashboard-init-amd64
+  image: registry.cn-hangzhou.aliyuncs.com/kubeapps/gcr-kubernetes-dashboard-init-amd64
+  imageTag: "v1.0.0"
+  imageTag: "v1.0.0"
+  imagePullPolicy: "IfNotPresent"
+  imagePullPolicy: "IfNotPresent"
+  web:
+  web:
+    create: true
+    create: true
+    activeDeadlineSeconds: 300
+    activeDeadlineSeconds: 300
+    caDays: 10000
+    caDays: 10000
+    certDays: 10000
+    certDays: 10000
+    altNames:
+    altNames:
+      - dex.io
+      - dex.io
+    altIPs: {}
+    altIPs: {}
+    secret:
+    secret:
+      tlsName: dex-web-server-tls
+      tlsName: dex-web-server-tls
+      caName: dex-web-server-ca
+      caName: dex-web-server-ca
+  grpc:
+  grpc:
+    create: true
+    create: true
+    activeDeadlineSeconds: 300
+    activeDeadlineSeconds: 300
+    altNames:
+    altNames:
+      - dex.io
+      - dex.io
+    altIPs: {}
+    altIPs: {}
+    secret:
+    secret:
+      serverTlsName: dex-grpc-server-tls
+      serverTlsName: dex-grpc-server-tls
+      clientTlsName: dex-grpc-client-tls
+      clientTlsName: dex-grpc-client-tls
+      caName: dex-grpc-ca
+      caName: dex-grpc-ca
+
+
+env: []
+env: []
+
+
+rbac:
+rbac:
+  # Specifies whether RBAC resources should be created
+  # Specifies whether RBAC resources should be created
+  create: true
+  create: true
+
+
+serviceAccount:
+serviceAccount:
+  # Specifies whether a ServiceAccount should be created
+  # Specifies whether a ServiceAccount should be created
+  create: true
+  create: true
+  # The name of the ServiceAccount to use.
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+  name:
+
+
+affinity: {}
+affinity: {}
+  # podAntiAffinity:
+  # podAntiAffinity:
+  #   preferredDuringSchedulingIgnoredDuringExecution:
+  #   preferredDuringSchedulingIgnoredDuringExecution:
+  #   - weight: 5
+  #   - weight: 5
+  #     podAffinityTerm:
+  #     podAffinityTerm:
+  #       topologyKey: "kubernetes.io/hostname"
+  #       topologyKey: "kubernetes.io/hostname"
+  #       labelSelector:
+  #       labelSelector:
+  #         matchLabels:
+  #         matchLabels:
+  #           app: {{ template "dex.name" . }}
+  #           app: {{ template "dex.name" . }}
+  #           release: "{{ .Release.Name }}"
+  #           release: "{{ .Release.Name }}"
+
+
+podDisruptionBudget: {}
+podDisruptionBudget: {}
+  # maxUnavailable: 1
+  # maxUnavailable: 1
+
+
+config:
+config:
+  issuer: http://dex.io:8080
+  issuer: http://dex.io:8080
+  storage:
+  storage:
+    type: kubernetes
+    type: kubernetes
+    config:
+    config:
+      inCluster: true
+      inCluster: true
+  logger:
+  logger:
+    level: debug
+    level: debug
+  web:
+  web:
+    http: 0.0.0.0:8080
+    http: 0.0.0.0:8080
+#   tlsCert: /etc/dex/tls/https/server/tls.crt
+#   tlsCert: /etc/dex/tls/https/server/tls.crt
+#   tlsKey: /etc/dex/tls/https/server/tls.key
+#   tlsKey: /etc/dex/tls/https/server/tls.key
+  grpc:
+  grpc:
+    addr: 0.0.0.0:5000
+    addr: 0.0.0.0:5000
+    tlsCert: /etc/dex/tls/grpc/server/tls.crt
+    tlsCert: /etc/dex/tls/grpc/server/tls.crt
+    tlsKey: /etc/dex/tls/grpc/server/tls.key
+    tlsKey: /etc/dex/tls/grpc/server/tls.key
+    tlsClientCA: /etc/dex/tls/grpc/ca/tls.crt
+    tlsClientCA: /etc/dex/tls/grpc/ca/tls.crt
+  connectors:
+  connectors:
+#  - type: github
+#  - type: github
+#    id: github
+#    id: github
+#    name: GitHub
+#    name: GitHub
+#    config:
+#    config:
+#      clientID: xxxxxxxxxxxxxxx
+#      clientID: xxxxxxxxxxxxxxx
+#      clientSecret: yyyyyyyyyyyyyyyyyyyyy
+#      clientSecret: yyyyyyyyyyyyyyyyyyyyy
+#      redirectURI: https://dex.minikube.local:5556/callback
+#      redirectURI: https://dex.minikube.local:5556/callback
+#      org: kubernetes
+#      org: kubernetes
+  oauth2:
+  oauth2:
+    skipApprovalScreen: true
+    skipApprovalScreen: true
+
+
+#  staticClients:
+#  staticClients:
+#  - id: example-app
+#  - id: example-app
+#    redirectURIs:
+#    redirectURIs:
+#    - 'http://192.168.42.219:31850/oauth2/callback'
+#    - 'http://192.168.42.219:31850/oauth2/callback'
+#    name: 'Example App'
+#    name: 'Example App'
+#    secret: ZXhhbXBsZS1hcHAtc2VjcmV0
+#    secret: ZXhhbXBsZS1hcHAtc2VjcmV0
+#
+#
+  enablePasswordDB: true
+  enablePasswordDB: true
+# staticPasswords:
+# staticPasswords:
+#  - email: "admin@example.com"
+#  - email: "admin@example.com"
+#    # bcrypt hash of the string "password"
+#    # bcrypt hash of the string "password"
+#    hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
+#    hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
+#    username: "admin"
+#    username: "admin"
+#    userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"
+#    userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"

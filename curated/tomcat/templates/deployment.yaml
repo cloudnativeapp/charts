@@ -1,0 +1,71 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}
+      release: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+    spec:
+      {{- if .Values.securityContext.enabled }}
+      securityContext:
+        fsGroup: {{ .Values.securityContext.fsGroup }}
+        runAsUser: {{ .Values.securityContext.runAsUser }}
+      {{- end}}
+{{- include "tomcat.imagePullSecrets" . | indent 6 }}
+      containers:
+      - name: {{ template "fullname" . }}
+        image: "{{ template "tomcat.image" . }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+        env:
+        - name: TOMCAT_USERNAME
+          value: {{ .Values.tomcatUsername | quote }}
+        - name: TOMCAT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}
+              key: tomcat-password
+        - name: TOMCAT_ALLOW_REMOTE_MANAGEMENT
+          value: {{ .Values.tomcatAllowRemoteManagement | quote }}
+        ports:
+        - name: http
+          containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 120
+          timeoutSeconds: 5
+          failureThreshold: 6
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 30
+          timeoutSeconds: 3
+          periodSeconds: 51
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        volumeMounts:
+        - name: tomcat-data
+          mountPath: /bitnami/tomcat
+      volumes:
+      - name: tomcat-data
+      {{- if .Values.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ template "fullname" . }}
+      {{- else }}
+        emptyDir: {}
+      {{- end -}}

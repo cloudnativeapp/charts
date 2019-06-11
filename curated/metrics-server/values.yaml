@@ -1,0 +1,64 @@
+## Global Docker image parameters
+## Please, note that this will override the image parameters, including dependencies, configured to use the global value
+## Current available global Docker image parameters: imageRegistry and imagePullSecrets
+##
+# global:
+#   imageRegistry: myRegistryName
+#   imagePullSecrets:
+#     - myRegistryKeySecretName
+
+## Bitnami Metrics Server image version
+## ref: https://hub.docker.com/r/bitnami/metrics-server/tags/
+##
+image:
+  registry: docker.io
+  repository: bitnami/metrics-server
+  tag: 0.3.3
+  ## Specify a imagePullPolicy
+  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+  ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  pullPolicy: Always
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ##
+  # pullSecrets:
+  #   - myRegistryKeySecretName
+
+rbac:
+  # Specifies whether RBAC resources should be created
+  create: true
+
+serviceAccount:
+  # Specifies whether a ServiceAccount should be created
+  create: true
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+apiService:
+  # Specifies if the v1beta1.metrics.k8s.io API service should be created.
+  # This should not be necessary in k8s version >= 1.8
+  # If you disable API service creation you have to
+  # manage it outside of this chart for e.g horizontal pod autoscaling to
+  # work with this release.
+  create: false
+
+## Specify the secure port where metrics-server will be running
+##
+securePort: 8443
+
+service:
+  type: ClusterIP
+  port: 443
+  ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+  ##
+  # nodePort:
+   ## Provide any additional annotations which may be required. This can be used to
+  ## set the LoadBalancer service type to internal only.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+  ##
+  annotations: {}
+  # loadBalancerIP:

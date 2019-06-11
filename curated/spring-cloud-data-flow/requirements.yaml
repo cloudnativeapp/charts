@@ -1,0 +1,12 @@
+dependencies:
+- name:  mysql
+  version: 0.3.4
+  repository: https://apphub.aliyuncs.com
+- name:  rabbitmq
+  version: 0.6.16
+  repository: https://apphub.aliyuncs.com
+  condition: rabbitmq.enabled
+- name:  kafka
+  version: 0.13.11
+  repository: https://apphub.aliyuncs.com
+  condition: kafka.enabled

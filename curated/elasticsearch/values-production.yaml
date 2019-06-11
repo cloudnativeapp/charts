@@ -1,0 +1,313 @@
+## Global Docker image parameters
+## Please, note that this will override the image parameters, including dependencies, configured to use the global value
+## Current available global Docker image parameters: imageRegistry and imagePullSecrets
+##
+# global:
+#   imageRegistry: myRegistryName
+#   imagePullSecrets:
+#     - myRegistryKeySecretName
+
+## Bitnami Elasticsearch image version
+## ref: https://hub.docker.com/r/bitnami/elasticsearch/tags/
+##
+image:
+  registry: docker.io
+  repository: bitnami/elasticsearch
+  tag: 7.0.1
+  ## Specify a imagePullPolicy
+  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+  ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  pullPolicy: IfNotPresent
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ##
+  # pullSecrets:
+  #   - myRegistryKeySecretName
+
+## Elasticsearch cluster name
+##
+name: elastic
+
+## Comma, semi-colon or space separated list of plugins to install at initialization
+## ref: https://github.com/bitnami/bitnami-docker-elasticsearch#environment-variables
+##
+# plugins:
+
+## Customize elasticsearch configuration
+## ref: https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html
+##
+# config:
+
+## Elasticsearch master-eligible node parameters
+##
+master:
+  name: master
+  replicas: 3
+  heapSize: 128m
+  antiAffinity: "soft"
+  ## Node Affinity
+  # nodeAffinity:
+  service:
+    ## master-eligible service type
+    type: ClusterIP
+    ## Elasticsearch transport port
+    port: 9300
+    ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+    ##
+    # nodePort:
+
+    ## Provide any additional annotations which may be required. This can be used to
+    ## set the LoadBalancer service type to internal only.
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+    ##
+    annotations: {}
+    # loadBalancerIP:
+
+  ## Configure resource requests and limits
+  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  ##
+  resources:
+    requests:
+      cpu: 25m
+      memory: "256Mi"
+  ## Elasticsearch master-eligible Liveness Probe
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
+  ## Elasticsearch master-eligible Readiness Probe
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
+
+## Image that performs the sysctl operation
+##
+sysctlImage:
+  enabled: false
+  registry: docker.io
+  repository: bitnami/minideb
+  tag: latest
+  ## Specify a imagePullPolicy
+  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+  ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  pullPolicy: IfNotPresent
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ##
+  # pullSecrets:
+  #   - myRegistryKeySecretName
+
+## Pod Security Context
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+##
+securityContext:
+  enabled: true
+  fsGroup: 1001
+  runAsUser: 1001
+
+## Elasticsearch discovery node parameters
+##
+discovery:
+  name: discovery
+
+## Elasticsearch coordinating-only node parameters
+##
+coordinating:
+  name: coordinating-only
+  replicas: 2
+  heapSize: 128m
+  antiAffinity: "soft"
+  ## node affinity
+  # nodeAffinity:
+  service:
+    ## coordinating-only service type
+    type: ClusterIP
+    ## Elasticsearch REST API port
+    port: 9200
+    ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+    ##
+    # nodePort:
+
+    ## Provide any additional annotations which may be required. This can be used to
+    ## set the LoadBalancer service type to internal only.
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+    ##
+    annotations: {}
+    # loadBalancerIP:
+
+  ## Configure resource requests and limits
+  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  ##
+  resources:
+    requests:
+      cpu: 25m
+      memory: "256Mi"
+  ## Elasticsearch master-eligible Liveness Probe
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
+  ## Elasticsearch master-eligible Readiness Probe
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
+
+## Elasticsearch data node parameters
+##
+data:
+  name: data
+  replicas: 3
+  ## updateStrategy for ElasticSearch Data statefulset
+  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
+  updateStrategy:
+    type: RollingUpdate
+    # rollingUpdatePartition
+  heapSize: 1024m
+  antiAffinity: "soft"
+  ## node affinity
+  # nodeAffinity:
+  ## Configure resource requests and limits
+  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  ##
+  resources:
+    requests:
+      cpu: 25m
+      memory: "1152Mi"
+  ## Elasticsearch master-eligible Liveness Probe
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
+  ## Elasticsearch master-eligible Readiness Probe
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
+  ## Enable persistence using Persistent Volume Claims
+  ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+  ##
+  persistence:
+    ## If true, use a Persistent Volume Claim, If false, use emptyDir
+    ##
+    enabled: true
+
+    ## Persistent Volume Claim annotations
+    ##
+    annotations: {}
+
+    ## Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    # storageClass: "-"
+
+    ## Persistent Volume Access Mode
+    accessModes:
+    - ReadWriteOnce
+
+    ## Persistent Volume size
+    ##
+    size: 8Gi
+
+## Elasticsearch ingest node parameters
+##
+ingest:
+  enabled: true
+  name: ingest
+  replicas: 2
+  heapSize: 128m
+  antiAffinity: "soft"
+  ## node affinity
+  # nodeAffinity:
+  service:
+    ## ingest service type
+    type: ClusterIP
+    ## Elasticsearch transport port
+    port: 9300
+    ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+    ##
+    # nodePort:
+
+    ## Provide any additional annotations which may be required. This can be used to
+    ## set the LoadBalancer service type to internal only.
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+    ##
+    annotations: {}
+    # loadBalancerIP:
+
+  ## Configure resource requests and limits
+  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  ##
+  resources:
+    requests:
+      cpu: 25m
+      memory: "256Mi"
+  ## Elasticsearch master-eligible Liveness Probe
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
+  ## Elasticsearch master-eligible Readiness Probe
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 90
+    periodSeconds: 10
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
+
+metrics:
+  enabled: true
+  name: metrics
+  image:
+    registry: docker.io
+    repository: bitnami/elasticsearch-exporter
+    tag: 1.0.2
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ##
+    # pullSecrets:
+    #   - myRegistryKeySecretName
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9108"
+  service:
+    type: ClusterIP
+  resources: {}
+  #  requests:
+  #    cpu: 25m

@@ -1,0 +1,87 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}
+      release: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+{{- if or .Values.podAnnotations .Values.metrics.enabled }}
+      annotations:
+  {{- if or .Values.podAnnotations }}
+{{ toYaml .Values.podAnnotations | indent 8 }}
+  {{- end }}
+  {{- if .Values.metrics.podAnnotations }}
+{{ toYaml .Values.metrics.podAnnotations | indent 8 }}
+  {{- end }}
+{{- end }}
+    spec:
+      {{- if .Values.securityContext.enabled }}
+      securityContext:
+        fsGroup: {{ .Values.securityContext.fsGroup }}
+        runAsUser: {{ .Values.securityContext.runAsUser }}
+      {{- end }}
+{{- include "memcached.imagePullSecrets" . | indent 6 }}
+      containers:
+      - name: {{ template "fullname" . }}
+        image: "{{ template "memcached.image" . }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+        env:
+        - name: MEMCACHED_USERNAME
+          value: {{ default "" .Values.memcachedUsername | quote }}
+        - name: MEMCACHED_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}
+              key: memcached-password
+        ports:
+        - name: memcache
+          containerPort: 11211
+        livenessProbe:
+          tcpSocket:
+            port: memcache
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 6
+        readinessProbe:
+          tcpSocket:
+            port: memcache
+          initialDelaySeconds: 5
+          timeoutSeconds: 3
+          periodSeconds: 5
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+{{- if .Values.metrics.enabled }}
+      - name: metrics
+        image: {{ template "memcached.metrics.image" . }}
+        imagePullPolicy: {{ .Values.metrics.image.pullPolicy | quote }}
+        ports:
+        - name: metrics
+          containerPort: 9150
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: metrics
+          initialDelaySeconds: 15
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /metrics
+            port: metrics
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+        resources:
+  {{ toYaml .Values.metrics.resources | indent 10 }}
+{{- end }}
