@@ -1,0 +1,606 @@
+statefulset:
+statefulset:
+statefulset:
+  enabled: false
+  enabled: false
+  enabled: false
+replicaCount: 1
+replicaCount: 1
+replicaCount: 1
+# By default deploymentStrategy is set to rollingUpdate with maxSurge of 25% and maxUnavailable of 25% . you can change type to `Recreate` or can uncomment `rollingUpdate` specification and adjust them to your usage.
+# By default deploymentStrategy is set to rollingUpdate with maxSurge of 25% and maxUnavailable of 25% . you can change type to `Recreate` or can uncomment `rollingUpdate` specification and adjust them to your usage.
+# By default deploymentStrategy is set to rollingUpdate with maxSurge of 25% and maxUnavailable of 25% . you can change type to `Recreate` or can uncomment `rollingUpdate` specification and adjust them to your usage.
+deploymentStrategy: {}
+deploymentStrategy: {}
+deploymentStrategy: {}
+  # rollingUpdate:
+  # rollingUpdate:
+  # rollingUpdate:
+  #   maxSurge: 25%
+  #   maxSurge: 25%
+  #   maxSurge: 25%
+  #   maxUnavailable: 25%
+  #   maxUnavailable: 25%
+  #   maxUnavailable: 25%
+  # type: RollingUpdate
+  # type: RollingUpdate
+  # type: RollingUpdate
+
+
+
+nexus:
+nexus:
+nexus:
+  imageName: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-docker-nexus
+  imageName: quay.io/travelaudience/docker-nexus
+  imageName: quay.io/travelaudience/docker-nexus
+  imageTag: 3.15.2
+  imageTag: 3.15.2
+  imageTag: 3.15.2
+  imagePullPolicy: IfNotPresent
+  imagePullPolicy: IfNotPresent
+  imagePullPolicy: IfNotPresent
+  env:
+  env:
+  env:
+    - name: install4jAddVmParams
+    - name: install4jAddVmParams
+    - name: install4jAddVmParams
+      value: "-Xms1200M -Xmx1200M -XX:MaxDirectMemorySize=2G -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      value: "-Xms1200M -Xmx1200M -XX:MaxDirectMemorySize=2G -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      value: "-Xms1200M -Xmx1200M -XX:MaxDirectMemorySize=2G -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+  # nodeSelector:
+  # nodeSelector:
+  # nodeSelector:
+  #   cloud.google.com/gke-nodepool: default-pool
+  #   cloud.google.com/gke-nodepool: default-pool
+  #   cloud.google.com/gke-nodepool: default-pool
+  resources: {}
+  resources: {}
+  resources: {}
+    # requests:
+    # requests:
+    # requests:
+      ## Based on https://support.sonatype.com/hc/en-us/articles/115006448847#mem
+      ## Based on https://support.sonatype.com/hc/en-us/articles/115006448847#mem
+      ## Based on https://support.sonatype.com/hc/en-us/articles/115006448847#mem
+      ## and https://twitter.com/analytically/status/894592422382063616:
+      ## and https://twitter.com/analytically/status/894592422382063616:
+      ## and https://twitter.com/analytically/status/894592422382063616:
+      ##   Xms == Xmx
+      ##   Xms == Xmx
+      ##   Xms == Xmx
+      ##   Xmx <= 4G
+      ##   Xmx <= 4G
+      ##   Xmx <= 4G
+      ##   MaxDirectMemory >= 2G
+      ##   MaxDirectMemory >= 2G
+      ##   MaxDirectMemory >= 2G
+      ##   Xmx + MaxDirectMemory <= RAM * 2/3 (hence the request for 4800Mi)
+      ##   Xmx + MaxDirectMemory <= RAM * 2/3 (hence the request for 4800Mi)
+      ##   Xmx + MaxDirectMemory <= RAM * 2/3 (hence the request for 4800Mi)
+      ##   MaxRAMFraction=1 is not being set as it would allow the heap
+      ##   MaxRAMFraction=1 is not being set as it would allow the heap
+      ##   MaxRAMFraction=1 is not being set as it would allow the heap
+      ##     to use all the available memory.
+      ##     to use all the available memory.
+      ##     to use all the available memory.
+      # cpu: 250m
+      # cpu: 250m
+      # cpu: 250m
+      # memory: 4800Mi
+      # memory: 4800Mi
+      # memory: 4800Mi
+  # The ports should only be changed if the nexus image uses a different port
+  # The ports should only be changed if the nexus image uses a different port
+  # The ports should only be changed if the nexus image uses a different port
+  dockerPort: 5003
+  dockerPort: 5003
+  dockerPort: 5003
+  nexusPort: 8081
+  nexusPort: 8081
+  nexusPort: 8081
+  service:
+  service:
+  service:
+    type: NodePort
+    type: NodePort
+    type: NodePort
+    # clusterIP: None
+    # clusterIP: None
+    # clusterIP: None
+  # annotations: {}
+  # annotations: {}
+  # annotations: {}
+  # labels: {}
+  # labels: {}
+  # labels: {}
+  # securityContext:
+  # securityContext:
+  # securityContext:
+  #   fsGroup: 2000
+  #   fsGroup: 2000
+  #   fsGroup: 2000
+  podAnnotations: {}
+  podAnnotations: {}
+  podAnnotations: {}
+  livenessProbe:
+  livenessProbe:
+  livenessProbe:
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    periodSeconds: 30
+    periodSeconds: 30
+    periodSeconds: 30
+    failureThreshold: 6
+    failureThreshold: 6
+    failureThreshold: 6
+    # timeoutSeconds: 10
+    # timeoutSeconds: 10
+    # timeoutSeconds: 10
+    path: /
+    path: /
+    path: /
+  readinessProbe:
+  readinessProbe:
+  readinessProbe:
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    initialDelaySeconds: 30
+    periodSeconds: 30
+    periodSeconds: 30
+    periodSeconds: 30
+    failureThreshold: 6
+    failureThreshold: 6
+    failureThreshold: 6
+    # timeoutSeconds: 10
+    # timeoutSeconds: 10
+    # timeoutSeconds: 10
+    path: /
+    path: /
+    path: /
+  # hostAliases allows the modification of the hosts file inside a container
+  # hostAliases allows the modification of the hosts file inside a container
+  # hostAliases allows the modification of the hosts file inside a container
+  hostAliases: []
+  hostAliases: []
+  hostAliases: []
+  # - ip: "192.168.1.10"
+  # - ip: "192.168.1.10"
+  # - ip: "192.168.1.10"
+  #   hostnames:
+  #   hostnames:
+  #   hostnames:
+  #   - "example.com"
+  #   - "example.com"
+  #   - "example.com"
+  #   - "www.example.com"
+  #   - "www.example.com"
+  #   - "www.example.com"
+
+
+
+route:
+route:
+route:
+  enabled: false
+  enabled: false
+  enabled: false
+  name: docker
+  name: docker
+  name: docker
+  portName: docker
+  portName: docker
+  portName: docker
+  labels:
+  labels:
+  labels:
+  annotations:
+  annotations:
+  annotations:
+  # path: /docker
+  # path: /docker
+  # path: /docker
+
+
+
+nexusProxy:
+nexusProxy:
+nexusProxy:
+  enabled: true
+  enabled: true
+  enabled: true
+  # svcName: proxy-svc
+  # svcName: proxy-svc
+  # svcName: proxy-svc
+  imageName: quay.io/travelaudience/docker-nexus-proxy
+  imageName: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-docker-nexus-proxy
+  imageName: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-docker-nexus-proxy
+  imageTag: 2.4.0_8u191
+  imageTag: 2.4.0_8u191
+  imageTag: 2.4.0_8u191
+  imagePullPolicy: IfNotPresent
+  imagePullPolicy: IfNotPresent
+  imagePullPolicy: IfNotPresent
+  port: 8080
+  port: 8080
+  port: 8080
+  targetPort: 8080
+  targetPort: 8080
+  targetPort: 8080
+  # labels: {}
+  # labels: {}
+  # labels: {}
+  env:
+  env:
+  env:
+    nexusDockerHost:
+    nexusDockerHost:
+    nexusDockerHost:
+    nexusHttpHost:
+    nexusHttpHost:
+    nexusHttpHost:
+    enforceHttps: false
+    enforceHttps: false
+    enforceHttps: false
+    cloudIamAuthEnabled: false
+    cloudIamAuthEnabled: false
+    cloudIamAuthEnabled: false
+## If cloudIamAuthEnabled is set to true uncomment the variables below and remove this line
+## If cloudIamAuthEnabled is set to true uncomment the variables below and remove this line
+## If cloudIamAuthEnabled is set to true uncomment the variables below and remove this line
+  #   clientId: ""
+  #   clientId: ""
+  #   clientId: ""
+  #   clientSecret: ""
+  #   clientSecret: ""
+  #   clientSecret: ""
+  #   organizationId: ""
+  #   organizationId: ""
+  #   organizationId: ""
+  #   redirectUrl: ""
+  #   redirectUrl: ""
+  #   redirectUrl: ""
+  #   requiredMembershipVerification: "true"
+  #   requiredMembershipVerification: "true"
+  #   requiredMembershipVerification: "true"
+  # secrets:
+  # secrets:
+  # secrets:
+  #   keystore: ""
+  #   keystore: ""
+  #   keystore: ""
+  #   password: ""
+  #   password: ""
+  #   password: ""
+  resources: {}
+  resources: {}
+  resources: {}
+    # requests:
+    # requests:
+    # requests:
+      # cpu: 100m
+      # cpu: 100m
+      # cpu: 100m
+      # memory: 256Mi
+      # memory: 256Mi
+      # memory: 256Mi
+    # limits:
+    # limits:
+    # limits:
+      # cpu: 200m
+      # cpu: 200m
+      # cpu: 200m
+      # memory: 512Mi
+      # memory: 512Mi
+      # memory: 512Mi
+
+
+
+nexusProxyRoute:
+nexusProxyRoute:
+nexusProxyRoute:
+  enabled: false
+  enabled: false
+  enabled: false
+  labels:
+  labels:
+  labels:
+  annotations:
+  annotations:
+  annotations:
+  # path: /nexus
+  # path: /nexus
+  # path: /nexus
+
+
+
+persistence:
+persistence:
+persistence:
+  enabled: true
+  enabled: true
+  enabled: true
+  accessMode: ReadWriteOnce
+  accessMode: ReadWriteOnce
+  accessMode: ReadWriteOnce
+  ## If defined, storageClass: <storageClass>
+  ## If defined, storageClass: <storageClass>
+  ## If defined, storageClass: <storageClass>
+  ## If set to "-", storageClass: "", which disables dynamic provisioning
+  ## If set to "-", storageClass: "", which disables dynamic provisioning
+  ## If set to "-", storageClass: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClass spec is
+  ## If undefined (the default) or set to null, no storageClass spec is
+  ## If undefined (the default) or set to null, no storageClass spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##   GKE, AWS & OpenStack)
+  ##   GKE, AWS & OpenStack)
+  ##
+  ##
+  ##
+  # existingClaim:
+  # existingClaim:
+  # existingClaim:
+  # annotations:
+  # annotations:
+  # annotations:
+  #  "helm.sh/resource-policy": keep
+  #  "helm.sh/resource-policy": keep
+  #  "helm.sh/resource-policy": keep
+  # storageClass: "-"
+  # storageClass: "-"
+  # storageClass: "-"
+  storageSize: 8Gi
+  storageSize: 8Gi
+  storageSize: 8Gi
+  # If PersistentDisk already exists you can create a PV for it by including the 2 following keypairs.
+  # If PersistentDisk already exists you can create a PV for it by including the 2 following keypairs.
+  # If PersistentDisk already exists you can create a PV for it by including the 2 following keypairs.
+  # pdName: nexus-data-disk
+  # pdName: nexus-data-disk
+  # pdName: nexus-data-disk
+  # fsType: ext4
+  # fsType: ext4
+  # fsType: ext4
+
+
+
+nexusBackup:
+nexusBackup:
+nexusBackup:
+  enabled: false
+  enabled: false
+  enabled: false
+  imageName: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-docker-nexus-backup
+  imageName: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-docker-nexus-backup
+  imageName: quay.io/travelaudience/docker-nexus-backup
+  imageTag: 1.4.0
+  imageTag: 1.4.0
+  imageTag: 1.4.0
+  imagePullPolicy: IfNotPresent
+  imagePullPolicy: IfNotPresent
+  imagePullPolicy: IfNotPresent
+  env:
+  env:
+  env:
+    targetBucket:
+    targetBucket:
+    targetBucket:
+  nexusAdminPassword: "admin123"
+  nexusAdminPassword: "admin123"
+  nexusAdminPassword: "admin123"
+  persistence:
+  persistence:
+  persistence:
+    enabled: true
+    enabled: true
+    enabled: true
+    # existingClaim:
+    # existingClaim:
+    # existingClaim:
+    # annotations:
+    # annotations:
+    # annotations:
+    #  "helm.sh/resource-policy": keep
+    #  "helm.sh/resource-policy": keep
+    #  "helm.sh/resource-policy": keep
+    accessMode: ReadWriteOnce
+    accessMode: ReadWriteOnce
+    accessMode: ReadWriteOnce
+    # See comment above for information on setting the backup storageClass
+    # See comment above for information on setting the backup storageClass
+    # See comment above for information on setting the backup storageClass
+    # storageClass: "-"
+    # storageClass: "-"
+    # storageClass: "-"
+    storageSize: 8Gi
+    storageSize: 8Gi
+    storageSize: 8Gi
+    # If PersistentDisk already exists you can create a PV for it by including the 2 following keypairs.
+    # If PersistentDisk already exists you can create a PV for it by including the 2 following keypairs.
+    # If PersistentDisk already exists you can create a PV for it by including the 2 following keypairs.
+    # pdName: nexus-backup-disk
+    # pdName: nexus-backup-disk
+    # pdName: nexus-backup-disk
+    # fsType: ext4
+    # fsType: ext4
+    # fsType: ext4
+
+
+
+ingress:
+ingress:
+ingress:
+  enabled: false
+  enabled: false
+  enabled: false
+  path: /
+  path: /
+  path: /
+  annotations: {}
+  annotations: {}
+  annotations: {}
+  # # NOTE: Can't use 'false' due to https://github.com/jetstack/kube-lego/issues/173.
+  # # NOTE: Can't use 'false' due to https://github.com/jetstack/kube-lego/issues/173.
+  # # NOTE: Can't use 'false' due to https://github.com/jetstack/kube-lego/issues/173.
+  # kubernetes.io/ingress.allow-http: true
+  # kubernetes.io/ingress.allow-http: true
+  # kubernetes.io/ingress.allow-http: true
+  # kubernetes.io/ingress.class: gce
+  # kubernetes.io/ingress.class: gce
+  # kubernetes.io/ingress.class: gce
+  # kubernetes.io/ingress.global-static-ip-name: ""
+  # kubernetes.io/ingress.global-static-ip-name: ""
+  # kubernetes.io/ingress.global-static-ip-name: ""
+  # kubernetes.io/tls-acme: true
+  # kubernetes.io/tls-acme: true
+  # kubernetes.io/tls-acme: true
+  tls:
+  tls:
+  tls:
+    enabled: true
+    enabled: true
+    enabled: true
+    secretName: nexus-tls
+    secretName: nexus-tls
+    secretName: nexus-tls
+
+
+
+tolerations: []
+tolerations: []
+tolerations: []
+
+
+
+# # Enable configmap and add data in configmap
+# # Enable configmap and add data in configmap
+# # Enable configmap and add data in configmap
+config:
+config:
+config:
+  enabled: false
+  enabled: false
+  enabled: false
+  mountPath: /sonatype-nexus-conf
+  mountPath: /sonatype-nexus-conf
+  mountPath: /sonatype-nexus-conf
+  data:
+  data:
+  data:
+
+
+
+deployment:
+deployment:
+deployment:
+  # # Add annotations in deployment to enhance deployment configurations
+  # # Add annotations in deployment to enhance deployment configurations
+  # # Add annotations in deployment to enhance deployment configurations
+  annotations: {}
+  annotations: {}
+  annotations: {}
+  # # Add init containers. e.g. to be used to give specific permissions for nexus-data.
+  # # Add init containers. e.g. to be used to give specific permissions for nexus-data.
+  # # Add init containers. e.g. to be used to give specific permissions for nexus-data.
+  # # Add your own init container or uncomment and modify the given example.
+  # # Add your own init container or uncomment and modify the given example.
+  # # Add your own init container or uncomment and modify the given example.
+  initContainers:
+  initContainers:
+  initContainers:
+  # - name: fmp-volume-permission
+  # - name: fmp-volume-permission
+  # - name: fmp-volume-permission
+    # image: busybox
+    # image: busybox
+    # image: busybox
+    # imagePullPolicy: IfNotPresent
+    # imagePullPolicy: IfNotPresent
+    # imagePullPolicy: IfNotPresent
+    # command: ['chown','-R', '200', '/nexus-data']
+    # command: ['chown','-R', '200', '/nexus-data']
+    # command: ['chown','-R', '200', '/nexus-data']
+    # volumeMounts:
+    # volumeMounts:
+    # volumeMounts:
+      # - name: nexus-data
+      # - name: nexus-data
+      # - name: nexus-data
+        # mountPath: /nexus-data
+        # mountPath: /nexus-data
+        # mountPath: /nexus-data
+  # # Uncomment and modify this to run a command after starting the nexus container.
+  # # Uncomment and modify this to run a command after starting the nexus container.
+  # # Uncomment and modify this to run a command after starting the nexus container.
+  postStart:
+  postStart:
+  postStart:
+    command:    # '["/bin/sh", "-c", "ls"]'
+    command:    # '["/bin/sh", "-c", "ls"]'
+    command:    # '["/bin/sh", "-c", "ls"]'
+  additionalContainers:
+  additionalContainers:
+  additionalContainers:
+  additionalVolumes:
+  additionalVolumes:
+  additionalVolumes:
+  additionalVolumeMounts:
+  additionalVolumeMounts:
+  additionalVolumeMounts:
+
+
+
+# # To use an additional secret, set enable to true and add data
+# # To use an additional secret, set enable to true and add data
+# # To use an additional secret, set enable to true and add data
+secret:
+secret:
+secret:
+  enabled: false
+  enabled: false
+  enabled: false
+  mountPath: /etc/secret-volume
+  mountPath: /etc/secret-volume
+  mountPath: /etc/secret-volume
+  readOnly: true
+  readOnly: true
+  readOnly: true
+  data:
+  data:
+  data:
+
+
+
+# # To use an additional service, set enable to true
+# # To use an additional service, set enable to true
+# # To use an additional service, set enable to true
+service:
+service:
+service:
+  # name: additional-svc
+  # name: additional-svc
+  # name: additional-svc
+  enabled: false
+  enabled: false
+  enabled: false
+  portName: nexus-service
+  portName: nexus-service
+  portName: nexus-service
+  labels: {}
+  labels: {}
+  labels: {}
+  annotations: {}
+  annotations: {}
+  annotations: {}
+  targetPort: 80
+  targetPort: 80
+  targetPort: 80
+  port: 80
+  port: 80
+  port: 80

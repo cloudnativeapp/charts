@@ -1,0 +1,9 @@
+dependencies:
+  - name: postgresql
+    version: 0.18.0
+    repository: https://apphub.aliyuncs.com
+    condition: postgresql.enabled
+  - name: redis
+    version: 3.8.1
+    repository: https://apphub.aliyuncs.com
+    condition: redis.enabled

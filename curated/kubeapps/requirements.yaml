@@ -1,0 +1,4 @@
+dependencies:
+- name: mongodb
+  version: ">= 0"
+  repository: https://apphub.aliyuncs.com

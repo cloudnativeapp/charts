@@ -1,0 +1,74 @@
+global:
+global:
+  ## Reference to one or more secrets to be used when pulling images
+  ## Reference to one or more secrets to be used when pulling images
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ##
+  ##
+  imagePullSecrets: []
+  imagePullSecrets: []
+  # - name: "image-pull-secret"
+  # - name: "image-pull-secret"
+
+
+  # Optional priority class to be used for the cert-manager pods
+  # Optional priority class to be used for the cert-manager pods
+  priorityClassName: ""
+  priorityClassName: ""
+
+
+replicaCount: 1
+replicaCount: 1
+
+
+strategy: {}
+strategy: {}
+  # type: RollingUpdate
+  # type: RollingUpdate
+  # rollingUpdate:
+  # rollingUpdate:
+  #   maxSurge: 0
+  #   maxSurge: 0
+  #   maxUnavailable: 1
+  #   maxUnavailable: 1
+
+
+podAnnotations: {}
+podAnnotations: {}
+
+
+# Optional additional arguments for webhook
+# Optional additional arguments for webhook
+extraArgs: []
+extraArgs: []
+
+
+resources: {}
+resources: {}
+  # requests:
+  # requests:
+  #   cpu: 10m
+  #   cpu: 10m
+  #   memory: 32Mi
+  #   memory: 32Mi
+
+
+image:
+image:
+  repository: quay.io/jetstack/cert-manager-webhook
+  repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-cert-manager-webhook
+  tag: v0.6.2
+  tag: v0.6.2
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+
+
+caSyncImage:
+caSyncImage:
+  repository: quay.io/munnerz/apiextensions-ca-helper
+  repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-apiextensions-ca-helper
+  tag: v0.1.0
+  tag: v0.1.0
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent

@@ -40,4 +40,4 @@ We will be setting up CODEOWNERS file shortly and welcome more maintainers.
 
 Like so many projects, this effort has roots in many places.
 Special thanks to the Helm community for discussing and supporting our work.
-Thanks to Alibaba Cloud for the hosted service.
+Thanks to Alibaba Cloud for hosting the service.

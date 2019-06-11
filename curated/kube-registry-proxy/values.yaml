@@ -1,0 +1,16 @@
+image:
+image:
+  repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/k8s-gcr-kube-registry-proxy
+  repository: k8s.registry.cn-hangzhou.aliyuncs.com/kubeapps//kube-registry-proxy
+  tag: 0.4
+  tag: 0.4
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+
+
+registry:
+registry:
+  host: "gcr.io"
+  host: "registry.cn-hangzhou.aliyuncs.com/kubeapps/"
+  port: ""
+  port: ""

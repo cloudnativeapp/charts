@@ -1,0 +1,298 @@
+## Default values for heapster.
+## Default values for heapster.
+##
+##
+replicaCount: 1
+replicaCount: 1
+image:
+image:
+  repository: k8s.gcr.io/heapster
+  repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/k8s-gcr-heapster
+  tag: v1.5.2
+  tag: v1.5.2
+  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent
+## Here labels can be added to the heapster deployment
+## Here labels can be added to the heapster deployment
+# labels:
+# labels:
+#   kubernetes.io/cluster-service: "true"
+#   kubernetes.io/cluster-service: "true"
+#   kubernetes.io/name: "Heapster"
+#   kubernetes.io/name: "Heapster"
+labels: {}
+labels: {}
+
+
+## Here labels can be added to the heapster deployment
+## Here labels can be added to the heapster deployment
+# annotations:
+# annotations:
+#   scheduler.alpha.kubernetes.io/critical-pod: ''
+#   scheduler.alpha.kubernetes.io/critical-pod: ''
+annotations: {}
+annotations: {}
+
+
+## Here annotations can be added for the heapster Pod
+## Here annotations can be added for the heapster Pod
+# podAnnotations:
+# podAnnotations:
+#   prometheus.io/scrape: "true"
+#   prometheus.io/scrape: "true"
+podAnnotations: {}
+podAnnotations: {}
+
+
+## Node labels for pod assignment
+## Node labels for pod assignment
+## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+##
+##
+nodeSelector: {}
+nodeSelector: {}
+
+
+## Tolerations for pod assignment
+## Tolerations for pod assignment
+## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+##
+##
+tolerations: []
+tolerations: []
+
+
+## Affinity for pod assignment
+## Affinity for pod assignment
+## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+affinity: {}
+affinity: {}
+
+
+service:
+service:
+  type: ClusterIP
+  type: ClusterIP
+  externalPort: 8082
+  externalPort: 8082
+  internalPort: 8082
+  internalPort: 8082
+  ## This allows an override of the heapster service name
+  ## This allows an override of the heapster service name
+  ## Default: {{ .Chart.Name }}
+  ## Default: {{ .Chart.Name }}
+  # nameOverride:
+  # nameOverride:
+
+
+  ## Here labels can be added to the heapster service
+  ## Here labels can be added to the heapster service
+  # labels:
+  # labels:
+  #   kubernetes.io/cluster-service: "true"
+  #   kubernetes.io/cluster-service: "true"
+  #   kubernetes.io/name: "Heapster"
+  #   kubernetes.io/name: "Heapster"
+  labels:
+  labels:
+
+
+  ## Here annotations can be added to the heapster service
+  ## Here annotations can be added to the heapster service
+  # annotations:
+  # annotations:
+  #   prometheus.io/path: /metrics
+  #   prometheus.io/path: /metrics
+  #   prometheus.io/port: "8082"
+  #   prometheus.io/port: "8082"
+  #   prometheus.io/scrape: "true"
+  #   prometheus.io/scrape: "true"
+  annotations: {}
+  annotations: {}
+resources:
+resources:
+  limits:
+  limits:
+    cpu: 100m
+    cpu: 100m
+    memory: 128Mi
+    memory: 128Mi
+  requests:
+  requests:
+    cpu: 100m
+    cpu: 100m
+    memory: 128Mi
+    memory: 128Mi
+
+
+## Heapster command and arguments
+## Heapster command and arguments
+## Default source=kubernetes.summary_api:''
+## Default source=kubernetes.summary_api:''
+## ref: https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md
+## ref: https://github.com/kubernetes/heapster/blob/master/docs/source-configuration.md
+##
+##
+## By default sink not set
+## By default sink not set
+## ref: https://github.com/kubernetes/heapster/blob/master/docs/sink-configuration.md
+## ref: https://github.com/kubernetes/heapster/blob/master/docs/sink-configuration.md
+##
+##
+command:
+command:
+- "/heapster"
+- "/heapster"
+- "--source=kubernetes.summary_api:''"
+- "--source=kubernetes.summary_api:''"
+
+
+## heapster env variables
+## heapster env variables
+env: []
+env: []
+
+
+## Resizer scales resources linearly with the number of nodes in the cluster
+## Resizer scales resources linearly with the number of nodes in the cluster
+## Resizer is enabled by default
+## Resizer is enabled by default
+##
+##
+resizer:
+resizer:
+  enabled: true
+  enabled: true
+  image:
+  image:
+    repository: k8s.gcr.io/addon-resizer
+    repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/k8s-gcr-addon-resizer
+    tag: 1.7
+    tag: 1.7
+    pullPolicy: IfNotPresent
+    pullPolicy: IfNotPresent
+  resources:
+  resources:
+    limits:
+    limits:
+      cpu: 50m
+      cpu: 50m
+      memory: 90Mi
+      memory: 90Mi
+    requests:
+    requests:
+      cpu: 50m
+      cpu: 50m
+      memory: 90Mi
+      memory: 90Mi
+
+
+  ## Flags used for /pod_nanny command
+  ## Flags used for /pod_nanny command
+  ## container and deployment flags already determined chart name
+  ## container and deployment flags already determined chart name
+  ## ref: https://github.com/kubernetes/contrib/blob/master/addon-resizer/README.md
+  ## ref: https://github.com/kubernetes/contrib/blob/master/addon-resizer/README.md
+  ##
+  ##
+  flags:
+  flags:
+  - "--cpu=150m"
+  - "--cpu=150m"
+  - "--extra-cpu=10m"
+  - "--extra-cpu=10m"
+  - "--memory=200Mi"
+  - "--memory=200Mi"
+  - "--extra-memory=6Mi"
+  - "--extra-memory=6Mi"
+  - "--threshold=5"
+  - "--threshold=5"
+  - "--poll-period=300000"
+  - "--poll-period=300000"
+
+
+## For RBAC support:
+## For RBAC support:
+rbac:
+rbac:
+  create: true
+  create: true
+
+
+  ## Ignored if rbac.create is true
+  ## Ignored if rbac.create is true
+  ##
+  ##
+  serviceAccountName: default
+  serviceAccountName: default
+
+
+## eventer can send the kubernetes event logs to a remote destination
+## eventer can send the kubernetes event logs to a remote destination
+## it uses the same image as heapster but has its own resizer nanny pod
+## it uses the same image as heapster but has its own resizer nanny pod
+## eventer is disabled by default
+## eventer is disabled by default
+## see https://github.com/kubernetes/heapster/blob/master/docs/overview.md for the flags you can use
+## see https://github.com/kubernetes/heapster/blob/master/docs/overview.md for the flags you can use
+## you will probably want to change the --sink parameter
+## you will probably want to change the --sink parameter
+eventer:
+eventer:
+  enabled: false
+  enabled: false
+  flags:
+  flags:
+  - "--source=kubernetes:https://kubernetes.default"
+  - "--source=kubernetes:https://kubernetes.default"
+  - "--sink=log"
+  - "--sink=log"
+  resources: {}
+  resources: {}
+#    limits:
+#    limits:
+#      cpu: 100m
+#      cpu: 100m
+#      memory: 250Mi
+#      memory: 250Mi
+#    requests:
+#    requests:
+#      cpu: 100m
+#      cpu: 100m
+#      memory: 250Mi
+#      memory: 250Mi
+  resizer:
+  resizer:
+    enabled: true
+    enabled: true
+    resources: {}
+    resources: {}
+#      limits:
+#      limits:
+#        cpu: 50m
+#        cpu: 50m
+#        memory: 90Mi
+#        memory: 90Mi
+#      requests:
+#      requests:
+#        cpu: 50m
+#        cpu: 50m
+#        memory: 90Mi
+#        memory: 90Mi
+    flags:
+    flags:
+    - "--cpu=150m"
+    - "--cpu=150m"
+    - "--extra-cpu=10m"
+    - "--extra-cpu=10m"
+    - "--memory=200Mi"
+    - "--memory=200Mi"
+    - "--extra-memory=6Mi"
+    - "--extra-memory=6Mi"
+    - "--threshold=5"
+    - "--threshold=5"
+    - "--poll-period=300000"
+    - "--poll-period=300000"

@@ -1,0 +1,304 @@
+# Default values for etcd-operator.
+# Default values for etcd-operator.
+# This is a YAML-formatted file.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+# Declare variables to be passed into your templates.
+
+
+## Install Default RBAC roles and bindings
+## Install Default RBAC roles and bindings
+rbac:
+rbac:
+  create: true
+  create: true
+  apiVersion: v1beta1
+  apiVersion: v1beta1
+
+
+## Service account names and whether to create them
+## Service account names and whether to create them
+serviceAccount:
+serviceAccount:
+  etcdOperatorServiceAccount:
+  etcdOperatorServiceAccount:
+    create: true
+    create: true
+    name:
+    name:
+  backupOperatorServiceAccount:
+  backupOperatorServiceAccount:
+    create: true
+    create: true
+    name:
+    name:
+  restoreOperatorServiceAccount:
+  restoreOperatorServiceAccount:
+    create: true
+    create: true
+    name:
+    name:
+
+
+# Select what to deploy
+# Select what to deploy
+deployments:
+deployments:
+  etcdOperator: true
+  etcdOperator: true
+  # one time deployment, delete once completed,
+  # one time deployment, delete once completed,
+  # Ref: https://github.com/coreos/etcd-operator/blob/master/doc/user/walkthrough/backup-operator.md
+  # Ref: https://github.com/coreos/etcd-operator/blob/master/doc/user/walkthrough/backup-operator.md
+  backupOperator: true
+  backupOperator: true
+  # one time deployment, delete once completed
+  # one time deployment, delete once completed
+  # Ref: https://github.com/coreos/etcd-operator/blob/master/doc/user/walkthrough/restore-operator.md
+  # Ref: https://github.com/coreos/etcd-operator/blob/master/doc/user/walkthrough/restore-operator.md
+  restoreOperator: true
+  restoreOperator: true
+
+
+# creates custom resources, not all required,
+# creates custom resources, not all required,
+# you could use `helm template --values <values.yaml> --name release_name ... `
+# you could use `helm template --values <values.yaml> --name release_name ... `
+# and create the resources yourself to deploy on your cluster later
+# and create the resources yourself to deploy on your cluster later
+customResources:
+customResources:
+  createEtcdClusterCRD: false
+  createEtcdClusterCRD: false
+  createBackupCRD: false
+  createBackupCRD: false
+  createRestoreCRD: false
+  createRestoreCRD: false
+
+
+# etcdOperator
+# etcdOperator
+etcdOperator:
+etcdOperator:
+  name: etcd-operator
+  name: etcd-operator
+  replicaCount: 1
+  replicaCount: 1
+  image:
+  image:
+    repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-etcd-operator
+    repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-etcd-operator
+    tag: v0.9.3
+    tag: v0.9.3
+    pullPolicy: Always
+    pullPolicy: Always
+  resources:
+  resources:
+    cpu: 100m
+    cpu: 100m
+    memory: 128Mi
+    memory: 128Mi
+  ## Node labels for etcd-operator pod assignment
+  ## Node labels for etcd-operator pod assignment
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  nodeSelector: {}
+  nodeSelector: {}
+  ## additional command arguments go here; will be translated to `--key=value` form
+  ## additional command arguments go here; will be translated to `--key=value` form
+  ## e.g., analytics: true
+  ## e.g., analytics: true
+  commandArgs: {}
+  commandArgs: {}
+  ## Configurable health checks against the /readyz endpoint that etcd-operator exposes
+  ## Configurable health checks against the /readyz endpoint that etcd-operator exposes
+  readinessProbe:
+  readinessProbe:
+    enabled: false
+    enabled: false
+    initialDelaySeconds: 0
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    periodSeconds: 10
+    timeoutSeconds: 1
+    timeoutSeconds: 1
+    successThreshold: 1
+    successThreshold: 1
+    failureThreshold: 3
+    failureThreshold: 3
+  livenessProbe:
+  livenessProbe:
+    enabled: false
+    enabled: false
+    initialDelaySeconds: 0
+    initialDelaySeconds: 0
+    periodSeconds: 10
+    periodSeconds: 10
+    timeoutSeconds: 1
+    timeoutSeconds: 1
+    successThreshold: 1
+    successThreshold: 1
+    failureThreshold: 3
+    failureThreshold: 3
+# backup spec
+# backup spec
+backupOperator:
+backupOperator:
+  name: etcd-backup-operator
+  name: etcd-backup-operator
+  replicaCount: 1
+  replicaCount: 1
+  image:
+  image:
+    repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-etcd-operator
+    repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-etcd-operator
+    tag: v0.9.3
+    tag: v0.9.3
+    pullPolicy: Always
+    pullPolicy: Always
+  resources:
+  resources:
+    cpu: 100m
+    cpu: 100m
+    memory: 128Mi
+    memory: 128Mi
+  spec:
+  spec:
+    storageType: S3
+    storageType: S3
+    s3:
+    s3:
+      s3Bucket:
+      s3Bucket:
+      awsSecret:
+      awsSecret:
+  ## Node labels for etcd pod assignment
+  ## Node labels for etcd pod assignment
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  nodeSelector: {}
+  nodeSelector: {}
+  ## additional command arguments go here; will be translated to `--key=value` form
+  ## additional command arguments go here; will be translated to `--key=value` form
+  ## e.g., analytics: true
+  ## e.g., analytics: true
+  commandArgs: {}
+  commandArgs: {}
+
+
+# restore spec
+# restore spec
+restoreOperator:
+restoreOperator:
+  name: etcd-restore-operator
+  name: etcd-restore-operator
+  replicaCount: 1
+  replicaCount: 1
+  image:
+  image:
+    repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-etcd-operator
+    repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-etcd-operator
+    tag: v0.9.3
+    tag: v0.9.3
+    pullPolicy: Always
+    pullPolicy: Always
+  port: 19999
+  port: 19999
+  resources:
+  resources:
+    cpu: 100m
+    cpu: 100m
+    memory: 128Mi
+    memory: 128Mi
+  spec:
+  spec:
+    s3:
+    s3:
+      # The format of "path" must be: "<s3-bucket-name>/<path-to-backup-file>"
+      # The format of "path" must be: "<s3-bucket-name>/<path-to-backup-file>"
+      # e.g: "etcd-snapshot-bucket/v1/default/example-etcd-cluster/3.2.10_0000000000000001_etcd.backup"
+      # e.g: "etcd-snapshot-bucket/v1/default/example-etcd-cluster/3.2.10_0000000000000001_etcd.backup"
+      path:
+      path:
+      awsSecret:
+      awsSecret:
+  ## Node labels for etcd pod assignment
+  ## Node labels for etcd pod assignment
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+  nodeSelector: {}
+  nodeSelector: {}
+  ## additional command arguments go here; will be translated to `--key=value` form
+  ## additional command arguments go here; will be translated to `--key=value` form
+  ## e.g., analytics: true
+  ## e.g., analytics: true
+  commandArgs: {}
+  commandArgs: {}
+
+
+## etcd-cluster specific values
+## etcd-cluster specific values
+etcdCluster:
+etcdCluster:
+  name: etcd-cluster
+  name: etcd-cluster
+  size: 3
+  size: 3
+  version: 3.2.25
+  version: 3.2.25
+  image:
+  image:
+    repository: quay.io/coreos/etcd
+    repository: registry.cn-hangzhou.aliyuncs.com/kubeapps/quay-etcd
+    tag: v3.2.25
+    tag: v3.2.25
+    pullPolicy: Always
+    pullPolicy: Always
+  enableTLS: false
+  enableTLS: false
+  # TLS configs
+  # TLS configs
+  tls:
+  tls:
+    static:
+    static:
+      member:
+      member:
+        peerSecret: etcd-peer-tls
+        peerSecret: etcd-peer-tls
+        serverSecret: etcd-server-tls
+        serverSecret: etcd-server-tls
+      operatorSecret: etcd-client-tls
+      operatorSecret: etcd-client-tls
+  ## etcd cluster pod specific values
+  ## etcd cluster pod specific values
+  ## Ref: https://github.com/coreos/etcd-operator/blob/master/doc/user/spec_examples.md#three-members-cluster-with-resource-requirement
+  ## Ref: https://github.com/coreos/etcd-operator/blob/master/doc/user/spec_examples.md#three-members-cluster-with-resource-requirement
+  pod:
+  pod:
+    ## Antiaffinity for etcd pod assignment
+    ## Antiaffinity for etcd pod assignment
+    ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+    ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+    antiAffinity: false
+    antiAffinity: false
+    resources:
+    resources:
+      limits:
+      limits:
+        cpu: 100m
+        cpu: 100m
+        memory: 128Mi
+        memory: 128Mi
+      requests:
+      requests:
+        cpu: 100m
+        cpu: 100m
+        memory: 128Mi
+        memory: 128Mi
+    ## Node labels for etcd pod assignment
+    ## Node labels for etcd pod assignment
+    ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+    ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+    nodeSelector: {}
+    nodeSelector: {}

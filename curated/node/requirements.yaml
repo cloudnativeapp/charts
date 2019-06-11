@@ -1,0 +1,8 @@
+dependencies:
+- name: mongodb
+  repository: https://apphub.aliyuncs.com
+  version: 5.x.x
+  condition: mongodb.install
+- name: bitnami-common
+  repository: https://apphub.aliyuncs.com
+  version: 0.x.x

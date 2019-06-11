@@ -1,0 +1,9 @@
+dependencies:
+  - name: cassandra
+    version: ^0.10.4
+    repository: https://apphub.aliyuncs.com
+    condition: provisionDataStore.cassandra
+  - name: elasticsearch
+    version: ^1.19.1
+    repository: https://apphub.aliyuncs.com
+    condition: provisionDataStore.elasticsearch

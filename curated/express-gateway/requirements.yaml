@@ -1,0 +1,5 @@
+dependencies:
+- name: redis
+  version: ~3.0.0
+  repository: https://apphub.aliyuncs.com
+  condition: !redis.emulate

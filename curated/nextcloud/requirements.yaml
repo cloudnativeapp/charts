@@ -1,0 +1,5 @@
+dependencies:
+- name: mariadb
+  version: ~5.5.0
+  repository: https://apphub.aliyuncs.com
+  condition: mariadb.enabled

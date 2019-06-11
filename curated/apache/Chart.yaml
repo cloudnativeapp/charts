@@ -1,0 +1,20 @@
+apiVersion: v1
+name: apache
+version: 4.2.0
+appVersion: 2.4.39
+description: Chart for Apache HTTP Server
+keywords:
+- apache
+- http
+- https
+- www
+- web
+- reverse proxy
+home: https://httpd.apache.org
+icon: https://bitnami.com/assets/stacks/apache/img/apache-stack-220x234.png
+sources:
+- https://github.com/bitnami/bitnami-docker-apache
+maintainers:
+- name: Bitnami
+  email: containers@bitnami.com
+engine: gotpl

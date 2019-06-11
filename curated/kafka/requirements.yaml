@@ -1,0 +1,5 @@
+dependencies:
+- name: zookeeper
+  version: 2.x.x
+  repository: https://apphub.aliyuncs.com
+  condition: zookeeper.enabled

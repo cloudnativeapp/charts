@@ -1,0 +1,12 @@
+dependencies:
+- name: postgresql
+  version: 0.8.7
+  repository: https://apphub.aliyuncs.com
+  condition: postgresql.enabled
+- name: rabbitmq-ha
+  version: 1.5.2
+  repository: https://apphub.aliyuncs.com
+- name: mongodb
+  version: 2.0.5
+  repository: https://apphub.aliyuncs.com
+  condition: mongodb.enabled

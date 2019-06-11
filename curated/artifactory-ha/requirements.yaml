@@ -1,0 +1,5 @@
+dependencies:
+- name: postgresql
+  version: 0.8.7
+  repository: https://apphub.aliyuncs.com
+  condition: postgresql.enabled

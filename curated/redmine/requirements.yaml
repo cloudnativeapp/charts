@@ -1,0 +1,9 @@
+dependencies:
+- name: mariadb
+  version: 5.x.x
+  repository: https://apphub.aliyuncs.com
+  condition: mariadb.enabled
+- name: postgresql
+  version: 4.x.x
+  repository: https://apphub.aliyuncs.com
+  condition: postgresql.enabled
