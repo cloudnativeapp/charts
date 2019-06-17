@@ -11,17 +11,17 @@ In case you are new to Helm, try the [Quickstart Guide](https://helm.sh/docs/usi
 To add the charts repo for your local client, run:
 
 ```
-helm repo add aliyun https://apphub.aliyuncs.com
+helm repo add apphub https://apphub.aliyuncs.com
 ```
 
 ## Chart Sources
 
 ### Open source charts
 
-There are many popular Helm charts on Github.
-But they are hosted outside China, and they contain content unavailable in China. For example, `gcr.io` prefixed images.
-We do our best to localize these charts and synchronize with upstream charts periodically.
-The localized charts will be hosted in China on Alibaba Cloud for availability and speed-up.
+Many popular open source Helm charts exists on Github.
+But they are mostly hosted outside China, and contain content unable to access from China. For example, container images on `gcr.io` .
+We do our best to localize these charts and synchronize with upstream periodically.
+The localized charts and content will be hosted in China on Alibaba Cloud for availability and speed-up.
 
 These charts are located under `curated/`.
 
@@ -39,5 +39,5 @@ We will be setting up CODEOWNERS file shortly and welcome more maintainers.
 ## Acknowledgements
 
 Like so many projects, this effort has roots in many places.
-Special thanks to the Helm community for discussing and supporting our work.
+Special thanks to the Helm community for discussing and supporting this work.
 Thanks to Alibaba Cloud for hosting the service.
