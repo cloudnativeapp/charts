@@ -1,0 +1,20 @@
+# Cloud Native App Hub Guestbook image version resouer/guestbook:v1
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 2
+
+image:
+  repository: resouer/guestbook
+  tag: v1
+  pullPolicy: Always
+
+# For some dev env (like minikube), you may need to set the type to NodePort
+service:
+  type: LoadBalancer
+  port: 3000
+
+redis:
+  port: 6379 
+  slaveEnabled: true
+
