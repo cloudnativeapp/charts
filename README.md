@@ -1,4 +1,5 @@
 # Charts
+Other Language: [中文](README.zh.md)
 
 ## About <a name = "about"></a>
 
@@ -35,6 +36,9 @@ These charts are located under `submitted/`.
 
 @hongchaodeng @resouer @wonderflow are the active maintainiers.
 We will be setting up CODEOWNERS file shortly and welcome more maintainers.
+
+## Issues
+Feel free to come up with [new issues](https://github.com/cloudnativeapp/charts/issues/new). We are welcome to all kinds of issues including new feature request, existing problem or any other things that could improve your use experience.
 
 ## Acknowledgements
 
