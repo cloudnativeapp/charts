@@ -1,5 +1,5 @@
 # Charts
-Other Language: [中文](README.zh.md)
+Other Language: [中文文档](README.zh.md)
 
 ## About <a name = "about"></a>
 
