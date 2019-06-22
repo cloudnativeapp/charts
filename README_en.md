@@ -6,11 +6,11 @@ Other Language: [中文文档](README.md)
 
 This is the place where we open source Helm charts hosted on [Cloud Native App Hub](https://developer.aliyun.com/hub), short for AppHub. The AppHub is a mirror of [Helm Hub](https://hub.helm.sh) hosted in China, fully open source & non-profit, and developed by three engineers from Alibaba Cloud with their 20% time. 
 
-The reason we want to do this is: there're many container image URLs (e.g. gcr.io, quay.io) and Charts repo (e.g. storage.googleapis.com, AWS S3) are not available due to "networking issue" in China, which makes `helm install` is impossible.
+The reason we want to do this is: there're many container image URLs (e.g. gcr.io, quay.io) and Charts repo (e.g. storage.googleapis.com, AWS S3) are not available due to "networking issue", which makes `helm install` is impossible in China.
 
 ## Getting Started <a name = "getting_started"></a>
 
-To add the charts repo for your Helm client, run:
+To add the charts repo for your Helm, run:
 
 ```
 helm repo add apphub https://apphub.aliyuncs.com
@@ -26,7 +26,7 @@ In case you are new to Helm, try the [Quickstart Guide](https://helm.sh/docs/usi
 
 First of all, AppHub sync charts from [it's official repo](https://github.com/helm/charts) periodically.
 
-And at the same time, AppHub localize these charts by replacing all unavailable URL in the chart, verify chart by a Kubernetes cluster (CI), and publish to AppHub portal.
+And at the same time, AppHub localize these charts by replacing all unavailable URLs in the chart, verify the chart by a Kubernetes cluster (CI), and publish chart to AppHub portal.
 
 These charts are located under `curated/`.
 
@@ -40,9 +40,9 @@ These charts are located under `submitted/`.
 
 We also encourage user to submit their own Charts Repo, we are very happy to include it in AppHub. Eventually, AppHub will become a "aggregator hub" for every user's chart repo and we believe it's where Helm community is going to.
 
-> This function is actively under developing.
+> TBD: This feature is still actively under developing.
 
-Roadmap
+### Roadmap
 
 We open source the [roadmap of AppHub here](https://github.com/cloudnativeapp/charts/projects/4) and we are eager to know your ideas about how to make it as a great Helm Hub mirror in China. 
 
