@@ -1,41 +1,64 @@
-# Charts
+# Happy Helming in China!
+
 Other Language: [中文文档](README.md)
 
 ## About <a name = "about"></a>
 
-This is the place where we open source Helm charts hosted on [Cloud Native App Hub](https://developer.aliyun.com/hub).
+This is the place where we open source Helm charts hosted on [Cloud Native App Hub](https://developer.aliyun.com/hub), short for AppHub. The AppHub is a mirror of [Helm Hub](https://hub.helm.sh) hosted in China, fully open source & non-profit, and developed by three engineers from Alibaba Cloud with their 20% time. 
+
+The reason we want to do this is: there're many container image URLs (e.g. gcr.io, quay.io) and Charts repo (e.g. storage.googleapis.com, AWS S3) are not available due to "networking issue" in China, which makes `helm install` is impossible.
 
 ## Getting Started <a name = "getting_started"></a>
 
-In case you are new to Helm, try the [Quickstart Guide](https://helm.sh/docs/using_helm/) first.
-
-To add the charts repo for your local client, run:
+To add the charts repo for your Helm client, run:
 
 ```
 helm repo add apphub https://apphub.aliyuncs.com
 ```
 
+**We strongly recommend** you to use Helm v3 and [here is the reason](https://helm.sh/blog/helm-3-preview-pt2/).
+
+In case you are new to Helm, try the [Quickstart Guide](https://helm.sh/docs/using_helm/) first.
+
 ## Chart Sources
 
-### Open source charts
+### Charts from helm.sh
 
-Many popular open source Helm charts exists on Github.
-But they are mostly hosted outside China, and contain content unable to access from China. For example, container images on `gcr.io` .
-We do our best to localize these charts and synchronize with upstream periodically.
-The localized charts and content will be hosted in China on Alibaba Cloud for availability and speed-up.
+First of all, AppHub sync charts from [it's official repo](https://github.com/helm/charts) periodically.
+
+And at the same time, AppHub localize these charts by replacing all unavailable URL in the chart, verify chart by a Kubernetes cluster (CI), and publish to AppHub portal.
 
 These charts are located under `curated/`.
 
 ### User submitted charts
 
-Users could submit charts definition and we would include them on [Cloud Native App Hub](https://developer.aliyun.com/hub).
+Users could submit any chart by creating a PR to this repo, and we would include them on AppHub after verify and PR merge.
 
 These charts are located under `submitted/`.
 
+### User submitted Charts Repo (coming soon!)
+
+We also encourage user to submit their own Charts Repo, we are very happy to include it in AppHub. Eventually, AppHub will become a "aggregator hub" for every user's chart repo and we believe it's where Helm community is going to.
+
+> This function is actively under developing.
+
+Roadmap
+
+We open source the [roadmap of AppHub here](https://github.com/cloudnativeapp/charts/projects/4) and we are eager to know your ideas about how to make it as a great Helm Hub mirror in China. 
+
+The upcoming features including but not limited to:
+
+1. "One click to install" to any cloud
+2. Kustomize the YAML file
+3. Enable user submit chart
+4. Enable user submit charts repo
+5. Open source all backend component including our "Charts Syncer"
+6. Decentralize the hub: eventually, AppHub will become a "aggregator hub"
+
 ## Maintainers
 
-@hongchaodeng @resouer @wonderflow are the active maintainiers.
-We will be setting up CODEOWNERS file shortly and welcome more maintainers.
+@hongchaodeng @resouer @wonderflow are the active maintainers.
+We will be setting up OWNERS file shortly and welcome more maintainers.
 
 ## Issues
 Feel free to come up with [new issues](https://github.com/cloudnativeapp/charts/issues/new). We are welcome to all kinds of issues including new feature request, existing problem or any other things that could improve your use experience.
@@ -43,5 +66,5 @@ Feel free to come up with [new issues](https://github.com/cloudnativeapp/charts/
 ## Acknowledgements
 
 Like so many projects, this effort has roots in many places.
-Special thanks to the Helm community for discussing and supporting this work.
-Thanks to Alibaba Cloud for hosting the service.
+Special thanks to the [Helm community](https://helm.sh) for discussing and supporting this work.
+**Thanks to Alibaba Cloud for hosting the service and making this free to everyone.**
