@@ -24,21 +24,21 @@ In case you are new to Helm, try the [Quickstart Guide](https://helm.sh/docs/usi
 
 ### Charts from helm.sh
 
-First of all, AppHub sync charts from [it's official repo](https://github.com/helm/charts) periodically.
+First of all, AppHub syncs charts from [it's official repo](https://github.com/helm/charts) periodically.
 
-And at the same time, AppHub localize these charts by replacing all unavailable URLs in the chart, verify the chart by a Kubernetes cluster (CI), and publish chart to AppHub portal.
+And at the same time, AppHub localizes these charts by replacing all unavailable URLs in the chart, verifies the chart by a Kubernetes cluster (CI), and publishes chart to AppHub portal.
 
 These charts are located under `curated/`.
 
 ### User submitted charts
 
-Users could submit any chart by creating a PR to this repo, and we would include them on AppHub after verify and PR merge.
+Users could submit any charts by creating a PR to this repo, and we would include them on AppHub after verification and PR merge.
 
 These charts are located under `submitted/`.
 
 ### User submitted Charts Repo (coming soon!)
 
-We also encourage user to submit their own Charts Repo, we are very happy to include it in AppHub. Eventually, AppHub will become a "aggregator hub" for every user's chart repo and we believe it's where Helm community is going to.
+We also encourage user to submit their own Charts Repo, we are very happy to include it in AppHub. Eventually, AppHub will become an "aggregator hub" for every user's chart repo and we believe it's where Helm community is going to.
 
 > TBD: This feature is still actively under developing.
 
@@ -50,10 +50,10 @@ The upcoming features including but not limited to:
 
 1. "One click to install" to any cloud
 2. Kustomize the YAML file
-3. Enable user submit chart
-4. Enable user submit charts repo
+3. Enable user submitted chart
+4. Enable user submitted charts repo
 5. Open source all backend component including our "Charts Syncer"
-6. Decentralize the hub: eventually, AppHub will become a "aggregator hub"
+6. Decentralize the hub: eventually, AppHub will become an "aggregator hub"
 
 ## Maintainers
 
@@ -61,7 +61,7 @@ The upcoming features including but not limited to:
 We will be setting up OWNERS file shortly and welcome more maintainers.
 
 ## Issues
-Feel free to come up with [new issues](https://github.com/cloudnativeapp/charts/issues/new). We are welcome to all kinds of issues including new feature request, existing problem or any other things that could improve your use experience.
+Feel free to come up with [new issues](https://github.com/cloudnativeapp/charts/issues/new). We are welcome to all kinds of issues including new feature request, existing problems or any other things that could improve your use experience.
 
 ## Acknowledgements
 
