@@ -50,8 +50,8 @@ The upcoming features including but not limited to:
 
 1. "One click to install" to any cloud
 2. Kustomize the YAML file
-3. Enable user submitted chart
-4. Enable user submitted charts repo
+3. Enable user to submit chart
+4. Enable user to submit charts repo
 5. Open source all backend component including our "Charts Syncer"
 6. Decentralize the hub: eventually, AppHub will become an "aggregator hub"
 
