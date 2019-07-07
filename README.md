@@ -3,7 +3,7 @@
 
 ## 简介 <a name = "about"></a>
 
-这里是[开放云原生应用中心](https://developer.aliyun.com/hub)的 Helm charts 开源仓库。开放云原生应用中心（简称 AppHub）是一个托管在阿里云上的、完全公益性的 Helm Hub “中国站”，它的后端由阿里云容器平台团队的三位工程师利用 20% 时间开发完成。
+这里是[开放云原生应用中心](https://developer.aliyun.com/hub)的 Helm charts 开源仓库。开放云原生应用中心（简称 AppHub）是一个托管在阿里云上的、完全公益性的 Helm Hub “中国站”。
 
 AppHub 的主要职责之一，是把所有 Helm 官方 Hub 托管的应用，都自动同步到国内，并自动将 Charts 文件中的 gcr.io 等有网络访问问题的 URL 替换成为稳定的国内镜像 URL。
 
