@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "name" . | quote }}
+spec:
+  selector:
+    name: {{ include "name" . | quote }}
+  ports:
+  - name: metrics
+    port: {{ .Values.service.metricsPort}}
+    targetPort: 8383
+    protocol: TCP
