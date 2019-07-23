@@ -7,6 +7,7 @@ helminstall:
 
 uninstall:
 		helm delete myhexo
+		helm del --purge myhexo
 
 debug:
 		helm install ../hexo  \
