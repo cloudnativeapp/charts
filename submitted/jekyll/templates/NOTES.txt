@@ -1,0 +1,8 @@
+设置 DNS 解析指向 ingress 公网IP.
+友情提示: 如果你的 Kubernetes 地址位于国内,记得先对域名备案哦~
+URL 如下:
+{{- if .Values.ingress.enabled }}
+  {{- range .Values.ingress.hosts }}
+    http{{ if $.Values.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.ingress.path }}
+  {{- end }}
+{{- end }}
