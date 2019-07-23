@@ -1,0 +1,6 @@
+设置 DNS 解析指向 ingress 公网IP,URL 如下:
+{{- if .Values.ingress.enabled }}
+  {{- range .Values.ingress.hosts }}
+    http{{ if $.Values.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.ingress.path }}
+  {{- end }}
+{{- end }}
