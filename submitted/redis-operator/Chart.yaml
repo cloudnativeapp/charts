@@ -1,0 +1,16 @@
+apiVersion: v1
+description: A Helm chart for the Kubernetes Redis Operator
+name: redis-operator
+version: 1.0.0
+description: Redis Operator provides high availability redis with sentinel automatic failover on Kubernetes.
+keywords:
+- redis
+- redis-operator
+- database
+icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
+sources:
+- https://github.com/kube-incubator/redis-operator
+maintainers:
+- name: SataQiu
+  email: qiushida@beyondcent.com
+engine: gotpl
