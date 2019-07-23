@@ -41,11 +41,12 @@ NAME    DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
 myhexo  1        0        0           0          0s
 
 NOTES:
-设置 DNS 解析指向 ingress 公网IP,URL 如下:
+设置 DNS 解析指向 ingress 公网IP(以阿里云为例,该 IP 是 Ingress绑定的负载均衡的公网IP).
+友情提示: 如果你的 Kubernetes 地址位于国内,记得先对域名备案哦~
+hexo URL 如下:
     http://blog.zeusro.tech/
 ```
 
-执行完 NOTES 中提示命令的命令即可在浏览器中访问 `http://127.0.0.1:8080` 查看。
 
 ## 使用参数
 
