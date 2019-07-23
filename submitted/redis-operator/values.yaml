@@ -1,0 +1,36 @@
+## Redis Operator image version
+## ref: https://hub.docker.com/r/shidaqiu/redis-operator/tags
+##
+image:
+  registry: docker.io
+  repository: shidaqiu/redis-operator
+  tag: "1.0"
+  ## Specify a imagePullPolicy
+  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+  ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  pullPolicy: IfNotPresent
+
+deployment:
+  replicas: 1
+  podAnnotations: {}
+  nodeSelector: {}
+  tolerations: {}
+  resources:
+    requests:
+      cpu: 10m
+      memory: 50Mi
+    limits:
+      cpu: 100m
+      memory: 50Mi
+
+service:
+  metricsPort: 8383
+
+rbac:
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ##
+  imagePullSecrets: []
+  
