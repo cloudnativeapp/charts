@@ -6,12 +6,12 @@ helminstall:
 
 uninstall:
 		helm delete myjekyll
+		helm del --purge myjekyll
 
 debug:
 		helm install ../jekyll  \
 		--name myjekyll \
 		--set fullnameOverride=myjekyll  \
-		--set jekyll_host=www.zeusro.tech \
 		--set ingress.hosts={www.zeusro.tech} \
 		--debug  \
 		--dry-run
