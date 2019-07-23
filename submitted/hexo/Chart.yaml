@@ -1,0 +1,17 @@
+apiVersion: v1
+appVersion: "1.0"
+description: 只需一个 GitHub URL ,轻松发布自己的 hexo 博客!
+name: hexo
+version: 1.0.0
+keywords:
+- hexo
+- blog
+- node
+- nodejs
+icon: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
+sources:
+- https://github.com/zeusro/charts
+- https://github.com/zeusro/docker-hexo
+
+maintainers:
+- name: zeusro
