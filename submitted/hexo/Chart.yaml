@@ -12,5 +12,6 @@ icon: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a7
 sources:
 - https://github.com/zeusro/charts
 - https://github.com/zeusro/docker-hexo
+
 maintainers:
 - name: zeusro
