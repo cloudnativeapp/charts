@@ -3,6 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   creationTimestamp: null
   name: redis.redis.io
+  namespace: {{ .Release.Namespace }}
 spec:
   group: redis.io
   names:

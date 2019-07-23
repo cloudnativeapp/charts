@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "name" . | quote }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: {{ .Chart.Name | quote }}
-    helm.sh/chart: {{ printf "%s-%s" .Chart.Name .Chart.Version | quote }}
-    app.kubernetes.io/instance: {{ .Release.Name | quote }}
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    helm.sh/chart: {{ printf "%s-%s" .Chart.Name .Chart.Version | quote }}
+{{ include "labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
-      name: {{ include "name" . | quote }}
+{{ include "labels" . | indent 6 }}
   template:
     metadata:
       labels:
-        name: {{ include "name" . | quote }}
+{{ include "labels" . | indent 8 }}
 {{- if .Values.deployment.podAnnotations }}
       annotations:
 {{ toYaml .Values.deployment.podAnnotations | indent 8 }}
@@ -29,7 +29,8 @@ spec:
         - redis-operator
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
-          - containerPort: 8383
+          - name: http-metrics
+            containerPort: 8383
         env:
           - name: WATCH_NAMESPACE
             valueFrom:
@@ -41,14 +42,17 @@ spec:
                 fieldPath: metadata.name
           - name: OPERATOR_NAME
             value: {{ include "name" . | quote }}
+
 {{- if .Values.deployment.resources }}
         resources:
 {{ toYaml .Values.deployment.resources | indent 10 }}
 {{- end }}
+
 {{- if .Values.deployment.nodeSelector }}
         nodeSelector:
 {{ toYaml .Values.deployment.nodeSelector | indent 10 }}
 {{- end }}
+
 {{- if .Values.deployment.tolerations }}
         tolerations:
 {{ toYaml .Values.deployment.tolerations | indent 10 }}

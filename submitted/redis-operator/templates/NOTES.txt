@@ -1,22 +1,31 @@
- 
-1.  Create a redis cluster:
-    $ kubectl apply -f https://raw.githubusercontent.com/kube-incubator/redis-operator/master/deploy/samples/basic.yaml
-    
-    Note: Visit https://github.com/kube-incubator/redis-operator/tree/master/deploy/samples for more usage instructions. 
+---------------------------------------------------------------
+- How to use it to manage redis cluster (assume the operator runs in default namespace)
 
-2.  Get redis master IP and Port:
-    $ kubectl exec -it $(kubectl get pod -l sentinel=example -o jsonpath='{.items[0].metadata.name}') -- redis-cli -p 26379 SENTINEL get-master-addr-by-name master
-    1) "172.17.0.8"
-    2) "6379"
+    1.  Create a redis cluster:
+        $ kubectl apply -f https://raw.githubusercontent.com/kube-incubator/redis-operator/master/deploy/samples/basic.yaml
+        
+        Note: Visit https://github.com/kube-incubator/redis-operator/tree/master/deploy/samples for more usage instructions. 
 
-3.  Set Data:
-    $ kubectl exec -it $(kubectl get pod -l sentinel=example -o jsonpath='{.items[0].metadata.name}') -- redis-cli -h 172.17.0.8 -p 6379 SET hello world!
-    OK
+    2.  Get redis cluster master IP and Port:
+        $ kubectl exec -it $(kubectl get pod -l sentinel=example -o jsonpath='{.items[0].metadata.name}') -- redis-cli -p 26379 SENTINEL get-master-addr-by-name master
+        1) "172.17.0.8"
+        2) "6379"
 
-4.  Get Data:
-    $ kubectl exec -it $(kubectl get pod -l sentinel=example -o jsonpath='{.items[0].metadata.name}') -- redis-cli -h 172.17.0.8 -p 6379 GET hello
-    "world!"
+    3.  Set data:
+        $ kubectl exec -it $(kubectl get pod -l sentinel=example -o jsonpath='{.items[0].metadata.name}') -- redis-cli -h 172.17.0.8 -p 6379 SET hello world!
+        OK
 
-5.  Get Metrics Service:
-    $ kubectl get svc -l name={{ include "name" . }}
-  
+    4.  Get data:
+        $ kubectl exec -it $(kubectl get pod -l sentinel=example -o jsonpath='{.items[0].metadata.name}') -- redis-cli -h 172.17.0.8 -p 6379 GET hello
+        "world!"
+
+    5.  Get Sentinel Service Endpoint:
+        $ kubectl get svc -l sentinel=example
+
+
+- Redis-Operator runtime monitoring
+
+    You can get the runtime metrics data at: 
+        http://{{ include "name" . }}.{{ .Release.Namespace }}:{{ .Values.service.metricsPort}}/metrics
+
+---------------------------------------------------------------

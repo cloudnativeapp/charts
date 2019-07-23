@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: {{ include "name" . | quote }}
+  namespace: {{ .Release.Namespace }}
 imagePullSecrets:
 {{ toYaml .Values.rbac.imagePullSecrets | indent 2 }}
 ---
@@ -9,6 +10,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: {{ include "name" . | quote }}
+  namespace: {{ .Release.Namespace }}
 rules:
 - apiGroups:
   - ""
@@ -55,6 +57,7 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: {{ include "name" . | quote }}
+  namespace: {{ .Release.Namespace }}
 subjects:
 - kind: ServiceAccount
   name: {{ include "name" . | quote }}
@@ -62,5 +65,6 @@ subjects:
 roleRef:
   kind: Role
   name: {{ include "name" . | quote }}
+  namespace: {{ .Release.Namespace }}
   apiGroup: rbac.authorization.k8s.io
   
