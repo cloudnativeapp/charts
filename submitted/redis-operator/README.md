@@ -1,6 +1,8 @@
 # Redis-Operator
 A redis-operator based on operator-sdk, it provides high availability redis with sentinel automatic failover on Kubernetes.
 
+[![asciicast](https://asciinema.org/a/yStFhgzs51E19zOHzOIOQSMUj.svg)](https://asciinema.org/a/yStFhgzs51E19zOHzOIOQSMUj)
+
 GitHub: [https://github.com/kube-incubator/redis-operator](https://github.com/kube-incubator/redis-operator)
 
 ## How to use it
