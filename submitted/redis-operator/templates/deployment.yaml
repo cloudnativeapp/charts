@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "name" . | quote }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    helm.sh/chart: {{ printf "%s-%s" .Chart.Name .Chart.Version | quote }}
+{{ include "labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+{{ include "labels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+{{ include "labels" . | indent 8 }}
+{{- if .Values.deployment.podAnnotations }}
+      annotations:
+{{ toYaml .Values.deployment.podAnnotations | indent 8 }}
+{{- end }}
+    spec:
+      serviceAccountName: {{ include "name" . | quote }}
+      containers:
+      - name: {{ include "name" . | quote }}
+        image: {{ include "image" . | quote }}
+        command:
+        - redis-operator
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+          - name: http-metrics
+            containerPort: 8383
+        env:
+          - name: WATCH_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: OPERATOR_NAME
+            value: {{ include "name" . | quote }}
+
+{{- if .Values.deployment.resources }}
+        resources:
+{{ toYaml .Values.deployment.resources | indent 10 }}
+{{- end }}
+
+{{- if .Values.deployment.nodeSelector }}
+        nodeSelector:
+{{ toYaml .Values.deployment.nodeSelector | indent 10 }}
+{{- end }}
+
+{{- if .Values.deployment.tolerations }}
+        tolerations:
+{{ toYaml .Values.deployment.tolerations | indent 10 }}
+{{- end }}
