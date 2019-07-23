@@ -9,6 +9,8 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  strategy:
+{{ toYaml .Values.deployment.updateStrategy | indent 4 }}  
   selector:
     matchLabels:
       app: {{ include "jekyll.name" . }}
@@ -19,10 +21,18 @@ spec:
         app: {{ include "jekyll.name" . }}
         release: {{ .Release.Name }}
     spec:
+      volumes:
+      {{- with .Values.volumes }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}      
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - 'jekyll'
+            - 'serve'
+            - '-w'
           ports:
             - name: http
               containerPort: 4000
@@ -35,13 +45,26 @@ spec:
             httpGet:
               path: /
               port: http
+          volumeMounts:
+          {{- range $pv := .Values.persistentVolume }}
+          - name: {{ $pv.name | quote }}
+            mountPath: {{ $pv.mountPath | quote }}
+          {{- end }}
 {{if .Values.deployment.env}}
           env:
-{{ toYaml .Values.deployment.env | indent 12 }}
+          {{- range $env := .Values.deployment.env  }}
+          - name: {{ $env.name }}
+            value: {{ $env.value | quote }}
+          {{- end }}          
 {{end}}
 {{if .Values.deployment.lifecycle}}
           lifecycle:
-{{ toYaml .Values.deployment.lifecycle | indent 12 }}
+            postStart:
+              exec:
+                command:             
+          {{- range $command := .Values.deployment.lifecycle.postStart.exec.command }}
+                   - {{ $command | quote}}
+          {{- end }}
 {{end}}
           resources:
 {{ toYaml .Values.resources | indent 12 }}

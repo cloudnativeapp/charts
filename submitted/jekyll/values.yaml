@@ -2,10 +2,6 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# variable 
-jekyll_host: ''
-
-
 replicaCount: 1
 
 image:
@@ -17,25 +13,35 @@ nameOverride: ""
 fullnameOverride: ""
 
 deployment:
+  # The update strategy to apply to the Deployment 
+  updateStrategy: {}
+    # rollingUpdate:
+    #   maxUnavailable: 0
+    # type: RollingUpdate  
   env:
-    name: FULL_CHOWN
-    value: "FULL_CHOWN"
-    name: 
-    value: 
+    - name: FULL_CHOWN
+      value: "FULL_CHOWN"
+    - name: GIT_URL
+      value: https://github.com/zeusro/Zeusro.github.io.git
+# 第一种方式: 这里用 postStart 拉取 GitHub 仓库
   lifecycle:
      postStart:
        exec:
          command:
          - /bin/sh
          - -c 
-         - "git init;git remote add origin $;git pull origin master;"
+         - "git init;git remote add origin $GIT_URL;git pull origin master;"
+
+# 第二种方式: 使用volume
+persistentVolume: {}
+volumes: []
 
 service:
   type: ClusterIP
   port: 4000
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
