@@ -1,40 +1,58 @@
 # hexo
 
-## 功能介绍 *(在 kubernetes 中运行自己的 hexo 博客)*
+## 功能介绍
 
-展示一个web页面，可以根据values值改变页面的输出内容。
+利用 Ingress 运行自己的 hexo 博客
 
-
-## 安装使用 *(此处介绍安装方式)*
+## 安装使用
 
 ```shell
-helm install my-hello-world-test1 my-hello-world
+		helm install ../hexo \
+		--name myhexo \
+		--set fullnameOverride=myhexo  \
+		--set hexo_host=blog.zeusro.tech \
+		--set ingress.hosts={blog.zeusro.tech} \
+    --set public_hexo_github_url=https://github.com/zeusro/docker-hexo.git
 ```
 
 运行后看到输出：
 
 ```shell
-NAME: my-hell-world
-LAST DEPLOYED: 2019-07-16 10:30:41.927128 +0800 CST m=+0.132308108
+NAME:   myhexo
+LAST DEPLOYED: Tue Jul 23 12:10:42 2019
 NAMESPACE: default
-STATUS: deployed
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1beta1/Ingress
+NAME              HOSTS             ADDRESS  PORTS  AGE
+blog.zeusro.tech  blog.zeusro.tech  80       0s
+
+==> v1/Pod(related)
+NAME                     READY  STATUS   RESTARTS  AGE
+myhexo-85454f9b86-xtmr9  0/1    Pending  0         0s
+
+==> v1/Service
+NAME    TYPE       CLUSTER-IP    EXTERNAL-IP  PORT(S)   AGE
+myhexo  ClusterIP  172.30.5.164  <none>       4000/TCP  0s
+
+==> v1beta2/Deployment
+NAME    DESIRED  CURRENT  UP-TO-DATE  AVAILABLE  AGE
+myhexo  1        0        0           0          0s
 
 NOTES:
-1. Get the application URL by running these commands:
-  export POD_NAME=$(kubectl get pods -l "app.kubernetes.io/name=my-hello-world,app.kubernetes.io/instance=my-hell-world" -o jsonpath="{.items[0].metadata.name}")
-  echo "Visit http://127.0.0.1:8080 to use your application"
-  kubectl port-forward $POD_NAME 8080:80
+设置 DNS 解析指向 ingress 公网IP,URL 如下:
+    http://blog.zeusro.tech/
 ```
 
 执行完 NOTES 中提示命令的命令即可在浏览器中访问 `http://127.0.0.1:8080` 查看。
 
-## 使用参数 *(此处介绍进阶功能)*
+## 使用参数
 
-```shell
-helm install my-hello-world-chart-test2 my-hello-world --set Username="Cloud Native"
-```
-
-同样按输出的 NOTES 执行后看到的页面输出会有变化。
-
-
-*ps: 阅读[《Helm Chart 创作指南》](https://cloudnativeapp.gitbook.io/handbook/helm-chart-creation-tutorial)学习如何编写一个Charts。*
+参数名|意义
+--|--
+name|release 名称
+fullnameOverride|资源(service,deploy)名称
+hexo_host |博客公网 URL
+ingress.hosts|博客公网 URL
+public_hexo_github_url|hexo 源代码路径(不一定要GitHub,但需要能够支持公开拉取)
