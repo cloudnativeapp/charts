@@ -1,6 +1,6 @@
 apiVersion: v1
 name: codis
-description: A Helm chart for Kubernetes
+description: A Helm chart for Codis
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -14,8 +14,20 @@ type: application
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 0.1.0
+version: 3.2
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
 appVersion: 1.16.0
+
+keywords:
+- codis
+- redis
+
+icon: https://github.com/CodisLabs/codis/raw/release3.2/doc/pictures/logo-3.png
+sources:
+- https://github.com/zeusro/charts
+- https://github.com/CodisLabs/codis
+
+maintainers:
+- name: zeusro
