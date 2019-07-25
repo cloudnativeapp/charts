@@ -1,0 +1,17 @@
+apiVersion: v1
+appVersion: "1.0"
+description: 使用 Kubernetes 托管运行 jekyll 博客 
+name: jekyll
+version: 1.0.0
+keywords:
+- jekyll
+- blog
+- node
+- nodejs
+
+icon: https://jekyllrb.com/img/logo-2x.png
+sources:
+- https://github.com/zeusro/charts
+
+maintainers:
+- name: Zeusro

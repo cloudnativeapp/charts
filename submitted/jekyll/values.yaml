@@ -1,0 +1,72 @@
+# Default values for jekyll.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: jekyll/jekyll
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+deployment:
+  # The update strategy to apply to the Deployment 
+  updateStrategy: {}
+    # rollingUpdate:
+    #   maxUnavailable: 0
+    # type: RollingUpdate  
+  env:
+    - name: FULL_CHOWN
+      value: "FULL_CHOWN"
+    - name: GIT_URL
+      value: https://github.com/zeusro/Zeusro.github.io.git
+# 第一种方式: 这里用 postStart 拉取 GitHub 仓库
+  lifecycle:
+     postStart:
+       exec:
+         command:
+         - /bin/sh
+         - -c 
+         - "git init;git remote add origin $GIT_URL;git pull origin master;"
+
+# 第二种方式: 使用volume
+persistentVolume: {}
+volumes: []
+
+service:
+  type: ClusterIP
+  port: 4000
+
+ingress:
+  enabled: true
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
