@@ -1,0 +1,82 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ include "jekyll.fullname" . }}
+  labels:
+    app: {{ include "jekyll.name" . }}
+    chart: {{ include "jekyll.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+{{ toYaml .Values.deployment.updateStrategy | indent 4 }}  
+  selector:
+    matchLabels:
+      app: {{ include "jekyll.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "jekyll.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      volumes:
+      {{- with .Values.volumes }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}      
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - 'jekyll'
+            - 'serve'
+            - '-w'
+          ports:
+            - name: http
+              containerPort: 4000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          volumeMounts:
+          {{- range $pv := .Values.persistentVolume }}
+          - name: {{ $pv.name | quote }}
+            mountPath: {{ $pv.mountPath | quote }}
+          {{- end }}
+{{if .Values.deployment.env}}
+          env:
+          {{- range $env := .Values.deployment.env  }}
+          - name: {{ $env.name }}
+            value: {{ $env.value | quote }}
+          {{- end }}          
+{{end}}
+{{if .Values.deployment.lifecycle}}
+          lifecycle:
+            postStart:
+              exec:
+                command:             
+          {{- range $command := .Values.deployment.lifecycle.postStart.exec.command }}
+                   - {{ $command | quote}}
+          {{- end }}
+{{end}}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
