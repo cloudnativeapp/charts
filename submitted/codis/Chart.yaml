@@ -18,7 +18,7 @@ version: 3.2
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
-appVersion: 1.16.0
+appVersion: 3.2
 
 keywords:
 - codis

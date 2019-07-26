@@ -2,47 +2,70 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
-
 image:
-  repository: nginx
+  repository: zeusro/codis
+  tag: latest
   pullPolicy: IfNotPresent
 
 nameOverride: ""
 fullnameOverride: ""
 
-service:
-  type: ClusterIP
-  port: 80
+## install zookeeper first
+## part 1 : zookeeper
 
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths: []
+zookeeper:
+  enabled: true
+  svc:
+    name: zookeeper-cs
 
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
+## part 2 : codis
 
-nodeSelector: {}
+server:
+  # 6的意思是,一共6个实例,(1主2从)*2.
+  replicaCount: 6
+  # 每一组服务器的副本数
+  serverReplica: 2    
+  name: codis-server
+  resources:
+    limits:
+      cpu: "0.5"
+      memory: 2Gi
+    requests:
+      cpu: "0.3"
+      memory: 2Gi
+  svc:
+    name: codis-server
 
-tolerations: []
+dashboard:
+  name: codis-dashboard
+  replicaCount: 1
+  svc:
+    name: codis-dashboard
+    port: 18080
 
-affinity: {}
+
+## codis WEB 控制台
+fe:
+  name: codis-fe
+  svc:
+    name:
+  ingress:
+    enabled: true
+    host: default.com
+    tls: 
+      enabled: false
+      # secretName: 
+
+proxy:
+  name: codis-proxy
+  replicaCount: 5
+  svc:
+    name: codis-proxy     
+  resources:
+    limits:
+      cpu: "4"
+      memory: 4Gi
+    requests:
+      cpu: "120m"
+      memory: 2Gi  

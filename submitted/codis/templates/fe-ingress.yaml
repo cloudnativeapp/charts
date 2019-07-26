@@ -1,0 +1,21 @@
+{{- if .Values.fe.ingress.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{.Values.fe.ingress.host}}
+spec:
+  rules:
+  - host: {{.Values.fe.ingress.host}}
+    http:
+      paths:
+      - backend:
+          serviceName: {{ .Values.fe.svc.name }}
+          servicePort: 8080
+        path: /
+    {{- if .Values.fe.ingress.tls.enabled -}}        
+  tls:
+  - hosts:
+    - {{.Values.fe.ingress.host}}
+    secretName: {{.Values.fe.ingress.tls.secretName}}
+    {{- end }}    
+{{- end }}

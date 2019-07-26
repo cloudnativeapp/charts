@@ -1,0 +1,102 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  labels:
+    helm.sh/chart: {{ include "codis.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}  
+    app: codis-proxy
+  name: {{ .Values.proxy.name}}
+spec:
+  replicas: {{ .Values.proxy.replicaCount}}
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      helm.sh/chart: {{ include "codis.chart" . }}
+      app.kubernetes.io/managed-by: {{ .Release.Service }}
+      app.kubernetes.io/instance: {{ .Release.Name }}  
+      app: codis-proxy
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: {{ include "codis.chart" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}      
+        app: codis-proxy          
+    spec:
+      containers:
+        - name: codis-proxy
+          resources:
+{{ toYaml .Values.proxy.resources | indent 10  }}
+          imagePullPolicy: Always          
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+          - containerPort: 11080
+            name: proxy
+          - containerPort: 19000
+            name: admin
+          command: ["codis-proxy"]
+          # args: ["--log-level","WARN","-c","$(CODIS_PATH)/config/proxy.toml","--host-admin","$(POD_IP):11080","--host-proxy","$(POD_IP):19000","--zookeeper","$(ZK_ADDR)","--product_name","$(PRODUCT_NAME)","--pidfile","log/proxy.pid"]          
+          args: 
+          - "--log-level"
+          - "WARN"
+          - "-c"
+          - "$(CODIS_PATH)/config/proxy.toml"
+          - "--host-admin"
+          - "$(POD_IP):11080"
+          - "--host-proxy"
+          - "$(POD_IP):19000"
+          - "--zookeeper"
+          - "$(ZK_ADDR)"
+          - "--product_name"
+          - "$(PRODUCT_NAME)"
+          - "--pidfile"
+          - "log/proxy.pid"
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 19000
+            timeoutSeconds: 1     
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 7
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 19000
+            timeoutSeconds: 1           
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "codis-admin --dashboard=${DASHBOARD_ADDR} --remove-proxy --addr=${POD_IP}:11080 1>/dev/null 2>&1"]               
+          env:
+            - name: CODIS_PATH
+              value: "/gopath/src/github.com/CodisLabs/codis"
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: ZK_ADDR
+              value: "{{ .Values.zookeeper.svc.name}}:2181"
+            - name: DASHBOARD_ADDR
+              value: "{{ .Values.dashboard.svc.name }}:{{ .Values.dashboard.svc.port }}"
+            - name: PRODUCT_NAME
+              value: "codis-product"
+      schedulerName: default-scheduler      
+      securityContext: {}
+      dnsPolicy: ClusterFirst
+    #   imagePullSecrets:
+    #     - name: 
+      restartPolicy: Always  
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 600

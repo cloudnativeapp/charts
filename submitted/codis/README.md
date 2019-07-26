@@ -31,3 +31,24 @@ codis 依赖于 zookeeper,但这不是绝对的。
 默认的例子用了 zookeeper ，大家可自行实现其他方式。
 
 ## 安装使用
+
+### helm v2.x
+
+```bash
+
+```
+
+### helm v3
+
+目前版本:
+
+version.BuildInfo {
+	Version: "v3.0.0-alpha.2",
+	GitCommit: "97e7461e41455e58d89b4d7d192fed5352001d44",
+	GitTreeState: "clean",
+	GoVersion: "go1.12.7"
+}
+
+```bash
+
+```

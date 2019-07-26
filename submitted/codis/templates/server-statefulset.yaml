@@ -1,0 +1,96 @@
+apiVersion: "apps/v1beta1"
+kind: StatefulSet
+metadata:
+  name: {{.Values.server.name}}
+  labels:
+    helm.sh/chart: {{ include "codis.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app: codis-server
+spec:
+  updateStrategy:
+    rollingUpdate:
+      partition: 0
+    type: RollingUpdate
+  serviceName: {{.Values.server.name}}
+  replicas: {{ .Values.server.replicaCount }}
+  template:
+    metadata:
+      labels:        
+        helm.sh/chart: {{ include "codis.chart" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        app: codis-server
+    spec:
+    #   imagePullSecrets:
+    #   - name: 
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:              
+          - weight: 100
+            podAffinityTerm:
+              topologyKey: "kubernetes.io/hostname"  
+              labelSelector:            
+                matchExpressions:
+                - key: 'app'
+                  operator: In
+                  values: 
+                   - "codis-server"                               
+      containers:
+      - name: codis-server
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command: ["codis-server"]
+        args: ["$(CODIS_PATH)/config/redis.conf","--logfile","$(POD_NAME).log","--protected-mode", "no", "--bind", "$(POD_IP)", "--daemonize", "no"]
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "codis-admin --dashboard={{ .Values.dashboard.svc.name }}:{{ .Values.dashboard.svc.port }} --reload; if [ $? != 0 ]; then exit 1; fi; \
+                        sid=`hostname |awk -F'-' '{print $3}'`;gid=$(expr $sid / ${SERVER_REPLICA} + 1); \
+                        codis-admin --dashboard={{ .Values.dashboard.svc.name }}:{{ .Values.dashboard.svc.port }} --create-group --gid=${gid} 1>/dev/null 2>&1; \
+                        codis-admin --dashboard={{ .Values.dashboard.svc.name }}:{{ .Values.dashboard.svc.port }} --group-add --gid=${gid} --addr=${POD_IP}:6379; 
+                        if [ $? != 0  -a ${SERVER_REPLICA} -gt 1 ]; then exit 1; fi; \
+                        codis-admin --dashboard={{ .Values.dashboard.svc.name }}:{{ .Values.dashboard.svc.port }} --sync-action --create --addr=${POD_IP}:6379 1>/dev/null 2>&1 "]
+          preStop:
+            exec:
+              command: ["/bin/sh", "-c", "codis-admin --dashboard={{ .Values.dashboard.svc.name }}:{{ .Values.dashboard.svc.port }} --reload; if [ $? != 0 ]; then exit 1; fi; \
+                        sid=`hostname |awk -F'-' '{print $3}'`;gid=$(expr $sid / ${SERVER_REPLICA} + 1); sleep 5;\
+                        codis-admin --dashboard={{ .Values.dashboard.svc.name }}:{{ .Values.dashboard.svc.port }} --group-del --gid=${gid} --addr=${POD_IP}:6379"]
+        readinessProbe:
+          failureThreshold: 2
+          initialDelaySeconds: 1
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 6379
+          timeoutSeconds: 1
+        livenessProbe:
+          failureThreshold: 2
+          initialDelaySeconds: 2
+          periodSeconds: 10
+          successThreshold: 1
+          tcpSocket:
+            port: 6379
+          timeoutSeconds: 1
+        env:
+        - name: SERVER_REPLICA
+          value: "{{ .Values.server.serverReplica}}"
+        - name: CODIS_PATH
+          value: "/gopath/src/github.com/CodisLabs/codis"
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        ports:
+        - containerPort: 6379
+          name: service-port
+        resources:
+{{ toYaml .Values.server.resources | indent 10  }}
