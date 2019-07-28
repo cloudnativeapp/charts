@@ -1,0 +1,12 @@
+apiVersion: v1
+appVersion: "1.0"
+description: A Helm chart for Kubernetes
+name: gohttpserver
+version: 0.1.0
+home: https://github.com/codeskyblue/gohttpserver
+icon: 
+keywords:
+- gohttpserver
+maintainers:
+- email: 29ygq@sina.com
+  name: Chinge Yang

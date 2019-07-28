@@ -1,0 +1,18 @@
+apiVersion: v1
+appVersion: nginx-1.10.3_php-7.0
+description: Chart for the nginx php server
+name: nginx-php
+version: 1.0.0
+home: https://github.com/1and1internet/ubuntu-16-nginx-php-7.0
+icon: https://secure.gravatar.com/avatar/758bb0e0f4b0735998dda305a917b5af.jpg?s=80&r=g&d=mm
+keywords:
+- nginx
+- http
+- php
+- web
+- www
+maintainers:
+- email: 29ygq@sina.com
+  name: Chinge Yang
+sources:
+- https://github.com/1and1internet/ubuntu-16-nginx-php-7.0

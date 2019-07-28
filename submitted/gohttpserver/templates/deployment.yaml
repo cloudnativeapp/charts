@@ -1,0 +1,112 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "gohttpserver.fullname" . }}
+  labels:
+    app: {{ template "gohttpserver.name" . }}
+    chart: {{ template "gohttpserver.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "gohttpserver.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "gohttpserver.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      imagePullSecrets:
+      {{- range .Values.image.imagePullSecrets }}
+        - name: {{ . }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: {{ .Values.service.protocol }}
+          {{- if .Values.healthCheck.enabled }}
+          livenessProbe:
+            {{- if eq .Values.healthCheck.type "http" }}
+            httpGet:
+              path: {{ .Values.healthCheck.httpPath }}
+              port: http
+            {{- else }}
+            tcpSocket:
+              port: http
+            {{- end }}
+            initialDelaySeconds: {{ .Values.healthCheck.livenessInitialDelaySeconds }}
+            periodSeconds: {{ .Values.healthCheck.livenessPeriodSeconds }}
+          readinessProbe:
+            {{- if eq .Values.healthCheck.type "http" }}
+            httpGet:
+              path: {{ .Values.healthCheck.httpPath }}
+              port: http
+            {{- else }}
+            tcpSocket:
+              port: http
+            {{- end }}
+            initialDelaySeconds: {{ .Values.healthCheck.readinessInitialDelaySeconds }}
+            periodSeconds: {{ .Values.healthCheck.readinessPeriodSeconds }}
+          {{- end }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          volumeMounts:
+          {{- if and .Values.persistentVolume.enabled .Values.persistentVolume.existingClaim }}
+            {{- range .Values.persistentVolume.existingClaim }}
+          - name: {{ . }}
+            mountPath: /app/public/{{ . }}
+            {{- end }}
+          {{- else }}
+          - name: data-storage
+            mountPath: /app/public
+          {{- end }}
+          command:
+          - /app/gohttpserver 
+          - --root 
+          - /app/public
+          - --auth-type
+          - {{ .Values.auth.type }}
+          - --auth-http
+          - {{ .Values.auth.userName }}:{{ .Values.auth.passWord }}
+          {{- if .Values.auth.upload }}
+          - --upload
+          {{- end }}
+          {{- if .Values.auth.delete }}
+          - --delete
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+     {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      volumes:
+      {{- if $.Values.persistentVolume.enabled }}
+        {{- if .Values.persistentVolume.existingClaim }}
+          {{- range .Values.persistentVolume.existingClaim }}
+      - name: {{ . }}
+        persistentVolumeClaim:
+          claimName: {{ . }}
+          {{- end }}
+        {{- else }}
+      - name: data-storage
+        persistentVolumeClaim:
+          claimName: {{ template "gohttpserver.name" . }}
+        {{- end }}
+      {{- else }}
+      - name: data-storage
+        emptyDir: {}
+      {{- end }}

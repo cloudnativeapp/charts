@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "gohttpserver.fullname" . }}
+  labels:
+    app: {{ template "gohttpserver.name" . }}
+    chart: {{ template "gohttpserver.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "gohttpserver.name" . }}
+    release: {{ .Release.Name }}

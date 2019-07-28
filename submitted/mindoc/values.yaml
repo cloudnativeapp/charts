@@ -1,0 +1,521 @@
+# Default values for mindoc.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+statefulset:
+  enabled: false
+
+## String to partially override fullname template (will maintain the release name)
+##
+nameOverride: ""
+
+## String to fully override fullname template
+##
+fullnameOverride: ""
+
+## By default deploymentStrategy is set to rollingUpdate with maxSurge of 25% and maxUnavailable of 25% .
+## You can change type to `Recreate` or can uncomment `rollingUpdate` specification and adjust them to your usage.
+deploymentStrategy: {}
+  # rollingUpdate:
+  #   maxSurge: 25%
+  #   maxUnavailable: 25%
+  # type: RollingUpdate
+
+# 副本个数
+replicaCount: 1
+
+# 容器image及tag
+image:
+  repository: ygqygq2/mindoc
+  tag: latest
+  pullPolicy: IfNotPresent # IfNotPresent: 有则不拉（减少流量和操作步骤），Always: 不管tag总拉（适合tag不变时更新）
+  imagePullSecrets: []
+
+service:
+  type: ClusterIP  # 一般不用修改
+  ports:
+    web:  # 多端口暴露时，复制一段，ingress默认只暴露此名为web的端口
+      port: 8181  # Service port number for client-a port.
+      protocol: TCP  # Service port protocol for client-a port.
+
+## env set
+## ref: https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
+## ref: https://www.iminho.me/wiki/docs/mindoc/mindoc-config.md
+## Mindoc支持的环境变量可参考config中的app.conf，但建议从此处定义env
+env: []
+
+## command set
+startCommand: []
+#  - "java -Xdebug -Xnoagent -Djava.compiler=NONE"
+#  - "-Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"
+#  - "-Djava.security.egd=file:/dev/urandom"
+#  - "-jar /test.jar"
+#  - "-Duser.timezone=GMT+08"
+
+## Enable configmap and add data in configmap
+config:
+  enabled: false
+  mountPath: /mindoc/conf/app.conf
+  subPath: app.conf
+  data: 
+    app.conf: |-
+      appname = mindoc
+      #默认监听的网卡,为空则监听所有
+      httpaddr="${MINDOC_ADDR}"
+      httpport = "${MINDOC_PORT||8181}"
+      runmode = "${MINDOC_RUN_MODE||dev}"
+      sessionon = true
+      sessionname = mindoc_id
+      copyrequestbody = true
+      
+      #系统完整URL(http://doc.iminho.me),如果该项不设置，会从请求头中获取地址。
+      baseurl="${MINDOC_BASE_URL}"
+      
+      #########代码高亮样式################
+      #样式演示地址：https://highlightjs.org/static/demo/
+      highlight_style="${MINDOC_HIGHLIGHT_STYLE||github}"
+      
+      ########配置文件自动加载##################
+      #大于0时系统会自动检测配置文件是否变动，变动后自动加载并生效,单位是秒。监听端口和数据库配置无效
+      config_auto_delay="${MINDOC_CONFIG_AUTO_DELAY||20}"
+      
+      ########Session储存方式##############
+      
+      #默认Session生成Key的秘钥
+      beegoserversessionkey=NY1B$28pms12JM&c
+      sessionprovider="${MINDOC_SESSION_PROVIDER||file}"
+      sessionproviderconfig="${MINDOC_SESSION_PROVIDER_CONFIG||./runtime/session}"
+      #默认的过期时间
+      sessiongcmaxlifetime="${MINDOC_SESSION_MAX_LIFETIME||3600}"
+      
+      #以文件方式储存
+      #sessionprovider=file
+      #sessionproviderconfig=./runtime/session
+      
+      #以redis方式储存
+      #sessionprovider=redis
+      #sessionproviderconfig=127.0.0.1:6379
+      
+      #以memcache方式储存
+      #sessionprovider=memcache
+      #sessionproviderconfig=127.0.0.1:11211
+      
+      #以内存方式托管Session
+      #sessionprovider=memory
+      
+      #时区设置
+      timezone = Asia/Shanghai
+      
+      ####################MySQL 数据库配置###########################
+      #支持MySQL和sqlite3两种数据库，如果是sqlite3 则 db_database 标识数据库的物理目录
+      db_adapter="${MINDOC_DB_ADAPTER||sqlite3}"
+      db_host="${MINDOC_DB_HOST||127.0.0.1}"
+      db_port="${MINDOC_DB_PORT||3306}"
+      db_database="${MINDOC_DB_DATABASE||./database/mindoc.db}"
+      db_username="${MINDOC_DB_USERNAME||root}"
+      db_password="${MINDOC_DB_PASSWORD||123456}"
+      
+      ####################sqlite3 数据库配置###########################
+      #db_adapter=sqlite3
+      #db_database=./database/mindoc.db
+      
+      #项目默认封面
+      cover=/static/images/book.jpg
+      
+      #默认头像
+      avatar=/static/images/headimgurl.jpg
+      
+      #默认阅读令牌长度
+      token_size=12
+      
+      #上传文件的后缀,如果不限制后缀可以设置为 *
+      upload_file_ext=txt|doc|docx|xls|xlsx|ppt|pptx|pdf|7z|rar|jpg|jpeg|png|gif
+      
+      #上传的文件大小限制,如果不填写,默认不限制，单位可以是 GB KB MB
+      upload_file_size=10MB
+      
+      ####################邮件配置######################
+      #是否启用邮件
+      enable_mail="${MINDOC_ENABLE_MAIL||false}"
+      #每小时限制指定邮箱邮件发送次数
+      mail_number="${MINDOC_MAIL_NUMBER||5}"
+      #smtp服务用户名
+      smtp_user_name="${MINDOC_SMTP_USER_NAME||admin@iminho.me}"
+      #smtp服务器地址
+      smtp_host="${MINDOC_SMTP_HOST||smtp.163.com}""
+      #smtp密码
+      smtp_password="${MINDOC_SMTP_PASSWORD}"
+      #端口号
+      smtp_port="${MINDOC_SMTP_PORT||25}""
+      #发送邮件的显示名称
+      form_user_name="${MINDOC_FORM_USERNAME||admin@iminho.me}"
+      #邮件有效期30分钟
+      mail_expired="${MINDOC_EXPIRED||30}"
+      #加密类型NONE 无认证、SSL 加密、LOGIN 普通用户登录
+      secure="${MINDOC_MAIL_SECURE||LOGIN}"
+      
+      ###############配置导出项目###################
+      enable_export="${MINDOC_ENABLE_EXPORT||false}"
+      #同一个项目同时运行导出程序的并行数量，取值1-4之间，取值越大导出速度越快，越占用资源
+      export_process_num="${MINDOC_EXPORT_PROCESS_NUM||1}"
+      
+      #并发导出的项目限制，指同一时间限制的导出项目数量，如果为0则不限制。设置的越大，越占用资源
+      export_limit_num="${MINDOC_EXPORT_LIMIT_NUM||5}"
+      
+      #指同时等待导出的任务数量
+      export_queue_limit_num="${MINDOC_EXPORT_QUEUE_LIMIT_NUM||100}"
+      
+      #导出项目的缓存目录配置
+      export_output_path="${MINDOC_EXPORT_OUTPUT_PATH||./runtime/cache}"
+      
+      ################百度地图密钥#################
+      baidumapkey=
+      
+      ################Active Directory/LDAP################
+      #是否启用ldap
+      ldap_enable=false
+      #ldap主机名
+      ldap_host=openldap
+      #ldap端口
+      ldap_port=389
+      #ldap内哪个属性作为用户名
+      ldap_attribute=cn
+      #搜索范围
+      ldap_base=ou=soft,dc=domain,dc=com
+      #第一次绑定ldap用户dn
+      ldap_user=cn=admin,dc=domain,dc=com
+      #第一次绑定ldap用户密码
+      ldap_password=Ldap
+      #自动注册用户角色：0 超级管理员 /1 管理员/ 2 普通用户
+      ldap_user_role=2
+      #ldap搜索filter规则,AD服务器: objectClass=User, openldap服务器: objectClass=posixAccount ,也可以定义为其他属性,如: title=mindoc
+      ldap_filter=objectClass=posixAccount
+      
+      ###############配置CDN加速##################
+      cdn="${MINDOC_CDN_URL}"
+      cdnjs="${MINDOC_CDN_JS_URL}"
+      cdncss="${MINDOC_CDN_CSS_URL}"
+      cdnimg="${MINDOC_CDN_IMG_URL}"
+      
+      ######################缓存配置###############################
+      
+      #是否开启缓存，true 开启/false 不开启
+      cache="${MINDOC_CACHE||false}"
+      
+      #缓存方式:memory/memcache/redis/file
+      cache_provider="${MINDOC_CACHE_PROVIDER||file}"
+      
+      #当配置缓存方式为memory时,内存回收时间,单位是秒
+      cache_memory_interval="${MINDOC_CACHE_MEMORY_INTERVAL||120}"
+      
+      #当缓存方式配置为file时,缓存的储存目录
+      cache_file_path="${MINDOC_CACHE_FILE_PATH||./runtime/cache/}"
+      
+      #缓存文件后缀
+      cache_file_suffix="${MINDOC_CACHE_FILE_SUFFIX||.bin}"
+      
+      #文件缓存目录层级
+      cache_file_dir_level="${MINDOC_CACHE_FILE_DIR_LEVEL||2}"
+      
+      #文件缓存的默认过期时间
+      cache_file_expiry="${MINDOC_CACHE_FILE_EXPIRY||3600}"
+      
+      #memcache缓存服务器地址
+      cache_memcache_host="${MINDOC_CACHE_MEMCACHE_HOST||127.0.0.1:11211}"
+      
+      #redis服务器地址
+      cache_redis_host="${MINDOC_CACHE_REDIS_HOST||127.0.0.1:6379}"
+      
+      #redis数据库索引
+      cache_redis_db="${MINDOC_CACHE_REDIS_DB||0}"
+      
+      #redis服务器密码
+      cache_redis_password="${MINDOC_CACHE_REDIS_PASSWORD}"
+      
+      #缓存键的前缀
+      cache_redis_prefix="${MINDOC_CACHE_REDIS_PREFIX||mindoc::cache}"
+      
+      #########日志储存配置##############
+      #日志保存路径，在linux上，自动创建的日志文件请不要删除，否则将无法写入日志
+      log_path="${MINDOC_LOG_PATH||./runtime/logs}"
+      
+      #每个文件保存的最大行数，默认值 1000000
+      log_maxlines="${MINDOC_LOG_MAX_LINES||1000000}"
+      
+      # 每个文件保存的最大尺寸，默认值是 1 << 28, //256 MB
+      log_maxsize="${MINDOC_LOG_MAX_SIZE}"
+      
+      # 是否按照每天 logrotate，默认是 true
+      log_daily="${MINDOC_LOG_DAILY||true}"
+      
+      # 文件最多保存多少天，默认保存 7 天
+      log_maxdays="${MINDOC_LOG_MAX_DAYS||30}"
+      
+      # 日志保存的时候的级别，默认是 Trace 级别,可选值： Emergency/Alert/Critical/Error/Warning/Notice/Informational/Debug/Trace
+      log_level="${MINDOC_LOG_LEVEL||Alert}"
+      
+      # 是否异步生成日志，默认是 true
+      log_is_async="${MINDOC_LOG_IS_ASYNC||TRUE}"
+
+## To use an additional secret, set enable to true and add data
+secret:
+  enabled: false
+  mountPath: /etc/secret-volume
+  subPath: ""
+  readOnly: true
+  data: {} 
+
+## liveness and readiness 
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+healthCheck:
+  enabled: true
+  type: http  # http/tcp
+  port: web  # 上面的端口名或端口
+  httpPath: '/'  # http时必须设置
+  livenessInitialDelaySeconds: 20  # 初始延迟秒数
+  livenessPeriodSeconds: 10  # 检测周期，默认值10，最小为1
+  readinessInitialDelaySeconds: 20  # 初始延迟秒数
+  readinessPeriodSeconds: 10   # 检测周期，默认值10，最小为1
+ 
+resources: {}
+  # 容器资源设置
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+## Node labels and tolerations for pod assignment
+### ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
+### ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#taints-and-tolerations-beta-feature
+labels: {}
+podAnnotations: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+annotations: {}
+
+## Enable persistence using Persistent Volume Claims
+## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+##
+persistentVolume:   # 是否存储持久化
+  enabled: false
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, azure-disk on
+  ##   Azure, standard on GKE, AWS & OpenStack)
+  ##
+  storageClass: "-"
+  accessMode: ReadWriteOnce
+  annotations: {}
+  #   helm.sh/resource-policy: keep
+  size: 2Gi  # 大小
+  existingClaim: {}  # 使用已存在的pvc
+  mountPaths:
+    - name: data-storage
+      mountPath: /mindoc/database
+      subPath: database
+    - name: data-storage
+      mountPath: /mindoc/uploads
+      subPath: uploads
+
+ingress:  # 是否使用nginx暴露域名或端口
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+mysql:
+  # if enabled set "false", fill the connection informations in "external" section
+  enabled: true
+  external:
+    mysqlHost: "mysql_host"
+    mysqlDatabase: "mindoc"
+    mysqlPort: "3306"
+    mysqlUsername: "mindoc"
+    mysqlPassword: "mindoc"
+
+  root:
+    password: mindoc
+    forcePassword: false
+  
+  db:
+    user: mindoc
+    password: mindoc
+    name: mindoc
+    forcePassword: false
+  
+  replication:
+    enabled: false
+    user: replicator
+    password: replicator
+    forcePassword: false
+  
+  master:
+    persistence:
+      enabled: false
+      storageClass: "-"
+      mountPath: /bitnami/mysql
+      annotations: {}
+      accessModes:
+      - ReadWriteOnce
+      size: 8Gi
+  
+    config: |-
+      [mysqld]
+      default_authentication_plugin=mysql_native_password
+      skip-name-resolve
+      explicit_defaults_for_timestamp
+      basedir=/opt/bitnami/mysql
+      port=3306
+      socket=/opt/bitnami/mysql/tmp/mysql.sock
+      tmpdir=/opt/bitnami/mysql/tmp
+      max_allowed_packet=16M
+      bind-address=0.0.0.0
+      pid-file=/opt/bitnami/mysql/tmp/mysqld.pid
+      log-error=/opt/bitnami/mysql/logs/mysqld.log
+      default-time_zone = '+8:00'
+      character-set-server=utf8mb4
+      init-connect='SET NAMES utf8mb4'
+      collation-server = utf8mb4_unicode_ci
+      max_connections = 5000
+      query_cache_type = 1
+      query_cache_size = 128M
+      query_cache_limit = 4M
+      key_buffer_size = 256M
+      slow_query_log = 1
+      long_query_time = 2
+      slow_query_log_file=slow-query.log
+      log_warnings = 1
+  
+      [client]
+      port=3306
+      socket=/opt/bitnami/mysql/tmp/mysql.sock
+      default-character-set=UTF8
+  
+      [manager]
+      port=3306
+      socket=/opt/bitnami/mysql/tmp/mysql.sock
+      pid-file=/opt/bitnami/mysql/tmp/mysqld.pid
+  
+  slave:
+    replicas: 1
+    persistence:
+      enabled: false
+      storageClass: "-"
+      mountPath: /bitnami/mysql
+      annotations: {}
+      accessModes:
+      - ReadWriteOnce
+      size: 8Gi
+  
+    config: |-
+      [mysqld]
+      default_authentication_plugin=mysql_native_password
+      skip-name-resolve
+      explicit_defaults_for_timestamp
+      basedir=/opt/bitnami/mysql
+      port=3306
+      socket=/opt/bitnami/mysql/tmp/mysql.sock
+      tmpdir=/opt/bitnami/mysql/tmp
+      max_allowed_packet=16M
+      bind-address=0.0.0.0
+      pid-file=/opt/bitnami/mysql/tmp/mysqld.pid
+      log-error=/opt/bitnami/mysql/logs/mysqld.log
+      default-time_zone = '+8:00'
+      character-set-server=utf8mb4
+      init-connect='SET NAMES utf8mb4'
+      collation-server = utf8mb4_unicode_ci
+      max_connections = 5000
+      query_cache_type = 1
+      query_cache_size = 128M
+      query_cache_limit = 4M
+      key_buffer_size = 256M
+      slow_query_log = 1
+      long_query_time = 2
+      slow_query_log_file=slow-query.log
+      log_warnings = 1
+  
+      [client]
+      port=3306
+      socket=/opt/bitnami/mysql/tmp/mysql.sock
+      default-character-set=UTF8
+  
+      [manager]
+      port=3306
+      socket=/opt/bitnami/mysql/tmp/mysql.sock
+      pid-file=/opt/bitnami/mysql/tmp/mysqld.pid
+  
+  metrics:
+    enabled: false
+    image:
+      registry: docker.io
+      repository: prom/mysqld-exporter
+      tag: v0.10.0
+      pullPolicy: IfNotPresent
+    resources: {}
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "9104"
+
+## Uncomment and modify this to run a command after starting the core container.
+## ref: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/
+lifecycle: {}
+  # preStop:
+  #   exec:
+  #     command: ["/bin/bash","/pre-stop.sh"]
+  # postStart:
+  #   exec:
+  #     command: ["/bin/bash","/post-start.sh"]
+
+deployment:
+  additionalVolumes: []
+
+## init containers
+## ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+## Add init containers. e.g. to be used to give specific permissions for data
+## Add your own init container or uncomment and modify the given example.
+initContainers: {}
+#  - name: fmp-volume-permission
+#    image: busybox
+#    imagePullPolicy: IfNotPresent
+#    command: ['chown','-R', '200', '/extra-data']
+#    volumeMounts:
+#      - name: extra-data
+#        mountPath: /extra-data
+
+additionalContainers: {}
+## Additional containers to be added to the core pod.
+#  - name: my-sidecar
+#    image: nginx:latest
+#  - name: lemonldap-ng-controller
+#    image: lemonldapng/lemonldap-ng-controller:0.2.0
+#    args:
+#      - /lemonldap-ng-controller
+#      - --alsologtostderr
+#      - --configmap=$(POD_NAMESPACE)/lemonldap-ng-configuration
+#    env:
+#      - name: POD_NAME
+#        valueFrom:
+#          fieldRef:
+#            fieldPath: metadata.name
+#      - name: POD_NAMESPACE
+#        valueFrom:
+#          fieldRef:
+#            fieldPath: metadata.namespace
+#    volumeMounts:
+#    - name: copy-portal-skins
+#      mountPath: /srv/var/lib/lemonldap-ng/portal/skins

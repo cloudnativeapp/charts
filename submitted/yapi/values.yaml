@@ -1,0 +1,297 @@
+# Default values for yapi.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+statefulset:
+  enabled: false
+
+## String to partially override fullname template (will maintain the release name)
+##
+nameOverride: ""
+
+## String to fully override fullname template
+##
+fullnameOverride: ""
+
+## By default deploymentStrategy is set to rollingUpdate with maxSurge of 25% and maxUnavailable of 25% .
+## You can change type to `Recreate` or can uncomment `rollingUpdate` specification and adjust them to your usage.
+deploymentStrategy: {}
+  # rollingUpdate:
+  #   maxSurge: 25%
+  #   maxUnavailable: 25%
+  # type: RollingUpdate
+
+# 副本个数
+replicaCount: 1
+
+# 容器image及tag
+image:
+  repository: ygqygq2/yapi
+  tag: v1.7.2
+  pullPolicy: IfNotPresent # IfNotPresent: 有则不拉（减少流量和操作步骤），Always: 不管tag总拉（适合tag不变时更新）
+  imagePullSecrets: []
+
+service:
+  type: ClusterIP  # 一般不用修改
+  ports:
+    web:  # 多端口暴露时，复制一段，ingress默认只暴露此名为web的端口
+      port: 3000  # Service port number for client-a port.
+      protocol: TCP  # Service port protocol for client-a port.
+
+## env set
+## ref: https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
+env:
+  - name: HOME
+    value: "/yapi"
+  - name: VENDORS
+    value: "/yapi/vendors"
+#  - name: VERSION
+#    value: 1.7.2
+#  - name: DB_SERVER
+#    value: ""
+
+## command set
+startCommand: []
+#  - "java -Xdebug -Xnoagent -Djava.compiler=NONE"
+#  - "-Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"
+#  - "-Djava.security.egd=file:/dev/urandom"
+#  - "-jar /test.jar"
+#  - "-Duser.timezone=GMT+08"
+
+## Enable configmap and add data in configmap
+config:
+  enabled: false
+  mountPath: /yapi/a.txt
+  subPath: a.txt
+  data: 
+    a.txt: |-
+      test
+
+## To use an additional secret, set enable to true and add data
+secret:
+  enabled: false
+  mountPath: /yapi/config.json
+  subPath: config.json
+  readOnly: true
+  data: 
+    config.json: |-
+      {
+        "port": "3000",
+        "adminAccount": "admin@admin.com",
+        "db": {
+          "servername": "mongodb-svc",
+          "DATABASE": "yapi",
+          "port": 27017,
+          "user": "yapi",
+          "pass": "yapi",
+          "authSource": ""
+        },
+        "mail": {
+          "enable": false,
+          "host": "smtp.163.com",
+          "port": 465,
+          "from": "***@163.com",
+          "auth": {
+            "user": "***@163.com",
+            "pass": "*****"
+          }
+        }
+      }
+
+## liveness and readiness 
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+healthCheck:
+  enabled: true
+  type: http  # http/tcp
+  port: web  # 上面的端口名或端口
+  httpPath: '/'  # http时必须设置
+  livenessInitialDelaySeconds: 60  # 初始延迟秒数
+  livenessPeriodSeconds: 10  # 检测周期，默认值10，最小为1
+  readinessInitialDelaySeconds: 60  # 初始延迟秒数
+  readinessPeriodSeconds: 10   # 检测周期，默认值10，最小为1
+ 
+resources: {}
+  # 容器资源设置
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+## Node labels and tolerations for pod assignment
+### ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
+### ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#taints-and-tolerations-beta-feature
+labels: {}
+podAnnotations: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+annotations: {}
+
+## Enable persistence using Persistent Volume Claims
+## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+##
+persistentVolume:   # 是否存储持久化
+  enabled: false
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, azure-disk on
+  ##   Azure, standard on GKE, AWS & OpenStack)
+  ##
+  storageClass: "-"
+  accessMode: ReadWriteOnce
+  annotations: {}
+  #   helm.sh/resource-policy: keep
+  size: 2Gi  # 大小
+  existingClaim: {}  # 使用已存在的pvc
+  mountPaths:
+    - name: data-storage
+      mountPath: /yapi
+
+
+ingress:  # 是否使用nginx暴露域名或端口
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: 
+  #    hosts:
+  #      - chart-example.local
+
+mongodb:
+  # if enabled set "false", fill the connection informations in "external" section
+  enabled: true
+  external:
+    mongodbHost: "mongodb_host"
+    mongodbDatabase: "yapi"
+    mongodbPort: "27017"
+    mongodbUsername: "yapi"
+    mongodbPassword: "yapi"
+
+  usePassword: true
+  mongodbRootPassword: yapi
+  mongodbUsername: yapi
+  mongodbPassword: yapi
+  mongodbDatabase: yapi
+
+  replicaSet:
+    ## Whether to create a MongoDB replica set for high availability or not
+    enabled: false
+    useHostnames: true
+  
+    ## Name of the replica set
+    ##
+    name: rs0
+  
+    ## Key used for replica set authentication
+    ##
+    # key: key
+  
+    ## Number of replicas per each node type
+    ##
+    replicas:
+      secondary: 1
+      arbiter: 1
+
+  persistence:
+    enabled: false
+    ## A manually managed Persistent Volume and Claim
+    ## Requires persistence.enabled: true
+    ## If defined, PVC must be created manually before volume will be bound
+    ##
+    # existingClaim:
+  
+    ## The path the volume will be mounted at, useful when using different
+    ## MongoDB images.
+    ##
+    mountPath: /bitnami/mongodb
+  
+    ## The subdirectory of the volume to mount to, useful in dev environments
+    ## and one PV for multiple services.
+    ##
+    subPath: ""
+  
+    ## mongodb data Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    storageClass: "-"
+    accessModes:
+      - ReadWriteOnce
+    size: 8Gi
+    annotations: {}
+
+  # Expose mongodb via ingress. This is possible if using nginx-ingress
+  # https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/
+  ingress:
+    enabled: false
+    annotations: {}
+    labels: {}
+    paths:
+      - /
+    hosts: []
+    tls:
+      - secretName: secret-tls
+        hosts: []
+
+## Uncomment and modify this to run a command after starting the core container.
+## ref: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/
+lifecycle: {}
+  # preStop:
+  #   exec:
+  #     command: ["/bin/bash","/pre-stop.sh"]
+  # postStart:
+  #   exec:
+  #     command: ["/bin/bash","/post-start.sh"]
+  
+deployment:
+  additionalVolumes: []
+
+## init containers
+## ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+## Add init containers. e.g. to be used to give specific permissions for data
+## Add your own init container or uncomment and modify the given example.
+initContainers: {}
+#  - name: fmp-volume-permission
+#    image: busybox
+#    imagePullPolicy: IfNotPresent
+#    command: ['chown','-R', '200', '/extra-data']
+#    volumeMounts:
+#      - name: extra-data
+#        mountPath: /extra-data
+
+additionalContainers: {}
+## Additional containers to be added to the core pod.
+#  - name: my-sidecar
+#    image: nginx:latest
+#  - name: lemonldap-ng-controller
+#    image: lemonldapng/lemonldap-ng-controller:0.2.0
+#    args:
+#      - /lemonldap-ng-controller
+#      - --alsologtostderr
+#      - --configmap=$(POD_NAMESPACE)/lemonldap-ng-configuration
+#    env:
+#      - name: POD_NAME
+#        valueFrom:
+#          fieldRef:
+#            fieldPath: metadata.name
+#      - name: POD_NAMESPACE
+#        valueFrom:
+#          fieldRef:
+#            fieldPath: metadata.namespace
+#    volumeMounts:
+#    - name: copy-portal-skins
+#      mountPath: /srv/var/lib/lemonldap-ng/portal/skins

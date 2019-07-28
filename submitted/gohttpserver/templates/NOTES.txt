@@ -1,0 +1,42 @@
+The gohttpserver has been installed.
+
+Gohttpserver can be accessed:
+
+    {{ if .Values.ingress.enabled }}
+  * The application URL:
+
+    {{ range .Values.ingress.hosts }}
+    http{{ if $.Values.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.ingress.path }}
+    {{- end -}}
+    {{- end -}}
+
+  * Within your cluster, at the following DNS name at port 8000:
+
+    {{ template "gohttpserver.fullname" . }}.{{ .Release.Namespace }}.svc
+
+  * From outside the cluster, run these commands in the same shell:
+    {{- if contains "NodePort" .Values.service.type }}
+
+    export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ template "gohttpserver.fullname" . }})
+    export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+    echo http://$NODE_IP:$NODE_PORT
+    {{- else if contains "LoadBalancer" .Values.service.type }}
+
+     WARNING: You have likely exposed your gohttpserver direct to the internet.
+              Gohttpserver does not implement any security for public facing clusters by default.
+              As a minimum level of security; switch to ClusterIP/NodePort and place an Nginx gateway infront of the cluster in order to lock down access to dangerous HTTP endpoints and verbs.
+
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get svc -w {{ template "gohttpserver.fullname" . }}'
+
+    export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ template "gohttpserver.fullname" . }} -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    echo http://$SERVICE_IP:8000
+    {{- else if contains "ClusterIP"  .Values.service.type }}
+
+    export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app={{ template "gohttpserver.name" . }},release={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+    echo "Visit http://127.0.0.1:8000 to use gohttpserver"
+    kubectl port-forward --namespace {{ .Release.Namespace }} $POD_NAME 8000:8000
+    {{- end }}
+
+    # The default user is: admin
+    # The default password is: admin

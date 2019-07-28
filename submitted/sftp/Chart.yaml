@@ -1,0 +1,12 @@
+apiVersion: v1
+appVersion: "1.0"
+description: A Helm chart for Kubernetes
+name: sftp
+version: 1.0.0
+home: https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol
+icon: https://raw.githubusercontent.com/ygqygq2/sftp/master/openssh.png
+keywords:
+- sftp
+maintainers:
+- email: 29ygq@sina.com
+  name: Chinge Yang

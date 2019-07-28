@@ -1,0 +1,44 @@
+{{- if .Values.dependencies.enabled }}
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "zipkin.fullname" . }}-dependencies
+  labels:
+    app: {{ template "zipkin.name" . }}
+    chart: {{ template "zipkin.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  schedule: "{{ .Values.dependencies.schedule }}"
+  failedJobsHistoryLimit: 5
+  successfulJobsHistoryLimit: 5
+  jobTemplate:
+    metadata:
+      labels:
+        app: {{ template "zipkin.name" . }}
+        chart: {{ template "zipkin.chart" . }}
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+        cronjob-name: {{ template "zipkin.fullname" . }}-dependencies
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+          {{- range .Values.dependencies.image.imagePullSecrets }}
+            - name: {{ . }}
+          {{- end }}
+          restartPolicy: Never
+          containers:
+          - name: {{ .Chart.Name }}-dependencies
+            env:
+{{- if .Values.env }}
+{{ toYaml .Values.env | indent 12 }}
+{{- end }}
+            - name: STORAGE_TYPE
+              value: elasticsearch
+            - name : ES_HOSTS
+              value: {{ template "zipkin.fullname" . }}-elasticsearch-client:9200
+            name: {{ .Chart.Name }}-dependencies
+            imagePullPolicy: {{ .Values.dependencies.image.pullPolicy }}
+            image: {{ .Values.dependencies.image.repository }}:{{ .Values.dependencies.image.tag }}
+{{- end -}}

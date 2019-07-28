@@ -1,0 +1,14 @@
+apiVersion: v1
+appVersion: "v1.7.2"
+description: 高效、易用、功能强大的 api 管理平台
+name: yapi
+version: 1.0.0
+home: https://github.com/ymfe/yapi
+icon: https://hellosean1025.github.io/yapi/documents/images/logo_header@2x.png
+keywords:
+- api
+- doc
+- mock
+maintainers:
+- email: 29ygq@sina.com
+  name: Chinge Yang

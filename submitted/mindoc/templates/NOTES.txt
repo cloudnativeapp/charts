@@ -1,0 +1,42 @@
+The mindoc has been installed.
+
+Mindoc can be accessed:
+
+    {{ if .Values.ingress.enabled }}
+  * The application URL:
+
+    {{ range .Values.ingress.hosts }}
+    http{{ if $.Values.ingress.tls }}s{{ end }}://{{ . }}{{ $.Values.ingress.path }}
+    {{- end -}}
+    {{- end -}}
+
+  * Within your cluster, at the following DNS name at port 8181:
+
+    {{ template "mindoc.fullname" . }}.{{ .Release.Namespace }}.svc
+
+  * From outside the cluster, run these commands in the same shell:
+    {{- if contains "NodePort" .Values.service.type }}
+
+    export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ template "mindoc.fullname" . }})
+    export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+    echo http://$NODE_IP:$NODE_PORT
+    {{- else if contains "LoadBalancer" .Values.service.type }}
+
+     WARNING: You have likely exposed your mindoc direct to the internet.
+              Mindoc does not implement any security for public facing clusters by default.
+              As a minimum level of security; switch to ClusterIP/NodePort and place an Nginx gateway infront of the cluster in order to lock down access to dangerous HTTP endpoints and verbs.
+
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get svc -w {{ template "mindoc.fullname" . }}'
+
+    export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ template "mindoc.fullname" . }} -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    echo http://$SERVICE_IP:8181
+    {{- else if contains "ClusterIP"  .Values.service.type }}
+
+    export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app={{ template "mindoc.name" . }},release={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+    echo "Visit http://127.0.0.1:8181 to use mindoc"
+    kubectl port-forward --namespace {{ .Release.Namespace }} $POD_NAME 8181:8181
+    {{- end }}
+
+    # The default user is: admin
+    # The default password is: 123456

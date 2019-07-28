@@ -1,0 +1,314 @@
+# Default values for nginx-sftp.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+statefulset:
+  enabled: false
+
+nameOverride: ""
+fullnameOverride: ""
+
+## By default deploymentStrategy is set to rollingUpdate with maxSurge of 25% and maxUnavailable of 25% .
+## You can change type to `Recreate` or can uncomment `rollingUpdate` specification and adjust them to your usage.
+deploymentStrategy: {}
+  # rollingUpdate:
+  #   maxSurge: 25%
+  #   maxUnavailable: 25%
+  # type: RollingUpdate
+
+# 副本个数
+replicaCount: 1
+
+# 容器image及tag
+image:
+  repository: bitnami/nginx
+  tag: 1.14.2
+  pullPolicy: IfNotPresent # IfNotPresent: 有则不拉（减少流量和操作步骤），Always: 不管tag总拉（适合tag不变时更新）
+  imagePullSecrets: []
+
+service:
+  type: ClusterIP  # 一般不用修改
+  ports:
+    web:  # 多端口暴露时，复制一段，ingress默认只暴露此名为web的端口
+      port: 8080  # Service port number for client-a port.
+      protocol: TCP  # Service port protocol for client-a port.
+    ssh:
+      port: 22  # Service port number for client-b port.
+      protocol: TCP  # Service port protocol for client-b port.
+    metrics:
+      port: 9113
+      protocol: TCP
+
+## env set
+## ref: https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
+env: []
+#  - name: DEMO_GREETING
+#    value: "Hello from the environment"
+#  - name: DEMO_FAREWELL
+#    value: "Such a sweet sorrow"
+
+## command set
+startCommand: []
+#  - "java -Xdebug -Xnoagent -Djava.compiler=NONE"
+#  - "-Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"
+#  - "-Djava.security.egd=file:/dev/urandom"
+#  - "-jar /test.jar"
+#  - "-Duser.timezone=GMT+08"
+
+## nginx server configure
+vhost: ""
+#vhost: |-
+#   # example PHP-FPM vhost
+#   server {
+#     listen 0.0.0.0:8080;
+#     root /app;
+#     location / {
+#       index index.html index.php;
+#     }
+#     location ~ \.php$ {
+#       fastcgi_pass phpfpm-server:9000;
+#       fastcgi_index index.php;
+#       include fastcgi.conf;
+#     }
+#   }
+
+## Enable configmap and add data in configmap
+config:
+  enabled: false
+  mountPath: /conf
+  data: 
+
+## To use an additional secret, set enable to true and add data
+secret:
+  enabled: false
+  mountPath: /etc/secret-volume
+  subPath: ""
+  readOnly: true
+  data: {} 
+
+## liveness and readiness 
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
+healthCheck:
+  enabled: false
+  type: http  # http/tcp
+  port: web  # 上面的端口名或端口
+  httpPath: '/'  # http时必须设置
+  livenessInitialDelaySeconds: 10  # 初始延迟秒数
+  livenessPeriodSeconds: 10  # 检测周期，默认值10，最小为1
+  readinessInitialDelaySeconds: 10  # 初始延迟秒数
+  readinessPeriodSeconds: 10   # 检测周期，默认值10，最小为1
+ 
+resources: {}
+  # 容器资源设置
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+## Node labels and tolerations for pod assignment
+### ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
+### ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#taints-and-tolerations-beta-feature
+labels: {}
+podAnnotations: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+annotations: {}
+
+## Enable persistence using Persistent Volume Claims
+## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+##
+persistentVolume:   # 是否存储持久化
+  enabled: false
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, azure-disk on
+  ##   Azure, standard on GKE, AWS & OpenStack)
+  ##
+  storageClass: "-"
+  accessMode: ReadWriteMany
+  annotations: {}
+  #  helm.sh/resource-policy: keep
+  size: 500Mi  # 大小
+  existingClaim: {}  # 使用已存在的pvc
+  mountPaths: 
+    - mountPath: /opt/bitnami/nginx/html/example
+      name: data-storage
+  #    subPath: html
+  #  - name: data-storage
+  #    mountPath: /data
+  #    subPath: data
+
+ingress:  # 是否使用nginx暴露域名或端口
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+## sftp 
+##
+sftp:
+  enabled: true
+
+  # sshd_config
+  sshConfFile:
+    sshd_config: |
+      Protocol 2
+      HostKey /etc/ssh/ssh_host_ed25519_key
+      HostKey /etc/ssh/ssh_host_rsa_key
+      
+      # Faster connection
+      # See: https://github.com/atmoz/sftp/issues/11
+      UseDNS no
+      
+      # Limited access
+      PermitRootLogin no
+      X11Forwarding no
+      AllowTcpForwarding no
+      
+      # Force sftp and chroot jail
+      Subsystem sftp internal-sftp
+      ForceCommand internal-sftp
+      ChrootDirectory %h
+      
+      # Enable this for more logs
+      LogLevel ERROR
+
+  # Authentication options
+  usersConfFile:
+    users.conf: |
+      dev:dev:1001:100
+      #dev1:dev1:1002:100
+
+  scriptFile:
+    bindmount.sh: |
+      #!/bin/bash
+      # File mounted as: /etc/sftp.d/bindmount.sh
+
+      function bindmount() {
+          if [ -d "$1" ]; then
+              mkdir -p "$2"
+          fi
+          mount --bind $3 "$1" "$2"
+      }
+
+      function createdir() {
+      # Remember permissions, you may have to fix them:
+      while read line; do
+          [[ $(echo $line|grep '^#') ]] && continue
+          user=$(echo $line|awk -F: '{print $1}')
+          user_id=$(echo $line|awk '{print $1}')
+          group_id=$(echo $line|awk '{print $1}')
+          mkdir -p /home/$user/upload
+          chown -R $user:users /home/$user/upload
+      done < /etc/sftp/users.conf
+      }
+
+      createdir
+
+      #bindmount /data/admin-tools /home/admin/tools
+      #bindmount /data/docs /home/peter/docs --read-only
+
+  image:
+    registry: docker.io
+    repository: ygqygq2/sftp
+    tag: latest
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ##
+    # pullSecrets:
+    #   - myRegistrKeySecretName
+  ## Annotation and Labels
+  podAnnotations: {}
+    ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+    ##
+  resources: {}
+
+## Uncomment and modify this to run a command after starting the core container.
+## ref: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/
+lifecycle: {}
+  # preStop:
+  #   exec:
+  #     command: ["/bin/bash","/pre-stop.sh"]
+  # postStart:
+  #   exec:
+  #     command: ["/bin/bash","/post-start.sh"]
+
+deployment:
+  additionalVolumes: []
+
+## init containers
+## ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+  ## Add init containers. e.g. to be used to give specific permissions for data
+  ## Add your own init container or uncomment and modify the given example.
+initContainers: {}
+#  - name: fmp-volume-permission
+#    image: busybox
+#    imagePullPolicy: IfNotPresent
+#    command: ['chown','-R', '200', '/extra-data']
+#    volumeMounts:
+#      - name: extra-data
+#        mountPath: /extra-data
+
+## Prometheus Exporter / Metrics
+##
+metrics:
+  enabled: false
+  image:
+    registry: docker.io
+    repository: nginx/nginx-prometheus-exporter
+    tag: 0.1.0
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ##
+    # pullSecrets:
+    #   - myRegistrKeySecretName
+  ## Metrics exporter pod Annotation and Labels
+  podAnnotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9113"
+    ## Metrics exporter resource requests and limits
+    ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+    ##
+  resources: {}
+
+additionalContainers: {}
+## Additional containers to be added to the core pod.
+#  - name: my-sidecar
+#    image: nginx:latest
+#  - name: lemonldap-ng-controller
+#    image: lemonldapng/lemonldap-ng-controller:0.2.0
+#    args:
+#      - /lemonldap-ng-controller
+#      - --alsologtostderr
+#      - --configmap=$(POD_NAMESPACE)/lemonldap-ng-configuration
+#    env:
+#      - name: POD_NAME
+#        valueFrom:
+#          fieldRef:
+#            fieldPath: metadata.name
+#      - name: POD_NAMESPACE
+#        valueFrom:
+#          fieldRef:
+#            fieldPath: metadata.namespace
+#    volumeMounts:
+#    - name: copy-portal-skins
+#      mountPath: /srv/var/lib/lemonldap-ng/portal/skins

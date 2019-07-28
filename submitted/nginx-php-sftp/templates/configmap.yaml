@@ -1,0 +1,16 @@
+{{- if .Values.config.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "nginx-php-sftp.fullname" . }}
+  labels:
+    app: {{ template "nginx-php-sftp.name" . }}
+    chart: {{ template "nginx-php-sftp.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    {{- if .Values.labels }}
+{{ toYaml .Values.labels | indent 4 }}
+    {{- end }}
+data:
+{{ toYaml .Values.config.data | indent 2 }}
+{{- end -}}

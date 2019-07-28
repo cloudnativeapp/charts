@@ -1,0 +1,22 @@
+apiVersion: v1
+appVersion: nginx-1.10.3_php-7.0
+description: Chart for the nginx server
+engine: gotpl
+name: nginx-php-sftp
+version: 1.0.0
+home: http://www.nginx.org
+icon: https://bitnami.com/assets/stacks/nginx/img/nginx-stack-220x234.png
+keywords:
+- nginx
+- http
+- php
+- web
+- www
+- sftp
+- reverse proxy
+maintainers:
+- email: 29ygq@sina.com
+  name: Chinge Yang
+sources:
+- https://github.com/1and1internet/ubuntu-16-nginx-php-7.0
+- https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol

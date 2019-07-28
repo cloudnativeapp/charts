@@ -1,0 +1,114 @@
+# Default values for sftp.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+nameOverride: ""
+fullnameOverride: ""
+
+# Authentication options
+usersConfFile:
+  users.conf: |
+    dev:dev:1001:100
+    #dev1:dev1:1002:100
+
+sshConfFile:
+  sshd_config: |
+    Protocol 2
+    HostKey /etc/ssh/ssh_host_ed25519_key
+    HostKey /etc/ssh/ssh_host_rsa_key
+    
+    UseDNS no
+    
+    # Limited access
+    PermitRootLogin no
+    X11Forwarding no
+    AllowTcpForwarding no
+    
+    # Force sftp and chroot jail
+    Subsystem sftp internal-sftp
+    ForceCommand internal-sftp
+    ChrootDirectory %h
+    
+    # Enable this for more logs
+    LogLevel ERROR
+
+scriptFile:
+  bindmount.sh: |
+    #!/bin/bash
+    # File mounted as: /etc/sftp.d/bindmount.sh
+    
+    function bindmount() {
+        if [ -d "$1" ]; then
+            mkdir -p "$2"
+        fi
+        mount --bind $3 "$1" "$2"
+    }
+    
+    function createdir() {
+    # Remember permissions, you may have to fix them:
+    while read line; do
+        [[ $(echo $line|grep '^#') ]] && continue
+        user=$(echo $line|awk -F: '{print $1}')
+        user_id=$(echo $line|awk '{print $1}')
+        group_id=$(echo $line|awk '{print $1}')
+        mkdir -p /home/$user/upload 
+        chown -R $user:users /home/$user/upload
+    done < /etc/sftp/users.conf
+    }
+
+    createdir
+    
+    #bindmount /data/admin-tools /home/admin/tools
+    #bindmount /data/docs /home/peter/docs --read-only
+
+image:
+  repository: ygqygq2/sftp
+  tag: latest
+  pullPolicy: IfNotPresent
+  imagePullSecrets: [] 
+
+service:
+  type: ClusterIP
+  protocol: TCP
+  port: 22
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+## Node labels and tolerations for pod assignment
+### ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
+### ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#taints-and-tolerations-beta-feature
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+## Enable persistence using Persistent Volume Claims
+## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+##
+persistentVolume: 
+  enabled: false
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, azure-disk on
+  ##   Azure, standard on GKE, AWS & OpenStack)
+  ##
+  storageClass: "-"
+  accessMode: ReadWriteMany
+  annotations: {}
+  size: 500Mi
+  existingClaim: []
+    # - cephfs-pv-claim1
+    # - cephfs-pv-claim2
+

@@ -1,0 +1,202 @@
+{{- if .Values.statefulset.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+{{- else }}
+apiVersion: apps/v1
+kind: Deployment
+{{- end }}
+metadata:
+  name: {{ template "yapi.fullname" . }}
+  labels:
+    app: {{ template "yapi.name" . }}
+    chart: {{ template "yapi.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+{{- if .Values.labels }}
+{{ toYaml .Values.labels | indent 4 }}
+{{- end }}
+{{- if .Values.annotations }}
+  annotations:
+{{ toYaml .Values.annotations | indent 4 }}
+{{- end }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  {{- if .Values.statefulset.enabled }}
+  serviceName: {{ template "yapi.fullname" . }}
+  {{- end }}
+  {{- if .Values.deploymentStrategy }}
+  strategy:
+{{ toYaml .Values.deploymentStrategy | indent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ template "yapi.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+    {{- if .Values.podAnnotations }}
+      annotations:
+{{ toYaml .Values.podAnnotations | indent 8}}
+    {{- end }}
+      labels:
+        app: {{ template "yapi.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      imagePullSecrets:
+      {{- range .Values.image.imagePullSecrets }}
+        - name: {{ . }}
+      {{- end }}
+      {{- if .Values.initContainers }}
+      initContainers:
+{{ toYaml .Values.initContainers | indent 6 }}
+      {{- end }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+      affinity:
+{{ toYaml .Values.affinity | indent 8 }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.lifecycle }}
+          lifecycle:
+{{ toYaml .Values.lifecycle | indent 12 }}
+          {{- end }}
+          {{- if .Values.startCommand }}
+          command:
+{{ toYaml .Values.startCommand |indent 12 }}
+          {{- end }}
+          env:
+{{- if .Values.env }}
+{{ toYaml .Values.env | indent 12 }}
+{{- end }}
+            - name: DB_SERVER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "yapi.fullname" . }}
+                  key: mongodbHost
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "yapi.fullname" . }}
+                  key: mongodbDatabase
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "yapi.fullname" . }}
+                  key: mongodbPort
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "yapi.fullname" . }}
+                  key: mongodbUsername
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "yapi.fullname" . }}
+                  key: mongodbPassword
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          ports:
+            {{- range $key, $value := .Values.service.ports }}
+            - name: {{ $key }}
+              containerPort: {{ $value.port }}
+              protocol: {{ $value.protocol }}
+            {{- end }}
+          {{- if .Values.healthCheck.enabled }}
+          livenessProbe:
+            {{- if eq .Values.healthCheck.type "http" }}
+            httpGet:
+              path: {{ .Values.healthCheck.httpPath }}
+              port: {{ .Values.healthCheck.port }}
+            {{- else }}
+            tcpSocket:
+              port: {{ .Values.healthCheck.port }}
+            {{- end }}
+            initialDelaySeconds: {{ .Values.healthCheck.livenessInitialDelaySeconds }}
+            periodSeconds: {{ .Values.healthCheck.livenessPeriodSeconds }}
+          readinessProbe:
+            {{- if eq .Values.healthCheck.type "http" }}
+            httpGet:
+              path: {{ .Values.healthCheck.httpPath }}
+              port: {{ .Values.healthCheck.port }}
+            {{- else }}
+            tcpSocket:
+              port: {{ .Values.healthCheck.port }}
+            {{- end }}
+            initialDelaySeconds: {{ .Values.healthCheck.readinessInitialDelaySeconds }}
+            periodSeconds: {{ .Values.healthCheck.readinessPeriodSeconds }}
+          {{- end }}
+          volumeMounts:
+            {{- if .Values.config.enabled }}
+            - name: {{ template "yapi.name" . }}-conf
+              mountPath: {{ .Values.config.mountPath }}
+              subPath: {{ .Values.config.subPath }}
+            {{- end }}
+            {{- if .Values.secret.enabled }}
+            - name: {{ template "yapi.name" . }}-secret
+              mountPath: {{ .Values.secret.mountPath }}
+              subPath: {{ .Values.secret.subPath }}
+              readOnly: {{ .Values.secret.readOnly }}
+        {{- end }}
+{{ toYaml .Values.persistentVolume.mountPaths | indent 12 }}
+        {{- if .Values.additionalContainers }}
+{{ toYaml .Values.additionalContainers | indent 8 }}
+        {{- end }}
+      volumes:
+        {{- if .Values.config.enabled }}
+        - name: {{ template "yapi.name" . }}-conf
+          configMap:
+            name: {{ template "yapi.name" . }}
+        {{- end }}
+        {{- if .Values.secret.enabled }}
+        - name: {{ template "yapi.name" . }}-secret
+          secret:
+            secretName: {{ template "yapi.name" . }}
+        {{- end }}
+        {{- if .Values.deployment.additionalVolumes }}
+{{ toYaml .Values.deployment.additionalVolumes | indent 8 }}
+        {{- end }}
+{{- if not .Values.statefulset.enabled }}
+          {{- if .Values.persistentVolume.enabled }}
+        - name: data-storage
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentVolume.existingClaim | default (include "yapi.fullname" .) }}
+          {{- else }}
+        - name: data-storage
+          emptyDir: {}
+          {{- end }}
+{{- else }}
+  {{- if .Values.persistentVolume.enabled }}
+  volumeClaimTemplates:
+  - metadata:
+      name: data-storage
+      labels:
+        app: {{ template "yapi.name" . }}
+        chart: {{ template "yapi.chart" . }}
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+    spec:
+      accessModes:
+        - {{ .Values.persistentVolume.accessMode | quote }}
+      annotations:
+      {{- range $key, $value := $.Values.persistentVolume.annotations }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+      resources:
+        requests:
+          storage: {{ .Values.persistentVolume.size }}
+          {{- if .Values.persistentVolume.storageClass }}
+            {{- if (eq "-" .Values.persistentVolume.storageClass) }}
+      storageClassName: ""
+            {{- else }}
+      storageClassName: "{{ .Values.persistentVolume.storageClass }}"
+            {{- end }}
+          {{- end }}
+  {{- else }}
+        - name: data-storage
+          emptyDir: {}
+  {{- end }}
+{{- end -}}

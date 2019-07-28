@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "sftp.fullname" . }}
+  labels:
+    app: {{ template "sftp.name" . }}
+    chart: {{ template "sftp.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "sftp.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "sftp.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      imagePullSecrets:
+      {{- range .Values.image.imagePullSecrets }}
+        - name: {{ . }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: {{ template "sftp.name" . }}
+              containerPort: {{ .Values.service.port }}
+              protocol: {{ .Values.service.protocol }}
+          livenessProbe:
+            tcpSocket:
+              port: {{ template "sftp.name" . }}
+          readinessProbe:
+            tcpSocket:
+              port: {{ template "sftp.name" . }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          volumeMounts:
+          - name: config-sshd
+            mountPath: /etc/ssh/sshd_config
+            subPath: sshd_config
+            readOnly: false
+          - name: config-map
+            mountPath: /etc/sftp/
+            readOnly: true
+          - name: config-script
+            mountPath: /etc/sftp.d/
+            readOnly: false
+          {{- if and .Values.persistentVolume.enabled .Values.persistentVolume.existingClaim }}
+            {{- range .Values.persistentVolume.existingClaim }}
+          - name: {{ . }}
+            mountPath: /home/dev/upload/{{ . }}
+            {{- end }}
+          {{- else }}
+          - name: data-storage
+            mountPath: /home/dev/upload
+          {{- end }}
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+     {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+      {{- end }}
+      volumes:
+      - name: config-dir
+        emptyDir: {}
+      - name: config-sshd
+        configMap:
+          name: {{ template "sftp.fullname" . }}
+          items:
+          - key: sshd_config
+            path: sshd_config
+      - name: config-map
+        configMap:
+          name: {{ template "sftp.fullname" . }}
+          items:
+          - key: users.conf
+            path: users.conf
+      - name: config-script
+        configMap:
+          name: {{ template "sftp.fullname" . }}
+          items:
+          - key: bindmount.sh
+            path: bindmount.sh
+      {{- if $.Values.persistentVolume.enabled }}
+        {{- if .Values.persistentVolume.existingClaim }}
+          {{- range .Values.persistentVolume.existingClaim }}
+      - name: {{ . }}
+        persistentVolumeClaim:
+          claimName: {{ . }}
+          {{- end }}
+        {{- else }}
+      - name: data-storage
+        persistentVolumeClaim:
+          claimName: {{ template "sftp.fullname" . }}
+        {{- end }}
+      {{- else }}
+      - name: data-storage
+        emptyDir: {}
+      {{- end }}

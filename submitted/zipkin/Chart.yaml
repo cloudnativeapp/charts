@@ -1,0 +1,13 @@
+apiVersion: v1
+appVersion: "2"
+description: Zipkin is a distributed tracing system. 
+name: zipkin
+version: 1.0.1
+home: https://zipkin.io/
+icon: https://zipkin.io/public/img/zipkin-logo-200x119.jpg
+keywords:
+- zipkin
+- tracing
+maintainers:
+- email: 29ygq@sina.com
+  name: Chinge Yang
