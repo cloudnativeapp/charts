@@ -32,12 +32,6 @@ codis 依赖于 zookeeper,但这不是绝对的。
 
 ## 安装使用
 
-### helm v2.x
-
-```bash
-
-```
-
 ### helm v3
 
 目前版本:
@@ -49,6 +43,65 @@ version.BuildInfo {
 	GoVersion: "go1.12.7"
 }
 
+```
+helm install codis-prod \
+        ../codis \
+        --set name=codis-prod 
+```
+
+输出:
+
 ```bash
 
+NAME: codis-prod
+LAST DEPLOYED: 2019-07-29 17:32:10.817148 +0800 CST m=+0.125977867
+NAMESPACE: helmtest
+STATUS: deployed
+
+NOTES:
+codis-dashboard URL 如下：
+http://codis.example.com
+```
+
+
+```
+NAME                               READY   STATUS    RESTARTS   AGE
+pod/codis-dashboard-0              1/1     Running   2          2m52s
+pod/codis-fe-687f859bd7-76fl9      1/1     Running   0          2m52s
+pod/codis-fe-687f859bd7-7hv7p      1/1     Running   0          2m52s
+pod/codis-prod-zookeeper-0         1/1     Running   0          2m52s
+pod/codis-prod-zookeeper-1         1/1     Running   0          2m52s
+pod/codis-prod-zookeeper-2         1/1     Running   0          2m52s
+pod/codis-proxy-74d74bd8d6-78vgm   1/1     Running   0          2m52s
+pod/codis-proxy-74d74bd8d6-bld7h   1/1     Running   0          2m52s
+pod/codis-proxy-74d74bd8d6-bplc8   1/1     Running   0          2m52s
+pod/codis-proxy-74d74bd8d6-pz57c   1/1     Running   0          2m52s
+pod/codis-proxy-74d74bd8d6-wn6bl   1/1     Running   0          2m52s
+pod/codis-server-0                 1/1     Running   2          2m52s
+pod/codis-server-1                 1/1     Running   0          2m11s
+pod/codis-server-2                 1/1     Running   0          2m2s
+pod/codis-server-3                 1/1     Running   0          113s
+pod/codis-server-4                 1/1     Running   0          108s
+pod/codis-server-5                 1/1     Running   0          98s
+
+NAME                                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+service/codis-dashboard                 ClusterIP   172.30.11.42    <none>        18080/TCP                    2m52s
+service/codis-fe                        ClusterIP   172.30.7.150    <none>        8080/TCP                     2m52s
+service/codis-prod-zookeeper            ClusterIP   172.30.1.84     <none>        2181/TCP,2888/TCP,3888/TCP   2m52s
+service/codis-prod-zookeeper-headless   ClusterIP   None            <none>        2181/TCP,2888/TCP,3888/TCP   2m52s
+service/codis-proxy                     ClusterIP   172.30.15.187   <none>        18080/TCP                    2m52s
+service/codis-server                    ClusterIP   172.30.3.154    <none>        6379/TCP                     2m52s
+
+NAME                          DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/codis-fe      2         2         2            2           2m52s
+deployment.apps/codis-proxy   5         5         5            5           2m52s
+
+NAME                                     DESIRED   CURRENT   READY   AGE
+replicaset.apps/codis-fe-687f859bd7      2         2         2       2m52s
+replicaset.apps/codis-proxy-74d74bd8d6   5         5         5       2m52s
+
+NAME                                    DESIRED   CURRENT   AGE
+statefulset.apps/codis-dashboard        1         1         2m52s
+statefulset.apps/codis-prod-zookeeper   3         3         2m52s
+statefulset.apps/codis-server           6         6         2m52s
 ```

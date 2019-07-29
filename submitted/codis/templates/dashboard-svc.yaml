@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app: codis-dashboard
-  name: codis-dashboard
+  name: {{ .Values.dashboard.svc.name}}
 spec:
   ports:
     - port: 18080

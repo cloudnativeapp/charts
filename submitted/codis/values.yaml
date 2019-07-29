@@ -10,22 +10,30 @@ image:
 nameOverride: ""
 fullnameOverride: ""
 
-## install zookeeper first
+## install zookeeper first or type zookeeper host name
 ## part 1 : zookeeper
-
+## zookeeper is necessary but not required .
 zookeeper:
   enabled: true
   svc:
-    name: zookeeper-cs
-
+    name: codis-prod-zookeeper
+  replicaCount: 3
+  # todo: 按需配置 zookeeper pv
+  persistence:
+    enabled: false
+    # storageClass: "-"
+    accessModes:
+      - ReadWriteOnce
+    size: 8Gi
+    annotations: {}
 
 ## part 2 : codis
 
 server:
-  # 6的意思是,一共6个实例,(1主2从)*2.
+  # (1 master 2 slave)*2.
   replicaCount: 6
-  # 每一组服务器的副本数
-  serverReplica: 2    
+  # 1 master 2 slave 
+  serverReplica: 3
   name: codis-server
   resources:
     limits:
@@ -45,14 +53,14 @@ dashboard:
     port: 18080
 
 
-## codis WEB 控制台
+## codis WEB consul
 fe:
   name: codis-fe
   svc:
-    name:
+    name: codis-fe
   ingress:
     enabled: true
-    host: default.com
+    host: codis.example.com
     tls: 
       enabled: false
       # secretName: 
