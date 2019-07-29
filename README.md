@@ -1,4 +1,4 @@
-# 欢迎来到开放云原生应用中心
+# Happy Helming in China!
 其他语言: [English](README_en.md)
 
 ## 简介 <a name = "about"></a>
@@ -51,7 +51,7 @@ AppHub 近期的 Roadmap 包括但不限于：
 3. 基于 Overlay 的应用定制能力（Kustomize）
 4. 允许用户上传 Chart
 5. 允许提交自己的 Charts Repo
-6. 开源所有后端组件，包括 Chart 定时同步服务组件
+6. 开源所有后端组件，包括 Chart 定时同步服务组件（Syncer）
 7. 去中心化：AppHub 最终会变成一个用户 Charts Repo 的大集合
 
 
