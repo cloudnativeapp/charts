@@ -77,3 +77,6 @@ proxy:
     requests:
       cpu: "120m"
       memory: 2Gi  
+
+ha:
+  name: codis-ha
