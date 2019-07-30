@@ -11,10 +11,13 @@
 
 ### helm install
 ```shell
+打包Chart
 $ helm package admin-mongo
+
+本地安装
 $ helm install adminmongo admin-mongo-0.1.0.tgz
 ```
-### 查看镜像名
+### 查看Pods
 ```shell
 $ kubectl get pods
 
