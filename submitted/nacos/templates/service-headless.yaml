@@ -1,0 +1,24 @@
+{{- if .Values.statefulset.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+  name: {{ template "nacos.fullname" . }}-headless
+  labels:
+    app: {{ template "nacos.name" . }}
+    chart: {{ template "nacos.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  clusterIP: None
+  ports:
+  {{- range $key, $value := .Values.service.ports }}
+    - name: {{ $key }}
+      targetPort: {{ $key }}
+{{ toYaml $value | indent 6 }}
+  {{- end }}
+  selector:
+    app: {{ template "nacos.name" . }}
+    release: {{ .Release.Name }}
+{{- end -}}

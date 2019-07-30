@@ -1,0 +1,283 @@
+{{- if .Values.statefulset.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+{{- else }}
+apiVersion: apps/v1
+kind: Deployment
+{{- end }}
+metadata:
+  name: {{ template "nacos.fullname" . }}
+  labels:
+    app: {{ template "nacos.name" . }}
+    chart: {{ template "nacos.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+{{- if .Values.labels }}
+{{ toYaml .Values.labels | indent 4 }}
+{{- end }}
+{{- if .Values.annotations }}
+  annotations:
+{{ toYaml .Values.annotations | indent 4 }}
+{{- end }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  {{- if .Values.statefulset.enabled }}
+  serviceName: {{ template "nacos.fullname" . }}-headless
+  {{- end }}
+  {{- if .Values.deploymentStrategy }}
+  strategy:
+{{ toYaml .Values.deploymentStrategy | indent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ template "nacos.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      annotations:
+{{- if .Values.podAnnotations }}
+{{ toYaml .Values.podAnnotations | indent 8 }}
+{{- end }}
+{{- if .Values.metrics.podAnnotations }}
+{{ toYaml .Values.metrics.podAnnotations | indent 8 }}
+{{- end }}
+      labels:
+        app: {{ template "nacos.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      imagePullSecrets:
+      {{- range .Values.image.imagePullSecrets }}
+        - name: {{ . }}
+      {{- end }}
+      initContainers:
+      - name: peer-finder-plugin-install
+        image: nacos/nacos-peer-finder-plugin:latest
+        imagePullPolicy: Always
+        volumeMounts:
+          - mountPath: /home/nacos/plugins
+            name: data-storage
+            subPath: plugins
+      - name: import-nacos-mysql-sql
+        image: ygqygq2/mysql-exec-sql:latest
+        imagePullPolicy: Always
+        args:
+        - https://raw.githubusercontent.com/alibaba/nacos/{{ .Chart.AppVersion }}/distribution/conf/nacos-mysql.sql
+        env: 
+          - name: MYSQL_HOST
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "nacos.fullname" . }}
+                key: mysqlMasterHost
+          - name: MYSQL_DB
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "nacos.fullname" . }}
+                key: mysqlDatabase
+          - name: MYSQL_PORT
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "nacos.fullname" . }}
+                key: mysqlMasterPort
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "nacos.fullname" . }}
+                key: mysqlMasterUser
+          - name: MYSQL_PASSWD
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "nacos.fullname" . }}
+                key: mysqlMasterPassword
+      {{- if .Values.initContainers }}
+{{ toYaml .Values.initContainers | indent 6 }}
+      {{- end }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+      affinity:
+{{ toYaml .Values.affinity | indent 8 }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+      containers:
+{{- if .Values.metrics.enabled }}
+        - name: metrics
+          image: {{ template "metrics.image" . }}
+          imagePullPolicy: {{ .Values.metrics.image.pullPolicy | quote }}
+          command: [ '/usr/bin/exporter', '-nginx.scrape-uri', 'http://127.0.0.1:8080/status']
+          ports:
+          - name: metrics
+            containerPort: 9113
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: metrics
+            initialDelaySeconds: 15
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: metrics
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          resources:
+{{ toYaml .Values.metrics.resources | indent 12 }}
+{{- end }}
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.lifecycle }}
+          lifecycle:
+{{ toYaml .Values.lifecycle | indent 12 }}
+          {{- end }}
+          {{- if .Values.startCommand }}
+          command:
+{{ toYaml .Values.startCommand |indent 12 }}
+          {{- end }}
+          env:
+            - name: NACOS_REPLICAS
+              value: "{{ .Values.replicaCount }}"
+            - name: SERVICE_NAME
+              value: {{ template "nacos.fullname" . }}-headless
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: MYSQL_MASTER_SERVICE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "nacos.fullname" . }}
+                  key: mysqlMasterHost
+            - name: MYSQL_MASTER_SERVICE_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "nacos.fullname" . }}
+                  key: mysqlDatabase
+            - name: MYSQL_MASTER_SERVICE_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "nacos.fullname" . }}
+                  key: mysqlMasterPort
+            - name: MYSQL_SLAVE_SERVICE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "nacos.fullname" . }}
+                  key: mysqlSlaveHost
+            - name: MYSQL_SLAVE_SERVICE_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "nacos.fullname" . }}
+                  key: mysqlSlavePort
+            - name: MYSQL_MASTER_SERVICE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "nacos.fullname" . }}
+                  key: mysqlMasterUser
+            - name: MYSQL_MASTER_SERVICE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "nacos.fullname" . }}
+                  key: mysqlMasterPassword
+{{ toYaml .Values.env | indent 12 }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          ports:
+            {{- range $key, $value := .Values.service.ports }}
+            - name: {{ $key }}
+              containerPort: {{ $value.port }}
+              protocol: {{ $value.protocol }}
+            {{- end }}
+          {{- if .Values.healthCheck.enabled }}
+          livenessProbe:
+            {{- if eq .Values.healthCheck.type "http" }}
+            httpGet:
+              path: {{ .Values.healthCheck.livenessPath }}
+              port: {{ .Values.healthCheck.port }}
+            {{- else }}
+            tcpSocket:
+              port: {{ .Values.healthCheck.port }}
+            {{- end }}
+            initialDelaySeconds: {{ .Values.healthCheck.livenessInitialDelaySeconds }}
+            periodSeconds: {{ .Values.healthCheck.livenessPeriodSeconds }}
+          readinessProbe:
+            {{- if eq .Values.healthCheck.type "http" }}
+            httpGet:
+              path: {{ .Values.healthCheck.readinessPath }}
+              port: {{ .Values.healthCheck.port }}
+            {{- else }}
+            tcpSocket:
+              port: {{ .Values.healthCheck.port }}
+            {{- end }}
+            initialDelaySeconds: {{ .Values.healthCheck.readinessInitialDelaySeconds }}
+            periodSeconds: {{ .Values.healthCheck.readinessPeriodSeconds }}
+          {{- end }}
+          volumeMounts:
+            {{- if .Values.config.enabled }}
+            - name: {{ template "nacos.fullname" . }}-conf
+              mountPath: {{ .Values.config.mountPath }}
+              subPath: {{ .Values.config.subPath }}
+            {{- end }}
+            {{- if .Values.secret.enabled }}
+            - name: {{ template "nacosc.fullname" . }}-secret
+              mountPath: {{ .Values.secret.mountPath }}
+              subPath: {{ .Values.secret.subPath }}
+              readOnly: {{ .Values.secret.readOnly }}
+            {{- end }}
+{{ toYaml .Values.persistentVolume.mountPaths | indent 12 }}
+        {{- if .Values.additionalContainers }}
+{{ toYaml .Values.additionalContainers | indent 8 }}
+        {{- end }}
+      volumes:
+        {{- if .Values.config.enabled }}
+        - name: {{ template "nacos.name" . }}-conf
+          configMap:
+            name: {{ template "nacos.name" . }}
+        {{- end }}
+        {{- if .Values.secret.enabled }}
+        - name: {{ template "nacos.name" . }}-secret
+          secret:
+            secretName: {{ template "nacos.name" . }}
+        {{- end }}
+        {{- if .Values.deployment.additionalVolumes }}
+{{ toYaml .Values.deployment.additionalVolumes | indent 8 }}
+        {{- end }}
+{{- if not .Values.statefulset.enabled }}
+          {{- if .Values.persistentVolume.enabled }}
+        - name: data-storage
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistentVolume.existingClaim | default (include "nacos.fullname" .) }}
+          {{- else }}
+        - name: data-storage
+          emptyDir: {}
+          {{- end }}
+{{- else }}
+  {{- if .Values.persistentVolume.enabled }}
+  volumeClaimTemplates:
+  - metadata:
+      name: data-storage
+      labels:
+        app: {{ template "nacos.name" . }}
+        chart: {{ template "nacos.chart" . }}
+        release: {{ .Release.Name }}
+        heritage: {{ .Release.Service }}
+    spec:
+      accessModes:
+        - {{ .Values.persistentVolume.accessMode | quote }}
+      annotations:
+      {{- range $key, $value := $.Values.persistentVolume.annotations }}
+        {{ $key }}: {{ $value }}
+      {{- end }}
+      resources:
+        requests:
+          storage: {{ .Values.persistentVolume.size }}
+          {{- if .Values.persistentVolume.storageClass }}
+            {{- if (eq "-" .Values.persistentVolume.storageClass) }}
+      storageClassName: ""
+            {{- else }}
+      storageClassName: "{{ .Values.persistentVolume.storageClass }}"
+            {{- end }}
+          {{- end }}
+  {{- else }}
+        - name: data-storage
+          emptyDir: {}
+  {{- end }}
+{{- end -}}

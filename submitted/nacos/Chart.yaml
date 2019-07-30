@@ -1,0 +1,17 @@
+apiVersion: v1
+appVersion: 1.1.0
+description: Chart for nacos, an easy-to-use dynamic service discovery, configuration and service management platform for building cloud native applications.
+engine: gotpl
+name: nacos
+version: 1.1.0
+home: https://nacos.io
+icon: https://nacos.io/img/nacos_colorful.png
+keywords:
+- nacos
+- dynamic service discovery
+- configuration and service management platform
+maintainers:
+- email: 29ygq@sina.com
+  name: Chinge Yang
+sources:
+- https://nacos.io
