@@ -1,0 +1,6 @@
+dependencies:
+- name: zookeeper
+  repository: file://../../curated/zookeeper
+  version: 2.2.1
+digest: sha256:eee4ccec56a0f3147a54b842924b2bfa0e46f58495d8c29563bd3d3ffeb997b0
+generated: "2019-07-29T17:04:31.969082+08:00"

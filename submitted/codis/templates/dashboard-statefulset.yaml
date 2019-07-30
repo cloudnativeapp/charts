@@ -1,0 +1,75 @@
+apiVersion: "apps/v1beta1"
+kind: StatefulSet
+metadata:
+  name: {{.Values.dashboard.name}}
+  labels:
+    helm.sh/chart: {{ include "codis.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app: codis-dashboard
+spec:
+  replicas: 1
+  serviceName: {{.Values.dashboard.name}}
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: {{ include "codis.chart" . }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app: codis-dashboard
+    spec:
+      # imagePullSecrets:
+      # - name: 
+      containers:
+      - name: codis-dashboard
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command: ["codis-dashboard"]
+        args: 
+          - "-l"
+          - "log/$(POD_NAME).log"
+          - "-c"
+          - "$(CODIS_PATH)/config/dashboard.toml"
+          - "--host-admin"
+          - "$(POD_IP):18080"
+          - "--zookeeper"
+          - "$(ZK_ADDR)"
+          - "--product_name"
+          - "$(PRODUCT_NAME)"
+          - "--pidfile"
+          - "log/dashboard.pid"
+          - "--remove-lock"
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/bash", "-c", "codis-admin --dashboard-list  --zookeeper=${ZK_ADDR}"]
+          preStop:
+            exec:
+              command: [/bin/sh", "-c", "PID=$(cat log/dashboard.pid) && kill $PID && while ps -p 1 > /dev/null; do sleep 1; done"]
+        env:
+        - name: CODIS_PATH
+          value: "/gopath/src/github.com/CodisLabs/codis"
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: ZK_ADDR
+          value: "{{ .Values.zookeeper.svc.name}}:2181"
+        - name: PRODUCT_NAME
+          value: "codis-product"
+        #- name: PRODUCT_AUTH
+        #  value: ""
+        ports:
+        - containerPort: 18080
+          name: dashboard
+        resources:
+          limits:
+            cpu: "4"
+            memory: 4Gi
+          requests:
+            cpu: "0.1"
+            memory: 0.1Gi
