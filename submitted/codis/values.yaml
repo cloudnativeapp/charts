@@ -53,13 +53,13 @@ dashboard:
     port: 18080
 
 
-## codis WEB consul
+## codis web consul
 fe:
   name: codis-fe
   svc:
     name: codis-fe
   ingress:
-    enabled: true
+    enabled: false
     host: codis.example.com
     tls: 
       enabled: false
