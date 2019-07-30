@@ -1,0 +1,4 @@
+codis-dashboard URL 如下：
+{{- if .Values.fe.ingress.enabled }}
+http{{ if $.Values.fe.ingress.tls.enabled }}s{{ end }}://{{.Values.fe.ingress.host}}
+{{- end }}

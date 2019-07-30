@@ -1,0 +1,82 @@
+# Default values for codis.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: zeusro/codis
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+## install zookeeper first or type zookeeper host name
+## part 1 : zookeeper
+## zookeeper is necessary but not required .
+zookeeper:
+  enabled: true
+  svc:
+    name: codis-prod-zookeeper
+  replicaCount: 3
+  # todo: 按需配置 zookeeper pv
+  persistence:
+    enabled: false
+    # storageClass: "-"
+    accessModes:
+      - ReadWriteOnce
+    size: 8Gi
+    annotations: {}
+
+## part 2 : codis
+
+server:
+  # (1 master 2 slave)*2.
+  replicaCount: 6
+  # 1 master 2 slave 
+  serverReplica: 3
+  name: codis-server
+  resources:
+    limits:
+      cpu: "0.5"
+      memory: 2Gi
+    requests:
+      cpu: "0.3"
+      memory: 2Gi
+  svc:
+    name: codis-server
+
+dashboard:
+  name: codis-dashboard
+  replicaCount: 1
+  svc:
+    name: codis-dashboard
+    port: 18080
+
+
+## codis web consul
+fe:
+  name: codis-fe
+  svc:
+    name: codis-fe
+  ingress:
+    enabled: false
+    host: codis.example.com
+    tls: 
+      enabled: false
+      # secretName: 
+
+proxy:
+  name: codis-proxy
+  replicaCount: 5
+  svc:
+    name: codis-proxy     
+  resources:
+    limits:
+      cpu: "4"
+      memory: 4Gi
+    requests:
+      cpu: "120m"
+      memory: 2Gi  
+
+ha:
+  name: codis-ha

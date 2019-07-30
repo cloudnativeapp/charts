@@ -1,0 +1,52 @@
+apiVersion: "apps/v1beta1"
+kind: StatefulSet
+metadata:
+  name: {{.Values.ha.name}}
+  labels:
+    helm.sh/chart: {{ include "codis.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app: codis-ha
+spec:
+  replicas: 1
+  serviceName: {{.Values.ha.name}}
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: {{ include "codis.chart" . }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        app.kubernetes.io/instance: {{ .Release.Name }}      
+        app: codis-ha
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:              
+          - topologyKey: "kubernetes.io/hostname"            
+            labelSelector:            
+              matchExpressions:
+              - key: 'app'
+                operator: In
+                values: 
+                 - "codis-dashboard"    
+      # imagePullSecrets:
+      # - name: 
+      containers:
+      - name: codis-ha
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: Always
+        command: ["codis-ha"]
+        args: ["-l","log/$(POD_NAME).log","--interval","5","--dashboard=$(DASHBOARD_ADDR)"]
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: DASHBOARD_ADDR
+          value: "{{.Values.dashboard.svc.name}}:18080"
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2Gi
+          requests:
+            cpu: "0.1"
+            memory: 0.1Gi

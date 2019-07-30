@@ -1,0 +1,81 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  labels:    
+    helm.sh/chart: {{ include "codis.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}    
+    app: codis-fe
+  name: {{.Values.fe.name}}
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      helm.sh/chart: {{ include "codis.chart" . }}
+      app.kubernetes.io/managed-by: {{ .Release.Service }}
+      app.kubernetes.io/instance: {{ .Release.Name }}    
+      app: codis-fe      
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: {{ include "codis.chart" . }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        app.kubernetes.io/instance: {{ .Release.Name }}    
+        app: codis-fe              
+    spec:
+      containers:
+        - name: codis-fe
+          resources:
+            limits:
+              cpu: "2"
+              memory: 2Gi
+            requests:
+              cpu: "0.1"
+              memory: 0.1Gi    
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          readinessProbe:
+            failureThreshold: 2
+            initialDelaySeconds: 7
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 8080
+            timeoutSeconds: 1     
+          livenessProbe:
+            failureThreshold: 2
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 8080
+            timeoutSeconds: 1           
+          command: ["codis-fe"]
+          args: ["-l","log/$(POD_NAME).log","--zookeeper","$(ZK_ADDR)","--listen=$(POD_IP):8080","--assets=$(CODIS_PATH)/bin/assets"]
+          env:
+          - name: CODIS_PATH
+            value: "/gopath/src/github.com/CodisLabs/codis"
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: ZK_ADDR
+            value: "{{ .Values.zookeeper.svc.name}}:2181"
+          ports:
+          - containerPort: 8080      
+      schedulerName: default-scheduler      
+      securityContext: {}
+      dnsPolicy: ClusterFirst
+    #   imagePullSecrets:
+    #     - name: 
+      restartPolicy: Always
+  replicas: 2
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 600
