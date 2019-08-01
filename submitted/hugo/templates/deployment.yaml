@@ -2,19 +2,18 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: {{ template "hugo.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
 {{ include "hugo.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "hugo.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+{{ include "hugo.labels" . | indent 6 }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "hugo.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
+{{ include "hugo.labels" . | indent 8 }}
     spec:
       initContainers:
       - name: init

@@ -5,9 +5,10 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
+  namespace: {{ .Release.Namespace }}
   labels:
 {{ include "hugo.labels" . | indent 4 }}
-  {{- with .Values.ingress.annotations }}
+{{- with .Values.ingress.annotations }}
   annotations:
 {{ toYaml . | indent 4 }}
 {{- end }}

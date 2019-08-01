@@ -35,11 +35,11 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "hugo.labels" -}}
-app.kubernetes.io/name: {{ include "hugo.name" . }}
-helm.sh/chart: {{ include "hugo.chart" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+app: {{ include "hugo.name" . }}
+chart: {{ include "hugo.chart" . }}
+release: {{ .Release.Name }}
 {{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+version: {{ .Chart.AppVersion | quote }}
 {{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
+heritage: {{ .Release.Service }}
 {{- end -}}

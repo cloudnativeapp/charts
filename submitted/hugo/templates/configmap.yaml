@@ -2,11 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    app: {{ template "hugo.name" . }}
-    chart: {{ template "hugo.chart" . }}
-    heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
+{{ include "hugo.labels" . | indent 4 }}
   name: {{ template "hugo.fullname" . }}-config
+  namespace: {{ .Release.Namespace }}
 data:
   nginx.conf:
   {{ .Values.config | indent 4 }}
