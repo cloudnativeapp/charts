@@ -1,0 +1,22 @@
+{{- if .Values.statefulset.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "nginx-php.fullname" . }}-headless
+  labels:
+    app: {{ template "nginx-php.name" . }}
+    chart: {{ template "nginx-php.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  clusterIP: None
+  ports:
+  {{- range $key, $value := .Values.service.ports }}
+    - name: {{ $key }}
+      targetPort: {{ $key }}
+{{ toYaml $value | indent 6 }}
+  {{- end }}
+  selector:
+    app: {{ template "nginx-php.name" . }}
+    release: {{ .Release.Name }}
+{{- end -}}
