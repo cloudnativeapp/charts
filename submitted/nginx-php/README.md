@@ -43,11 +43,12 @@ The following table lists the configurable parameters of the FastDFS-Nginx chart
 | `startCommand`             | Start command                       | `[]`                                   |
 | `config`                   | Additional configmap to use         | see in `values.yaml`                   |
 | `secret`                   | Additional secret to use            | see in `values.yaml`                   |
-| `image`                    | `nginx-php-sftp` image, tag.            | `1and1internet/ubuntu-16-nginx-php-7.0` `latest`|
-| `ingress`                  | Ingress for the nginx-php.         | `false`                                |
+| `image`                    | `nginx-php-sftp` image, tag.        | `1and1internet/ubuntu-16-nginx-php-7.0` `latest`|
+| `ingress`                  | Ingress for the nginx-php.          | `false`                                |
+| `metrics.enabled`          | Prometheus metrics                  | `false`                                |
 | `persistentVolume.enabled` | Create a volume to store data       | `false`                                |
 | `persistentVolume.storageClass` | Type of persistent volume claim| `nil`                                  |
-| `persistentVolume.accessModes`  | Persistent volume access modes      | `[ReadWriteMany]`                      |
+| `persistentVolume.accessModes`  | Persistent volume access modes | `[ReadWriteMany]`                      |
 | `persistentVolume.size`         | Persistent volume access modes | `500Mi`                                |
 | `persistentVolume.existingClaim`| Persistent volume existingClaim name| `{}`                              |
 | `persistentVolume.mountPaths`   | Persistent directory path      | see in `values.yaml`                   |
