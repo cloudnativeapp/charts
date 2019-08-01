@@ -13,5 +13,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "hugo.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+{{ include "hugo.labels" . | indent 6 }}
