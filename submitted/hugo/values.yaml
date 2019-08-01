@@ -1,0 +1,55 @@
+# Chart value of hugo.
+
+replicaCount: 1
+
+# variable
+source_url: "https://github.com/sunny0826/hugo-demo"
+
+image:
+  registry: docker.io
+  repository: nginx
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+  path: /
+  hosts:
+    - hugo.local
+  tls: []
+
+resources: 
+  limits:
+   cpu: 300m
+   memory: 512Mi
+  requests:
+   cpu: 300m
+   memory: 512Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+config: |+
+    server {
+        listen              80;
+        server_name       localhost;
+
+        client_max_body_size 30m; 
+        proxy_read_timeout 300s;
+        
+        gzip on;
+        gzip_types text/plain application/xml;
+
+        location / {
+            root   /usr/share/nginx/html;
+            index  index.html index.htm;
+        }
+    }
