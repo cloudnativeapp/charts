@@ -1,0 +1,14 @@
+pipelines:
+  namespace: tekton-pipelines
+  controller:
+    replicas: 1
+  webhook:
+    replicas: 1
+  pvc:
+    size: 5Gi
+
+dashboard:
+  enabled: true
+  replicas: 1
+  port: 9097
+  type: ClusterIP
