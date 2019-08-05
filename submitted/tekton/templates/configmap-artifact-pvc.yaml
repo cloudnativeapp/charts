@@ -1,0 +1,8 @@
+apiVersion: v1
+data: null
+kind: ConfigMap
+metadata:
+  name: config-artifact-pvc
+  namespace: {{ .Values.pipelines.namespace }}
+data:
+  size: "{{ .Values.pipelines.pvc.size }}"

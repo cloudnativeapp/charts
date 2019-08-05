@@ -1,0 +1,18 @@
+{{- if .Values.dashboard.enabled -}}
+kind: Service
+apiVersion: v1
+metadata:
+  name: tekton-dashboard
+  namespace: {{ .Values.pipelines.namespace }}
+  labels:
+    app: tekton-dashboard
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: {{ .Values.dashboard.port }}
+      targetPort: 9097
+  type: {{ .Values.dashboard.type }}
+  selector:
+    app: tekton-dashboard
+{{- end }}
