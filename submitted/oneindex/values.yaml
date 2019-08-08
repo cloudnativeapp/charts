@@ -1,0 +1,86 @@
+replicaCount: 1
+
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 0
+
+image:
+  repository: dockerhub.azk8s.cn/setzero/oneindex
+  tag: alpine-91b40ba6
+  pullPolicy: IfNotPresent
+## Additional deployment annotations
+annotations: {}
+## Additional replica annotations
+podAnnotations: {}
+# resources: 
+#  requests:
+#    memory: 256Mi
+#    cpu: 100m
+nodeSelector: {}
+tolerations: []
+affinity: {}
+env:
+  TZ: Asia/Shanghai
+  # DISABLE_CRON: true
+  REFRESH_TOKEN: "0 * * * *"
+  REFRESH_CACHE: "*/10 * * * *"
+  # SSH_PASSWORD: root
+
+expose:
+  # Set the way how to expose the service. Set the type as "ingress","clusterIP","loadBalancer"
+  # or "nodePort" and fill the information in the corresponding 
+  # section
+  type: ingress
+  tls:
+    enabled: false
+    # Fill the name of secret if you want to use your own TLS certificate
+    # and private key. The secret must contain keys named tls.crt and 
+    # tls.key that contain the certificate and private key to use for TLS
+    # The certificate and private key will be generated automatically if 
+    # it is not set
+    secretName: ""
+    certExpiry: 3560
+  ingress:
+    host: oneindex.cluster.local
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      # kubernetes.io/tls-acme: "true"
+  clusterIP:
+    # The name of ClusterIP service
+    # name: oneindex
+    # The service port OneIndex listens on when serving with HTTP
+    port: 80
+  nodePort:
+    # The name of NodePort service
+    # name: oneindex
+    # The service port OneIndex listens on when serving with HTTP
+    port: 80
+    # The node port OneIndex listens on when serving with HTTP
+    # nodePort: 30008
+  loadBalancer:
+    # The name of LoadBalancer service
+    # name: oneindex
+    # The service port Oneindex listens on when serving with HTTP
+    port: 80
+
+# The persistence is enabled by default and a default StorageClass
+# is needed in the k8s cluster to provision volumes dynamicly. 
+# Specify another StorageClass in the "storageClass" or set "existingClaim"
+# if you have already existing persistent volumes to use
+persistence:
+  enabled: false
+  # Setting it to "keep" to avoid removing PVCs during a helm delete 
+  # operation. Leaving it empty will delete PVCs after the chart deleted
+  resourcePolicy: "keep"
+  # Use the existing PVC which must be created manually before bound
+  existingClaim: ""
+  # Specify the "storageClass" used to provision the volume. Or the default
+  # StorageClass will be used(the default).
+  # Set it to "-" to disable dynamic provisioning
+  storageClass: ""
+  accessMode: ReadWriteMany
+  size: 5Gi

@@ -1,0 +1,16 @@
+name: oneindex
+version: 0.1.0
+appVersion: alpine-91b40ba6
+description: Onedrive Directory Index.
+keywords:
+- onedrive
+- oneindex
+home: https://github.com/donwa/oneindex
+icon: https://i.loli.net/2019/08/07/7lKGzCAk2bTVuRL.png
+sources:
+- https://github.com/donwa/oneindex
+- https://github.com/TimeBye/oneindex
+- https://hub.docker.com/r/setzero/oneindex
+maintainers:
+- name: TimeBye
+  email: setzero@aliyun.com
