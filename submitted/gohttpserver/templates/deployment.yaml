@@ -1,0 +1,64 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "gohttpserver.fullname" . }}
+  namespace: {{ .Values.nameSpace }}
+  labels:
+{{ include "gohttpserver.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "gohttpserver.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "gohttpserver.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["{{ .Values.startCommand }}"]
+          args: 
+          - "--root={{ .Values.startArgs.root }}"
+          {{if .Values.startArgs.auth_type -}}
+          - "--auth-type={{ .Values.startArgs.auth_type }}"
+          {{- end }}
+          {{if .Values.startArgs.auth_http }}
+          - "--auth-http={{ .Values.startArgs.auth_http }}"
+          {{- end }}
+          {{if .Values.startArgs.upload -}}
+          - "--upload"
+          {{- end }}
+          {{if .Values.startArgs.delete -}}
+          - "--delete"
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
