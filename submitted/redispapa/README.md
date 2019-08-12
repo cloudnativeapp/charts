@@ -22,15 +22,17 @@ helm install redispapa ../redispapa
 
 运行后将看到输出并创建以下k8s api对象:
 ```shell
-➜  redispapa git:(redispapa) ✗ helm install redispapa ../redispapa
+➜  redispapa git:(redispapa) ✗ helm install redispapa ../redispapa  --set service.type=NodePort
 NAME: redispapa
-LAST DEPLOYED: 2019-08-12 12:21:23.994296 +0800 CST m=+0.152074387
+LAST DEPLOYED: 2019-08-12 17:10:29.032902 +0800 CST m=+0.138064656
 NAMESPACE: default
 STATUS: deployed
 
 NOTES:
 1. Get the application URL by running these commands:
-  http://redispapa.calmkart.com/
+  export NODE_PORT=$(kubectl get -o jsonpath="{.spec.ports[0].nodePort}" services redispapa)
+  export NODE_IP=$(kubectl get nodes -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
 
 ➜  redispapa git:(redispapa) ✗ kubectl get pods
 kNAME                      READY   STATUS    RESTARTS   AGE
@@ -42,12 +44,13 @@ redispapa   1/1     1            1           2m46s
 NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP    7d
 redispapa    ClusterIP   10.110.99.224   <none>        5000/TCP   2m50s
-➜  redispapa git:(redispapa) ✗ kubectl get ingress
-NAME        HOSTS                    ADDRESS   PORTS   AGE
-redispapa   redispapa.calmkart.com             80      2m51s
 ```
 
-我们可以通过port-forward或者ingress访问服务
+我们可以通过NodePort或者port-forward或者ingress访问服务
+
+>`NODE_PORT=$(kubectl get -o jsonpath="{.spec.ports[0].nodePort}" services redispapa)&&NODE_IP=$(kubectl get nodes -o jsonpath="{.items[0].status.addresses[0].address}")&&echo http://$NODE_IP:$NODE_PORT`
+- 访问地址(监控页面): `<nodeip:nodeport>`
+- 访问地址(target后台管理): `<nodeip:nodeport>/admin/redisobj`
 
 >`kubectl port-forward svc/redispapa 5000:5000`
 - 访问地址(监控页面): `http://0.0.0.0:5000/`
@@ -63,6 +66,8 @@ redispapa   redispapa.calmkart.com             80      2m51s
 | Parameter | Description | Default |
 | ----- | ----------- | ------ |
 | `nameSpace` | redispapa创建的api对象的命名空间 |`"default"`|
+| `service.type` | service服务暴露类型 | `ClusterIP` |
+| `ingress.enabled` | 是否开启ingress | `false` |
 | `ingress.hosts` | ingress域名 | `['redispapa.calmkart.com']` |
 
 #### 详细使用说明
