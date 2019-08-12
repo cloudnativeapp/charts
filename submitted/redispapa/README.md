@@ -1,4 +1,4 @@
-# gohttpserver
+# redispapa
 
 ## 功能介绍:
 
@@ -17,7 +17,7 @@
 
 ## 安装方式:
 ```shell
-helm install gohttpserver ../gohttpserver 
+helm install redispapa ../redispapa 
 ```
 
 运行后将看到输出并创建以下k8s api对象:
@@ -62,7 +62,7 @@ redispapa   redispapa.calmkart.com             80      2m51s
 #### 可用参数
 | Parameter | Description | Default |
 | ----- | ----------- | ------ |
-| `nameSpace` | gohttpserver创建的api对象的命名空间 |`"default"`|
+| `nameSpace` | redispapa创建的api对象的命名空间 |`"default"`|
 | `ingress.hosts` | ingress域名 | `['redispapa.calmkart.com']` |
 
 #### 详细使用说明
