@@ -1,12 +1,12 @@
 PrometheusAlert 简介
 
-![logo](doc/logo.png)
+![logo](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/logo.png)
 
 -----------------
 
 PrometheusAlert是开源的运维告警中心消息转发系统,支持主流的监控系统Prometheus,日志系统Graylog和数据可视化系统Grafana发出的预警消息,支持将收到的这些消息发送到钉钉,短信和语音提醒等
 
-![it](doc/it.png)
+![it](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/it.png)
 --------------------------------------
 
 PrometheusAlert具备如下特性
@@ -70,8 +70,8 @@ PrometheusAlert 暂提供以下三个接口,分别对应各自接入端
 
 打开钉钉,进入钉钉群中,选择群设置-->群机器人-->自定义，可参下图：
 
-![ding](doc/dingding1.png)
-![ding2](doc/dingding2.png)
+![ding](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/dingding1.png)
+![ding2](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/dingding2.png)
 
 --------------------------------------
 
@@ -113,19 +113,19 @@ groups:
 ```
 最终告警效果:
 
-![prometheus1](doc/prometheus.png)
+![prometheus1](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/prometheus.png)
 
 --------------------------------------
  **2. Grafana 接入配置**
  
 打开grafana管理页面,登录后进入notification channels配置
 
-![grafana1](doc/addchannel.png)
+![grafana1](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/addchannel.png)
 注意这里的url地址填写上自己部署所在的url
-![grafana2](doc/addchannel2.png)
+![grafana2](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/addchannel2.png)
 配置完成后保存即可.继续进行告警消息配置,选择任意一个折线图,点击编辑,进入aler配置,配置参考下图:
-![grafana3](doc/grafanaalert1.png)
-![grafana4](doc/grafanaalert2.png)
+![grafana3](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/grafanaalert1.png)
+![grafana4](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/grafanaalert2.png)
 
 Notifications配置格式参考,支持配置多个钉钉机器人url:
 ```
@@ -134,30 +134,30 @@ Notifications配置格式参考,支持配置多个钉钉机器人url:
 
 最终告警效果:
 
-![grafana5](doc/grafana.png)
+![grafana5](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/grafana.png)
 
 --------------------------------------
 
  **3. Graylog 接入配置**
 打开Graylog管理页面,登录后进入Alerts配置
 
-![graylog1](doc/graylog1.png)
+![graylog1](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/graylog1.png)
 点击```Add new notification```创建新的告警通道,选择如下图配置:
-![graylog2](doc/graylog2.png)
+![graylog2](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/graylog2.png)
 在弹出的窗口中填入名称和对应的PrometheusAlert的地址即可,配置参考下图:
-![graylog3](doc/graylog3.png)
+![graylog3](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/graylog3.png)
 配置完成后,点击```Test```测试下是否能够正常接收告警消息即可
 
 最终告警效果:
 
-![graylog4](doc/graylog4.png)
+![graylog4](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/graylog4.png)
 
 --------------------------------------
 
 **4. 配置文件解析**
 
 短信告警和语音告警均使用的是腾讯云的短信和语音提醒接口,具体参数获取可去腾讯云开通相关服务即可
-![tengxun1](doc/tengxun1.png)
+![tengxun1](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/tengxun1.png)
 
 
 ```
@@ -174,7 +174,7 @@ title=NB云平台
 #点击告警消息后链接到告警平台地址
 alerturl=http://prometheus.local
 #告警消息中显示的logo图标地址
-logourl=doc/haima.png
+logourl=https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/logo.png
 #腾讯短信接口key
 appkey=e7xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 #腾讯短信模版ID
@@ -208,7 +208,7 @@ backupphone=151xxxxxxxx
 启用告警失败重试功能需要在腾讯云上配置: 
 云产品--->短信--->事件回调配置--->语音短信回调
 
-![tengxun2](doc/tengxun2.png)
+![tengxun2](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/tengxun2.png)
 
 
 --------------------------------------
@@ -226,4 +226,4 @@ FOR HELP
 ----
 Email: 244217140@qq.com
 
-![me](doc/wx.png)
+![me](https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/wx.png)
