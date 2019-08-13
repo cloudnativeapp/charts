@@ -1,0 +1,91 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "oneid.fullname" . }}
+  labels:
+    app: {{ template "oneid.name" . }}
+    chart: {{ template "oneid.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  settings_local.py: |-
+    import pymysql
+    pymysql.install_as_MySQLdb()
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': '{{ .Values.persistence.mysql.database }}',
+            'USER': 'root',
+            'PASSWORD': '{{ .Values.persistence.mysql.rootPassword }}',
+            'HOST': 'localhost',
+            'PORT': '{{ .Values.service.mysqlDatabase.port }}',
+            'OPTIONS': {
+                'autocommit': True,
+                'init_command': 'SET default_storage_engine=MyISAM',
+            },
+        }
+    }
+    {{ .Values.settingsLocal | indent 4}}
+
+  portal.conf: |-
+    server {
+        listen       80;
+
+        set_real_ip_from 172.0.0.0/8;
+        real_ip_header   X-Real-IP;
+
+        location /superadmin/ {
+            proxy_pass http://{{ template "oneid.fullname" . }}:{{ .Values.service.webServer.port}};
+            proxy_set_header Host $host;
+            proxy_set_header Arker portal;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        location /static/ {
+            proxy_pass http://{{ template "oneid.fullname" . }}:{{ .Values.service.webServer.port}};
+            proxy_set_header Host $host;
+            proxy_set_header Arker portal;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        location /siteapi/oneid/ {
+            proxy_pass http://{{ template "oneid.fullname" . }}:{{ .Values.service.webServer.port }}/siteapi/v1/; 
+            proxy_set_header Host $host;
+            proxy_set_header Arker portal;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+        location /ping/ {
+            proxy_pass http://{{ template "oneid.fullname" . }}:{{ .Values.service.webServer.port }}/ping/; 
+            proxy_set_header Host $host;
+            proxy_set_header Arker portal;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        location /oauth/ {
+            proxy_pass http://{{ template "oneid.fullname" . }}:{{ .Values.service.webServer.port }}/siteapi/v1/; 
+            proxy_set_header Host $host;
+            proxy_set_header Arker portal;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        location = / {
+            proxy_pass http://{{ template "oneid.fullname" . }}-fe:{{ .Values.service.feServer.port }}/_/s/oneid.html;
+            proxy_set_header Host $host;
+            proxy_set_header Arker portal;
+            expires 1m;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+        location / {
+            proxy_pass http://{{ template "oneid.fullname" . }}-fe:{{ .Values.service.feServer.port }};
+            proxy_set_header Host $host;
+            proxy_set_header Arker portal;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
