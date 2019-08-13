@@ -50,6 +50,7 @@ kubectl app -n monitoring -f https://raw.githubusercontent.com/feiyu563/Promethe
 ```
 git clone https://github.com/feiyu563/PrometheusAlert.git
 cd PrometheusAlert/example/helm/prometheusalert
+#如需修改配置文件,请更新config中的app.conf
 helm install -n monitoring .
 ```
 配置说明
