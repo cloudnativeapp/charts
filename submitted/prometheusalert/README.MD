@@ -177,25 +177,25 @@ alerturl=http://prometheus.local
 #告警消息中显示的logo图标地址
 logourl=https://raw.githubusercontent.com/feiyu563/PrometheusAlert/master/doc/logo.png
 #腾讯短信接口key
-appkey=e7xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+appkey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 #腾讯短信模版ID
-tpl_id=143xxxxx
+tpl_id=xxxxxxxx
 #腾讯短信sdk app id
-sdkappid=140xxxxxxx
+sdkappid=xxxxxxxxxx
 #短信告警级别(等于3就进行短信告警) 告警级别定义 0 信息,1 警告,2 一般严重,3 严重,4 灾难
 messagelevel=3
 #腾讯电话接口key
-phonecallappkey=c24xxxxxxxxxxxxxxx
+phonecallappkey=xxxxxxxxxxxxxxxxxx
 #腾讯电话模版ID
-phonecalltpl_id=29xxxxx
+phonecalltpl_id=xxxxxxxx
 #腾讯电话sdk app id
-phonecallsdkappid=140xxxxx
+phonecallsdkappid=xxxxxxxx
 #电话告警级别(等于4就进行语音告警) 告警级别定义 0 信息,1 警告,2 一般严重,3 严重,4 灾难
 phonecalllevel=4
 #默认拨打号码,默认不配置,如果配置了此项,那么按照user.csv文件轮询的方式将自动失效
 #defaultphone=
 #未使用user.csv或者user.csv中的号码轮询结束备用号码
-backupphone=151xxxxxxxx
+backupphone=xxxxxxxxxxx
 ```
 
 另外 PrometheusAlert 同时支持按照日期发送告警到不同号码,并且已经加入告警失败或者被告警人未接听电话后转联系备用联系人,只需新建user.csv文件,并将文件放到程序运行目录下即可自动加载,该功能暂时支持grafana发出的告警信息,csv文件格式如下:
