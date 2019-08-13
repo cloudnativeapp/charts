@@ -1,0 +1,57 @@
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "oneid.fullname" . -}}
+{{- $ingressPaths := .Values.ingress.paths -}}
+{{- $domain := .Values.ingress.host.name -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    app.kubernetes.io/name: {{ include "oneid.name" . }}
+    helm.sh/chart: {{ include "oneid.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+{{- if .Values.ingress.tls }}
+  tls:
+    - hosts:
+      - {{ $domain }}
+      secretName: {{ .Release.Name }}-cert
+{{- end }}
+  rules:
+    - host: {{ $domain }}
+      http:
+        paths:
+          - path: /static
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ .Values.service.webServer.port }}
+          - path: /superadmin
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ .Values.service.webServer.port }}
+          - path: /siteapi/v1
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ .Values.service.webServer.port }}
+          - path: /ping
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ .Values.service.webServer.port }}
+          - path: /oauth
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ .Values.service.webServer.port }}
+          - path: /service
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ .Values.service.webServer.port }}
+          - path: /
+            backend:
+              serviceName: {{ $fullName }}-portal
+              servicePort: {{ .Values.service.portal.port }}
+{{- end }}
