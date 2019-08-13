@@ -90,6 +90,7 @@ arkid-fe-597c8f6b5b-zgbjk      1/1    Running            0         21s
 arkid-portal-8644894767-j8s4k  1/1    Running            0         21s
 arkid-ff5946498-n456z          0/4    ContainerCreating  0         21s
 ```
+arkid 可能因为依赖的数据库未完全启动，而进行几次重启，请稍作等待，直至达到 Running。
 
 ```shell
 > kubectl port-forward arkid-portal-8644894767-j8s4k  10080:80

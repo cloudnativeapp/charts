@@ -53,7 +53,7 @@ service:
   mysqlDatabase:
     port: 3306
 
-persistence:  # mysql & ldap
+persistence:  # mysql
   init: false
   mysql:
     rootPassword: root
@@ -75,7 +75,6 @@ ingress:
 
 apiServer: http://ark-apisvr
 
-# 配置项太多，就不一一配置了
 settingsLocal: |-
 
   CONFIG_VERSION = 'longgui-2019-08-12'
