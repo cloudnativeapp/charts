@@ -17,12 +17,12 @@
 
 ## 安装方式:
 ```shell
-helm install redispapa ../redispapa 
+helm install redispapa ./redispapa 
 ```
 
 运行后将看到输出并创建以下k8s api对象:
 ```shell
-➜  redispapa git:(redispapa) ✗ helm install redispapa ../redispapa  --set service.type=NodePort
+➜ helm install redispapa ./redispapa  --set service.type=NodePort
 NAME: redispapa
 LAST DEPLOYED: 2019-08-12 17:10:29.032902 +0800 CST m=+0.138064656
 NAMESPACE: default
@@ -34,13 +34,13 @@ NOTES:
   export NODE_IP=$(kubectl get nodes -o jsonpath="{.items[0].status.addresses[0].address}")
   echo http://$NODE_IP:$NODE_PORT
 
-➜  redispapa git:(redispapa) ✗ kubectl get pods
+➜ kubectl get pods
 kNAME                      READY   STATUS    RESTARTS   AGE
 redispapa-5bb76fd-tw4zj   1/1     Running   0          2m41s
-➜  redispapa git:(redispapa) ✗ kubectl get deployments
+➜ kubectl get deployments
 NAME        READY   UP-TO-DATE   AVAILABLE   AGE
 redispapa   1/1     1            1           2m46s
-➜  redispapa git:(redispapa) ✗ kubectl get service
+➜ kubectl get service
 NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP    7d
 redispapa    ClusterIP   10.110.99.224   <none>        5000/TCP   2m50s
@@ -48,15 +48,16 @@ redispapa    ClusterIP   10.110.99.224   <none>        5000/TCP   2m50s
 
 我们可以通过NodePort或者port-forward或者ingress访问服务
 
->`NODE_PORT=$(kubectl get -o jsonpath="{.spec.ports[0].nodePort}" services redispapa)&&NODE_IP=$(kubectl get nodes -o jsonpath="{.items[0].status.addresses[0].address}")&&echo http://$NODE_IP:$NODE_PORT`
+NODE_PORT=$(kubectl get -o jsonpath="{.spec.ports[0].nodePort}" services redispapa)&&NODE_IP=$(kubectl get nodes -o jsonpath="{.items[0].status.addresses[0].address}")&&echo http://$NODE_IP:$NODE_PORT
+
 - 访问地址(监控页面): `<nodeip:nodeport>`
 - 访问地址(target后台管理): `<nodeip:nodeport>/admin/redisobj`
 
->`kubectl port-forward svc/redispapa 5000:5000`
+kubectl port-forward svc/redispapa 5000:5000
 - 访问地址(监控页面): `http://0.0.0.0:5000/`
 - 访问地址(target后台管理): `http://0.0.0.0:5000/admin/redisobj`
 
->将redispapa.calmkart.com的域名解析切换到ingress地址即可访问(修改hosts或dns皆可)
+将redispapa.calmkart.com的域名解析切换到ingress地址即可访问(修改hosts或dns皆可)
 - 访问地址(监控页面): `http://redispapa.calmkart.com/`
 - 访问地址(target后台管理): `http://redispapa.calmkart.com/admin/redisobj`
 
