@@ -105,6 +105,12 @@ pong
 
 浏览器打开http://127.0.0.1:10080，既可用默认管理员账号 admin / admin 探索ArkID完整功能。
 
+![image](https://raw.githubusercontent.com/skoogi/charts/assets/assets/login.png)
+
+![image](https://raw.githubusercontent.com/skoogi/charts/assets/assets/ucenter.png)
+
+![image](https://raw.githubusercontent.com/skoogi/charts/assets/assets/admin.png)
+
 ## Contact
 
 - [Website](https://www.longguikeji.com)
