@@ -64,7 +64,7 @@ kubectl port-forward <PodName> 8080:8080
 ![kube-webshell](images/kube-webshell.png)
 
 演示：
-[kube-webshell](docs/images/kube-webshell.mov)
+[kube-webshell](images/kube-webshell.mov)
 
 ### 删除安装
 
