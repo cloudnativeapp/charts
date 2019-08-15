@@ -56,7 +56,15 @@ helm install kube-webshell kube-webshell
 ```
 kubectl port-forward <PodName> 8080:8080
 ```
+
 浏览器访问localhost:8080  
+
+如图：
+![kube-webshell](images/kube-webshell-index.png)
+![kube-webshell](images/kube-webshell.png)
+
+演示：
+[kube-webshell](docs/images/kube-webshell.mov)
 
 ### 删除安装
 
