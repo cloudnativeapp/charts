@@ -1,5 +1,5 @@
 name: docker-gitlab
-version: 0.1.0
+version: 0.1.1
 appVersion: 12.0.4
 description: GitLab CE is set up in the Docker image using the install from source method as documented in the the official GitLab documentation.
 keywords:

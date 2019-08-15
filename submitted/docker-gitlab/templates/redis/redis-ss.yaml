@@ -74,7 +74,7 @@ spec:
 {{ toYaml . | indent 8 }}
     {{- end }}
   {{- if and .Values.persistence.enabled (not $redis.existingClaim) }}
-  volumeClaimincludes:
+  volumeClaimTemplates:
   - metadata:
       name: data
       labels:
