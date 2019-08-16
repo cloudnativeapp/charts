@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ include "oneid.fullname" . }}-fe"
+  labels:
+    app.kubernetes.io/name: "{{ include "oneid.name" . }}-fe"
+    helm.sh/chart: {{ include "oneid.chart" . }}
+    app.kubernetes.io/instance: "{{ .Release.Name }}-fe"
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "{{ include "oneid.name" . }}-fe"
+      app.kubernetes.io/instance: "{{ .Release.Name }}-fe"
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: "{{ include "oneid.name" . }}-fe"
+        app.kubernetes.io/instance: "{{ .Release.Name }}-fe"
+    spec:
+      containers:
+        - name: "{{ .Chart.Name }}-{{ .Values.image.feServer.name}}"
+          image: "{{ .Values.image.feServer.repository }}:{{ .Values.image.feServer.tag }}"
+          imagePullPolicy: {{ .Values.image.feServer.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP

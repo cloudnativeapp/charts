@@ -1,0 +1,34 @@
+{{- if .Values.apiServer }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "oneid.fullname" . }}-register
+  labels:
+    app.kubernetes.io/managed-by: {{.Release.Service | quote }}
+    app.kubernetes.io/instance: {{.Release.Name | quote }}
+    helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": "hook-succeeded,before-hook-creation"
+spec:
+  template:
+    metadata:
+      name: {{.Release.Name}}-register
+      labels:
+        app.kubernetes.io/managed-by: {{.Release.Service | quote }}
+        app.kubernetes.io/instance: {{.Release.Name | quote }}
+        helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: {{ .Chart.Name }}-register
+        image: "{{ .Values.image.webServerBroker.repository}}:{{ .Values.image.webServerBroker.tag }}"
+        imagePullPolicy: {{ .Values.image.webServer.pullPolicy }}
+        args:
+          - "register"
+          - "-t"
+          - "{{ .Values.apiServer }}"
+          - "-i"
+          - "http://{{ include "oneid.fullname" . }}:{{ .Values.service.webServerBroker.port }}"
+{{- end }}
