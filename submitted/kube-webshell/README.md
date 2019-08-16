@@ -63,9 +63,6 @@ kubectl port-forward <PodName> 8080:8080
 ![kube-webshell](images/kube-webshell-index.png)
 ![kube-webshell](images/kube-webshell.png)
 
-演示：
-[kube-webshell](images/kube-webshell.mov)
-
 ### 删除安装
 
 To uninstall/delete the kube-webshell deployment
