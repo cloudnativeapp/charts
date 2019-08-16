@@ -1,0 +1,7 @@
+apiVersion: v1
+appVersion: v2.3.1
+icon: https://raw.githubusercontent.com/lord/img/master/logo-slate.png
+description: Beautiful static documentation for your API https://spectrum.chat/slate
+name: slate
+type: application
+version: v2.3.1
