@@ -3,7 +3,7 @@
 ## 功能介绍
 
 Slate helps you create beautiful, intelligent, responsive API documentation.
-只需要将自己的API利用markdown编写，或将现有的API从平台过工具导入为markdown格式存放在slate中即可。
+只需要将自己的API利用markdown编写，或将现有的API从平台或测试工具导出为markdown格式存放在slate项目中即可。
 
 
 ## 安装使用 
