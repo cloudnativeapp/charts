@@ -15,10 +15,11 @@ helm install myslate slate
 运行后看到输出：
 
 ```shell
-#git clone https://github.com/cloudnativeapp/charts.git
-#git checkout tag_name
-#cd submitted/slate
-#helm install myslate slate/
+git clone https://github.com/cloudnativeapp/charts.git
+git checkout tag_name
+cd submitted/slate
+helm install myslate slate/
+
 NAME: myslate
 LAST DEPLOYED: 2019-08-16 15:27:52.369424716 +0800 CST m=+0.129371478
 NAMESPACE: default
@@ -31,13 +32,13 @@ NOTES:
   echo http://$NODE_IP:$NODE_PORT
   
 
-#kubectl get pods
+kubectl get pods
 myslate-7ccbf64fff-b6rds                                  1/1     Running     0          74s
 
-#kubectl get deploy
+kubectl get deploy
 myslate                                  1/1     1            1           3m10s
 
-#kubectl get svc
+kubectl get svc
 myslate                             NodePort    10.96.128.97     <none>        4567:30568/TCP                                          2m4s
 ```
 
