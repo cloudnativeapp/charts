@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "oneid.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "oneid.name" . }}
+    helm.sh/chart: {{ include "oneid.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "oneid.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "oneid.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: "{{ .Chart.Name }}-{{ .Values.image.webServer.name }}"
+          image: "{{ .Values.image.webServer.repository }}:{{ .Values.image.webServer.tag }}"
+          imagePullPolicy: {{ .Values.image.webServer.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /ping/
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /ping/
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: "settings-local"
+              mountPath: "/var/oneid/settings_local.py"
+              subPath: "settings_local.py"
+
+        - name: "{{ .Chart.Name }}-{{ .Values.image.webServerBroker.name }}"
+          image: "{{ .Values.image.webServerBroker.repository }}:{{ .Values.image.webServerBroker.tag }}"
+          imagePullPolicy: {{ .Values.image.webServerBroker.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          args: ["broker", "-t", "http://localhost", "-p", "8080"]
+
+        - name: "{{ .Chart.Name }}-{{ .Values.image.redis.name }}"
+          image: "{{ .Values.image.redis.repository }}:{{ .Values.image.redis.tag }}"
+          imagePullPolicy: {{ .Values.image.redis.pullPolicy }}
+
+        - name: "{{ .Chart.Name }}-{{ .Values.image.mysqlDatabase.name }}"
+          image: "{{ .Values.image.mysqlDatabase.repository}}:{{ .Values.image.mysqlDatabase.tag }}"
+          imagePullPolicy: {{ .Values.image.mysqlDatabase.pullPolicy }}
+          args:
+            - "--character-set-server=utf8"
+            - "--collation-server=utf8_unicode_ci"
+
+          {{- if .Values.persistence.init }}
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: {{ .Values.persistence.mysql.rootPassword}}
+            - name: MYSQL_DATABASE
+              value: {{ .Values.persistence.mysql.database}}
+          {{ end }}
+          volumeMounts:
+            - name: oneid-data
+              mountPath: /var/lib/mysql
+              subPath: mysql/data
+            - name: oneid-data
+              mountPath: /etc/mysql/conf.d
+              subPath: mysql/config
+
+      volumes:
+        - name: settings-local
+          configMap:
+            name: {{ template "oneid.fullname" . }}
+        - name: oneid-data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.claimName }}
