@@ -1,0 +1,40 @@
+affinity: {}
+fullnameOverride: ""
+image:
+  pullPolicy: IfNotPresent
+  repository: registry.cn-shanghai.aliyuncs.com/kaliarch/slate
+ingress:
+  annotations: {}
+  enabled: false
+  hosts:
+  - chart-example.local
+  path: /
+  tls: []
+livenessProbe:
+  failureThreshold: 2
+  initialDelaySeconds: 10
+  tcpSocket:
+    port: 4567
+  timeoutSeconds: 10
+nameOverride: ""
+nodeSelector: {}
+readinessProbe:
+  failureThreshold: 2
+  httpGet:
+    path: /#introduction
+    port: http
+  initialDelaySeconds: 5
+  timeoutSeconds: 30
+replicaCount: 1
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+  requests:
+    cpu: 500m
+    memory: 1024Mi
+service:
+  nodePort: 30568
+  port: 4567
+  type: NodePort
+tolerations: []
