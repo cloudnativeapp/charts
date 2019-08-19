@@ -1,0 +1,7 @@
+dependencies:
+- name: mongodb
+  version: 7.1.1
+  repository: https://apphub.aliyuncs.com/
+- name: redis
+  version: 9.0.2
+  repository: https://apphub.aliyuncs.com/
