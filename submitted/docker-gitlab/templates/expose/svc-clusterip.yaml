@@ -1,0 +1,21 @@
+{{- if eq .Values.expose.type "clusterIP" -}}
+{{- $clusterIP := .Values.expose.clusterIP }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "gitlab.core.serviceName" . }}
+  labels:
+{{ include "gitlab.labels" . | indent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: ssh
+      port: {{ $clusterIP.ports.ssh }}
+      targetPort: 22
+    - name: http
+      port: {{ $clusterIP.ports.http }}
+      targetPort: 80
+  selector:
+{{ include "gitlab.matchLabels" . | indent 4 }}
+    component: gitlab
+{{- end }}
