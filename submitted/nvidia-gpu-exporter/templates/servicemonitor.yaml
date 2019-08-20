@@ -1,0 +1,29 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: {{ include "nvidia-gpu-exporter.name" . }}
+    chart: {{ include "nvidia-gpu-exporter.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    {{- if .Values.serviceMonitor.selectorLabels }}
+{{ toYaml .Values.serviceMonitor.selectorLabels | indent 4 }}
+    {{- end }}
+  name: {{ include "nvidia-gpu-exporter.fullname" . }}
+spec:
+  jobLabel: app
+  selector:
+    matchLabels:
+      app: {{ include "nvidia-gpu-exporter.name" . }}
+      release: {{ .Release.Name }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace | quote }}
+  endpoints:
+  {{- if .Values.serviceMonitor.endpoints }}
+{{ toYaml .Values.serviceMonitor.endpoints | indent 4 }}
+  {{- else }}
+    - port: metrics
+      interval: 30s
+      honorLabels: true
+  {{- end }}

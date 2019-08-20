@@ -1,0 +1,73 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "hugo.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+{{ include "hugo.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+{{ include "hugo.labels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+{{ include "hugo.labels" . | indent 8 }}
+    spec:
+      initContainers:
+      - name: init
+        image: registry.cn-shanghai.aliyuncs.com/keking/hugo
+        imagePullPolicy: Always
+        env: 
+        - name: SOURCE_URL
+          value: {{ .Values.source_url }}
+        command: ["/bin/sh","-c"] 
+        args:
+          - /var/local/run.sh
+        volumeMounts:
+        - name: workdir
+          mountPath: "/work-dir"
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+          - name: workdir
+            mountPath: /usr/share/nginx/html
+          - mountPath: /etc/nginx/conf.d
+            name: config
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+      volumes:
+        - name: workdir
+          emptyDir: {}
+        - configMap:
+            defaultMode: 420
+            name: {{ template "hugo.fullname" . }}-config
+            optional: false
+          name: config

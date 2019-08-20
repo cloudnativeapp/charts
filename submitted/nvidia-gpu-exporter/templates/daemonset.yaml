@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: {{ include "nvidia-gpu-exporter.fullname" . }}
+  labels:
+    app: {{ include "nvidia-gpu-exporter.name" . }}
+    chart: {{ include "nvidia-gpu-exporter.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: {{ include "nvidia-gpu-exporter.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+{{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          cmd:
+            - "/nvidia_gpu_prometheus_exporter --privileged"
+          ports:
+            - name: metrics
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+      hostNetwork: {{ .Values.hostNetwork }}
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate

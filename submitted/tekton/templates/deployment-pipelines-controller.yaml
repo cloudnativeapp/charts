@@ -1,0 +1,47 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: tekton-pipelines-controller
+  namespace: {{ .Values.pipelines.namespace }}
+spec:
+  replicas: {{ .Values.pipelines.controller.replicas }}
+  template:
+    metadata:
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+      labels:
+        app: tekton-pipelines-controller
+    spec:
+      containers:
+      - args:
+        - -logtostderr
+        - -stderrthreshold
+        - INFO
+        - -kubeconfig-writer-image
+        - registry.cn-hangzhou.aliyuncs.com/somefive/tekton-kubeconfigwriter
+        - -creds-image
+        - registry.cn-hangzhou.aliyuncs.com/somefive/tekton-creds-init
+        - -git-image
+        - registry.cn-hangzhou.aliyuncs.com/somefive/tekton-git-init
+        - -nop-image
+        - registry.cn-hangzhou.aliyuncs.com/somefive/tekton-nop
+        - -bash-noop-image
+        - registry.cn-hangzhou.aliyuncs.com/somefive/tekton-bash
+        - -gsutil-image
+        - registry.cn-hangzhou.aliyuncs.com/somefive/tekton-gsutil
+        - -entrypoint-image
+        - registry.cn-hangzhou.aliyuncs.com/somefive/tekton-entrypoint
+        - -imagedigest-exporter-image
+        - registry.cn-hangzhou.aliyuncs.com/somefive/tekton-imagedigestexporter
+        - -pr-image
+        - registry.cn-hangzhou.aliyuncs.com/somefive/tekton-pullrequest-init
+        image: registry.cn-hangzhou.aliyuncs.com/somefive/tekton-controller
+        name: tekton-pipelines-controller
+        volumeMounts:
+        - mountPath: /etc/config-logging
+          name: config-logging
+      serviceAccountName: tekton-pipelines-controller
+      volumes:
+      - configMap:
+          name: config-logging
+        name: config-logging

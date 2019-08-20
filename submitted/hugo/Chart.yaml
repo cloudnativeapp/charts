@@ -1,0 +1,18 @@
+apiVersion: v1
+name: hugo
+description: 使用 Kubernetes 运行 hugo 博客
+type: application
+version: 0.0.2
+appVersion: 0.0.1
+keywords:
+- hugo
+- blog
+- go
+- golang
+icon: https://raw.githubusercontent.com/gohugoio/hugo/master/docs/static/img/hugo-logo-med.png
+sources:
+- https://github.com/kube-incubator/redis-operator
+maintainers:
+- name: GuoXudong
+  email: sunnydog0826@gmail.com
+

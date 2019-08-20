@@ -1,0 +1,104 @@
+replicaCount: 1
+
+image:
+  webServer:
+    name: web-server
+    repository: longguikeji/arkid
+    tag: "1.0.0"
+    pullPolicy: Always
+  feServer:
+    name: fe
+    repository: longguikeji/arkid-fe
+    tag: "1.0.0"
+    pullPolicy: Always
+  webServerBroker:
+    name: web-server-broker
+    repository: longguikeji/arkid-broker
+    tag: "1.0.0"
+    pullPolicy: Always
+  portal:
+    name: portal
+    repository: nginx
+    tag: "alpine"
+    pullPolicy: Always
+  redis:
+    name: redis
+    repository: redis
+    tag: 5.0.3
+    pullPolicy: IfNotPresent
+  mysqlDatabase:
+    name: mysql-database
+    repository: mysql
+    tag: 5.7
+    pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+apiServer: http://ark-apisvr
+
+service:
+  type: ClusterIP
+  feServer:
+    port: 80
+  webServer:
+    port: 80
+  webServerBroker:
+    port: 8080
+  portal:
+    port: 80
+  ldap:
+    ldapPort: 389
+    ldapsPort: 636
+  mysqlDatabase:
+    port: 3306
+
+persistence:  # mysql
+  init: false
+  mysql:
+    rootPassword: root
+    database: oneid
+  claimName: arkid
+  storageClass: null
+  accessMode: ReadWriteOnce
+  size: 8Gi
+
+ingress:
+  enabled: true
+  cert: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+  host:
+    name: oneid.longguikeji.com
+  tls: true
+
+apiServer: http://ark-apisvr
+
+settingsLocal: |-
+
+  CONFIG_VERSION = 'longgui-2019-08-12'
+
+  DINGDING_APP_KEY = ''
+  DINGDING_APP_SECRET = ''
+  BASE_URL = 'https://oneid.longguikeji.com'
+
+  EXECUTERS = [    # 注意顺序
+    'executer.RDB.RDBExecuter',
+    'executer.log.rdb.RDBLogExecuter',
+    'executer.cache.default.CacheExecuter',
+  ]
+
+  SMS_LIFESPAN = datetime.timedelta(seconds=120)
+  SMS_ALIYUN_REGION = 'cn-hangzhou'
+  SMS_ALIYUN_PRODUCT_NAME = 'Dysmsapi'
+  SMS_ALIYUN_DOMAIN = 'dysmsapi.aliyuncs.com'
+  SMS_ALIYUN_ACCESS_KEY_ID = ''
+  SMS_ALIYUN_ACCESS_KEY_SECRET = ''
+  SMS_ALIYUN_TEMPLATE_CODE = ''
+  SMS_ALIYUN_SIGNATURE = '龙归科技'
+
+  MINIO_ENDPOINT = 'minio.longguikeji.com'
+  MINIO_ACCESS_KEY = ''
+  MINIO_SECRET_KEY = ''
+  MINIO_SECURE = True

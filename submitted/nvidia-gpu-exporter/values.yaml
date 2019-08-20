@@ -1,0 +1,45 @@
+# Default values for nvidia-gpu-exporter.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: mindprince/nvidia_gpu_prometheus_exporter
+  tag: 0.1
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+hostNetwork: false
+
+service:
+  port: 9445
+
+resources:
+  requests:
+    memory: 30Mi
+    cpu: 100m
+  limits:
+    memory: 50Mi
+    cpu: 200m
+
+tolerations: {}
+# here is the example of your gpu machine's toleration
+#- effect: NoSchedule
+#  key: nvidia.com/gpu
+#  value: "true"
+
+affinity: {}
+# here is the example of your gpu machine's affinity
+# nodeAffinity:
+#   requiredDuringSchedulingIgnoredDuringExecution:
+#     nodeSelectorTerms:
+#     - matchExpressions:
+#       - key: node-role.xxx.com/gpu
+#         operator: In
+#         values:
+#         - "true"
+
+serviceMonitor:
+  selectorLabels: {}
+  endpoints: []
