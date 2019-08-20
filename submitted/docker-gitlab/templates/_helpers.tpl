@@ -77,14 +77,6 @@ app: "{{ include "gitlab.name" . }}"
   {{- printf "%s-ingress" (include "gitlab.fullname" .) -}}
 {{- end -}}
 
-{{- define "gitlab.database.adapter" -}}
-  {{- if eq .Values.database.type "internal" -}}
-    {{- .Values.database.internal.adapter -}}
-  {{- else -}}
-    {{- .Values.database.external.adapter -}}
-  {{- end -}}
-{{- end -}}
-
 {{- define "gitlab.database.host" -}}
   {{- if eq .Values.database.type "internal" -}}
     {{- include "gitlab.database" . }}
@@ -95,11 +87,7 @@ app: "{{ include "gitlab.name" . }}"
 
 {{- define "gitlab.database.port" -}}
   {{- if eq .Values.database.type "internal" -}}
-    {{- if eq .Values.database.internal.adapter "postgresql" -}}
-      {{- printf "%s" "5432" -}}
-    {{- else -}}
-      {{- printf "%s" "3306" -}}
-    {{- end -}}
+    {{- printf "%s" "5432" -}}
   {{- else -}}
     {{- .Values.database.external.port -}}
   {{- end -}}
@@ -141,16 +129,6 @@ app: "{{ include "gitlab.name" . }}"
   {{- include "gitlab.database.rawDatabaseName" . | b64enc | quote -}}
 {{- end -}}
 
-{{- define "gitlab.database.extension" -}}
-  {{- if eq .Values.database.type "internal" -}}
-    {{- printf "%s" "pg_trgm" -}}
-  {{- end -}}
-{{- end -}}
-
-{{- define "gitlab.database.encryptedExtension" -}}
-  {{- include "gitlab.database.extension" . | b64enc | quote -}}
-{{- end -}}
-
 {{- define "gitlab.redis.host" -}}
   {{- if eq .Values.redis.type "internal" -}}
     {{- include "gitlab.redis" . -}}
@@ -164,5 +142,29 @@ app: "{{ include "gitlab.name" . }}"
     {{- printf "%s" "6379" -}}
   {{- else -}}
     {{- .Values.redis.external.port -}}
+  {{- end -}}
+{{- end -}}
+
+{{- define "gitlab.redis.rawPassword" -}}
+  {{- if eq .Values.redis.type "internal" -}}
+    {{- if .Values.redis.internal.password }}
+      {{- .Values.redis.internal.password -}}
+    {{- else -}}
+      {{- printf "%s" "" -}}
+    {{- end -}}
+  {{- else -}}
+    {{- if .Values.redis.external.password }}
+      {{- .Values.redis.external.password -}}
+    {{- else -}}
+      {{- printf "%s" "" -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- define "gitlab.redis.encryptedPassword" -}}
+  {{- if (include "gitlab.redis.rawPassword" .) }}
+    {{- include "gitlab.redis.rawPassword" . | b64enc | quote -}}
+  {{- else -}}
+    {{- printf "%s" "" -}}
   {{- end -}}
 {{- end -}}

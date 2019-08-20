@@ -5,9 +5,6 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: "{{ include "gitlab.core" . }}-backup-scheduled"
-  annotations:
-    "helm.sh/hook": "post-install"
-    "helm.sh/hook-delete-policy": "before-hook-creation"
   labels:
 {{ include "gitlab.labels" . | indent 4 }}
     component: gitlab-backup-scheduled
@@ -52,8 +49,13 @@ spec:
               value: {{ include "gitlab.redis.host" . | quote }}
             - name: REDIS_PORT
               value: {{ include "gitlab.redis.port" . | quote }}
-            - name: DB_ADAPTER
-              value: {{ include "gitlab.database.adapter" . | quote }}
+          {{- if (include "gitlab.redis.rawPassword" .) }}
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "gitlab.redis" . }}
+                  key: REDIS_PASSWORD
+          {{- end }}
             - name: DB_HOST
               value: {{ include "gitlab.database.host" . | quote }}
             - name: DB_PORT
@@ -73,8 +75,10 @@ spec:
                 secretKeyRef:
                   name: {{ include "gitlab.database" . }}
                   key: DB_NAME
-            - name: TZ
-              value: {{ .Values.core.env.GITLAB_TIMEZONE | quote }}
+            - name: DB_ADAPTER
+              value: postgresql
+            - name: GITLAB_DATA_DIR
+              value: "/home/git/data"
             - name: GITLAB_BACKUP_SCHEDULE
               value: disable
             volumeMounts:
