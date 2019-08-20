@@ -21,14 +21,14 @@ volume 必须配置.发布方式有2种,第一种是 ingress,第二种是 lb svc
 ### ingress 安装方式
 
 ```
-		helm install \
-		--set expose.ingress.host=www.zeusro.tech \
-        --set expose.type=ingress \
-        --set expose.tls.enabled=true \
-        --set expose.ingress.enabled=true \
-        --set expose.tls.secretName=tls-zeusro.tech \
-		mygitea \
-		../gitea
+helm install \
+--set expose.ingress.host=www.zeusro.tech \
+--set expose.type=ingress \
+--set expose.tls.enabled=true \
+--set expose.ingress.enabled=true \
+--set expose.tls.secretName=tls-zeusro.tech \
+mygitea \
+gitea
 ```
 
 效果
@@ -55,10 +55,10 @@ replicaset.apps/mygitea-7b948796d   1         1         0       8s
 expose.loadBalancer.annotations
 
 ```
-		helm install \
-        --set expose.type=LoadBalancer \
-		mygitea \
-		../gitea
+helm install \
+--set expose.type=LoadBalancer \
+mygitea \
+gitea
 ```
 
 效果
