@@ -1,0 +1,24 @@
+{{- if .Values.expose.ingress.enabled -}}
+{{- $fullName := include "gitea.fullname" . -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{.Values.expose.ingress.host}}
+  labels:
+{{ include "gitea.labels" . | indent 4 }}
+spec:
+  {{- if .Values.expose.tls.enabled }}
+  tls:
+  - hosts:
+    - {{.Values.expose.ingress.host}}
+    secretName: {{.Values.expose.tls.secretName}}
+  {{- end }}
+  rules:
+  - host: {{.Values.expose.ingress.host}}
+    http:
+      paths:
+      - backend:
+          serviceName: {{ template "gitea.fullname" . }}
+          servicePort: 80
+        path: /
+{{- end }}
