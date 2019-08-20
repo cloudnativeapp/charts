@@ -1,0 +1,15 @@
+name: svn-ifsvnadmin
+version: 0.1.0
+appVersion: passwd
+description: iF.SVNAdmin. It's a web interface for subversion repositories and users management.
+keywords:
+- svn
+- iF.SVNAdmin
+home: http://svnadmin.insanefactory.com/
+icon: http://tortoisesvn.net/assets/img/logo-256x256.png
+sources:
+- http://svnadmin.insanefactory.com/
+- https://github.com/mfreiholz/iF.SVNAdmin
+maintainers:
+- name: TimeBye
+  email: setzero@aliyun.com
