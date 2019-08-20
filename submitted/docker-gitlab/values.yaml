@@ -20,6 +20,8 @@ expose:
       ingress.kubernetes.io/proxy-body-size: "0"
       nginx.ingress.kubernetes.io/proxy-body-size: "0"
       # kubernetes.io/tls-acme: "true"
+    # The node port Gitlab listens on when serving with SSH
+    sshPort: 30002
   clusterIP:
     # The name of ClusterIP service
     # name: gitlab
@@ -36,12 +38,12 @@ expose:
         # The service port Gitlab listens on when serving with SSH
         port: 22
         # The node port Gitlab listens on when serving with SSH
-        # nodePort: 30002
+        nodePort: 30002
       http:
         # The service port Gitlab listens on when serving with HTTP
         port: 80
         # The node port Gitlab listens on when serving with HTTP
-        # nodePort: 30003
+        nodePort: 30003
   loadBalancer:
     # The name of LoadBalancer service
     # name: gitlab
@@ -110,9 +112,11 @@ core:
     # DEBUG: true
     TZ: Asia/Shanghai
     GITLAB_TIMEZONE: Beijing
+
     # GITLAB_HOST: localhost
     # GITLAB_PORT: "80"
     # GITLAB_SSH_PORT: "22"
+
     GITLAB_SECRETS_DB_KEY_BASE: bf2e47b68d6cafaef1d767e628b619365becf27571e10f196f98dc85e7771042b9203199d39aff91fcb6837c8ed83f2a912b278da50999bb11a2fbc0fba52964
     GITLAB_SECRETS_SECRET_KEY_BASE: 6e657410d57c71b4fc3ed0d694e7842b1895a8b401d812c17fe61caf95b48a6d703cb53c112bc01ebd197a85da81b18e29682040e99b4f26594772a4a2c98c6d
     GITLAB_SECRETS_OTP_KEY_BASE: b719fe119132c7810908bba18315259ed12888d4f5ee5430c42a776d840a396799b0a5ef0a801348c8a357f07aa72bbd58e25a84b8f247a25c72f539c7a6c5fa
