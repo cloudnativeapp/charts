@@ -7,15 +7,9 @@ metadata:
 {{ include "gitlab.labels" . | indent 4 }}
 spec:
   ports:
-  {{- if eq .Values.database.internal.adapter "mysql2" }}
-  - name: mysql
-    port: 3306
-    targetPort: 3306
-  {{- else }}
   - name: postgres
     port: 5432
     targetPort: 5432
-  {{- end }}
   selector:
 {{ include "gitlab.matchLabels" . | indent 4 }}
     component: database

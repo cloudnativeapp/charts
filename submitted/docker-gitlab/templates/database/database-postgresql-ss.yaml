@@ -1,5 +1,4 @@
 {{- if eq .Values.database.type "internal" -}}
-{{- if eq .Values.database.internal.adapter "postgresql" -}}
 {{- $database := .Values.persistence.persistentVolumeClaim.database -}}
 apiVersion: apps/v1
 kind: StatefulSet
@@ -30,6 +29,24 @@ spec:
       - name: database
         image: "{{ .Values.database.internal.image.repository }}:{{ .Values.database.internal.image.tag }}"
         imagePullPolicy: {{ .Values.imagePullPolicy }}
+        env:
+        - name: DB_EXTENSION
+          value: pg_trgm
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "gitlab.database" . }}
+              key: DB_USER
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "gitlab.database" . }}
+              key: DB_PASS
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "gitlab.database" . }}
+              key: DB_NAME
         ports:
         - name: postgres
           containerPort: 5432
@@ -55,9 +72,6 @@ spec:
           timeoutSeconds: 1
         resources:
 {{ toYaml .Values.database.internal.resources | indent 10 }}
-        envFrom:
-          - secretRef:
-              name: "{{ include "gitlab.database" . }}"
         volumeMounts:
         - name: "database-data"
           mountPath: /var/lib/postgresql
@@ -102,6 +116,5 @@ spec:
       resources:
         requests:
           storage: {{ $database.size | quote }}
-  {{- end -}}
   {{- end -}}
   {{- end -}}
