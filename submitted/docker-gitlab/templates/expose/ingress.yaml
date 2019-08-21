@@ -27,5 +27,5 @@ spec:
       - path: /
         backend:
           serviceName: {{ include "gitlab.core.serviceName" . }}
-          servicePort: 80
+          servicePort: http
 {{- end }}
