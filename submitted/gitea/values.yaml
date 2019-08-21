@@ -1,0 +1,95 @@
+# Default values for gitea.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: gitea/gitea:1.9.1
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+# 必填,这是gitea的数据目录,仓库都存放在这里
+extraVolumes:
+  - name: data
+# emptyDir只是用来演示的,得按照自身实际情况修改.
+    emptyDir: {}
+    # hostPath:
+    #   path: /data
+
+expose:
+  # Set the way how to expose the service. Set the type as "ingress","clusterIP","LoadBalancer"
+  # or "nodePort" and fill the information in the corresponding 
+  # section
+  type: ingress
+  tls:
+    enabled: false
+    # Fill the name of secret if you want to use your own TLS certificate
+    # and private key. The secret must contain keys named tls.crt and 
+    # tls.key that contain the certificate and private key to use for TLS
+    # The certificate and private key will be generated automatically if 
+    # it is not set
+    secretName: ""
+  ingress:
+    enabled: false
+    host: gitea.cluster.local
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      # kubernetes.io/tls-acme: "true"
+  clusterIP:
+    # The name of ClusterIP service
+    # name: gitea
+    ports:
+      # The service port gitea listens on when serving with SSH
+      ssh: 22
+      # The service port gitea listens on when serving with HTTP
+      http: 80
+  nodePort:
+    # The name of NodePort service
+    # name: gitea
+    ports:
+      ssh: 
+        # The service port gitea listens on when serving with SSH
+        port: 22
+        # The node port gitea listens on when serving with SSH
+        # nodePort: 30002
+      http:
+        # The service port gitea listens on when serving with HTTP
+        port: 80
+        # The node port gitea listens on when serving with HTTP
+        # nodePort: 30003
+  loadBalancer:
+    annotations: 
+      service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-wz99i18bf36urhrsw5psz
+    # The name of LoadBalancer service
+    # name: gitea
+    ports:
+      # The service port gitea listens on when serving with SSH
+      ssh: 22
+      # The service port gitea listens on when serving with HTTP
+      http: 80
+
+
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
