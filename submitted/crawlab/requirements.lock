@@ -1,0 +1,9 @@
+dependencies:
+- name: mongodb
+  repository: https://apphub.aliyuncs.com/
+  version: 7.1.1
+- name: redis
+  repository: https://apphub.aliyuncs.com/
+  version: 9.0.2
+digest: sha256:621cb334063b60bd4e49431de4f997c7a73b7573423339c0ea9cfa7a50069391
+generated: 2019-08-17T23:55:42.79313222+08:00
