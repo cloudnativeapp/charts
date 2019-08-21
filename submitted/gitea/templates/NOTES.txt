@@ -1,0 +1,5 @@
+{{- if .Values.expose.ingress.enabled -}}
+gitea URL 如下：
+http{{ if $.Values.expose.tls.enabled }}s{{ end }}://{{.Values.expose.ingress.host}}
+{{- end }}
+请妥善保管好管理账户和密码,酌情关闭注册入口
