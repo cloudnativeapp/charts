@@ -1,0 +1,110 @@
+# Default values for crawlab.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: docker.io/tikazyq/crawlab
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount:
+  # The Master Node and Worker Node count
+  # ref: https://github.com/tikazyq/crawlab/blob/master/README.md#architecture
+  masterCount: 1
+  workerCount: 2
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  # Set the way how to expose the service. Well tested types are "ClusterIP" and "NodePort".
+  #
+  type: ClusterIP
+  frontendPort: 8080
+  backendPort: 8000
+  
+  # The nodeIP:backendNodePort will be configed in crawlab frontend app for user exploring the backend apis.
+  # If ingress.enabled is true, then ingress.hosts.backendHost:ingressNodePort will be configed.
+  # See the env variable CRAWLAB_API_ADDRESS in master-deployment.yaml.
+  nodeIp:
+  frontendNodePort:
+  backendNodePort:
+
+ingress:
+  enabled: false
+  ingressNodePort:
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    frontendHost:
+    backendHost:
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+
+# mongodb config
+# ref: https://github.com/cloudnativeapp/charts/blob/master/curated/mongodb/values.yaml
+#
+mongodb:
+  ## Enable authentication
+  ## ref: https://docs.mongodb.com/manual/tutorial/enable-authentication/
+  #
+  usePassword: true
+
+  ## MongoDB admin password
+  ## ref: https://github.com/bitnami/bitnami-docker-mongodb/blob/master/README.md#setting-the-root-password-on-first-run
+  ##
+  # mongodbRootPassword:
+
+  ## MongoDB custom user and database
+  ## ref: https://github.com/bitnami/bitnami-docker-mongodb/blob/master/README.md#creating-a-user-and-database-on-first-run
+  ##
+  # mongodbUsername: username
+  # mongodbPassword: password
+  # mongodbDatabase: database
+  service:
+    port: 27017
+  persistence:
+    enabled: false
+
+# redis config
+# ref: https://github.com/cloudnativeapp/charts/blob/master/curated/redis/values.yaml
+#
+redis:
+  ## Use password authentication
+  usePassword: true
+  ## Redis password (both master and slave)
+  ## Defaults to a random 10-character alphanumeric string if not set and usePassword is true
+  ## ref: https://github.com/bitnami/bitnami-docker-redis#setting-the-server-password-on-first-run
+  ##
+  password:
+  master:
+    service:
+      port: 6379
+    persistence:
+      enabled: false
+  slave:
+    persistence:
+      enabled: false

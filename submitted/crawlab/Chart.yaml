@@ -1,0 +1,13 @@
+apiVersion: v1
+appVersion: "1.0"
+description: A Helm chart for crawlab
+name: crawlab
+version: 0.1.0
+icon: https://raw.githubusercontent.com/tikazyq/crawlab/master/frontend/favicon.ico
+home: https://github.com/tikazyq/crawlab
+maintainers:
+- email: fresh2903@163.com
+  name: fresh618
+sources:
+- https://github.com/tikazyq/crawlab
+type: application
