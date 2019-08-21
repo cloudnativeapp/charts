@@ -26,7 +26,7 @@ spec:
           env:
             - name: CRAWLAB_API_ADDRESS
               {{- if .Values.ingress.enabled }}
-              value: {{ .Values.ingress.hosts.backend }}:{{ .Values.ingress.ingressNodePort }}
+              value: {{ .Values.ingress.hosts.backendHost }}:{{ .Values.ingress.ingressNodePort }}
               {{- else if eq .Values.service.type "NodePort" }}
               value: {{ .Values.service.nodeIp }}:{{ .Values.service.backendNodePort }}
               {{- else}}

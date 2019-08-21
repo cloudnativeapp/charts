@@ -21,47 +21,25 @@ $ helm dependency update crawlab
 3. 安装此chart，release名称设置为`my-crawlab`：
 
 ```bash
+# helm v2
 $ helm install --name my-crawlab crawlab
+
+# helm v3
+$ helm install my-crawlab crawlab
 ```
 
 这条命令会以默认的配置将Crawlab部署到Kubernetes集群。[configuration](#configuration) 一节列出了安装时可以配置的参数。
-
-
-## Verifying the deployment
-
-1. 查看部署的资源是否ready：
-```bash
-# kubectl get po
-NAME                                  READY     STATUS    RESTARTS   AGE
-my-crawlab-master-5c6fcf9db9-8sp44    1/1       Running   0          9m
-my-crawlab-mongodb-7766d6b5d6-2pjp9   1/1       Running   0          9m
-my-crawlab-redis-master-0             1/1       Running   0          9m
-my-crawlab-redis-slave-0              1/1       Running   0          9m
-my-crawlab-redis-slave-1              1/1       Running   0          8m
-my-crawlab-worker-8577f97df7-6vchs    1/1       Running   0          9m
-my-crawlab-worker-8577f97df7-8nlr2    1/1       Running   2          9m
-# kubectl get svc
-NAME                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
-kubernetes                  ClusterIP   172.19.0.1      <none>        443/TCP             1d
-my-crawlab                  ClusterIP   172.19.15.192   <none>        8080/TCP,8000/TCP   9m
-my-crawlab-mongodb          ClusterIP   172.19.11.127   <none>        27017/TCP           9m
-my-crawlab-redis-headless   ClusterIP   None            <none>        6379/TCP            9m
-my-crawlab-redis-master     ClusterIP   172.19.14.73    <none>        6379/TCP            9m
-my-crawlab-redis-slave      ClusterIP   172.19.15.125   <none>        6379/TCP            9m
-# kubectl get ing
-NAME         HOSTS                                                          ADDRESS   PORTS     AGE
-my-crawlab   frontend.crawlab-example.local,backend.crawlab-example.local             80        9m
-```
-
-2. 浏览器访问`http://frontend.crawlab-example.local:32080`，进入Crawlab的登录界面，初始的用户名/密码是`admin/admin`。登录后，可以查看到当前有两个工作节点，并可以运行爬虫任务。
-
 
 ## Uninstalling the Chart
 
 卸载此次部署：
 
 ```bash
+# helm v2
 $ helm delete my-crawlab
+
+# helm v3
+$ helm uninstall my-crawlab
 ```
 
 ## Configuration
@@ -79,13 +57,13 @@ $ helm delete my-crawlab
 | `service.frontendPort`                  | Crawlab前端的service端口                                            | `8080`                                     |
 | `service.backendPort`                   | Crawlab后端的service端口                                            | `8000`                                     |
 | `service.nodeIp`                        | 当serivce类型为`NodePort`时，用户访问Crawlab时用的IP                   | `nil`                                      |
-| `service.frontendNodePort`              | 当serivce类型为`NodePort`时，用户访问Crawlab时前端的节点端口            | `nil`                                       |
-| `service.backendNodePort`               | C当serivce类型为`NodePort`时，用户访问Crawlab时后端的节点端口           | `nil`                                       |
-| `ingress.enabled`                       | 启用ingress                                                        | `true`                                     |
-| `ingress.ingressNodePort`               | ingress暴露在外的nodePort，用于Crawlab前端页面配置后端服务的对外地址      | `32080`                                    |
+| `service.frontendNodePort`              | 当serivce类型为`NodePort`时，用户访问Crawlab时前端的节点端口            | `nil`                                     |
+| `service.backendNodePort`               | C当serivce类型为`NodePort`时，用户访问Crawlab时后端的节点端口           | `nil`                                     |
+| `ingress.enabled`                       | 启用ingress                                                        | `false`                                     |
+| `ingress.ingressNodePort`               | ingress暴露在外的nodePort，用于Crawlab前端页面配置后端服务的对外地址      | `nil`                                    |
 | `ingress.annotations`                   | ingress的annotations                                               | `{}`                                       |
-| `ingress.hosts.frontendHost`            | Crawlab前端的ingress host                                           | `frontend.crawlab-example.local`           |
-| `ingress.hosts.backendHost`             | Crawlab后端的ingress host                                           | `backend.crawlab-example.local`            |
+| `ingress.hosts.frontendHost`            | Crawlab前端的ingress host                                           | `nil`                                     |
+| `ingress.hosts.backendHost`             | Crawlab后端的ingress host                                           | `nil`                                     |
 | `resources`                             | Pod resources                                                      | {}                                         |
 | `nodeSelector`                          | Node labels for pod assignment                                     | {}                                         |
 | `tolerations`                           | Toleration labels for pod assignment                               | []                                         |
@@ -103,20 +81,29 @@ $ helm delete my-crawlab
 | `redis.master.persistence.enabled`      | redis master启用永久存储                                             | `false`                                    |
 | `redis.slave.persistence.enabled`       | redis slave启用永久存储                                              | `false`                                    |
 
+## Using the configuration
+
+通过`helm install`命令的`--set key=value[,key=value]`，为安装添加不同的配置。例如：
+
+1. 通过`NodePort`形式将Crawlab的访问方式暴露到集群外部
+
+```bash
+$ helm install my-crawlab crawlab --set service.type=NodePort,service.nodeIp=10.100.0.200,service.frontendNodePort=30001,service.backendNodePort=30002
+```
+2. 通过`ingress`将Crawlab的访问方式暴露到集群外部
+
+```bash
+$ helm install my-crawlab crawlab --set ingress.enabled=true,ingress.ingressNodePort=30999,ingress.hosts.frontendHost=frontend.crawlab-example.local,ingress.hosts.backendHost=backend.crawlab-example.local
+```
 
 ## Replication
 
 Crawlab是一个分布式框架，通过增加`replicaCount.workerCount`，可以快速地扩展worker节点数量，增加Crawlab的处理能力。
 
 ```bash
-$ helm install --name my-crawlab stable/mongodb --set replicaCount.workerCount=3
+$ helm install my-crawlab crawlab --set replicaCount.workerCount=3
 ```
-
 
 ## Production settings and persistence
 
 默认的配置中，将mongodb和redis的persistence volume关掉了。如果是生产环境的配置，请参考[mongodb values-production.yaml](https://github.com/cloudnativeapp/charts/blob/master/curated/mongodb/values-production.yaml)和[redis values-production.yaml](https://github.com/cloudnativeapp/charts/blob/master/curated/redis/values-production.yaml)修改配置。
-
-## 其他
-
-
