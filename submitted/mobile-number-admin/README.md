@@ -40,6 +40,20 @@ NOTES:
   echo "Visit http://127.0.0.1:8080 to use your application"
   kubectl port-forward $POD_NAME 8080:80
 ```
-Web界面如下所示：
+Web登录界面如下所示：
+![imge](https://github.com/zkesong/mobile-number-admin/blob/master/images/login.png)
+Web登录管理界面如下:
+![imge](https://github.com/zkesong/mobile-number-admin/blob/master/images/admin.png)
 
+## 其它说明
 
+需要更改数据库等配置，请参考：https://github.com/zkesong/mobile-number-admin
+
+# 安装
+Add repository
+```shell
+helm repo add apphub https://apphub.aliyuncs.com/
+```
+Insatll chart
+```shell
+helm install apphub/mobile-number-admin --version v1.0
