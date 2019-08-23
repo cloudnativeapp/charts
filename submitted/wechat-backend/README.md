@@ -1,10 +1,10 @@
 # WeChat Account Backend
 
-[wechat-backend]https://github.com/jenkins-zh/wechat-backend) is a backend api server for the WeChat Account.
+[wechat-backend](https://github.com/jenkins-zh/wechat-backend) is a backend api server for the WeChat Account.
 
 ## Introduction
 
-This chart helps you run a backend api server. This server could allow you to manage your wechat account easily.
+This chart helps you run a backend api server. This server could allow you to manage your wechat account easily. You can provide a config file for it, then [wechat-backend](https://github.com/jenkins-zh/wechat-backend) could auto replay according the config file. Hightlight is that git webhook is supported. So, anyone could help you to maintain your auto reply messages without a admin permission.
 
 ## Installing the Chart
 
