@@ -1,0 +1,17 @@
+apiVersion: v1
+name: spring-cloud-eureka
+description: A Helm chart for  spring cloud eureka and Kubernetes
+type: application
+version: 0.1.0
+appVersion: 0.1.0
+icon: https://davidlovezoe.files.wordpress.com/2019/08/spring-cloud.jpg
+keywords:
+  - spring cloud
+  - eureka cluster
+  - registry cluster
+  - statefulset
+sources:
+  - https://github.com/nevermosby/springcloudoss-eureka
+maintainers:
+  - name: David li
+    email: legendarilylwq@gmail.com
