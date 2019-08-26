@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: eureka-{{ .Release.Namespace }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+  name: eureka
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.data.springcloudoss.eureka.resource.replicas }}
+  selector:
+    matchLabels:
+      app: eureka-{{ .Release.Namespace }}
+      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+      release: "{{ .Release.Name }}"
+  serviceName: eureka
+  template:
+    metadata:
+      labels:
+        app: eureka-{{ .Release.Namespace }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+    spec:
+      containers:
+      # - env:
+      #     - name: SERVER_PORT
+      #       value: 28888
+      #     - name: SPRING_APPLICATION_NAME
+      #       value: "euraka"
+      #     - name: JAVA_OPTS
+      #       value: {{ .Values.data.springcloudoss.eureka.application.javaOptions }}
+      - name: eureka
+        image: "{{ .Values.global.registry }}/{{ .Values.data.springcloudoss.eureka.image.repo }}:{{ .Values.data.springcloudoss.eureka.image.tag }}"
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: eureka-addresses
+        resources:
+          limits:
+            cpu: {{ .Values.data.springcloudoss.eureka.resource.limits.cpu }}
+            memory: {{ .Values.data.springcloudoss.eureka.resource.limits.memory }}
+          requests:
+            cpu: {{ .Values.data.springcloudoss.eureka.resource.requests.cpu }}
+            memory: {{ .Values.data.springcloudoss.eureka.resource.requests.memory }}
