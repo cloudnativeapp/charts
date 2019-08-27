@@ -1,0 +1,97 @@
+# etcd-manage
+
+## 功能介绍
+
+etcd-manage 是一个用go编写的etcd管理工具，具有友好的界面(类似阿里云后台)，管理key就像管理本地文件一样方便。支持简单权限管理区分只读和读写权限。
+
+开源地址： [https://github.com/etcd-manage](https://github.com/etcd-manage)
+
+**备注**
+
+1. 用helm部署时注意修改mysql连接相关信息
+2. 将sql文件导入到mysql数据库，默认用户 admin/111111 [etcd-manage.sql](sql/etcd-manage.sql)
+3. 此程序为2.0版本，实现1.0功能 1.0项目地址 [https://github.com/shiguanghuxian/etcd-manage](https://github.com/shiguanghuxian/etcd-manage)
+4. 下一步开发对中英双语言做全面支持，当前对中文支持友好。
+5. 当前只实现了etcd v3 api管理key v2在路上。
+6.  在使用时可直接修改默认的两个etcd连接地址为真实可用地址即可开始体验。
+
+
+PS： **纯原创**，打造最易用的etcd管理界面
+
+PS： 知道云原生应用开发大赛时间比较晚，加班熬夜完成etcdv3 api管理功能，多关照。
+
+
+## 安装使用
+
+注意设置--set参数，因为此程序需要访问mysql数据库，需要使用你自己的，切需导入⬆备注中的sql
+
+```shell
+helm install my-etcd-manage etcd-manage --set database.address="你的数据库ip地址" --set database.port=3306 --set database.user="user" --set database.passwd="密码" --set database.db_name="etcd-manage"
+或
+cd path/etcd-manage
+helm package .
+helm install my-etcd-manage etcd-manage-1.0.0.tgz --set database.address="你的数据库ip地址" --set database.port=3306 --set database.user="user" --set database.passwd="密码" --set database.db_name="etcd-manage"
+```
+
+运行后看到输出：
+
+```shell
+NAME: my-etcd-manage
+LAST DEPLOYED: 2019-08-26 20:16:23.182943 +0800 CST m=+0.068774555
+NAMESPACE: default
+STATUS: deployed
+
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods -l "app=etcd-manage,release=my-etcd-manage" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:10280 to use your application"
+  kubectl port-forward $POD_NAME 10280:10280
+
+# kubectl get pods
+NAME                                 READY   STATUS    RESTARTS   AGE
+my-etcd-manage-55f9f4b65c-zfxqc   0/1     Running   0          16m
+
+```
+
+执行完 NOTES 中提示命令的命令即可在浏览器中访问 `http://127.0.0.1:10280` 查看。
+
+如果NOTES命令执行错误可执行
+
+```shell
+kubectl port-forward my-etcd-manage-55f9f4b65c-zfxqc 10280:10280 // my-etcd-manage-55f9f4b65c-zfxqc 为 kubectl get pods 中获取的值
+```
+
+## 使用参数
+
+```shell
+helm install my-etcd-manage etcd-manage --set database.address="你的数据库ip地址" --set database.port=3306 --set database.user="user" --set database.passwd="密码" --set database.db_name="etcd-manage"
+```
+
+**参数介绍**
+
+| 参数名 | 简述 | 示例 |
+| ----- | ----- | ---|
+|  database.address | mysql数据库地址 | 192.168.1.88 |
+|  database.port | mysql数据库端口 | 3306 |
+|  database.user | mysql用户名 | root |
+|  database.passwd | mysql用户密码 | 123456 |
+|  database.db_name | 导入etcd-manage.sql的数据库 | etcd-manage |
+
+
+## 效果演示
+
+etcd服务列表管理
+
+![](imgs/etcd-server.png)
+
+key 管理
+
+![](imgs/keys.png)
+
+key 编辑
+
+![](imgs/keys.png)
+
+用户管理
+
+![](imgs/user.png)
