@@ -1,0 +1,22 @@
+global:
+  registry: registry.cn-shanghai.aliyuncs.com
+data:
+  springcloudoss:
+    eureka:
+      application:
+        name: eureka
+        port: 28888
+        javaOptions:
+      image:
+        repo: springcloudoss/eureka
+        tag: "1.0"
+      resource:
+        replicas: 3
+        serviceName: eureka
+        servicePort: 28888
+        limits:
+          cpu: 500m
+          memory: 500Mi
+        requests:
+          cpu: 100m
+          memory: 200Mi
