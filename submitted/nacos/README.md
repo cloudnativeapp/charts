@@ -22,6 +22,27 @@ $ helm install `release name` ./nacos
 
 The command deploys Nacos on the Kubernetes cluster in the default configuration. It will run without a mysql chart and persistent volume. The [configuration](#configuration) section lists the parameters that can be configured during installation. 
 
+### Service & Configuration Management
+
+#### Service registration
+```shell
+curl -X POST 'http://$NODE_IP:$NODE_PORT/nacos/v1/ns/instance?serviceName=nacos.naming.serviceName&ip=20.18.7.10&port=8080'
+```
+
+#### Service discovery
+```shell
+curl -X GET 'http://$NODE_IP:$NODE_PORT/nacos/v1/ns/instance/list?serviceName=nacos.naming.serviceName'
+```
+#### Publish config
+```shell
+curl -X POST "http://$NODE_IP:$NODE_PORT/nacos/v1/cs/configs?dataId=nacos.cfg.dataId&group=test&content=helloWorld"
+```
+#### Get config
+```shell
+curl -X GET "http://$NODE_IP:$NODE_PORT/nacos/v1/cs/configs?dataId=nacos.cfg.dataId&group=test"
+```
+
+
 
 > **Tip**: List all releases using `helm list`
 
