@@ -10,3 +10,6 @@ maintainers:
     name: 左秀朋
 
 icon: https://raw.githubusercontent.com/etcd-manage/etcd-manage-ui/dev/static/etcdui.png
+keywords: 
+- etcd-manage
+- etcd

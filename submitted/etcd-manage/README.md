@@ -18,14 +18,15 @@ etcd-manage 是一个用go编写的etcd管理工具，具有友好的界面(类�
 
 ## 安装使用
 
-注意设置--set参数，因为此程序需要访问mysql数据库，需要使用你自己的，切需导入⬆备注中的sql
+提示：安装后通过kubectl get pods看到两个pod专题都是Running表示服务可用，首次mysql需要初始化会慢一些，大概1分钟。
 
 ```shell
-helm install my-etcd-manage etcd-manage --set database.address="你的数据库ip地址" --set database.port=3306 --set database.user="user" --set database.passwd="密码" --set database.db_name="etcd-manage"
+helm install my-etcd-manage etcd-manage
 或
 cd path/etcd-manage
 helm package .
-helm install my-etcd-manage etcd-manage-1.0.0.tgz --set database.address="你的数据库ip地址" --set database.port=3306 --set database.user="user" --set database.passwd="密码" --set database.db_name="etcd-manage"
+helm install my-etcd-manage etcd-manage-1.0.0.tgz
+
 ```
 
 运行后看到输出：
@@ -43,8 +44,9 @@ NOTES:
   kubectl port-forward $POD_NAME 10280:10280
 
 # kubectl get pods
-NAME                                 READY   STATUS    RESTARTS   AGE
-my-etcd-manage-55f9f4b65c-zfxqc   0/1     Running   0          16m
+NAME                                  READY   STATUS    RESTARTS   AGE
+my-etcd-manage-f4bc496f5-bpg99        0/1     Running   2          25s
+my-etcd-manage-mysql-5577cd9b-4nqr2   1/1     Running   0          25s
 
 ```
 
@@ -53,10 +55,12 @@ my-etcd-manage-55f9f4b65c-zfxqc   0/1     Running   0          16m
 如果NOTES命令执行错误可执行
 
 ```shell
-kubectl port-forward my-etcd-manage-55f9f4b65c-zfxqc 10280:10280 // my-etcd-manage-55f9f4b65c-zfxqc 为 kubectl get pods 中获取的值
+kubectl port-forward my-etcd-manage-f4bc496f5-bpg99 10280:10280 // my-etcd-manage-f4bc496f5-bpg99 为 kubectl get pods 中获取的值
 ```
 
 ## 使用参数
+
+使用数据库参数可使用自己mysql服务，默认使用依赖的charts中mysql服务，如果使用自己mysql请导入sql文件 [etcd-manage.sql](sql/etcd-manage.sql)
 
 ```shell
 helm install my-etcd-manage etcd-manage --set database.address="你的数据库ip地址" --set database.port=3306 --set database.user="user" --set database.passwd="密码" --set database.db_name="etcd-manage"
@@ -69,7 +73,7 @@ helm install my-etcd-manage etcd-manage --set database.address="你的数据库i
 |  database.address | mysql数据库地址 | 192.168.1.88 |
 |  database.port | mysql数据库端口 | 3306 |
 |  database.user | mysql用户名 | root |
-|  database.passwd | mysql用户密码 | 123456 |
+|  database.passwd | mysql用户密码 | z123456 |
 |  database.db_name | 导入etcd-manage.sql的数据库 | etcd-manage |
 
 
