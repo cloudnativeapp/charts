@@ -1,0 +1,64 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "etcd-manage.fullname" . }}
+  labels:
+{{ include "etcd-manage.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "etcd-manage.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "etcd-manage.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      volumes: 
+        - name: vnc-config
+          configMap:
+            name: {{ template "etcd-manage.fullname" . }}
+
+        # 可将日志挂着至本地路径，查看日志
+        # - name: vnc-logs
+        #   hostPath: 
+        #     path: path/logs
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts: 
+            - name: vnc-config
+              mountPath: /app/config/cfg.toml
+              subPath: cfg.toml
+            # - name: vnc-logs
+            #   mountPath: /app/logs
+          ports:
+            - name: http
+              containerPort: 10280
+              hostPort: 10280
+              protocol: TCP
+          # livenessProbe: # TODO 不打开这里，由于http服务放回401这里导致容器重启 - 后期加入心跳接口
+          #   httpGet:
+          #     path: /
+          #     port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
