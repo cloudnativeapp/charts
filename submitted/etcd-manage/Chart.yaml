@@ -4,5 +4,9 @@ description: 一个简洁的etcd管理工具，提供友好的可视化界面
 type: application
 version: 1.0.0
 appVersion: 2.0.0
+home: https://github.com/shiguanghuxian
+maintainers:
+  - email: zuoxiupeng@live.com
+    name: 左秀朋
 
 icon: https://raw.githubusercontent.com/etcd-manage/etcd-manage-ui/dev/static/etcdui.png
