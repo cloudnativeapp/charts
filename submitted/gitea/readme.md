@@ -102,3 +102,4 @@ Gitea 需要 MySQL、PostgreSQL、MSSQL 或 SQLite3.
 在初始化时会要求你填入,这里就不用容器部署数据库了.
 
 `SSH 服务域名` 和 `Gitea 基本 URL` 建议一开始设置好,这个会生成 `app.ini` 配置文件,这个配置文件在 `/data` 目录里面,只能通过文件方式修改.
+
