@@ -13,7 +13,7 @@ etcd-manage 是一个用go编写的etcd管理工具，具有友好的界面(类�
 3. 此程序为2.0版本，实现1.0功能 1.0项目地址 [https://github.com/shiguanghuxian/etcd-manage](https://github.com/shiguanghuxian/etcd-manage)
 4. 下一步开发对中英双语言做全面支持，当前对中文支持友好。
 5. 当前只实现了etcd v3 api管理key v2在路上。
-6.  在使用时可直接修改默认的两个etcd连接地址为真实可用地址即可开始体验。
+6. 在使用时可直接修改默认的两个etcd连接地址为真实可用地址即可开始体验。
 
 
 ## 安装使用
@@ -50,7 +50,7 @@ my-etcd-manage-mysql-5577cd9b-4nqr2   1/1     Running   0          25s
 
 ```
 
-执行完 NOTES 中提示命令的命令即可在浏览器中访问 `http://127.0.0.1:10280` 查看。
+执行完 NOTES 中提示命令的命令即可在浏览器中访问 `http://127.0.0.1:10280/ui` 查看。注意url端口后边路径为/ui
 
 如果NOTES命令执行错误可执行
 
