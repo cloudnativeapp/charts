@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gateway-{{ .Release.Namespace }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+  name: gateway
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.data.springcloudoss.gateway.resource.replicas }}
+  selector:
+    matchLabels:
+      app: gateway-{{ .Release.Namespace }}
+      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+      release: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: gateway-{{ .Release.Namespace }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+    spec:
+      containers:
+      - name: gateway
+        image: "{{ .Values.global.registry }}/{{ .Values.data.springcloudoss.gateway.image.repo }}:{{ .Values.data.springcloudoss.gateway.image.tag }}"
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: eureka-addresses
+        resources:
+          limits:
+            cpu: {{ .Values.data.springcloudoss.gateway.resource.limits.cpu }}
+            memory: {{ .Values.data.springcloudoss.gateway.resource.limits.memory }}
+          requests:
+            cpu: {{ .Values.data.springcloudoss.gateway.resource.requests.cpu }}
+            memory: {{ .Values.data.springcloudoss.gateway.resource.requests.memory }}
