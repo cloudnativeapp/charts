@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "etcd-manage.fullname" . }}
+  labels:
+{{ include "etcd-manage.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "etcd-manage.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "etcd-manage.fullname" . }}
+  labels:
+    app: {{ template "etcd-manage.name" . }}
+    chart: {{ template "etcd-manage.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  cfg.toml: |- # debug模式
+    debug = false
+    # 日志文件路径
+    log_path = ""
+    # http 监听端口
+    [http]
+    # 监听地址
+    address = "0.0.0.0"
+    # 监听端口
+    port = 10280
+
+    ## mysql 配置
+    [db]
+    ## 是否调试模式
+    debug = false
+    ## 数据库连接地址 - docker 不可以是127.0.0.1
+    address = "{{ .Values.database.address }}"
+    ## 数据库端口
+    port = {{ .Values.database.port }}
+    ## 连接池最大连接数
+    max_idle_conns = 64
+    ## 默认打开连接数
+    max_open_conns = 24
+    ## 数据库用户名
+    user = "{{ .Values.database.user }}"
+    ## 数据库密码
+    passwd = "{{ .Values.database.passwd }}"
+    ## 数据库名
+    db_name = "{{ .Values.database.db_name }}"
