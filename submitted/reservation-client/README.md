@@ -18,7 +18,7 @@ helm install reservation-client reservation-client
 运行后看到输出：
 
 ```shell
-NAME: reservation-client-helm
+NAME: reservation-client
 LAST DEPLOYED: 2019-08-29 09:49:24.498483847 +0000 UTC m=+2.149383629
 NAMESPACE: default
 STATUS: deployed
