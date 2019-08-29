@@ -45,12 +45,14 @@ NOTES:
 
 # kubectl get pods
 NAME                                  READY   STATUS    RESTARTS   AGE
-my-etcd-manage-f4bc496f5-bpg99        0/1     Running   2          25s
+my-etcd-manage-f4bc496f5-bpg99        1/1     Running   2          25s
 my-etcd-manage-mysql-5577cd9b-4nqr2   1/1     Running   0          25s
 
 ```
 
 执行完 NOTES 中提示命令的命令即可在浏览器中访问 `http://127.0.0.1:10280/ui` 查看。注意url端口后边路径为/ui
+
+默认用户 admin/111111
 
 如果NOTES命令执行错误可执行
 
@@ -90,6 +92,10 @@ key 管理
 key 编辑
 
 ![](imgs/keys.png)
+
+key 查看
+
+![](imgs/key-show.png)
 
 用户管理
 
