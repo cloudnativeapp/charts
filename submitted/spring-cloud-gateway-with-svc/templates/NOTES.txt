@@ -1,0 +1,7 @@
+访问网关测试页面
+
+1. 获取minikube的IP: vmip=$(minikube ip)
+
+2. 获取网关服务的端口: gwport=$(kubectl get svc -l app=gateway-default -o yaml |grep nodePort | awk '{print $2}' )
+
+3. 浏览器访问 http://$(vmip):$(gwport)/user/{your-test-data}
