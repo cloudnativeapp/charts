@@ -9,7 +9,7 @@ etcd-manage 是一个用go编写的etcd管理工具，具有友好的界面(类�
 **备注**
 
 1. 用helm部署时注意修改mysql连接相关信息
-2. 将sql文件导入到mysql数据库，默认用户 admin/111111 [etcd-manage.sql](sql/etcd-manage.sql)
+2. 将sql文件导入到mysql数据库，默认用户 admin/111111 [etcd-manage.sql](https://raw.githubusercontent.com/cloudnativeapp/charts/master/submitted/etcd-manage/sql/etcd-manage.sql)
 3. 此程序为2.0版本，实现1.0功能 1.0项目地址 [https://github.com/shiguanghuxian/etcd-manage](https://github.com/shiguanghuxian/etcd-manage)
 4. 下一步开发对中英双语言做全面支持，当前对中文支持友好。
 5. 当前只实现了etcd v3 api管理key v2在路上。
@@ -62,7 +62,7 @@ kubectl port-forward my-etcd-manage-f4bc496f5-bpg99 10280:10280 // my-etcd-manag
 
 ## 使用参数
 
-使用数据库参数可使用自己mysql服务，默认使用依赖的charts中mysql服务，如果使用自己mysql请导入sql文件 [etcd-manage.sql](sql/etcd-manage.sql)
+使用数据库参数可使用自己mysql服务，默认使用依赖的charts中mysql服务，如果使用自己mysql请导入sql文件 [etcd-manage.sql](https://raw.githubusercontent.com/cloudnativeapp/charts/master/submitted/etcd-manage/sql/etcd-manage.sql)
 
 ```shell
 helm install my-etcd-manage etcd-manage --set database.address="你的数据库ip地址" --set database.port=3306 --set database.user="user" --set database.passwd="密码" --set database.db_name="etcd-manage"
@@ -83,20 +83,20 @@ helm install my-etcd-manage etcd-manage --set database.address="你的数据库i
 
 etcd服务列表管理
 
-![](imgs/etcd-server.png)
+![](https://raw.githubusercontent.com/cloudnativeapp/charts/master/submitted/etcd-manage/imgs/etcd-server.png)
 
 key 管理
 
-![](imgs/keys.png)
+![](https://raw.githubusercontent.com/cloudnativeapp/charts/master/submitted/etcd-manage/imgs/keys.png)
 
 key 编辑
 
-![](imgs/keys.png)
+![](https://raw.githubusercontent.com/cloudnativeapp/charts/master/submitted/etcd-manage/imgs/key-edit.png)
 
 key 查看
 
-![](imgs/key-show.png)
+![](https://raw.githubusercontent.com/cloudnativeapp/charts/master/submitted/etcd-manage/imgs/key-show.png)
 
 用户管理
 
-![](imgs/user.png)
+![](https://raw.githubusercontent.com/cloudnativeapp/charts/master/submitted/etcd-manage/imgs/user.png)
