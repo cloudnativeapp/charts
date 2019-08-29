@@ -63,7 +63,7 @@ user-service-67567fd8b-bfcgg   1/1     Running   0          43m
 NAME     READY   AGE
 eureka   3/3     20s
 # 查看所有service
-> kubect get svc
+> kubectl get svc
 NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)           AGE
 eureka       ClusterIP   None            <none>        28888/TCP         44m
 gateway      NodePort    10.106.21.126   <none>        28899:31000/TCP   44m
