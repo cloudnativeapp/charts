@@ -40,7 +40,7 @@ spec:
               containerPort: 10280
               hostPort: 10280
               protocol: TCP
-          livenessProbe: # TODO 不打开这里，由于http服务放回401这里导致容器重启 - 后期加入心跳接口
+          livenessProbe: 
             httpGet:
               path: /ui
               port: http
