@@ -1,0 +1,24 @@
+apiVersion: v1
+name: spring-cloud-gw-with-svc
+description: A Helm chart for spring cloud gateway and Kubernetes
+type: application
+version: 0.1.0
+appVersion: 0.1.0
+icon: https://davidlovezoe.files.wordpress.com/2019/08/spring-cloud.jpg
+home: https://github.com/nevermosby/helm-chart-spring-cloud-gw-with-svc
+keywords:
+  - spring cloud
+  - gateway
+  - zuul
+  - deployment
+sources:
+  - https://github.com/nevermosby/springcloudoss-gateway
+  - https://github.com/nevermosby/springcloudoss-user-service
+dependencies:
+  - name: spring-cloud-eureka
+    version: 0.1.0
+    repository: https://apphub.aliyuncs.com/
+maintainers:
+  - name: David li(@nevermosby)
+    email: legendarilylwq@gmail.com
+

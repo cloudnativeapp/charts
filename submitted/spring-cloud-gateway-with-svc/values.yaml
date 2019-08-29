@@ -1,0 +1,36 @@
+global:
+  registry: registry.cn-shanghai.aliyuncs.com
+data:
+  springcloudoss:
+    gateway:
+      application:
+        name: gateway
+        port: 28888
+        javaOptions:
+      image:
+        repo: springcloudoss/gateway
+        tag: "1.0"
+      resource:
+        replicas: 1
+        limits:
+          cpu: 500m
+          memory: 500Mi
+        requests:
+          cpu: 100m
+          memory: 200Mi
+    usersvc:
+      application:
+        name: user-service
+        port: 8080
+        javaOptions:
+      image:
+        repo: springcloudoss/user-service
+        tag: "1.0"
+      resource:
+        replicas: 1
+        limits:
+          cpu: 500m
+          memory: 500Mi
+        requests:
+          cpu: 100m
+          memory: 200Mi
