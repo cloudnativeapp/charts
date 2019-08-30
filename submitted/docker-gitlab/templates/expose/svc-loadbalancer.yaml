@@ -1,0 +1,24 @@
+{{- if eq .Values.expose.type "loadBalancer" -}}
+{{- $loadBalancer := .Values.expose.loadBalancer }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "gitlab.core.serviceName" . }}
+  labels:
+{{ include "gitlab.labels" . | indent 4 }}
+spec:
+  type: LoadBalancer
+  {{- if $loadBalancer.IP }}
+  loadBalancerIP: {{ $loadBalancer.IP }}
+  {{- end }}
+  ports:
+    - name: ssh
+      port: {{ $loadBalancer.ports.ssh }}
+      targetPort: 22
+    - name: http
+      port: {{ $loadBalancer.ports.http }}
+      targetPort: 80
+  selector:
+{{ include "gitlab.matchLabels" . | indent 4 }}
+    component: gitlab
+{{- end }}

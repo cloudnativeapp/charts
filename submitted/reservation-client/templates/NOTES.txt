@@ -1,0 +1,7 @@
+1. Get the application URL by running these commands:
+
+``` bash
+kubectl get svc
+```
+
+2. access the web with the port in the browser

@@ -1,5 +1,4 @@
 {{- $core := .Values.persistence.persistentVolumeClaim.core -}}
-{{- $ingress := .Values.expose.ingress -}}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -36,8 +35,11 @@ spec:
       {{- end }}
       {{- end }}
       {{- if eq .Values.expose.type "ingress" }}
+        {{ $ingress := .Values.expose.ingress -}}
         - name: GITLAB_HOST
-          value: {{ $ingress.host }}
+          value: {{ $ingress.host | quote }}
+        - name: GITLAB_SSH_PORT
+          value: {{ $ingress.sshPort | quote }}
         {{- if .Values.expose.tls.enabled }}
         - name: GITLAB_HTTPS
           value: "true"
@@ -45,12 +47,24 @@ spec:
           value: "true"
         {{- end }}
       {{- end }}
+      {{- if eq .Values.expose.type "nodePort" }}
+        {{ $nodePort := .Values.expose.nodePort -}}
+        - name: GITLAB_PORT
+          value: {{ $nodePort.ports.http.nodePort | quote }}
+        - name: GITLAB_SSH_PORT
+          value: {{ $nodePort.ports.ssh.nodePort | quote }}
+      {{- end }}
         - name: REDIS_HOST
           value: {{ include "gitlab.redis.host" . | quote }}
         - name: REDIS_PORT
           value: {{ include "gitlab.redis.port" . | quote }}
-        - name: DB_ADAPTER
-          value: {{ include "gitlab.database.adapter" . | quote }}
+      {{- if (include "gitlab.redis.rawPassword" .) }}
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "gitlab.redis" . }}
+              key: REDIS_PASSWORD
+      {{- end }}
         - name: DB_HOST
           value: {{ include "gitlab.database.host" . | quote }}
         - name: DB_PORT
@@ -70,8 +84,10 @@ spec:
             secretKeyRef:
               name: {{ include "gitlab.database" . }}
               key: DB_NAME
-        - name: TZ
-          value: {{ .Values.core.env.GITLAB_TIMEZONE | quote }}
+        - name: DB_ADAPTER
+          value: postgresql
+        - name: GITLAB_DATA_DIR
+          value: "/home/git/data"
         - name: GITLAB_BACKUP_SCHEDULE
           value: disable
         livenessProbe:

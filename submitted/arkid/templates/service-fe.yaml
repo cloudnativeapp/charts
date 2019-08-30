@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ include "oneid.fullname" . }}-fe"
+  labels:
+    app.kubernetes.io/name: "{{ include "oneid.name" . }}-fe"
+    helm.sh/chart: {{ include "oneid.chart" . }}
+    app.kubernetes.io/instance: "{{ .Release.Name }}-fe"
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.feServer.port}}
+      targetPort: http
+      protocol: TCP
+      name: http
+
+  selector:
+    app.kubernetes.io/name: "{{ include "oneid.name" . }}-fe"
+    app.kubernetes.io/instance: "{{ .Release.Name }}-fe"

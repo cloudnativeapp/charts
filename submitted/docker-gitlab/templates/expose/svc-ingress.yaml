@@ -1,0 +1,35 @@
+{{- if eq .Values.expose.type "ingress" -}}
+{{- $ingress := .Values.expose.ingress -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "gitlab.core.serviceName" . }}
+  labels:
+{{ include "gitlab.labels" . | indent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+{{ include "gitlab.matchLabels" . | indent 4 }}
+    component: gitlab
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "gitlab.core.serviceName" . }}-ssh
+  labels:
+{{ include "gitlab.labels" . | indent 4 }}
+spec:
+  type: NodePort
+  ports:
+    - name: ssh
+      port: 22
+      targetPort: 22
+      nodePort: {{ $ingress.sshPort }}
+  selector:
+{{ include "gitlab.matchLabels" . | indent 4 }}
+    component: gitlab
+{{- end }}

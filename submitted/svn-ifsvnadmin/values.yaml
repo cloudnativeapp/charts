@@ -1,0 +1,103 @@
+replicaCount: 1
+
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 0
+
+image:
+  repository: quay.azk8s.cn/setzero/svn-ifsvnadmin
+  tag: passwd
+  pullPolicy: IfNotPresent
+
+## Additional deployment annotations
+annotations: {}
+
+## Additional replica annotations
+podAnnotations: {}
+
+## Configure resource requests and limits
+## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+# resources: 
+#   limits:
+#     memory: 3Gi
+#     # cpu: 1
+#   requests:
+#     memory: 3Gi
+#     # cpu: 100m
+
+## Node labels for pod assignment
+## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+nodeSelector: {}
+
+## Tolerations for pod assignment
+## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+tolerations: []
+
+## Affinity for pod assignment
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+affinity: {}
+
+## Extra environment variables to mount in the pods:
+## ref: https://github.com/TimeBye/svn-ifsvnadmin
+env: {}
+
+expose:
+  # Set the way how to expose the service. Set the type as "ingress","clusterIP","loadBalancer"
+  # or "nodePort" and fill the information in the corresponding 
+  # section
+  type: ingress
+  tls:
+    enabled: false
+    # Fill the name of secret if you want to use your own TLS certificate
+    # and private key. The secret must contain keys named tls.crt and 
+    # tls.key that contain the certificate and private key to use for TLS
+    # The certificate and private key will be generated automatically if 
+    # it is not set
+    secretName: ""
+    certExpiry: 3560
+  ingress:
+    host: svn.cluster.local
+    annotations:
+      ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      # kubernetes.io/tls-acme: "true"
+  clusterIP:
+    # The name of ClusterIP service
+    # name: svn
+    # The service port svn listens on when serving with HTTP
+    port: 80
+  nodePort:
+    # The name of NodePort service
+    # name: svn
+    # The service port svn listens on when serving with HTTP
+    port: 80
+    # The node port svn listens on when serving with HTTP
+    # nodePort: 30008
+  loadBalancer:
+    # The name of LoadBalancer service
+    # name: svn
+    # Set the IP if the LoadBalancer supports assigning IP
+    IP: ""
+    # The service port svn listens on when serving with HTTP
+    port: 80
+
+# The persistence is enabled by default and a default StorageClass
+# is needed in the k8s cluster to provision volumes dynamicly. 
+# Specify another StorageClass in the "storageClass" or set "existingClaim"
+# if you have already existing persistent volumes to use
+persistence:
+  enabled: false
+  # Setting it to "keep" to avoid removing PVCs during a helm delete 
+  # operation. Leaving it empty will delete PVCs after the chart deleted
+  resourcePolicy: "keep"
+  # Use the existing PVC which must be created manually before bound
+  existingClaim: ""
+  # Specify the "storageClass" used to provision the volume. Or the default
+  # StorageClass will be used(the default).
+  # Set it to "-" to disable dynamic provisioning
+  storageClass: ""
+  accessMode: ReadWriteMany
+  size: 5Gi
