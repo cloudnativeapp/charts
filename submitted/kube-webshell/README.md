@@ -5,7 +5,7 @@
 
 参考kube-dashboard提取出来的容器网页版终端，通过web浏览器连接k8s容器。  
 
-基于xterm.js和sockjs实现，简单轻量。  
+基于xterm.js和sockjs实现，简单轻量，可与任何Kubernetes集群集成，根据自己的需求定制。
 需要提供kubeconfig文件，使用时传递以下参数：  
 
 - context
@@ -22,6 +22,21 @@
 
 ## 使用:
 
+### docker 运行
+```docker pull springwar/kube-webshell:latest```  
+
+将app.conf和kubeconfig文件放至/opt/kube/conf路径下(可自定义), 并且执行以下命令:  
+```docker run -d --name kube-webshell -p 8080:8080 -v /opt/kube/conf/:/opt/kube/conf springwar/kube-webshell:latest ```  
+
+app.conf配置文件示例:
+```
+appname = kube-webshell
+httpport = 8080
+kubeconfig = /opt/kube/conf/config
+```
+
+打开浏览器访问8080端口即可。
+
 ### Helm 安装
 支持helm安装：
 
@@ -31,13 +46,19 @@
 - helm 2.8.0+
 
 #### Installation
+
+```bash
+helm repo add apphub https://apphub.aliyuncs.com/
+helm install apphub/kube-webshell 
 ```
+**注意:使用apphub默认安装后，没有kubeconfig文件所以无法连接任何集群，请自行替换secret中的config文件，或使用以下方法安装**
+```bash
 git clone https://github.com/lf1029698952/kube-webshell.git
 cd kube-webshell/helm-chart
 ```
-将目标集群的kubeconfig文件内容替换至kubeconfig.toml文件下，支持多contexts集群配置，然后执行：
+将目标集群的kubeconfig文件内容替换至kubeconfig.toml文件下，支持多集群contexts配置，然后执行：
 ```
-helm install kube-webshell kube-webshell
+helm install kube-webshell ./
 ```
 
 #### 配置values.yaml文件
@@ -60,11 +81,11 @@ kubectl port-forward <PodName> 8080:8080
 浏览器访问localhost:8080  
 
 如图：
-![kube-webshell](images/kube-webshell-index.png)
-![kube-webshell](images/kube-webshell.png)
+![kube-webshell](https://raw.githubusercontent.com/cloudnativeapp/charts/master/submitted/kube-webshell/images/kube-webshell-index.png)
+![kube-webshell](https://raw.githubusercontent.com/cloudnativeapp/charts/master/submitted/kube-webshell/images/kube-webshell.png)
 
 演示：
-[kube-webshell](images/kube-webshell.mov)
+[kube-webshell](https://github.com/lf1029698952/kube-webshell/blob/master/docs/images/kube-webshell.mov)
 
 ### 删除安装
 
