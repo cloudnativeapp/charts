@@ -1,6 +1,6 @@
 # reservation-client
 
-## 功能介绍 *(此处介绍charts功能)*
+## 功能介绍
 
 活动室预约系统的 angular8 + material 客户端，
 
@@ -9,7 +9,7 @@
 - 活动室预约服务器端：<https://github.com/WeihanLi/ActivityReservation>
 - 活动室预约客户端：<https://github.com/WeihanLi/ActivityReservation/tree/dev/ActivityReservation.Clients/ReservationClient>
 
-## 安装使用 *(此处介绍安装方式)*
+## 安装使用
 
 ```shell
 helm install reservation-client reservation-client
