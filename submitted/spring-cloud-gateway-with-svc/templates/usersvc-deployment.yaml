@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: usersvc-{{ .Release.Namespace }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+  name: user-service
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.data.springcloudoss.usersvc.resource.replicas }}
+  selector:
+    matchLabels:
+      app: usersvc-{{ .Release.Namespace }}
+      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+      release: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: usersvc-{{ .Release.Namespace }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+    spec:
+      containers:
+      - name: usersvc
+        image: "{{ .Values.global.registry }}/{{ .Values.data.springcloudoss.usersvc.image.repo }}:{{ .Values.data.springcloudoss.gateway.image.tag }}"
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - configMapRef:
+            name: eureka-addresses
+        resources:
+          limits:
+            cpu: {{ .Values.data.springcloudoss.usersvc.resource.limits.cpu }}
+            memory: {{ .Values.data.springcloudoss.usersvc.resource.limits.memory }}
+          requests:
+            cpu: {{ .Values.data.springcloudoss.usersvc.resource.requests.cpu }}
+            memory: {{ .Values.data.springcloudoss.usersvc.resource.requests.memory }}

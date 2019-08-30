@@ -20,6 +20,8 @@ expose:
       ingress.kubernetes.io/proxy-body-size: "0"
       nginx.ingress.kubernetes.io/proxy-body-size: "0"
       # kubernetes.io/tls-acme: "true"
+    # The node port Gitlab listens on when serving with SSH
+    sshPort: 30002
   clusterIP:
     # The name of ClusterIP service
     # name: gitlab
@@ -36,15 +38,17 @@ expose:
         # The service port Gitlab listens on when serving with SSH
         port: 22
         # The node port Gitlab listens on when serving with SSH
-        # nodePort: 30002
+        nodePort: 30002
       http:
         # The service port Gitlab listens on when serving with HTTP
         port: 80
         # The node port Gitlab listens on when serving with HTTP
-        # nodePort: 30003
+        nodePort: 30003
   loadBalancer:
     # The name of LoadBalancer service
     # name: gitlab
+    # Set the IP if the LoadBalancer supports assigning IP
+    IP: ""
     ports:
       # The service port Gitlab listens on when serving with SSH
       ssh: 22
@@ -92,8 +96,8 @@ imagePullPolicy: IfNotPresent
 
 core:
   image:
-    repository: dockerhub.azk8s.cn/sameersbn/gitlab
-    tag: 12.0.4
+    repository: quay.azk8s.cn/setzero/docker-gitlab
+    tag: v12.1.6
   replicas: 1
   ## Additional deployment annotations
   podAnnotations: {}
@@ -106,7 +110,12 @@ core:
   affinity: {}
   env:
     # DEBUG: true
-    GITLAB_TIMEZONE: Asia/Shanghai
+    TZ: Asia/Shanghai
+    GITLAB_TIMEZONE: Beijing
+
+    # GITLAB_HOST: localhost
+    # GITLAB_PORT: "80"
+    # GITLAB_SSH_PORT: "22"
 
     GITLAB_SECRETS_DB_KEY_BASE: bf2e47b68d6cafaef1d767e628b619365becf27571e10f196f98dc85e7771042b9203199d39aff91fcb6837c8ed83f2a912b278da50999bb11a2fbc0fba52964
     GITLAB_SECRETS_SECRET_KEY_BASE: 6e657410d57c71b4fc3ed0d694e7842b1895a8b401d812c17fe61caf95b48a6d703cb53c112bc01ebd197a85da81b18e29682040e99b4f26594772a4a2c98c6d
@@ -115,13 +124,13 @@ core:
     # GITLAB_ROOT_PASSWORD: "changeit"
     # GITLAB_ROOT_EMAIL: 
 
-    # GITLAB_HOST: localhost
-    # GITLAB_PORT: "80"
-    # GITLAB_SSH_PORT: "22"
-
     GITLAB_NOTIFY_ON_BROKEN_BUILDS: true
     GITLAB_NOTIFY_PUSHER: false
 
+    GITLAB_EMAIL: notifications@example.com
+    GITLAB_EMAIL_REPLY_TO: noreply@example.com
+    GITLAB_INCOMING_EMAIL_ADDRESS: reply@example.com
+    
     GITLAB_BACKUP_SCHEDULE: daily
     GITLAB_BACKUP_TIME: 01:00
 
@@ -142,19 +151,45 @@ core:
     IMAP_SSL: true
     IMAP_STARTTLS: false
 
+    OAUTH_ENABLED: false
+    OAUTH_AUTO_SIGN_IN_WITH_PROVIDER: 
+    OAUTH_ALLOW_SSO: 
+    OAUTH_BLOCK_AUTO_CREATED_USERS: true
+    OAUTH_AUTO_LINK_LDAP_USER: false
+    OAUTH_AUTO_LINK_SAML_USER: false
+    OAUTH_EXTERNAL_PROVIDERS: 
+
+    OAUTH_GENERIC_API_KEY:
+    OAUTH_GENERIC_APP_SECRET:
+    OAUTH_GENERIC_APP_NAME:
+    OAUTH_GENERIC_STRATEGY_CLASS:
+    OAUTH_GENERIC_SITE:
+    OAUTH_GENERIC_USER_INFO_URL:
+    OAUTH_GENERIC_AUTHORIZE_URL:
+    OAUTH_GENERIC_TOKEN_URL:
+    OAUTH_GENERIC_ROOT_PATH:
+    OAUTH_GENERIC_ID_PATH:
+    OAUTH_GENERIC_USER_NAME:
+    OAUTH_GENERIC_USER_EMAIL:
+    OAUTH_GENERIC_USER_NICKNAME:
+    OAUTH_GENERIC_USER_FIRST_NAME:
+    OAUTH_GENERIC_USER_LAST_NAME:
+    OAUTH_GENERIC_USER_LOCATION:
+    OAUTH_GENERIC_USER_DESC:
+    OAUTH_GENERIC_USER_IMAGE:
+    OAUTH_GENERIC_USER_PHONE:
+    OAUTH_GENERIC_USER_URLS:
+    OAUTH_GENERIC_REDIRECT_URL:
+
 database:
   # if external database is used, set "type" to "external"
   # and fill the connection informations in "external" section
   type: internal
   internal:
-    # You can configure this image to use either MySQL(mysql2) or PostgreSQL(postgresql).
+    # You can configure this image to use PostgreSQL.
     image:
       repository: dockerhub.azk8s.cn/sameersbn/postgresql
       tag: 10-2
-      # repository: dockerhub.azk8s.cn/sameersbn/mysql
-      # tag: 5.7.26-0
-    # If image is MySQL, set "adapter" to "mysql2".
-    adapter: "postgresql" 
     # The initial superuser password for internal database
     password: "changeit"
     ## Additional deployment annotations
@@ -168,8 +203,6 @@ database:
     affinity: {}
   external:
     # GitLab uses a database backend to store its data. 
-    # You can configure this image to use either MySQL(mysql2) or PostgreSQL(postgresql).
-    adapter: "postgresql" 
     host: "192.168.0.1"
     port: "5432"
     username: "user"
@@ -184,6 +217,7 @@ redis:
     image:
       repository: dockerhub.azk8s.cn/sameersbn/redis
       tag: 4.0.9-2
+    password: 
     ## Additional deployment annotations
     podAnnotations: {}
     # resources:
@@ -196,3 +230,4 @@ redis:
   external:
     host: "192.168.0.2"
     port: "6379"
+    password: 

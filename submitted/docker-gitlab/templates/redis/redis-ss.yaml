@@ -26,8 +26,16 @@ spec:
     spec:
       containers:
       - name: redis
-        image: {{ .Values.redis.internal.image.repository }}:{{ .Values.redis.internal.image.tag }}
+        image: "{{ .Values.redis.internal.image.repository }}:{{ .Values.redis.internal.image.tag }}"
         imagePullPolicy: {{ .Values.imagePullPolicy }}
+{{- if .Values.redis.internal.password }}
+        env:
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "gitlab.redis" . }}
+              key: REDIS_PASSWORD
+{{- end }}
         ports:
         - name: redis
           containerPort: 6379
@@ -74,7 +82,7 @@ spec:
 {{ toYaml . | indent 8 }}
     {{- end }}
   {{- if and .Values.persistence.enabled (not $redis.existingClaim) }}
-  volumeClaimincludes:
+  volumeClaimTemplates:
   - metadata:
       name: data
       labels:

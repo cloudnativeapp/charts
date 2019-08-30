@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "swagger-ui.fullname" . }}
+  labels:
+{{ include "swagger-ui.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: {{ include "swagger-ui.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

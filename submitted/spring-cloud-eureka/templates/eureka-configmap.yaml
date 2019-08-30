@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: eureka-{{ .Release.Namespace }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+  name: eureka-addresses
+  namespace: {{ .Release.Namespace }}
+data:
+  EUREKA_ADDRESS_LIST: http://eureka-0.eureka:28888/eureka/,http://eureka-1.eureka:28888/eureka/,http://eureka-2.eureka:28888/eureka/

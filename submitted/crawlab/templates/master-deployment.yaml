@@ -1,0 +1,100 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ include "crawlab.fullname" . }}-master
+  labels:
+    app.kubernetes.io/name: {{ include "crawlab.name" . }}
+    helm.sh/chart: {{ include "crawlab.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount.masterCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "crawlab.name" . }}-master
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "crawlab.name" . }}-master
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: CRAWLAB_API_ADDRESS
+              {{- if .Values.ingress.enabled }}
+              value: {{ .Values.ingress.hosts.backendHost }}:{{ .Values.ingress.ingressNodePort }}
+              {{- else if eq .Values.service.type "NodePort" }}
+              value: {{ .Values.service.nodeIp }}:{{ .Values.service.backendNodePort }}
+              {{- else}}
+              value: {{ template "crawlab.fullname" . }}:{{ .Values.service.backendPort }}
+              {{- end }}
+            - name: CRAWLAB_SERVER_MASTER
+              value: "Y"
+            - name: CRAWLAB_MONGO_HOST
+              value: {{ .Release.Name }}-mongodb
+            - name: CRAWLAB_MONGO_PORT
+              value: {{ .Values.mongodb.service.port | quote }}
+              {{- if .Values.mongodb.usePassword }}
+            - name: CRAWLAB_MONGO_USERNAME
+              value: "root"
+            - name: CRAWLAB_MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-mongodb
+                  key: mongodb-root-password
+              {{- end }}
+              {{- if and .Values.mongodbUsername .Values.mongodbDatabase }}
+            - name: CRAWLAB_MONGO_DB
+              value: {{ .Values.mongodb.mongodbDatabase | quote }}
+            - name: CRAWLAB_MONGO_USERNAME
+              value: {{ .Values.mongodb.mongodbUsername | quote }}
+            - name: CRAWLAB_MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-mongodb
+                  key: mongodb-password
+              {{- end }}
+            - name: CRAWLAB_REDIS_ADDRESS
+              value: {{ .Release.Name }}-redis-master
+            - name: CRAWLAB_REDIS_PORT
+              value: {{ .Values.redis.master.service.port | quote }}
+              {{- if .Values.redis.usePassword }}
+            - name: CRAWLAB_REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-redis
+                  key: redis-password
+              {{- end }}
+          ports:
+            - name: frontend
+              containerPort: 8080
+              protocol: TCP
+            - name: backend
+              containerPort: 8000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: frontend
+          readinessProbe:
+            httpGet:
+              path: /
+              port: frontend
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

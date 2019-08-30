@@ -1,0 +1,4 @@
+1. Get the application URL by running these commands:
+
+> kubectl port-forward eureka-0 8081:28888
+Visit http://127.0.0.1:8081 to use your application
