@@ -1,5 +1,5 @@
 apiVersion: v2
-name: hasura-helm3-chart
+name: hasura-helm3
 description: A Helm chart for Hasura GraphQL Engine
 
 # A chart can be either an 'application' or a 'library' chart.
