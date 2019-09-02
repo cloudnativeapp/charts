@@ -1,0 +1,12 @@
+Thank you for installing {{ .Chart.Name }}.
+
+Your release is named {{ .Release.Name }}.
+
+Before running the application, please confirm your database at the URL defined by variable [postgresDbUrl] when installation is running normally
+
+To learn more about the release, try:
+
+  $ helm status {{ .Release.Name }}
+  $ helm get {{ .Release.Name }}
+
+To access the application, try to head to: http://localhost and the console should load!
