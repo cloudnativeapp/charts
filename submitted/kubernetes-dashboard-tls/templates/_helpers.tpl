@@ -46,5 +46,5 @@ Create the name of the service account to use
 Create the name of the TLS Secret to use
 */}}
 {{- define "kubernetes-dashboard.tlsSecretName" -}}
-{{- printf "%s-tls" .Chart.Name -}}
+{{- printf "%s-%s-tls" .Chart.Name .Chart.Version -}}
 {{- end -}}
