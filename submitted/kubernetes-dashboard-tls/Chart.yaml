@@ -1,0 +1,15 @@
+name: kubernetes-dashboard-tls
+version: 1.2.3
+appVersion: 1.10.1
+description: General-purpose web UI with auto-generated TLS certificate for Kubernetes clusters
+keywords:
+- kubernetes
+- dashboard
+- auto-generated TLS certificate
+home: https://github.com/kubernetes/dashboard
+sources:
+- https://github.com/kubernetes/dashboard
+maintainers:
+- name: Max Xu
+  email: xuhuan@live.cn
+icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
