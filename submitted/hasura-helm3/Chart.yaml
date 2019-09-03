@@ -1,6 +1,11 @@
 apiVersion: v2
 name: hasura-helm3
 description: A Helm chart for Hasura GraphQL Engine
+keywords: 
+  - Hasura
+  - GraphQL
+  - Realtime
+  - 3FactorApp
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -19,3 +24,5 @@ version: 0.1.0
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
 appVersion: v1.0.0-beta.6
+
+icon: https://raw.githubusercontent.com/delapecci/hasura-helm3-chart/master/hasura.jpg
