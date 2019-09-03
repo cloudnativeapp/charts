@@ -64,8 +64,7 @@ expose:
         # The node port gitea listens on when serving with HTTP
         # nodePort: 30003
   loadBalancer:
-    annotations: 
-      service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-wz99i18bf36urhrsw5psz
+    annotations: []
     # The name of LoadBalancer service
     # name: gitea
     ports:

@@ -19,6 +19,6 @@ spec:
       paths:
       - backend:
           serviceName: {{ template "gitea.fullname" . }}
-          servicePort: 80
+          servicePort: http
         path: /
 {{- end }}
