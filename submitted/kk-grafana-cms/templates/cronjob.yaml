@@ -1,0 +1,38 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: "cms-cronjob"
+  labels:
+{{ include "kk-grafana-cms.labels" . | indent 4 }}
+spec:
+  schedule: {{ .Values.schedule }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: {{ .Chart.Name }}-sa
+          imagePullSecrets:
+          - name: registry-pull-secret
+          restartPolicy: OnFailure
+          containers:
+          - name: cronejob
+            image: "{{ .Values.build_image.repository}}:{{ .Values.build_image.tag }}"
+            command: ["cmsbuilder"]
+            env:
+            - name: ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: cms-secret
+                  key: accessKeyId
+            - name: ACCESS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: cms-secret
+                  key: accessSecret
+            - name: REGION_ID
+              value: {{ .Values.region_id }}
+            - name: INIT_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace

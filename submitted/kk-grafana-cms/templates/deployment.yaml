@@ -1,0 +1,154 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "kk-grafana-cms.fullname" . }}
+  labels:
+{{ include "kk-grafana-cms.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "kk-grafana-cms.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "kk-grafana-cms.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      serviceAccountName: {{ .Chart.Name }}-sa
+      imagePullSecrets:
+      - name: registry-pull-secret
+      initContainers:
+      - name: init
+        image: "{{ .Values.build_image.repository}}:{{ .Values.build_image.tag }}"
+        imagePullPolicy: {{ .Values.build_image.pullPolicy }}
+        env:
+        - name: ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: cms-secret
+              key: accessKeyId
+        - name: ACCESS_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: cms-secret
+              key: accessSecret
+        - name: REGION_ID
+          value: {{ .Values.region_id }}
+        - name: INIT_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        command: ["cmsbuilder"]
+{{/*        args:*/}}
+{{/*          - --out-path*/}}
+{{/*          - /work-dir*/}}
+{{/*        volumeMounts:*/}}
+{{/*        - name: workdir*/}}
+{{/*          mountPath: "/work-dir"*/}}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: GF_INSTALL_PLUGINS
+            value: {{ .Values.plugins }}
+          - name: GF_SECURITY_ADMIN_PASSWORD__FILE
+            value: /var/local/secrets/admin_password
+          ports:
+            - name: web
+              containerPort: 3000
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: web
+          volumeMounts:
+          - mountPath: /var/lib/grafana
+            name: grafana-storage
+{{/*          - name: workdir*/}}
+{{/*            mountPath: /var/lib/grafana/cms-dashboards*/}}
+          - mountPath: /etc/grafana/provisioning/dashboards/all.yaml
+            name: grafana-provisionings
+            subPath: dashboards.yaml
+          - name: pass
+            mountPath: /var/local
+            readOnly: true
+          - name: datasource
+            mountPath: /etc/grafana/provisioning/datasources/all.yaml
+            subPath: all.yaml
+          - name: grafana-dashboards
+            mountPath: /var/lib/grafana/cms-dashboards
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+        - args:
+          - nginx
+          - -g
+          - daemon off;
+          - -c
+          - /nginx/nginx.conf
+          image: nginx:1.15.8-alpine
+          imagePullPolicy: IfNotPresent
+          name: grafana-proxy
+          ports:
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
+          securityContext:
+            runAsGroup: 101
+            runAsUser: 100
+          volumeMounts:
+          - mountPath: /nginx/
+            name: grafana-nginx
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+      volumes:
+      - emptyDir: {}
+        name: workdir
+      - emptyDir: {}
+        name: grafana-storage
+      - name: datasource
+        secret:
+          secretName: cms-secret
+          items:
+          - key: datasources.yaml
+            path: all.yaml
+            mode: 511
+      - name: pass
+        secret:
+          secretName: cms-secret
+          items:
+          - key: adminPass
+            path: secrets/admin_password
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: nginx.conf
+            mode: 438
+            path: nginx.conf
+          name: grafana-cms-nginx
+        name: grafana-nginx
+      - configMap:
+          defaultMode: 420
+          name: grafana-cms-provisionings
+        name: grafana-provisionings
+      - configMap:
+          defaultMode: 420
+          name: grafana-cms-dashboards
+        name: grafana-dashboards
+

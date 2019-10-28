@@ -1,0 +1,49 @@
+# Default values for kk-grafana-cms.
+
+replicaCount: 1
+
+plugins: grafana-clock-panel,ryantxu-ajax-panel,farski-blendstat-panel,grafana-simple-json-datasource,https://github.com/aliyun/aliyun-cms-grafana/archive/master.zip;aliyun-cms-grafana
+
+access_key_id: ""
+access_secret: ""
+region_id: cn-shanghai
+password: admin
+
+image:
+  repository: grafana/grafana
+  pullPolicy: IfNotPresent
+
+build_image:
+  repository: guoxudongdocker/grafana-build
+  tag: latest
+  pullPolicy: Always
+
+schedule: "30 2 * * *"
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+  hosts:
+    - host: grafana.chart-example.local
+      paths: ['/']
+
+  tls: []
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+nodeSelector: {}
+
+affinity: {}
