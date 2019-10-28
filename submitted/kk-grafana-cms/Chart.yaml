@@ -1,0 +1,17 @@
+apiVersion: v2
+name: kk-grafana-cms
+description: Aliyun CMS Grafana Dashboard
+type: application
+version: 0.2.0
+appVersion: 6.4.2
+keywords:
+- grafana
+- aliyun
+- cms
+icon: https://raw.githubusercontent.com/grafana/grafana/master/docs/logo-horizontal.png
+sources:
+- https://github.com/sunny0826/cms-grafana-builder
+maintainers:
+- name: GuoXudong
+  email: sunnydog0826@gmail.com
+

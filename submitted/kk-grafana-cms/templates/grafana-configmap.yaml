@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "grafana-cms-provisionings"
+  labels:
+{{ include "kk-grafana-cms.labels" . | indent 4 }}
+data:
+  dashboards.yaml: |
+    apiVersion: 1
+
+    providers:
+     - name: ALIYUN_CMS
+       orgId: 1
+       folder: '阿里云监控'
+       type: file
+       updateIntervalSeconds: 180
+       options:
+         path: /var/lib/grafana/cms-dashboards
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "grafana-cms-dashboards"
+  labels:
+{{ include "kk-grafana-cms.labels" . | indent 4 }}
+data: {}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "grafana-cms-metric"
+  labels:
+{{ include "kk-grafana-cms.labels" . | indent 4 }}
+data:
+  ecs: |-
+    {"metric_list":[
+      {"field": "cpu_total", "name": "CPU 使用率", "format": "percent", "redline": "80"},
+      {"field": "memory_usedutilization", "name": "内存使用率", "format": "percent", "redline": "80"},
+      {"field": "diskusage_utilization", "name": "磁盘使用率", "format": "percent", "redline": "80"},
+      {"field": "IntranetInRate", "name": "私网流入带宽", "format": "bps", "redline": "1000"},
+      {"field": "IntranetOutRate", "name": "私网流出带宽", "format": "bps", "redline": "1000"},
+      {"field": "DiskReadIOPS", "name": "系统磁盘读IOPS", "format": "cps", "redline": "1000"},
+      {"field": "DiskWriteIOPS", "name": "系统磁盘写IOPS", "format": "cps", "redline": "1000"}
+    ]}
+
+  eip: |-
+    {"metric_list":[
+      {"field": "net_tx.rate", "name": "流出带宽", "format": "bps", "redline": "8000000", "ycol": "Value"},
+      {"field": "net_rx.rate", "name": "流入带宽", "format": "bps", "redline": "8000000", "ycol": "Value"},
+      {"field": "net_txPkgs.rate", "name": "每秒流出数据包数", "format": "cps", "redline": "150000", "ycol": "Value"},
+      {"field": "net_rxPkgs.rate", "name": "每秒流入数据包数", "format": "cps", "redline": "150000", "ycol": "Value"},
+      {"field": "out_ratelimit_drop_speed", "name": "限速丢包速率", "format": "percent", "redline": "5","ycol": "Average"}
+    ]}
+
+  rds: |-
+    {"metric_list":[
+      {"field": "CpuUsage", "name": "CPU使用率", "format": "percent"},
+      {"field": "DiskUsage", "name": "磁盘使用率", "format": "percent"},
+      {"field": "IOPSUsage", "name": "IOPS使用率", "format": "percent"},
+      {"field": "ConnectionUsage", "name": "连接数使用率", "format": "percent"},
+      {"field": "DataDelay", "name": "只读实例延迟", "format": "s"},
+      {"field": "MemoryUsage", "name": "内存使用率", "format": "percent"},
+      {"field": "MySQL_NetworkOutNew", "name": "Mysql每秒网络出流量", "format": "bps"},
+      {"field": "MySQL_NetworkInNew", "name": "Mysql每秒网络入流量", "format": "bps"},
+      {"field": "MySQL_ActiveSessions", "name": "Mysql当前活跃Sessions数", "format": "short"}
+    ]}
+
+  redis: |-
+    {"metric_list":[
+      {"field": "StandardCpuUsage", "name": "CPU 使用率", "format": "percent", "redline": "80"},
+      {"field": "StandardMemoryUsage", "name": "内存使用率", "format": "percent", "redline": "80"},
+      {"field": "StandardQPSUsage", "name": "QPS使用率", "format": "percent", "redline": "80"},
+      {"field": "StandardConnectionUsage", "name": "连接数使用率", "format": "percent", "redline": "80"},
+      {"field": "StandardUsedConnection", "name": "已用连接数", "format": "short", "redline": "1000"},
+      {"field": "StandardUsedQPS", "name": "平均每秒访问次数", "format": "short", "redline": "1000"},
+      {"field": "StandardAvgRt", "name": "平均响应时间", "format": "µs", "redline": "1000"},
+      {"field": "StandardMaxRt", "name": "最大响应时间", "format": "µs", "redline": "5000"},
+      {"field": "StandardIntranetIn", "name": "流入带宽", "format": "bps", "redline": "1000"},
+      {"field": "StandardIntranetInRatio", "name": "流入带宽使用率", "format": "percent", "redline": "80"},
+      {"field": "StandardIntranetOut", "name": "流出带宽", "format": "bps", "redline": "80"},
+      {"field": "StandardKeys", "name": "缓存内 Key 数量", "format": "short", "redline": "80000"}
+    ]}
