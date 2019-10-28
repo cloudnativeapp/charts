@@ -11,7 +11,7 @@ keywords:
 - golang
 icon: https://raw.githubusercontent.com/gohugoio/hugo/master/docs/static/img/hugo-logo-med.png
 sources:
-- https://github.com/kube-incubator/redis-operator
+- https://github.com/cloudnativeapp/charts/tree/master/submitted/hugo
 maintainers:
 - name: GuoXudong
   email: sunnydog0826@gmail.com
