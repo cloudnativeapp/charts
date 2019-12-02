@@ -1,7 +1,7 @@
-1. Get the application URL by running these commands:
+1. set a port forward via the following command:
 
 ``` bash
-kubectl get svc
+kubectl port-forward svc/homepage 12340:80
 ```
 
-2. access the web with the port in the browser
+2. access the web in the browser with `http://localhost:12340`
