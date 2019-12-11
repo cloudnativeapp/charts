@@ -1,0 +1,9 @@
+dependencies:
+- name: redis
+  repository: https://apphub.aliyuncs.com/
+  version: 9.5.5
+- name: mysql
+  repository: https://apphub.aliyuncs.com/
+  version: 6.5.1
+digest: sha256:e0d169ce6d5135436e256cd00be6b9a1a3ddea03753bb85c0631fc1cad0908a5
+generated: "2019-12-10T10:09:45.8128087+08:00"
