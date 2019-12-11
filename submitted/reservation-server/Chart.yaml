@@ -1,0 +1,51 @@
+apiVersion: v2
+name: reservation-server
+description: reservation-server Helm chart for Kubernetes
+icon: https://raw.githubusercontent.com/WeihanLi/ActivityReservation/dev/ActivityReservation/wwwroot/favicon.ico
+home: https://reservation.weihanli.xyz
+keywords:
+  - reservation
+  - booking
+# metadata: reservation
+# A chart can be either an 'application' or a 'library' chart.
+#
+# Application charts are a collection of templates that can be packaged into versioned archives
+# to be deployed.
+#
+# Library charts provide useful utilities or functions for the chart developer. They're included as
+# a dependency of application charts to inject those utilities and functions into the rendering
+# pipeline. Library charts do not define any templates and therefore cannot be deployed.
+type: application
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: 1.0.0
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application.
+appVersion: 2.0.0
+sources:
+- https://github.com/WeihanLi/ActivityReservation
+maintainers:
+- name: WeihanLi
+  email: weihanli@outlook.com
+
+dependencies:
+- name: redis
+  version: ~9.5.5
+  repository: https://apphub.aliyuncs.com/
+
+- name: mysql
+  version: ~6.5.1
+  repository: https://apphub.aliyuncs.com/
+
+# - name: elasticsearch
+#   version: ~9.0.3
+#   repository: https://apphub.aliyuncs.com/
+
+# - name: kibana
+#   version: ~3.2.5
+#   repository: https://apphub.aliyuncs.com/
+
+# - name: mssql-linux
+#   version: ~0.10.1
+#   repository: https://apphub.aliyuncs.com/
+

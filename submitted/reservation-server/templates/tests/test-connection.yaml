@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "reservation-server.fullname" . }}-test-connection"
+  labels:
+{{ include "reservation-server.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args:  ['{{ include "reservation-server.fullname" . }}:{{ .Values.reservation.service.port }}']
+  restartPolicy: Never

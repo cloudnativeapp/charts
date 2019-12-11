@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "reservation-server.fullname" . }}
+  labels:
+    {{- include "reservation-server.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.reservation.service.type }}
+  ports:
+    - port: {{ .Values.reservation.service.port }}
+{{ if (and (eq .Values.reservation.service.type "NodePort") (not (empty .Values.reservation.service.nodePort))) }}
+      nodePort: {{ .Values.reservation.service.nodePort }}
+{{ end }}
+      targetPort: http
+      protocol: TCP
+      name: http
