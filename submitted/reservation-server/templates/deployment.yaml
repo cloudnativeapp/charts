@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "reservation-server.fullname" . }}
+  labels:
+    {{- include "reservation-server.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.reservation.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "reservation-server.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "reservation-server.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.reservation.image.repository }}:{{ .Values.reservation.image.tag }}
+          imagePullPolicy: {{ .Values.reservation.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api/notice
+              port: http
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.reservation.resources | nindent 12 }}
+          volumeMounts:
+          - name: settings
+            mountPath: /app/appsettings.json
+            subPath: appsettings
+
+      initContainers:
+        - name: init-redis
+          image: busybox:1.31
+          command: ['sh', '-c', 'until nslookup {{ .Values.redis.svcName }}; do echo waiting for redis; sleep 2; done;']
+        - name: init-mysql
+          image: busybox:1.31
+          command: ['sh', '-c', 'until nslookup {{ .Values.mysql.svcName }}; do echo waiting for mysql; sleep 10; done;']
+
+      volumes:
+      - name: settings
+        configMap:
+          name: reservation-configs
+
