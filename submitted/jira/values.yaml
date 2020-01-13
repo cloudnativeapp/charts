@@ -1,4 +1,8 @@
+deployment:
+  enabled: true
+
 affinity: {}
+
 commonResources:
   limits:
     cpu: 2
@@ -6,16 +10,19 @@ commonResources:
   requests:
     cpu: 2
     memory: 4Gi
+
+replicas: 1
+
 container:
   httpPort: 8080
   imagePullPolicy: Always
   repository: atlassian/jira-software:8.3.3
   runAsUser: 0
-deployment:
-  enabled: true
+
 extraVolumes:
   enabled: false
   name: jira
+
 probe:
   enabled: true
   httpGet:
@@ -32,7 +39,19 @@ probe:
   tcpSocket:
     port: 8080
   type: httpGet
-replicas: 1
+
 service:
   enabled: true
   type: NodePort
+
+ingress:
+  enabled: true
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - jira.k8sre.com
+  hosts: 
+    - host: jira.k8sre.com

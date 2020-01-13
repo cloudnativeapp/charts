@@ -35,11 +35,29 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "confluence.labels" -}}
-app.kubernetes.io/name: {{ include "confluence.name" . }}
 helm.sh/chart: {{ include "confluence.chart" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+{{ include "confluence.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{/*
+Selector labels
+*/}}
+{{- define "confluence.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "confluence.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "confluence.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create -}}
+    {{ default (include "confluence.fullname" .) .Values.serviceAccount.name }}
+{{- else -}}
+    {{ default "default" .Values.serviceAccount.name }}
+{{- end -}}
 {{- end -}}
