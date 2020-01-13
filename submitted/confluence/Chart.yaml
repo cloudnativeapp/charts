@@ -1,6 +1,11 @@
-apiVersion: v1
+apiVersion: v2
 appVersion: 6.15.9
 description: A Helm chart for Kubernetes
 name: confluence
 type: application
 version: 1.0.0
+icon: https://helm.sh/img/favicon-152.png
+maintainers:
+  - name: sonic
+    email: sonic.ma@outlook.com
+    url: https://github.com/k8sre
