@@ -1,0 +1,250 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: rainbondclusters.rainbond.io
+spec:
+  group: rainbond.io
+  names:
+    kind: RainbondCluster
+    listKind: RainbondClusterList
+    plural: rainbondclusters
+    singular: rainbondcluster
+  scope: Namespaced
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      description: RainbondCluster is the Schema for the rainbondclusters API
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+        spec:
+          description: RainbondClusterSpec defines the desired state of RainbondCluster
+          properties:
+            configCompleted:
+              description: Whether the configuration has been completed
+              type: boolean
+            enableHA:
+              description: EnableHA is a highly available switch.
+              type: boolean
+            etcdConfig:
+              description: the etcd connection information that rainbond component
+                will be used. rainbond-operator will create one if EtcdConfig is empty
+              properties:
+                endpoints:
+                  description: Endpoints is a list of URLs.
+                  items:
+                    type: string
+                  type: array
+                secretName:
+                  description: Whether to use tls to connect to etcd
+                  type: string
+              type: object
+            gatewayIngressIPs:
+              description: Ingress IP addresses of rbd-gateway. If not specified,
+                the IP of the node where the rbd-gateway is located will be used.
+              items:
+                type: string
+              type: array
+            imageHub:
+              description: User-specified private image repository, replacing goodrain.me.
+              properties:
+                domain:
+                  type: string
+                namespace:
+                  type: string
+                password:
+                  type: string
+                username:
+                  type: string
+              type: object
+            installMode:
+              description: InstallMode is the mode of Rainbond cluster installation.
+              type: string
+            installPackageConfig:
+              description: InstallPackageConfig define install package download config
+              properties:
+                md5:
+                  type: string
+                url:
+                  type: string
+              type: object
+            installVersion:
+              description: define install rainbond version, This is usually image
+                tag
+              type: string
+            nodesForChaos:
+              description: Specify the nodes where the rbd-gateway will running.
+              items:
+                description: K8sNode holds the information about a kubernetes node.
+                properties:
+                  externalIP:
+                    type: string
+                  internalIP:
+                    type: string
+                  name:
+                    type: string
+                type: object
+              type: array
+            nodesForGateway:
+              description: Specify the nodes where the rbd-gateway will running.
+              items:
+                description: K8sNode holds the information about a kubernetes node.
+                properties:
+                  externalIP:
+                    type: string
+                  internalIP:
+                    type: string
+                  name:
+                    type: string
+                type: object
+              type: array
+            rainbondImageRepository:
+              description: Repository of each Rainbond component image, eg. docker.io/rainbond.
+              type: string
+            regionDatabase:
+              description: the region database information that rainbond component
+                will be used. rainbond-operator will create one if DBInfo is empty
+              properties:
+                host:
+                  type: string
+                password:
+                  type: string
+                port:
+                  type: integer
+                username:
+                  type: string
+              type: object
+            storageClassName:
+              description: the storage class that rainbond component will be used.
+                rainbond-operator will create one if StorageClassName is empty
+              type: string
+            suffixHTTPHost:
+              description: Suffix of component default domain name
+              type: string
+            uiDatabase:
+              description: the ui database information that rainbond component will
+                be used. rainbond-operator will create one if DBInfo is empty
+              properties:
+                host:
+                  type: string
+                password:
+                  type: string
+                port:
+                  type: integer
+                username:
+                  type: string
+              type: object
+          required:
+          - enableHA
+          - suffixHTTPHost
+          type: object
+        status:
+          description: RainbondClusterStatus defines the observed state of RainbondCluster
+          properties:
+            chaosAvailableNodes:
+              description: holds some recommend nodes available for rbd-chaos to run.
+              properties:
+                masterNodes:
+                  description: A list of kubernetes master nodes.
+                  items:
+                    description: K8sNode holds the information about a kubernetes
+                      node.
+                    properties:
+                      externalIP:
+                        type: string
+                      internalIP:
+                        type: string
+                      name:
+                        type: string
+                    type: object
+                  type: array
+                specifiedNodes:
+                  description: The nodes with user-specified labels.
+                  items:
+                    description: K8sNode holds the information about a kubernetes
+                      node.
+                    properties:
+                      externalIP:
+                        type: string
+                      internalIP:
+                        type: string
+                      name:
+                        type: string
+                    type: object
+                  type: array
+              type: object
+            gatewayAvailableNodes:
+              description: holds some recommend nodes available for rbd-gateway to
+                run.
+              properties:
+                masterNodes:
+                  description: A list of kubernetes master nodes.
+                  items:
+                    description: K8sNode holds the information about a kubernetes
+                      node.
+                    properties:
+                      externalIP:
+                        type: string
+                      internalIP:
+                        type: string
+                      name:
+                        type: string
+                    type: object
+                  type: array
+                specifiedNodes:
+                  description: The nodes with user-specified labels.
+                  items:
+                    description: K8sNode holds the information about a kubernetes
+                      node.
+                    properties:
+                      externalIP:
+                        type: string
+                      internalIP:
+                        type: string
+                      name:
+                        type: string
+                    type: object
+                  type: array
+              type: object
+            masterRoleLabel:
+              description: Destination path of the installation package extraction.
+              type: string
+            nodeNames:
+              description: 'Master node name list Deprecated: should be deleted'
+              items:
+                type: string
+              type: array
+            storageClasses:
+              description: List of existing StorageClasses in the cluster
+              items:
+                description: StorageClass storage class
+                properties:
+                  accessMode:
+                    type: string
+                  name:
+                    type: string
+                  provisioner:
+                    type: string
+                required:
+                - name
+                - provisioner
+                type: object
+              type: array
+          type: object
+      type: object
+  version: v1alpha1
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true

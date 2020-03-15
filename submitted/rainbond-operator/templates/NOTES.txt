@@ -1,0 +1,1 @@
+Rainbond Operator can be accessed via port 30008 on your gateway ips.
