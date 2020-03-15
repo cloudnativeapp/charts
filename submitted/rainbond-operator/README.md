@@ -22,6 +22,7 @@ To install the chart with the release name `rainbond-operator`:
 
 ```bash
 helm repo add incubator https://apphub.aliyuncs.com/incubator
+kubectl create namespace rbd-system
 helm install rainbond-operator incubator/admin-rainbond-operator --version 0.1.0 -n rbd-system
 ```
 
@@ -63,12 +64,12 @@ The following table lists the configurable parameters of the etcd-operator chart
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example:
 
 ```bash
-$ helm install --name rainbond-operator --set image.tag=v1.0.0-beta2 ./chart
+$ helm install rainbond-operator ./chart --set image.tag=v1.0.0-beta2 
 ```
 
 Alternatively, a YAML file that specifies the values for the parameters can be provided while
 installing the chart. For example:
 
 ```bash
-$ helm install --name rainbond-operator --values values.yaml ./chart
+$ helm install rainbond-operator ./chart --values values.yaml 
 ```
