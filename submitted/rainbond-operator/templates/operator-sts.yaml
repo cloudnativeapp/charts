@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ template "rainbond-operator.name" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    name: {{ template "rainbond-operator.name" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: {{ template "rainbond-operator.name" . }}
+      release: {{ .Release.Name }}
+  serviceName: rainbond-operator
+  template:
+    metadata:
+      name: {{ template "rainbond-operator.name" . }}
+      labels:
+        name: {{ template "rainbond-operator.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      serviceAccountName: {{ template "rainbond-operator.serviceAccountName" . }}
+      containers:
+        - name: operator
+          image: "{{ .Values.rainbondOperator.image.repository }}:{{ .Values.rainbondOperator.image.tag }}"
+          imagePullPolicy: {{ .Values.rainbondOperator.image.pullPolicy }}
+          args:
+            - --zap-level=4
+          env:
+            - name: RAINBOND_VERSION
+              value: {{ .Values.rainbondVersion }}
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SERVICE_ACCOUNT
+              value: {{ template "rainbond-operator.serviceAccountName" . }}
+{{- if .Values.enableEtcdOperator }}
+            - name: ENABLE_ETCD_OPERATOR
+              value: "{{ .Values.enableEtcdOperator }}"
+{{- end }}
+{{- if .Values.enableMySQLOperator }}
+            - name: ENABLE_MYSQL_OPERATOR
+              value: "{{ .Values.enableMySQLOperator }}"
+{{- end }}
+          volumeMounts:
+            - mountPath: /opt/rainbond/pkg
+              name: rbd-pkg
+            - mountPath: /var/run
+              name: dockersock
+        - name: openapi
+          image: "{{ .Values.openapi.image.repository }}:{{ .Values.openapi.image.tag }}"
+          imagePullPolicy: {{ .Values.openapi.image.pullPolicy }}
+          args:
+            - --rainbond-version={{ .Values.rainbondVersion }}
+            - --rbd-download-url={{ .Values.openapi.downloadURL }}
+            - --rbd-download-md5={{ .Values.openapi.downloadMD5 }}
+            - --image-repository={{ .Values.openapi.imageRepository }}
+            - --install-mode={{ .Values.openapi.installMode }}
+          env:
+            {{- if .Values.enableEtcdOperator }}
+            - name: ENABLE_ETCD_OPERATOR
+              value: "{{ .Values.enableEtcdOperator }}"
+            {{- end }}
+            {{- if .Values.enableMySQLOperator }}
+            - name: ENABLE_MYSQL_OPERATOR
+              value: "{{ .Values.enableMySQLOperator }}"
+            {{- end }}
+          volumeMounts:
+            - mountPath: /opt/rainbond/pkg
+              name: rbd-pkg
+            - mountPath: /opt/rainbond/.init
+              name: rbd-init
+      volumes:
+        - name: rbd-pkg
+          hostPath:
+            path: /opt/rainbond/pkg
+            type: DirectoryOrCreate
+        - name: dockersock
+          hostPath:
+            path: /var/run
+            type: Directory
+        - name: rbd-init
+          hostPath:
+            path: /opt/rainbond/.init
+            type: DirectoryOrCreate

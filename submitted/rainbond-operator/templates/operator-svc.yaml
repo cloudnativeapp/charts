@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.rainbondOperator.name }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    name: {{ template "rainbond-operator.name" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+spec:
+  ports:
+    - protocol: TCP
+      name: http
+      port: {{ .Values.openapi.port }}
+      nodePort: {{ .Values.openapi.nodePort }}
+  selector:
+    name: {{ template "rainbond-operator.name" . }}
+    release: {{ .Release.Name }}
+  type: NodePort
