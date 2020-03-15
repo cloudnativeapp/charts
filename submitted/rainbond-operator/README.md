@@ -1,6 +1,6 @@
 # Goodrain rainbond-operator
 
-[rainbond-operator](https://github.com/goodrain/rainbond-operator) Simplify rainbond cluster
+[admin-rainbond-operator](https://github.com/goodrain/rainbond-operator) Simplify rainbond cluster
 configuration and management.
 
 __DISCLAIMER:__ While this chart has been well-tested, the rainbond-operator is still currently in beta.
@@ -21,27 +21,12 @@ This chart bootstraps an rainbond-operator.
 To install the chart with the release name `rainbond-operator`:
 
 ```bash
-git clone https://github.com/goodrain/rainbond-operator.git
-
-cd rainbond-operator
-
-kubectl create ns rbd-system
-
-helm install rainbond-operator ./chart --namespace=rbd-system
+helm repo add incubator https://apphub.aliyuncs.com/incubator
+helm install rainbond-operator incubator/admin-rainbond-operator --version 0.1.0 -n rbd-system
 ```
 
-## Installing ETCD Operator
+if you want to install with HA mode, [read here](https://v5.2-doc.rainbond.com/docs/user-operations/install/install-base-ha/)
 
-### Official Documentation
-
-Official project documentation found [here].
-
-### Installing the ETCD Operator Chart
-
-```bash
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
-helm install etcd-operator stable/etcd-operator -n rbd-system
-```
 
 ## Uninstalling the Chart
 

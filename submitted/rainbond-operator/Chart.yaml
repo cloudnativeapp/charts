@@ -1,9 +1,10 @@
 apiVersion: v2
-name: rainbond-operator
+name: admin-rainbond-operator
 description: Goodrain rainbond-operator Helm chart for Kubernetes
 type: application
 version: 0.1.0
-appVersion: 1.16.0
-home: https://github.com/goodrain/rainbond-operator
+appVersion: 5.2.0-beta2
+home: https://www.rainbond.com
 sources:
   - https://github.com/goodrain/rainbond-operator
+  - https://github.com/goodrain/rainbond
