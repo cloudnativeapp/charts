@@ -71,7 +71,7 @@ The following table lists the configurable parameters of the etcd-operator chart
 | `openapi.image.nodePort`            | openapi service nodePort                      | `30008`                                                                                                                                                                  |
 | `openapi.image.downloadURL`         | rainbond package download url                 | `Official download address` |
 | `openapi.image.downloadMD5`         | rainbond package SHA256                 | `Official package SHA256` |
-| `openapi.image.installMode`         | The installation mode, WithPackage or WithoutPackage     | `WithPackage` |
+| `openapi.image.installMode`         | The installation mode, WithPackage or WithoutPackage     | `WithoutPackage` |
 | `openapi.image.imageRepository`     | The default image address              | `Oregistry.cn-hangzhou.aliyuncs.com/goodrain` |
 
 
