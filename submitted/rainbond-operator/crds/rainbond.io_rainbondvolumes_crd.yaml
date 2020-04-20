@@ -84,6 +84,13 @@ spec:
               description: StorageClassParameters describes the parameters for a class
                 of storage for which PersistentVolumes can be dynamically provisioned.
               properties:
+                mountOptions:
+                  description: Dynamically provisioned PersistentVolumes of this storage
+                    class are created with these mountOptions, e.g. ["ro", "soft"].
+                    Not validated - mount of the PVs will simply fail if one is invalid.
+                  items:
+                    type: string
+                  type: array
                 parameters:
                   additionalProperties:
                     type: string
