@@ -53,6 +53,8 @@ spec:
             - name: ENABLE_MYSQL_OPERATOR
               value: "{{ .Values.enableMySQLOperator }}"
 {{- end }}
+            - name: REGION_DB_NAME
+              value: "{{ .Values.rainbondOperator.regionDBName }}"
           volumeMounts:
             - mountPath: /opt/rainbond/pkg
               name: rbd-pkg
@@ -67,6 +69,7 @@ spec:
             - --rbd-download-md5={{ .Values.openapi.downloadMD5 }}
             - --image-repository={{ .Values.openapi.imageRepository }}
             - --install-mode={{ .Values.openapi.installMode }}
+            - --only-region={{ .Values.openapi.onlyRegion }}
           env:
             {{- if .Values.enableEtcdOperator }}
             - name: ENABLE_ETCD_OPERATOR
