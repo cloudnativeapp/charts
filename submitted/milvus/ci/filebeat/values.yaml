@@ -1,0 +1,37 @@
+extraContainers: |
+  - name: filebeat
+    image: docker.elastic.co/beats/filebeat:7.0.1
+    args: [
+      "-c", "/etc/filebeat.yml",
+      "-e",
+    ]
+    resources:
+      limits:
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 100Mi
+    securityContext:
+      runAsUser: 0
+    volumeMounts:
+    - name: milvus-configmap
+      mountPath: /etc/filebeat.yml
+      subPath: filebeat.yml
+    - name: milvus-logs-disk
+      mountPath: /var/lib/milvus/logs
+      readOnly: true
+
+extraConfigFiles:
+  filebeat.yml: |-
+    filebeat.inputs:
+    - type: log
+      paths:
+        - /var/lib/milvus/logs/*.log
+      tags: ["milvus"]
+      fields_under_root: true
+      fields:
+        app: milvus
+        type: log
+
+    output.logstash:
+      hosts: ['ls.milvus.io:5044']
