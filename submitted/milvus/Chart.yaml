@@ -1,0 +1,23 @@
+apiVersion: v1
+name: milvus
+appVersion: "0.9.1"
+kubeVersion: "^1.10.0-0"
+description: Milvus is an open source similarity search engine for massive-scalefeature vectors.
+version: 0.9.1
+keywords:
+  - milvus
+  - elastic
+  - vector
+  - search
+  - deploy
+home: https://milvus.io/
+icon: https://raw.githubusercontent.com/milvus-io/docs/master/assets/milvus_logo.png
+sources:
+  - https://github.com/milvus-io/milvus
+  - https://github.com/milvus-io/milvus-helm
+maintainers:
+  - name: milvus-dev
+    email: dev.milvus@zilliz.com
+  - name: community
+    email: community@zilliz.com
+engine: gotpl

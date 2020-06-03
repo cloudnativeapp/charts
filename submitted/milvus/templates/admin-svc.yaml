@@ -1,0 +1,49 @@
+{{- if .Values.admin.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "milvus.admin.fullname" . }}
+  labels:
+{{ include "milvus.labels" . | indent 4 }}
+{{- if .Values.admin.service.labels }}
+{{ toYaml .Values.admin.service.labels | indent 4 }}
+{{- end }}
+    component: "admin"
+{{- with .Values.admin.service.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+{{- if (or (eq .Values.admin.service.type "ClusterIP") (empty .Values.admin.service.type)) }}
+  type: ClusterIP
+  {{- if .Values.admin.service.clusterIP }}
+  clusterIP: {{ .Values.admin.service.clusterIP }}
+  {{end}}
+{{- else if eq .Values.admin.service.type "LoadBalancer" }}
+  type: LoadBalancer
+  {{- if .Values.admin.service.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.admin.service.loadBalancerIP }}
+  {{- end }}
+  {{- if .Values.admin.service.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+{{ toYaml .Values.admin.service.loadBalancerSourceRanges | indent 4 }}
+  {{- end -}}
+{{- else }}
+  type: {{ .Values.admin.service.type }}
+{{- end }}
+{{- if .Values.admin.service.externalIPs }}
+  externalIPs:
+{{ toYaml .Values.admin.service.externalIPs | indent 4 }}
+{{- end }}
+  ports:
+    - name: admin
+      port: {{ .Values.admin.service.port }}
+      protocol: TCP
+      targetPort: admin
+{{ if (and (eq .Values.admin.service.type "NodePort") (not (empty .Values.admin.service.nodePort))) }}
+      nodePort: {{.Values.admin.service.nodePort}}
+{{ end }}
+  selector:
+{{ include "milvus.matchLabels" . | indent 4 }}
+    component: "admin"
+{{- end }}

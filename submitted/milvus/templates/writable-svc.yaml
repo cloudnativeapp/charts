@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Service
+metadata:
+{{- if .Values.cluster.enabled }}
+  name: {{ template "milvus.writable.fullname" . }}
+{{- else }}
+  name: {{ template "milvus.fullname" . }}
+{{- end }}
+  labels:
+{{ include "milvus.labels" . | indent 4 }}
+{{- if .Values.service.labels }}
+{{ toYaml .Values.service.labels | indent 4 }}
+{{- end }}
+    component: "writable"
+{{- with .Values.service.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+{{- if not .Values.cluster.enabled }}
+{{- if (or (eq .Values.service.type "ClusterIP") (empty .Values.service.type)) }}
+  type: ClusterIP
+  {{- if .Values.service.clusterIP }}
+  clusterIP: {{ .Values.service.clusterIP }}
+  {{end}}
+{{- else if eq .Values.service.type "LoadBalancer" }}
+  type: LoadBalancer
+  {{- if .Values.service.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.service.loadBalancerIP }}
+  {{- end }}
+  {{- if .Values.service.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+{{ toYaml .Values.service.loadBalancerSourceRanges | indent 4 }}
+  {{- end -}}
+{{- else }}
+  type: {{ .Values.service.type }}
+{{- end }}
+{{- else }}
+  type: ClusterIP
+  {{- if .Values.service.clusterIP }}
+  clusterIP: {{ .Values.service.clusterIP }}
+  {{end}}
+{{- end }}
+{{- if .Values.service.externalIPs }}
+  externalIPs:
+{{ toYaml .Values.service.externalIPs | indent 4 }}
+{{- end }}
+  ports:
+    - name: engine
+      port: {{ .Values.service.port }}
+      protocol: TCP
+      targetPort: engine
+{{ if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort)) (not .Values.cluster.enabled)) }}
+      nodePort: {{.Values.service.nodePort}}
+{{ end }}
+    {{- if .Values.web.enabled }}
+    - name: web
+      port: {{ .Values.web.port }}
+      protocol: TCP
+      targetPort: web
+{{ if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.webNodePort)) (not .Values.cluster.enabled)) }}
+      nodePort: {{.Values.service.webNodePort}}
+{{ end }}
+    {{- end }}
+  selector:
+{{ include "milvus.matchLabels" . | indent 4 }}
+    component: "writable"

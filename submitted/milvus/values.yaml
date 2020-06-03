@@ -1,0 +1,354 @@
+# Default values for milvus.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Milvus Server Configuration
+
+version: 0.4
+primaryPath: "/var/lib/milvus"
+timeZone: "UTC+8"
+# backendURL: ""
+useBLASThreshold: 1100
+gpuSearchThreshold: 1100
+autoFlushInterval: 1
+fileCleanupTimeout: 10
+
+logs:
+  path: /var/lib/milvus/logs
+  maxLogFileSize: 1024
+  logRotateNum: 0
+
+cache:
+  insertBufferSize: 1
+  cpuCacheCapacity: 4
+  cacheInsertData: false
+
+web:
+  enabled: true
+  port: 19121
+
+wal:
+  enabled: true
+  ignoreErrorLog: true
+  bufferSize: 256
+  path: /var/lib/milvus/db/wal
+
+gpu:
+  enabled: false
+  cacheCapacity: 1
+  searchResources:
+    - gpu0
+  buildIndexResources:
+    - gpu0
+
+metrics:
+  enabled: false
+  address: 127.0.0.1
+  port: 9091
+
+## Cluster control switch
+cluster:
+  enabled: false
+
+
+# Common
+initContainerImage: "alpine:3.8"
+
+extraInitContainers: []
+
+## Expose the Milvus service to be accessed from outside the cluster (LoadBalancer service).
+## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.
+## ref: http://kubernetes.io/docs/user-guide/services/
+##
+service:
+  type: ClusterIP
+  port: 19530
+  annotations: {}
+  labels: {}
+
+  ## List of IP addresses at which the Milvus server service is available
+  ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+  ##
+  externalIPs: []
+  #   - externalIp1
+
+  # LoadBalancerSourcesRange is a list of allowed CIDR values, which are combined with ServicePort to
+  # set allowed inbound rules on the security group assigned to the master load balancer
+  loadBalancerSourceRanges:
+  - 0.0.0.0/0
+  # Optionally assign a known public LB IP
+  # loadBalancerIP: 1.2.3.4
+
+extraContainers: |
+#  - name: filebeat
+#    image: docker.elastic.co/beats/filebeat:7.0.1
+#    args: [
+#      "-c", "/etc/filebeat.yml",
+#      "-e",
+#    ]
+#    resources:
+#      limits:
+#        memory: 500Mi
+#      requests:
+#        cpu: 100m
+#        memory: 100Mi
+#    securityContext:
+#      runAsUser: 0
+#    volumeMounts:
+#    - name: milvus-configmap
+#      mountPath: /etc/filebeat.yml
+#      subPath: filebeat.yml
+#    - name: milvus-logs-disk
+#      mountPath: /var/lib/milvus/logs
+#      readOnly: true
+
+extraVolumes: []
+  # - name: extras
+  #   emptyDir: {}
+
+extraVolumeMounts: []
+  # - name: extras
+  #   mountPath: /usr/share/extras
+  #   readOnly: true
+
+extraConfigFiles: {}
+  # filebeat.yml: |-
+  #   filebeat.inputs:
+  #   - type: log
+  #     paths:
+  #       - /var/lib/milvus/logs/*.log
+  #     tags: ["milvus"]
+  #     fields_under_root: true
+  #     fields:
+  #       app: milvus
+  #       type: log
+
+  #   output.logstash:
+  #     hosts: ['ls-logstash.default.svc.cluster.local:5044']
+
+persistence:
+  mountPath: "/var/lib/milvus/db"
+  ## If true, alertmanager will create/use a Persistent Volume Claim
+  ## If false, use emptyDir
+  ##
+  enabled: false
+  annotations: {}
+  #  helm.sh/resource-policy: keep
+  persistentVolumeClaim:
+    existingClaim: ""
+    ## milvus data Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    storageClass:
+    accessModes: ReadWriteMany
+    size: 50Gi
+    subPath: ""
+
+logsPersistence:
+  mountPath: "/var/lib/milvus/logs"
+  ## If true, alertmanager will create/use a Persistent Volume Claim
+  ## If false, use emptyDir
+  ##
+  enabled: false
+  annotations: {}
+  #  helm.sh/resource-policy: keep
+  persistentVolumeClaim:
+    existingClaim: ""
+    ## milvus logs Persistent Volume Storage Class
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    storageClass:
+    accessModes: ReadWriteMany
+    size: 5Gi
+    subPath: ""
+
+image:
+  repository: milvusdb/milvus
+  tag: 0.9.1-cpu-d052920-e04ed5
+  pullPolicy: IfNotPresent
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ##
+  # pullSecrets:
+  #   - myRegistryKeySecretName
+replicas: 1
+resources:
+  limits:
+    memory: "12Gi"
+    cpu: "4.0"
+  requests:
+    memory: "8Gi"
+    cpu: "2.0"
+livenessProbe:
+  initialDelaySeconds: 30
+  periodSeconds: 15
+  timeoutSeconds: 10
+  failureThreshold: 5
+readinessProbe:
+  initialDelaySeconds: 15
+  periodSeconds: 15
+  timeoutSeconds: 10
+  failureThreshold: 3
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+## Additional deployment annotations
+podAnnotations: {}
+
+## Define serviceAccount names for Mishards
+serviceAccounts:
+  mishards:
+    create: false
+    name:
+
+## Mishards Configuration
+mishards:
+  image:
+    repository: milvusdb/mishards
+    tag: 0.9.1
+    pullPolicy: IfNotPresent
+
+  replicas: 1
+  resources:
+    limits:
+      memory: "4Gi"
+      cpu: "4.0"
+    requests:
+      memory: "2Gi"
+      cpu: "2.0"
+
+  ## Mishards conf
+  debug: true
+  maxworkers: 50
+
+  # discoverypluginpath: "static"
+  # tracerclassname: "jaeger"
+  # tracingservicename: "mishards-demo"
+  # tracingreportinghost: "jaeger"
+  # tracingreportingport: 5775
+
+## Milvus Readonly Server Configuration
+readonly:
+  useBLASThreshold: 1100
+  gpuSearchThreshold: 1100
+
+  logs:
+    path: /var/lib/milvus/logs
+    maxLogFileSize: 1024
+    logRotateNum: 0
+
+  cache:
+    insertBufferSize: 1
+    cpuCacheCapacity: 4
+    cacheInsertData: false
+
+  gpu:
+    enabled: false
+    cacheCapacity: 1
+    searchResources:
+      - gpu0
+    buildIndexResources:
+      - gpu0
+
+  replicas: 1
+  resources:
+    limits:
+      memory: "12Gi"
+      cpu: "4.0"
+    requests:
+      memory: "8Gi"
+      cpu: "2.0"
+
+## Milvus Admin Configuration
+admin:
+  enabled: false
+  image:
+    repository: milvusdb/milvus-admin
+    tag: v0.3.0
+    pullPolicy: IfNotPresent
+
+  replicas: 1
+  resources:
+    limits:
+      memory: "4Gi"
+      cpu: "2.0"
+    requests:
+      memory: "2Gi"
+      cpu: "1.0"
+
+  ## Expose the Milvus admin service to be accessed from outside the cluster (LoadBalancer service).
+  ## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.
+  ## ref: http://kubernetes.io/docs/user-guide/services/
+  ##
+  service:
+    type: ClusterIP
+    port: 3000
+    annotations: {}
+    labels: {}
+
+    ## List of IP addresses at which the Milvus server service is available
+    ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+    ##
+    externalIPs: []
+    #   - externalIp1
+
+    # LoadBalancerSourcesRange is a list of allowed CIDR values, which are combined with ServicePort to
+    # set allowed inbound rules on the security group assigned to the master load balancer
+    loadBalancerSourceRanges:
+    - 0.0.0.0/0
+    # Optionally assign a known public LB IP
+    # loadBalancerIP: 1.2.3.4
+
+## Configuration values for the mysql dependency
+## ref: https://github.com/kubernetes/charts/blob/master/stable/mysql/README.md
+##
+mysql:
+  enabled: true
+  name: mysql
+  imageTag: "5.7.30"
+  imagePullPolicy: IfNotPresent
+  mysqlDatabase: milvus
+  mysqlUser: milvus
+  mysqlPassword: milvus
+  mysqlRootPassword: milvusroot
+  configurationFiles:
+    mysql.cnf: |-
+      [mysqld]
+      pid-file        = /var/run/mysqld/mysqld.pid
+      socket          = /var/run/mysqld/mysqld.sock
+      log-error       = /var/log/mysql/error.log # mount out to host
+      skip-name-resolve
+      # By default we only accept connections from localhost
+      bind-address   = 0.0.0.0
+      # Disabling symbolic-links is recommended to prevent assorted security risks
+      symbolic-links=0
+      character-set-server = utf8mb4
+      collation-server = utf8mb4_unicode_ci
+      init_connect='SET NAMES utf8mb4'
+      skip-character-set-client-handshake = true
+      max_connections = 1000
+      wait_timeout = 31536000
+
+  initializationFiles:
+    grant.sql: |-
+      GRANT ALL PRIVILEGES ON milvus.* TO 'root'@'%';
+      FLUSH PRIVILEGES;
+
+  persistence:
+    enabled: true
+    existingClaim: ""
+    annotations: {}
+    #  "helm.sh/resource-policy": keep
+    storageClass:
+    accessMode: ReadWriteOnce
+    size: 8Gi

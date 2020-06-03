@@ -1,0 +1,70 @@
+{{- if .Values.admin.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "milvus.admin.fullname" . }}
+  labels:
+{{ include "milvus.labels" . | indent 4 }}
+    component: "admin"
+spec:
+  replicas: {{ .Values.admin.replicas }}
+  selector:
+    matchLabels:
+{{ include "milvus.matchLabels" . | indent 6 }}
+      component: "admin"
+  template:
+    metadata:
+      labels:
+{{ include "milvus.matchLabels" . | indent 8 }}
+        component: "admin"
+    spec:
+      initContainers:
+      - name: "wait-for-milvus"
+        image: {{ .Values.initContainerImage | quote }}
+        command:
+        - 'sh'
+        - '-c'
+        - >
+          until nc -z -w 2 {{ template "milvus.fullname" . }} {{ .Values.service.port }}
+          && echo ready to go; do
+            sleep 2;
+          done;
+      {{- if .Values.image.pullSecrets }}
+      imagePullSecrets:
+      {{- range .Values.image.pullSecrets }}
+        - name: {{ . }}
+      {{- end}}
+      {{- end }}
+      containers:
+      - name: admin
+        image: "{{ .Values.admin.image.repository }}:{{ .Values.admin.image.tag }}"
+        imagePullPolicy: {{ .Values.admin.image.pullPolicy }}
+        ports:
+          - name: admin
+            containerPort: 80
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: '/#'
+            port: 80
+{{ toYaml .Values.livenessProbe | indent 10 }}
+        readinessProbe:
+          httpGet:
+            path: '/#'
+            port: 80
+{{ toYaml .Values.readinessProbe | indent 10 }}
+        resources:
+          {{- toYaml .Values.admin.resources | nindent 10 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}
