@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "milvus.fullname" . }}
+data:
+  server_config.yaml: |
+    {{- include "milvus.serverConfig" . | nindent 4 }}
+
+  {{- if .Values.cluster.enabled }}
+  readonly_server_config.yaml: |
+    {{- include "milvus.readonly.serverConfig" . | nindent 4 }}
+
+  mishards_config.yaml: |
+    {{- include "milvus.mishards.config" . | nindent 4 }}
+  {{- end }}
+
+{{- range $key, $value := .Values.extraConfigFiles }}
+  {{ $key }}: |-
+{{ $value | indent 4 }}
+{{- end }}

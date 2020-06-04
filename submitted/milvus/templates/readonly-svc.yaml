@@ -1,0 +1,37 @@
+{{- if .Values.cluster.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "milvus.readonly.fullname" . }}
+  labels:
+{{ include "milvus.labels" . | indent 4 }}
+{{- if .Values.service.labels }}
+{{ toYaml .Values.service.labels | indent 4 }}
+{{- end }}
+    component: "readonly"
+{{- with .Values.service.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  ports:
+    - name: engine
+      port: {{ .Values.service.port }}
+      protocol: TCP
+      targetPort: engine
+{{ if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.nodePort))) }}
+      nodePort: {{.Values.service.nodePort}}
+{{ end }}
+    {{- if .Values.web.enabled }}
+    - name: web
+      port: {{ .Values.web.port }}
+      protocol: TCP
+      targetPort: web
+{{ if (and (eq .Values.service.type "NodePort") (not (empty .Values.service.webNodePort))) }}
+      nodePort: {{.Values.service.webNodePort}}
+{{ end }}
+    {{- end }}
+  selector:
+{{ include "milvus.matchLabels" . | indent 4 }}
+    component: "readonly"
+{{- end }}

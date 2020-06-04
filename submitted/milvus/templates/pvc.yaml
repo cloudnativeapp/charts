@@ -1,0 +1,55 @@
+{{- $pvc := .Values.persistence.persistentVolumeClaim -}}
+{{- if and .Values.persistence.enabled (not $pvc.existingClaim) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "milvus.fullname" . }}
+{{- with .Values.persistence.annotations  }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+  labels:
+{{ include "milvus.labels" . | indent 4 }}
+spec:
+  accessModes:
+  - {{ $pvc.accessModes | quote }}
+  {{- if $pvc.storageClass }}
+    {{- if eq "-" $pvc.storageClass }}
+  storageClassName: ""
+    {{- else }}
+  storageClassName: {{ $pvc.storageClass }}
+    {{- end }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ $pvc.size }}
+{{- end }}
+
+---
+
+{{- $pvc := .Values.logsPersistence.persistentVolumeClaim -}}
+{{- if and .Values.logsPersistence.enabled (not $pvc.existingClaim) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ printf "%s-logs" (include "milvus.fullname" . | trunc 58)}}
+{{- with .Values.logsPersistence.annotations  }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+  labels:
+{{ include "milvus.labels" . | indent 4 }}
+spec:
+  accessModes:
+  - {{ $pvc.accessModes | quote }}
+  {{- if $pvc.storageClass }}
+    {{- if eq "-" $pvc.storageClass }}
+  storageClassName: ""
+    {{- else }}
+  storageClassName: {{ $pvc.storageClass }}
+    {{- end }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ $pvc.size }}
+{{- end }}

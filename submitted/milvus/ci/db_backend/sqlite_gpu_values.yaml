@@ -1,0 +1,23 @@
+cache:
+  insertBufferSize: 4
+  cpuCacheCapacity: 8
+
+resources:
+  limits:
+    memory: "12Gi"
+    cpu: "4.0"
+    aliyun.com/gpu-mem: 2 # GiB
+  requests:
+    memory: "8Gi"
+    cpu: "2.0"
+
+gpu:
+  enabled: true
+  cacheCapacity: 2
+  searchResources:
+    - gpu0
+  buildIndexResources:
+    - gpu0
+
+mysql:
+  enabled: false
