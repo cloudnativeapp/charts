@@ -1,0 +1,56 @@
+The Milvus server can be accessed via port {{ .Values.service.port }} on the following DNS name from within your cluster:
+{{ template "milvus.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+
+Get the Milvus server URL by running these commands in the same shell:
+{{- if contains "NodePort" .Values.service.type }}
+  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ template "milvus.fullname" . }})
+  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+{{- if .Values.web.enabled }}
+  export WEB_NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[1].nodePort}" services {{ template "milvus.fullname" . }})
+  echo $NODE_IP:$NODE_PORT $NODE_IP:$WEB_NODE_PORT
+{{- else }}
+  echo $NODE_IP:$NODE_PORT
+{{- end }}
+{{- else if contains "LoadBalancer" .Values.service.type }}
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+        You can watch the status of by running 'kubectl get svc --namespace {{ .Release.Namespace }} -w {{ template "milvus.fullname" . }}'
+
+  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ template "milvus.fullname" . }} -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  {{- if .Values.web.enabled }}
+  echo $SERVICE_IP:{{ .Values.service.port }} $SERVICE_IP:{{ .Values.web.port }}
+  {{- else }}
+  echo $SERVICE_IP:{{ .Values.service.port }}
+  {{- end }}
+{{- else if contains "ClusterIP"  .Values.service.type }}
+{{- if .Values.cluster.enabled }}
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app={{ template "milvus.name" . }},release={{ .Release.Name }},component=mishards" -o jsonpath="{.items[0].metadata.name}")
+{{- else }}
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app={{ template "milvus.name" . }},release={{ .Release.Name }},component=standalone" -o jsonpath="{.items[0].metadata.name}")
+{{- end }}
+{{- if .Values.web.enabled }}
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 19530 19121
+{{- else }}
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 19530
+{{- end }}
+{{- end }}
+
+{{- if .Values.admin.enabled }}
+Get the Milvus Admin server URL by running these commands in the same shell:
+{{- if contains "NodePort" .Values.admin.service.type }}
+  export ADMIN_NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ template "milvus.admin.fullname" . }})
+  export ADMIN_NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$ADMIN_NODE_IP:$ADMIN_NODE_PORT
+{{- else if contains "LoadBalancer" .Values.admin.service.type }}
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+        You can watch the status of by running 'kubectl get svc --namespace {{ .Release.Namespace }} -w {{ template "milvus.admin.fullname" . }}'
+
+  export ADMIN_SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ template "milvus.admin.fullname" . }} -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo http://$ADMIN_SERVICE_IP:{{ .Values.admin.service.port }}
+{{- else if contains "ClusterIP"  .Values.admin.service.type }}
+  export ADMIN_POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app={{ template "milvus.name" . }},release={{ .Release.Name }},component=admin" -o jsonpath="{.items[0].metadata.name}")
+  kubectl --namespace {{ .Release.Namespace }} port-forward $ADMIN_POD_NAME 80
+{{- end }}
+{{- end }}
+
+For more information on running Milvus, visit:
+https://milvus.io/
