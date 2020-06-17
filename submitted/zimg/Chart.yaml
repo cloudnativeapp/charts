@@ -1,0 +1,8 @@
+apiVersion: v2
+appVersion: 3.2.0
+description: A Helm chart for Kubernetes
+home: http://zimg.buaa.us
+icon: https://wangyp.cf/assets/img/z.jpg
+name: zimg
+type: application
+version: 0.1.0
