@@ -7,12 +7,28 @@
 
 AppHub 的主要职责之一，是把所有 Helm 官方 Hub 托管的应用，都自动同步到国内，并自动将 Charts 文件中的 gcr.io 等有网络访问问题的 URL 替换成为稳定的国内镜像 URL。
 
+**注意：并非所有chart都能同步成功，有些镜像无法顺利验证或安装，就不会出现在仓库中**
+
 ## 如何上手 <a name = "getting_started"></a>
 
 在安装好Helm之后，您只需执行以下语句将我们的仓库添加到 Helm 即可：
 
+**从 helm 官方 stable 仓库同步的 chart**
+
 ```
-helm repo add apphub https://apphub.aliyuncs.com
+helm repo add stable https://apphub.aliyuncs.com/stable
+```
+
+**从 helm 官方 incubator 仓库同步的 chart**
+
+```
+helm repo add incubator https://apphub.aliyuncs.com/incubator
+```
+
+**参赛作品及其他未验证的 chart**
+
+```
+helm repo add experimental https://apphub.aliyuncs.com/experimental
 ```
 
 我们强烈建议你使用 Helm v3 ，它跟之前的 v2 版本[有本质的区别和优势](https://helm.sh/blog/helm-3-preview-pt2/)。由于 Helm v3 尚未发布到官方下载站点，我们为您提供了一个[国内下载镜像地址](https://github.com/cloudnativeapp/workshop/tree/master/kubecon2019china/charts/guestbook#installing-helm-v3)。
