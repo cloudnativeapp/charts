@@ -3,7 +3,7 @@ entries:
   admin-mongo:
   - apiVersion: v1
     appVersion: "1"
-    created: "2021-03-26T05:18:33.960321+08:00"
+    created: "2021-03-26T05:23:33.587916+08:00"
     description: MongoDB管理工具(web gui)
     digest: d53a947d8361319f564885fecaa0db4d826235bd1d5b2a85e6c2b658014232cd
     icon: https://raw.githubusercontent.com/mrvautin/mrvautin.github.io/master/images/adminMongo/adminMongo-Logo.png
@@ -15,12 +15,12 @@ entries:
     name: admin-mongo
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/admin-mongo-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/admin-mongo-0.1.0.tgz
     version: 0.1.0
   admin-rainbond-operator:
   - apiVersion: v2
     appVersion: 5.2.0-release
-    created: "2021-03-26T05:18:33.962332+08:00"
+    created: "2021-03-26T05:23:33.588576+08:00"
     description: Goodrain rainbond-operator Helm chart for Kubernetes
     digest: a2b52694e317538fbbc64ed145db382d210d1b93a47c05bdb2f268d475832af6
     home: https://www.rainbond.com
@@ -30,12 +30,12 @@ entries:
     - https://github.com/goodrain/rainbond
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/admin-rainbond-operator-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/admin-rainbond-operator-1.0.0.tgz
     version: 1.0.0
   arkid:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-03-26T05:18:33.96375+08:00"
+    created: "2021-03-26T05:23:33.590088+08:00"
     description: ArkID is an enterprise SSO solutions, it supports LDAP, OpenID, SAML,
       OAuth and more
     digest: d03fb5db104dd6e0d7d87c024ce1a0aaca061fb076f538fadca63ec3af93638b
@@ -46,12 +46,12 @@ entries:
       name: yanghan
     name: arkid
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/arkid-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/arkid-0.1.0.tgz
     version: 0.1.0
   codis:
   - apiVersion: v1
     appVersion: "3.2"
-    created: "2021-03-26T05:18:33.96606+08:00"
+    created: "2021-03-26T05:23:33.591635+08:00"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -71,12 +71,12 @@ entries:
     - https://github.com/CodisLabs/codis
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/codis-3.2.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/codis-3.2.tgz
     version: "3.2"
   confluence:
   - apiVersion: v2
     appVersion: 6.15.9
-    created: "2021-03-26T05:18:33.96698+08:00"
+    created: "2021-03-26T05:23:33.592282+08:00"
     description: A Helm chart for Kubernetes
     digest: a2d0669863f361f58443a7a82e8b620fdf3ca75cbd7eb2df2fe9fa197852796b
     icon: https://helm.sh/img/favicon-152.png
@@ -87,12 +87,12 @@ entries:
     name: confluence
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/confluence-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/confluence-1.0.0.tgz
     version: 1.0.0
   django-sso-server:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: "2021-03-26T05:18:33.967623+08:00"
+    created: "2021-03-26T05:23:33.592805+08:00"
     description: A user friendly Django SSO server(一个用户友好的Django单点登录服务器)(ldap&&企业微信扫码)
     digest: 690ca4d868e183464d76ee1d1ac34e6e6bf57ec0a1f9c6fb5af84ffce94eafe1
     keywords:
@@ -107,12 +107,12 @@ entries:
     - https://github.com/calmkart/Django-sso-server
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/django-sso-server-0.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/django-sso-server-0.0.1.tgz
     version: 0.0.1
   docker-gitlab:
   - apiVersion: v1
     appVersion: v12.1.6
-    created: "2021-03-26T05:18:33.969554+08:00"
+    created: "2021-03-26T05:23:33.594182+08:00"
     description: GitLab CE is set up in the Docker image using the install from source
       method as documented in the the official GitLab documentation.
     digest: 9154526bd40a8a3d900bf7a45c9ccaef8103407e6e703b2f53dd6d2cfc0087db
@@ -128,12 +128,12 @@ entries:
     - https://about.gitlab.com
     - https://github.com/TimeBye/docker-gitlab
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/docker-gitlab-0.1.1.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/docker-gitlab-0.1.1.tgz
     version: 0.1.1
   etcd-manage:
   - apiVersion: v1
     appVersion: 2.0.0
-    created: "2021-03-26T05:18:33.978881+08:00"
+    created: "2021-03-26T05:23:33.605286+08:00"
     description: 一个简洁的etcd管理工具，提供友好的可视化界面
     digest: d9cccbda0e56f538eec8f87ffb3cd541e17034ef6528d0cc34eb75fe3f4e4b64
     home: https://github.com/shiguanghuxian
@@ -147,12 +147,12 @@ entries:
     name: etcd-manage
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/etcd-manage-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/etcd-manage-1.0.0.tgz
     version: 1.0.0
   gitea:
   - apiVersion: v1
     appVersion: 1.9.1
-    created: "2021-03-26T05:18:33.983794+08:00"
+    created: "2021-03-26T05:23:33.609289+08:00"
     description: A Helm chart for gitea
     digest: f38f87d3a8b5d7908eedbf52f5d8b9a0934c0c38c835022a17878c69cc199b6c
     icon: https://avatars0.githubusercontent.com/u/12724356
@@ -164,12 +164,12 @@ entries:
     - https://github.com/go-gitea/gitea
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/gitea-1.9.1.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/gitea-1.9.1.tgz
     version: 1.9.1
   gohttpserver:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: "2021-03-26T05:18:33.985568+08:00"
+    created: "2021-03-26T05:23:33.610042+08:00"
     description: 一个用户友好的HTTP文件服务器
     digest: af2340315447870a0835d42bd377f42f35dd66d3db22dead15fd809b3d492deb
     icon: https://raw.githubusercontent.com/codeskyblue/gohttpserver/master/assets/favicon.png
@@ -183,12 +183,12 @@ entries:
     - https://hub.docker.com/r/codeskyblue/gohttpserver
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/gohttpserver-0.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/gohttpserver-0.0.1.tgz
     version: 0.0.1
   hasura-helm3:
   - apiVersion: v2
     appVersion: v1.0.0-beta.6
-    created: "2021-03-26T05:18:33.98632+08:00"
+    created: "2021-03-26T05:23:33.610516+08:00"
     description: A Helm chart for Hasura GraphQL Engine
     digest: 63dd71c8c349b872bbd691648b458e46e5f43a47f41b22c4bc6ec74abf477488
     icon: https://raw.githubusercontent.com/delapecci/hasura-helm3-chart/master/hasura.jpg
@@ -200,12 +200,12 @@ entries:
     name: hasura-helm3
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/hasura-helm3-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/hasura-helm3-0.1.0.tgz
     version: 0.1.0
   hexo:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-03-26T05:18:33.98701+08:00"
+    created: "2021-03-26T05:23:33.611408+08:00"
     description: 只需一个 GitHub URL ,轻松发布自己的 hexo 博客!
     digest: 11d36b138f6899430738061a7f9888c1a1d1c371201d3acd938f1bc038b8d671
     icon: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
@@ -221,12 +221,12 @@ entries:
     - https://github.com/zeusro/charts
     - https://github.com/zeusro/docker-hexo
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/hexo-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/hexo-1.0.0.tgz
     version: 1.0.0
   hugo:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: "2021-03-26T05:18:33.987738+08:00"
+    created: "2021-03-26T05:23:33.61222+08:00"
     description: 使用 Kubernetes 运行 hugo 博客
     digest: 2ba11a3a26eb307e59483ef7c6b9a34af70fee78c4a09e8774d0fcf57d8e390f
     icon: https://raw.githubusercontent.com/gohugoio/hugo/master/docs/static/img/hugo-logo-med.png
@@ -243,12 +243,12 @@ entries:
     - https://github.com/cloudnativeapp/charts/tree/master/submitted/hugo
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/hugo-0.0.2.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/hugo-0.0.2.tgz
     version: 0.0.2
   jekyll:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-03-26T05:18:33.989176+08:00"
+    created: "2021-03-26T05:23:33.613412+08:00"
     description: 使用 Kubernetes 托管运行 jekyll 博客
     digest: a2650832b2fe7e63cd75a46fbb3fe449fb39c3bd4e058ae6093274def902d79a
     icon: https://jekyllrb.com/img/logo-2x.png
@@ -263,12 +263,12 @@ entries:
     sources:
     - https://github.com/zeusro/charts
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/jekyll-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/jekyll-1.0.0.tgz
     version: 1.0.0
   jenkins:
   - apiVersion: v1
     appVersion: lts
-    created: "2021-03-26T05:18:33.992574+08:00"
+    created: "2021-03-26T05:23:33.617247+08:00"
     description: Open source continuous integration server. It supports multiple SCM
       tools including CVS, Subversion and Git. It can execute Apache Ant and Apache
       Maven-based projects as well as arbitrary scripts.
@@ -293,12 +293,12 @@ entries:
     - https://github.com/maorfr/kube-tasks
     - https://github.com/jenkinsci/configuration-as-code-plugin
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/jenkins-1.13.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/jenkins-1.13.0.tgz
     version: 1.13.0
   jira:
   - apiVersion: v2
     appVersion: 8.3.3
-    created: "2021-03-26T05:18:33.993608+08:00"
+    created: "2021-03-26T05:23:33.618616+08:00"
     description: A Helm chart for Kubernetes
     digest: 5e6a473e83e8ae97a07b701dac6fb27fd69a7a8cffd7571f85924fc25f7869a7
     icon: https://helm.sh/img/favicon-152.png
@@ -309,12 +309,12 @@ entries:
     name: jira
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/jira-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/jira-1.0.0.tgz
     version: 1.0.0
   kk-grafana-cms:
   - apiVersion: v2
     appVersion: 6.4.2
-    created: "2021-03-26T05:18:33.994929+08:00"
+    created: "2021-03-26T05:23:33.619318+08:00"
     description: Aliyun CMS Grafana Dashboard
     digest: dd3dfe93b319e84dd15c04a8733e4e762d65c2269862c1292f3d908d0e577d81
     icon: https://raw.githubusercontent.com/grafana/grafana/master/docs/logo-horizontal.png
@@ -330,12 +330,12 @@ entries:
     - https://github.com/sunny0826/cms-grafana-builder
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/kk-grafana-cms-0.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/kk-grafana-cms-0.2.0.tgz
     version: 0.2.0
   kruise:
   - apiVersion: v1
     appVersion: 0.1.0
-    created: "2021-03-26T05:18:33.996104+08:00"
+    created: "2021-03-26T05:23:33.619965+08:00"
     description: Helm chart for all kruise-manager components
     digest: 0d86cf43f13d6785cdc7c504d72067d74a2545c4584d76536efad80140e37582
     home: https://openkruise.io
@@ -355,12 +355,12 @@ entries:
     sources:
     - https://github.com/openkruise/kruise
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/kruise-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/kruise-0.1.0.tgz
     version: 0.1.0
   kube-webshell:
   - apiVersion: v1
     appVersion: 0.1.0
-    created: "2021-03-26T05:18:34.007595+08:00"
+    created: "2021-03-26T05:23:33.630171+08:00"
     description: Kubernetes WebShell Terminal By Sahaba
     digest: 00d67cf5f8f7c67ca9d35ba7dd1da637f8598dd02bfa17b7d97aa80b300fe3cf
     icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png
@@ -375,12 +375,12 @@ entries:
     name: kube-webshell
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/kube-webshell-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/kube-webshell-0.1.0.tgz
     version: 0.1.0
   kubernetes-dashboard-tls:
   - apiVersion: v1
     appVersion: 1.10.1
-    created: "2021-03-26T05:18:34.009161+08:00"
+    created: "2021-03-26T05:23:33.631012+08:00"
     description: General-purpose web UI with auto-generated TLS certificate for Kubernetes
       clusters
     digest: 548e86b01b4820614c4574e62e6755857943d99f29e97b340514b505933b2486
@@ -397,24 +397,24 @@ entries:
     sources:
     - https://github.com/kubernetes/dashboard
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/kubernetes-dashboard-tls-1.2.3.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/kubernetes-dashboard-tls-1.2.3.tgz
     version: 1.2.3
   nacos:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-03-26T05:18:34.019352+08:00"
+    created: "2021-03-26T05:23:33.641619+08:00"
     description: A Helm chart for Kubernetes
     digest: 844bddcc96248b04fbb9e1b95fd0b8ad86d58b832082246184b72276bb3263b5
     maintainers:
     - name: arrowfeng
     name: nacos
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/nacos-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/nacos-0.1.0.tgz
     version: 0.1.0
   nginx-php:
   - apiVersion: v1
     appVersion: nginx-1.10.3_php-7.0
-    created: "2021-03-26T05:18:34.02115+08:00"
+    created: "2021-03-26T05:23:33.64273+08:00"
     description: Chart for the nginx php server
     digest: 9f663a907dde6977d6cd8bbd65d138c0a4a15cf300f96f971e03affddfcb5ab2
     home: https://github.com/1and1internet/ubuntu-16-nginx-php-7.0
@@ -432,12 +432,12 @@ entries:
     sources:
     - https://github.com/1and1internet/ubuntu-16-nginx-php-7.0
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/nginx-php-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/nginx-php-1.0.0.tgz
     version: 1.0.0
   nvidia-gpu-exporter:
   - apiVersion: v1
     appVersion: 1.16.0
-    created: "2021-03-26T05:18:34.022029+08:00"
+    created: "2021-03-26T05:23:33.643217+08:00"
     description: A Helm chart for monitor nvidia gpu
     digest: 244915ffd7c5a27d907b6e14c7441fe8957d1e42d3b9272c0f8c69b4c64c0f8c
     maintainers:
@@ -446,12 +446,12 @@ entries:
     name: nvidia-gpu-exporter
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/nvidia-gpu-exporter-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/nvidia-gpu-exporter-0.1.0.tgz
     version: 0.1.0
   oneindex:
   - apiVersion: v1
     appVersion: alpine-91b40ba6
-    created: "2021-03-26T05:18:34.023209+08:00"
+    created: "2021-03-26T05:23:33.643989+08:00"
     description: Onedrive Directory Index.
     digest: d4e751695ae9043f5e77e3e4873e28ee4a289604b64661f84c78c80104bf8a91
     home: https://github.com/donwa/oneindex
@@ -468,12 +468,12 @@ entries:
     - https://github.com/TimeBye/oneindex
     - https://hub.docker.com/r/setzero/oneindex
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/oneindex-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/oneindex-0.1.0.tgz
     version: 0.1.0
   prometheusalert:
   - apiVersion: v1
     appVersion: 1.2.0
-    created: "2021-03-26T05:18:34.024385+08:00"
+    created: "2021-03-26T05:23:33.644643+08:00"
     description: A Alert Center for Prometheus Grafana and Graylog
     digest: 96d62cb64c379c898a604526162c9693795395907a6d7fbafb1795d2fdc1bc5a
     home: https://github.com/feiyu563/PrometheusAlert
@@ -486,11 +486,11 @@ entries:
     - https://github.com/feiyu563/PrometheusAlert
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/prometheusalert-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/prometheusalert-1.0.0.tgz
     version: 1.0.0
   redis-operator:
   - apiVersion: v1
-    created: "2021-03-26T05:18:34.025262+08:00"
+    created: "2021-03-26T05:23:33.645091+08:00"
     description: Redis Operator provides high availability redis with sentinel automatic
       failover on Kubernetes.
     digest: 9d9d0a84913f733ef69888d43e8be23043478024cf724e74330906309eb47589
@@ -506,12 +506,12 @@ entries:
     sources:
     - https://github.com/kube-incubator/redis-operator
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/redis-operator-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/redis-operator-1.0.0.tgz
     version: 1.0.0
   redispapa:
   - apiVersion: v1
     appVersion: 0.0.1
-    created: "2021-03-26T05:18:34.026393+08:00"
+    created: "2021-03-26T05:23:33.645593+08:00"
     description: 利用redis的info信息对redis的使用情况进行监控的一个系统.(动态目标发现增强版,从原系统的读conf修改为动态发现)
     digest: 9cd378a0ff8f5d484c0ade728c2744de325564ec9c6868c6da11e517ab0d21f9
     icon: https://raw.githubusercontent.com/calmkart/redispapa/master/doge.ico
@@ -526,12 +526,12 @@ entries:
     - https://github.com/no13bus/redispapa
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/redispapa-0.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/redispapa-0.0.1.tgz
     version: 0.0.1
   reservation-client:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2021-03-26T05:18:34.027082+08:00"
+    created: "2021-03-26T05:23:33.646071+08:00"
     description: reservation-angular-client Helm chart for Kubernetes
     digest: 5b36762987014773096a335bec8d6ce62aeeeb979d7b75cad8042e06de99297a
     home: https://reservation-client.weihanli.xyz
@@ -548,12 +548,12 @@ entries:
     - https://github.com/WeihanLi/ActivityReservation
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/reservation-client-1.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/reservation-client-1.1.0.tgz
     version: 1.1.0
   sentinel-dashboard:
   - apiVersion: v1
     appVersion: v1.6.3
-    created: "2021-03-26T05:18:34.032416+08:00"
+    created: "2021-03-26T05:23:33.650522+08:00"
     description: alibabab sentinel-dashboard chart for Kubernetes
     digest: ba06913f9479af12d1b66b9719a18bd58bab49b9dd6b117a1d5c6b714aca94e5
     maintainers:
@@ -562,24 +562,24 @@ entries:
     name: sentinel-dashboard
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/sentinel-dashboard-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/sentinel-dashboard-0.1.0.tgz
     version: 0.1.0
   slate:
   - apiVersion: v1
     appVersion: v2.3.1
-    created: "2021-03-26T05:18:34.033154+08:00"
+    created: "2021-03-26T05:23:33.651012+08:00"
     description: Beautiful static documentation for your API https://spectrum.chat/slate
     digest: f57433b3ada150547cf343f8983d5a5e9689489b0e8613a59910f50340e56c23
     icon: https://raw.githubusercontent.com/lord/img/master/logo-slate.png
     name: slate
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/slate-v2.3.1.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/slate-v2.3.1.tgz
     version: v2.3.1
   spring-cloud-eureka:
   - apiVersion: v1
     appVersion: 0.1.0
-    created: "2021-03-26T05:18:34.035959+08:00"
+    created: "2021-03-26T05:23:33.652728+08:00"
     description: A Helm chart for  spring cloud eureka and Kubernetes
     digest: 55a8e3b5b4992c3b63c1a062e7a4e278757b79be2eae0ec6b796df8215c2f0d5
     icon: https://davidlovezoe.files.wordpress.com/2019/08/spring-cloud.jpg
@@ -596,23 +596,23 @@ entries:
     - https://github.com/nevermosby/springcloudoss-eureka
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/spring-cloud-eureka-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/spring-cloud-eureka-0.1.0.tgz
     version: 0.1.0
   storybook:
   - apiVersion: v1
     appVersion: 0.1.0
-    created: "2021-03-26T05:18:34.036757+08:00"
+    created: "2021-03-26T05:23:33.653497+08:00"
     description: 加载Storybook配置，展示React组件原型
     digest: da01556dab522add3f880ac16cdbc2139b322e5873bae4aa788d1eaa9bfa5015
     name: storybook
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/storybook-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/storybook-0.1.0.tgz
     version: 0.1.0
   svn-ifsvnadmin:
   - apiVersion: v1
     appVersion: passwd
-    created: "2021-03-26T05:18:34.037881+08:00"
+    created: "2021-03-26T05:23:33.654563+08:00"
     description: iF.SVNAdmin. It's a web interface for subversion repositories and
       users management.
     digest: d7797e740509b79978da17bab698b1f2c0c2ae8ec27379bb1fc2276c498afc95
@@ -629,34 +629,34 @@ entries:
     - http://svnadmin.insanefactory.com/
     - https://github.com/mfreiholz/iF.SVNAdmin
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/svn-ifsvnadmin-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/svn-ifsvnadmin-0.1.0.tgz
     version: 0.1.0
   swagger-ui:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-03-26T05:18:34.038475+08:00"
+    created: "2021-03-26T05:23:33.655595+08:00"
     description: A Helm chart for Kubernetes
     digest: 944a90e2305ba8c87a33ddd61f4b0b5ee902038939c4df29b39b0e2f85249d63
     name: swagger-ui
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/swagger-ui-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/swagger-ui-0.1.0.tgz
     version: 0.1.0
   tekton:
   - apiVersion: v1
     appVersion: v0.5.2
-    created: "2021-03-26T05:18:34.039668+08:00"
+    created: "2021-03-26T05:23:33.656172+08:00"
     description: A Kubernetes-native pipeline resource
     digest: 3d64716073850747326fde90e2c4eb3466b9e388577a358e52a29d1f20462442
     icon: https://avatars2.githubusercontent.com/u/47602533
     name: tekton
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/tekton-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/tekton-0.1.0.tgz
     version: 0.1.0
   zimg:
   - apiVersion: v2
     appVersion: 3.2.0
-    created: "2021-03-26T05:18:34.040829+08:00"
+    created: "2021-03-26T05:23:33.656747+08:00"
     description: A Helm chart for Kubernetes
     digest: f99f0fa515bc99f44b3d19b59a32d25973946bdd1b17dc7f0d1b7655d07eba82
     home: http://zimg.buaa.us
@@ -664,12 +664,12 @@ entries:
     name: zimg
     type: application
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/zimg-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/zimg-0.1.0.tgz
     version: 0.1.0
   zookeeper-3Nodes:
   - apiVersion: v1
     appVersion: 3.4.10
-    created: "2021-03-26T05:18:34.041595+08:00"
+    created: "2021-03-26T05:23:33.657148+08:00"
     description: A Helm chart for three-node zookeeper cluster
     digest: a27657171e8d995be2cbaa511c9204f60274af9d7334d2107aee05467d01f0b6
     icon: http://s1.51cto.com/oss/201711/06/d2af296e2e07468e42ddd8237f72b1b8.jpg-wh_651x-s_2831311669.jpg
@@ -678,6 +678,6 @@ entries:
       name: 史浩(shih5@chinaunicom.cn)
     name: zookeeper-3Nodes
     urls:
-    - https://cloudnativeapp.github.io/charts/archives/submitted/zookeeper-3Nodes-0.1.tgz
+    - https://cloudnativeapp.github.io/charts/docs/submitted/zookeeper-3Nodes-0.1.tgz
     version: "0.1"
-generated: "2021-03-26T05:18:33.958108+08:00"
+generated: "2021-03-26T05:23:33.580848+08:00"
