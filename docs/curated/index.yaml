@@ -3,7 +3,7 @@ entries:
   acs-engine-autoscaler:
   - apiVersion: v1
     appVersion: 2.1.1
-    created: "2021-03-26T05:23:48.883312+08:00"
+    created: "2021-03-26T05:28:14.008844+08:00"
     deprecated: true
     description: DEPRECATED Scales worker nodes within agent pools
     digest: 932e589d20bc12574b9f57e3e55e23788f49c3b505c927814e8df62c3a2dfff5
@@ -13,12 +13,12 @@ entries:
     sources:
     - https://github.com/wbuchwalter/Kubernetes-acs-engine-autoscaler
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/acs-engine-autoscaler-2.2.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/acs-engine-autoscaler-2.2.2.tgz
     version: 2.2.2
   aerospike:
   - apiVersion: v1
     appVersion: v4.5.0.5
-    created: "2021-03-26T05:23:48.883922+08:00"
+    created: "2021-03-26T05:28:14.01106+08:00"
     description: A Helm chart for Aerospike in Kubernetes
     digest: 78079894c0f267e4dc3162d418fc86443e317197671a767d2d44a108409a881a
     home: http://aerospike.com
@@ -35,12 +35,12 @@ entries:
     sources:
     - https://github.com/aerospike/aerospike-server
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/aerospike-0.2.7.tgz
+    - https://cloudnativeapp.github.io/charts/curated/aerospike-0.2.7.tgz
     version: 0.2.7
   apache:
   - apiVersion: v1
     appVersion: 2.4.39
-    created: "2021-03-26T05:23:48.884555+08:00"
+    created: "2021-03-26T05:28:14.011772+08:00"
     description: Chart for Apache HTTP Server
     digest: d5ead780372c926b8836b07fb3b5607d3cd55af903c5c2989c548c39239d942f
     home: https://httpd.apache.org
@@ -59,12 +59,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-apache
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/apache-4.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/apache-4.2.0.tgz
     version: 4.2.0
   apm-server:
   - apiVersion: v1
     appVersion: 7.0.0
-    created: "2021-03-26T05:23:48.885325+08:00"
+    created: "2021-03-26T05:28:14.012581+08:00"
     description: The server receives data from the Elastic APM agents and stores the
       data into a datastore like Elasticsearch
     digest: 05927deace90de3a15ac81673135eb58c32b5b351efd1c5636e31ece3e49588e
@@ -79,12 +79,12 @@ entries:
     sources:
     - https://www.elastic.co/guide/en/apm/get-started/current/index.html
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/apm-server-2.1.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/apm-server-2.1.2.tgz
     version: 2.1.2
   ark:
   - apiVersion: v1
     appVersion: 0.10.2
-    created: "2021-03-26T05:23:48.886103+08:00"
+    created: "2021-03-26T05:28:14.014568+08:00"
     deprecated: true
     description: DEPRECATED A Helm chart for ark
     digest: 72fbf32d6f2ac209e2549657717277664b75f55218f9aaaf631f52bb83134645
@@ -94,12 +94,12 @@ entries:
     sources:
     - https://github.com/heptio/ark
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/ark-4.2.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/ark-4.2.2.tgz
     version: 4.2.2
   atlantis:
   - apiVersion: v1
     appVersion: v0.7.1
-    created: "2021-03-26T05:23:48.887031+08:00"
+    created: "2021-03-26T05:28:14.015623+08:00"
     description: A Helm chart for Atlantis https://www.runatlantis.io
     digest: 6e084cf24d0cf8275ea63592713c805727779145b827efbcdafb448dd4ac7a36
     home: https://www.runatlantis.io
@@ -116,12 +116,12 @@ entries:
     sources:
     - https://github.com/runatlantis/atlantis
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/atlantis-3.3.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/atlantis-3.3.1.tgz
     version: 3.3.1
   auditbeat:
   - apiVersion: v1
     appVersion: 6.7.0
-    created: "2021-03-26T05:23:48.887738+08:00"
+    created: "2021-03-26T05:28:14.016426+08:00"
     description: A lightweight shipper to audit the activities of users and processes
       on your systems
     digest: 04e998ee37c80bf6f1a5a5667bcd5915dd0076ecdf7f281a447260b4e9ee6b36
@@ -136,12 +136,12 @@ entries:
     sources:
     - https://www.elastic.co/guide/en/beats/auditbeat/current/index.html
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/auditbeat-1.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/auditbeat-1.1.0.tgz
     version: 1.1.0
   aws-alb-ingress-controller:
   - apiVersion: v1
     appVersion: v1.1.2
-    created: "2021-03-26T05:23:48.888475+08:00"
+    created: "2021-03-26T05:28:14.017183+08:00"
     description: A Helm chart for AWS ALB Ingress Controller
     digest: a55f973d64a2704f2641e569acdea051c2361f6b888e83a9eebdba7ac5c33071
     home: https://github.com/kubernetes-sigs/aws-alb-ingress-controller
@@ -157,11 +157,11 @@ entries:
     sources:
     - https://github.com/kubernetes-sigs/aws-alb-ingress-controller
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/aws-alb-ingress-controller-0.1.7.tgz
+    - https://cloudnativeapp.github.io/charts/curated/aws-alb-ingress-controller-0.1.7.tgz
     version: 0.1.7
   aws-cluster-autoscaler:
   - apiVersion: v1
-    created: "2021-03-26T05:23:48.888981+08:00"
+    created: "2021-03-26T05:28:14.018239+08:00"
     deprecated: true
     description: Scales worker nodes within autoscaling groups.
     digest: ee4a0d155d22a23a08dcee6076568d62d863cd99032f446368483a5f80fd63c2
@@ -173,12 +173,12 @@ entries:
     sources:
     - https://github.com/kubernetes/contrib/tree/master/cluster-autoscaler/cloudprovider/aws
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/aws-cluster-autoscaler-0.3.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/aws-cluster-autoscaler-0.3.3.tgz
     version: 0.3.3
   aws-iam-authenticator:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-03-26T05:23:48.889868+08:00"
+    created: "2021-03-26T05:28:14.018685+08:00"
     description: A Helm chart for aws-iam-authenticator
     digest: 4e0d5bc005e2defe532065c702e0c4f7ff2d6c45ca8240c78d9de9df25abf56b
     home: https://github.com/kubernetes-sigs/aws-iam-authenticator
@@ -189,12 +189,12 @@ entries:
     sources:
     - https://github.com/kubernetes-sigs/aws-iam-authenticator
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/aws-iam-authenticator-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/aws-iam-authenticator-0.1.0.tgz
     version: 0.1.0
   azuremonitor-containers:
   - apiVersion: v1
     appVersion: 4.0.0-0
-    created: "2021-03-26T05:23:48.890742+08:00"
+    created: "2021-03-26T05:28:14.019572+08:00"
     description: Helm chart for deploying Azure Monitor container monitoring agent
       in Kubernetes
     digest: a54242c29886a56959c18df0159a81d435ab1edcba62edfa01043e82bbecb371
@@ -220,12 +220,12 @@ entries:
     sources:
     - https://github.com/Microsoft/OMS-docker/tree/ci_feature_prod
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/azuremonitor-containers-0.6.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/azuremonitor-containers-0.6.0.tgz
     version: 0.6.0
   bitcoind:
   - apiVersion: v1
     appVersion: 0.17.1
-    created: "2021-03-26T05:23:48.891853+08:00"
+    created: "2021-03-26T05:28:14.020284+08:00"
     description: Bitcoin is an innovative payment network and a new kind of money.
     digest: 9b7f5e79e31468a5e73cfabcc9ac2452653f3a12a841a5e486638994b2afbcd8
     home: https://bitcoin.org/
@@ -245,12 +245,12 @@ entries:
     - https://github.com/kuberstack/bitcoind
     - https://github.com/kylemanna/docker-bitcoind
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/bitcoind-0.2.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/bitcoind-0.2.1.tgz
     version: 0.2.1
   buildkite:
   - apiVersion: v1
     appVersion: "3"
-    created: "2021-03-26T05:23:48.892644+08:00"
+    created: "2021-03-26T05:28:14.02135+08:00"
     deprecated: true
     description: DEPRECATED Agent for Buildkite
     digest: e624a651ac46d4aa30be987cd04e5c9aa75560e1774777834f080dc467540f5b
@@ -265,12 +265,12 @@ entries:
     sources:
     - https://github.com/buildkite/agent
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/buildkite-0.2.4.tgz
+    - https://cloudnativeapp.github.io/charts/curated/buildkite-0.2.4.tgz
     version: 0.2.4
   burrow:
   - apiVersion: v1
     appVersion: 0.25.1
-    created: "2021-03-26T05:23:48.893757+08:00"
+    created: "2021-03-26T05:28:14.022706+08:00"
     description: Burrow is a permissionable smart contract machine
     digest: 9bc7adcea753dfcbb9f5e237094b273d0082c6a8738f35ae9f96a578ccffa2aa
     home: https://github.com/hyperledger/burrow
@@ -292,12 +292,12 @@ entries:
     sources:
     - https://github.com/hyperledger/burrow
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/burrow-1.3.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/burrow-1.3.0.tgz
     version: 1.3.0
   buzzfeed-sso:
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2021-03-26T05:23:48.894471+08:00"
+    created: "2021-03-26T05:28:14.023426+08:00"
     description: Single sign-on for your Kubernetes services using Google OAuth
     digest: 28e61b19b2159f52b6d384f20554ea8582a2f7218d19e2d1bd5a08a1b1e0c11b
     home: https://github.com/buzzfeed/sso
@@ -313,12 +313,12 @@ entries:
     sources:
     - https://hub.docker.com/r/buzzfeed/sso/
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/buzzfeed-sso-0.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/buzzfeed-sso-0.0.1.tgz
     version: 0.0.1
   cassandra:
   - apiVersion: v1
     appVersion: 3.11.4
-    created: "2021-03-26T05:23:48.895478+08:00"
+    created: "2021-03-26T05:28:14.024575+08:00"
     description: Apache Cassandra is a free and open-source distributed database management
       system designed to handle large amounts of data across many commodity servers,
       providing high availability with no single point of failure. Cassandra offers
@@ -334,12 +334,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-cassandra
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/cassandra-2.3.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/cassandra-2.3.3.tgz
     version: 2.3.3
   cassandra-reaper:
   - apiVersion: v1
     appVersion: 1.3.0
-    created: "2021-03-26T05:23:48.895942+08:00"
+    created: "2021-03-26T05:28:14.025097+08:00"
     description: Reaper is a centralized, stateful, and highly configurable tool for
       running Apache Cassandra repairs against single or multi-site clusters.
     digest: 1409fe08085fcac843e75b5b11203959950fb26e809d73a3287d4f150c15ae66
@@ -351,12 +351,12 @@ entries:
       name: kamsz
     name: cassandra-reaper
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/cassandra-reaper-0.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/cassandra-reaper-0.2.0.tgz
     version: 0.2.0
   centrifugo:
   - apiVersion: v1
     appVersion: 2.1.0
-    created: "2021-03-26T05:23:48.896686+08:00"
+    created: "2021-03-26T05:28:14.025734+08:00"
     description: Centrifugo is a real-time messaging server.
     digest: ba4e63a1a75e7803f9d28bb8718614836ef65078b08bd1de5925ad560b256c22
     home: https://github.com/centrifugal/centrifugo
@@ -370,12 +370,12 @@ entries:
       name: oleh-ozimok
     name: centrifugo
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/centrifugo-3.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/centrifugo-3.1.0.tgz
     version: 3.1.0
   cerebro:
   - apiVersion: v1
     appVersion: 0.8.3
-    created: "2021-03-26T05:23:48.89723+08:00"
+    created: "2021-03-26T05:28:14.026265+08:00"
     description: A Helm chart for Cerebro - a web admin tool that replaces Kopf.
     digest: 7cb324821837e51c16c3bcb11f56f36414e6310d8c34bb0e56e6b163d13522b5
     home: https://github.com/lmenezes/cerebro
@@ -388,12 +388,12 @@ entries:
     - https://github.com/lmenezes/cerebro-docker
     - https://github.com/lmenezes/cerebro
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/cerebro-1.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/cerebro-1.0.1.tgz
     version: 1.0.1
   chaoskube:
   - apiVersion: v1
     appVersion: 0.14.0
-    created: "2021-03-26T05:23:48.897871+08:00"
+    created: "2021-03-26T05:28:14.02687+08:00"
     description: Chaoskube periodically kills random pods in your Kubernetes cluster.
     digest: 300f54f78fa4ffe568b06160d490b66711397db0e5c9e27be0516db8a5e24fe2
     home: https://github.com/linki/chaoskube
@@ -408,12 +408,12 @@ entries:
     sources:
     - https://github.com/linki/chaoskube
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/chaoskube-3.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/chaoskube-3.1.0.tgz
     version: 3.1.0
   chartmuseum:
   - apiVersion: v1
     appVersion: 0.8.2
-    created: "2021-03-26T05:23:48.89917+08:00"
+    created: "2021-03-26T05:28:14.02808+08:00"
     description: Host your own Helm Chart Repository
     digest: 3d2d0d4ef158943dbf987d6d0db60c23af25299a6c34f768245de35aa5fe8236
     home: https://github.com/helm/chartmuseum
@@ -431,12 +431,12 @@ entries:
       name: chartmuseum
     name: chartmuseum
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/chartmuseum-2.3.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/chartmuseum-2.3.1.tgz
     version: 2.3.1
   check-mk:
   - apiVersion: v1
     appVersion: 1.4.0p26
-    created: "2021-03-26T05:23:48.899775+08:00"
+    created: "2021-03-26T05:28:14.030237+08:00"
     description: check_mk monitoring
     digest: 2b42482182db4bcdf1f88bda9d186e0ce828f17750f5afe83aa56ed7e1e2902d
     home: https://mathias-kettner.de/check_mk.html
@@ -453,12 +453,12 @@ entries:
     - https://github.com/kubernetes/charts
     - http://git.mathias-kettner.de/git/
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/check-mk-0.2.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/check-mk-0.2.1.tgz
     version: 0.2.1
   chronograf:
   - apiVersion: v1
     appVersion: 1.7.7
-    created: "2021-03-26T05:23:48.901099+08:00"
+    created: "2021-03-26T05:28:14.030875+08:00"
     description: Open-source web application written in Go and React.js that provides
       the tools to visualize your monitoring data and easily create alerting and automation
       rules.
@@ -473,12 +473,12 @@ entries:
       name: jackzampolin
     name: chronograf
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/chronograf-1.0.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/chronograf-1.0.2.tgz
     version: 1.0.2
   clamav:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-03-26T05:23:48.901566+08:00"
+    created: "2021-03-26T05:28:14.031366+08:00"
     description: An Open-Source antivirus engine for detecting trojans, viruses, malware
       & other malicious threats.
     digest: e300806ba89c1de46c33e1643f6495092114069323022e9815fad157f0e61c0d
@@ -488,12 +488,12 @@ entries:
       name: zakkg3
     name: clamav
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/clamav-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/clamav-1.0.0.tgz
     version: 1.0.0
   cluster-autoscaler:
   - apiVersion: v1
     appVersion: 1.13.1
-    created: "2021-03-26T05:23:48.902424+08:00"
+    created: "2021-03-26T05:28:14.032231+08:00"
     description: Scales worker nodes within autoscaling groups.
     digest: 959ff13d18cbcb2483cf181ca68ced83d39803530906143e321aa6b2eb06bc69
     home: https://github.com/kubernetes/autoscaler
@@ -506,12 +506,12 @@ entries:
     - https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler
     - https://github.com/spotinst/kubernetes-autoscaler/tree/master/cluster-autoscaler
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/cluster-autoscaler-0.13.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/cluster-autoscaler-0.13.2.tgz
     version: 0.13.2
   cluster-overprovisioner:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-03-26T05:23:48.902879+08:00"
+    created: "2021-03-26T05:28:14.032696+08:00"
     description: Installs the a deployment that overprovisions the cluster
     digest: 9fc7d38c1872468121913f64de433008ba8bb13aecf1bbb8f048f9ec39bd8eb3
     home: https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler
@@ -532,12 +532,12 @@ entries:
     - https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler
     - https://github.com/kubernetes/kubernetes/tree/master/build/pause
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/cluster-overprovisioner-0.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/cluster-overprovisioner-0.2.0.tgz
     version: 0.2.0
   cockroachdb:
   - apiVersion: v1
     appVersion: 19.1.0
-    created: "2021-03-26T05:23:48.903754+08:00"
+    created: "2021-03-26T05:28:14.033502+08:00"
     description: CockroachDB is a scalable, survivable, strongly-consistent SQL database.
     digest: f87c94dc7fbe7d5ef2613ce29d385be8b22db10703166397e9748c5de7fea620
     home: https://www.cockroachlabs.com
@@ -555,12 +555,12 @@ entries:
     sources:
     - https://github.com/cockroachdb/cockroach
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/cockroachdb-2.1.8.tgz
+    - https://cloudnativeapp.github.io/charts/curated/cockroachdb-2.1.8.tgz
     version: 2.1.8
   collabora-code:
   - apiVersion: v1
     appVersion: 4.0.3.1
-    created: "2021-03-26T05:23:48.904537+08:00"
+    created: "2021-03-26T05:28:14.034146+08:00"
     description: A Helm chart for Collabora Office - CODE-Edition
     digest: 3deae362c1de66486fb858c0911a3e8f2dade9a9fbee387a22ccfe5eff826774
     home: https://www.collaboraoffice.com/code/
@@ -572,12 +572,12 @@ entries:
     sources:
     - https://github.com/CollaboraOnline/Docker-CODE
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/collabora-code-1.0.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/collabora-code-1.0.2.tgz
     version: 1.0.2
   common:
   - apiVersion: v1
     appVersion: 0.0.5
-    created: "2021-03-26T05:23:48.905159+08:00"
+    created: "2021-03-26T05:28:14.034716+08:00"
     description: Common chartbuilding components and helpers
     digest: 547447fd9df3f5399e233470972e0d885e1815a17e306cb2d1d7a3109557161e
     home: https://helm.sh
@@ -588,12 +588,12 @@ entries:
       name: prydonius
     name: common
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/common-0.0.5.tgz
+    - https://cloudnativeapp.github.io/charts/curated/common-0.0.5.tgz
     version: 0.0.5
   consul:
   - apiVersion: v1
     appVersion: 1.5.0
-    created: "2021-03-26T05:23:48.907044+08:00"
+    created: "2021-03-26T05:28:14.036108+08:00"
     description: Highly available and distributed service discovery and key-value
       store designed with support for the modern data center to make distributed systems
       and configuration easy.
@@ -607,12 +607,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-consul
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/consul-4.2.5.tgz
+    - https://cloudnativeapp.github.io/charts/curated/consul-4.2.5.tgz
     version: 4.2.5
   coredns:
   - apiVersion: v1
     appVersion: 1.5.0
-    created: "2021-03-26T05:23:48.907933+08:00"
+    created: "2021-03-26T05:28:14.036827+08:00"
     description: CoreDNS is a DNS server that chains plugins and provides Kubernetes
       DNS Services
     digest: a0b27b2132397ab6fce90bcd67e104b5a4ab80f701d4e5484ee9799ef2f8929b
@@ -633,12 +633,12 @@ entries:
     sources:
     - https://github.com/coredns/coredns
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/coredns-1.5.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/coredns-1.5.3.tgz
     version: 1.5.3
   cosbench:
   - apiVersion: v1
     appVersion: 0.0.6
-    created: "2021-03-26T05:23:48.908529+08:00"
+    created: "2021-03-26T05:28:14.03739+08:00"
     description: A benchmark tool for cloud object storage services
     digest: 82b33f77814e007d0b66aa9ba1b747b0c0643e0bc98da999c9da5fed5782a5a5
     home: https://github.com/intel-cloud/cosbench
@@ -651,12 +651,12 @@ entries:
     - https://github.com/intel-cloud/cosbench
     - https://github.com/scality/zenko-cosbench
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/cosbench-1.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/cosbench-1.0.1.tgz
     version: 1.0.1
   coscale:
   - apiVersion: v1
     appVersion: 3.16.0
-    created: "2021-03-26T05:23:48.90922+08:00"
+    created: "2021-03-26T05:28:14.037775+08:00"
     description: CoScale Agent
     digest: 29696839ea36d7ffc79e87283e6019bb7682e6ed12537050ed96a2edb7f85c84
     home: https://www.coscale.com/
@@ -674,12 +674,12 @@ entries:
     sources:
     - https://app.coscale.com/
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/coscale-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/coscale-1.0.0.tgz
     version: 1.0.0
   couchdb:
   - apiVersion: v1
     appVersion: 2.3.0
-    created: "2021-03-26T05:23:48.91027+08:00"
+    created: "2021-03-26T05:28:14.039103+08:00"
     description: A database featuring seamless multi-master sync, that scales from
       big data to mobile, with an intuitive HTTP/JSON API and designed for reliability.
     digest: 5d025a1e71fef7bf6ae6a5ea4b5491b78dbc45e7617ce77958b577a531172c16
@@ -693,12 +693,12 @@ entries:
     - https://github.com/apache/couchdb
     - https://github.com/kocolosk/couchdb-statefulset-assembler
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/couchdb-1.1.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/couchdb-1.1.3.tgz
     version: 1.1.3
   dask:
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2021-03-26T05:23:48.910925+08:00"
+    created: "2021-03-26T05:28:14.0397+08:00"
     description: Distributed computation in Python with task scheduling
     digest: a738dbd9017495ef1fe7ae383201678c70f5cb9a4a88cecb5e65cbbc16c144f5
     home: https://dask.pydata.org
@@ -712,11 +712,11 @@ entries:
     sources:
     - https://github.com/dask/dask
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/dask-2.2.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/dask-2.2.1.tgz
     version: 2.2.1
   dask-distributed:
   - apiVersion: v1
-    created: "2021-03-26T05:23:48.91158+08:00"
+    created: "2021-03-26T05:28:14.04018+08:00"
     deprecated: true
     description: 'DEPRECATED: Distributed computation in Python'
     digest: 6fc3e996360631c12b231b3a05e3a08cbb5adf230a013c126a85229c05d63d53
@@ -726,12 +726,12 @@ entries:
     sources:
     - https://github.com/dask/distributed
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/dask-distributed-2.0.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/dask-distributed-2.0.2.tgz
     version: 2.0.2
   dex:
   - apiVersion: v1
     appVersion: 2.16.0
-    created: "2021-03-26T05:23:48.912702+08:00"
+    created: "2021-03-26T05:28:14.041234+08:00"
     description: CoreOS Dex
     digest: e4c2cbf49570a60ac2a3c90e535731717645aadffa657423a4243867a127ee25
     home: https://github.com/dexidp/dex/
@@ -748,12 +748,12 @@ entries:
       name: rendhalver
     name: dex
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/dex-1.2.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/dex-1.2.1.tgz
     version: 1.2.1
   distributed-jmeter:
   - apiVersion: v1
     appVersion: "3.3"
-    created: "2021-03-26T05:23:48.913101+08:00"
+    created: "2021-03-26T05:28:14.041618+08:00"
     description: A Distributed JMeter Helm chart
     digest: eeb503ca19839a7ae100a39ad29a0f0c3dca9244dfea56e26b57c76c2350dad2
     home: http://jmeter.apache.org/
@@ -765,12 +765,12 @@ entries:
     sources:
     - https://github.com/pedrocesar-ti/distributed-jmeter-docker
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/distributed-jmeter-1.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/distributed-jmeter-1.0.1.tgz
     version: 1.0.1
   distributed-tensorflow:
   - apiVersion: v1
     appVersion: 1.6.0
-    created: "2021-03-26T05:23:48.913539+08:00"
+    created: "2021-03-26T05:28:14.042044+08:00"
     description: A Helm chart for running distributed TensorFlow on Kubernetes
     digest: 67e37aa7b077b1df103a8955d0ee16d1e84f26684e008330682f80fff0e112c1
     home: https://www.tensorflow.org
@@ -782,12 +782,12 @@ entries:
     - https://github.com/tensorflow/tensorflow
     - https://www.tensorflow.org/deploy/distributed
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/distributed-tensorflow-0.1.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/distributed-tensorflow-0.1.1.tgz
     version: 0.1.1
   dmarc2logstash:
   - apiVersion: v1
     appVersion: 1.0.3
-    created: "2021-03-26T05:23:48.914064+08:00"
+    created: "2021-03-26T05:28:14.042467+08:00"
     description: Provides a POP3-polled DMARC XML report injector into Elasticsearch
       via Logstash and Filebeat
     digest: 39ef084f422ef2017f1b4871223183cd9648751b9c803af7fac447ce6b16e24c
@@ -799,12 +799,12 @@ entries:
     sources:
     - https://github.com/jertel/dmarc2logstash
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/dmarc2logstash-1.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/dmarc2logstash-1.2.0.tgz
     version: 1.2.0
   docker-registry:
   - apiVersion: v1
     appVersion: 2.7.1
-    created: "2021-03-26T05:23:48.914779+08:00"
+    created: "2021-03-26T05:28:14.043138+08:00"
     description: A Helm chart for Docker Registry
     digest: 9ac487cca0896af1355b3a4e71d66ac2a0e394b3b163cc174fafe6e7508c2247
     home: https://hub.docker.com/_/registry/
@@ -818,12 +818,12 @@ entries:
     sources:
     - https://github.com/docker/distribution-library-image
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/docker-registry-1.8.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/docker-registry-1.8.0.tgz
     version: 1.8.0
   dokuwiki:
   - apiVersion: v1
     appVersion: 0.20180422.201901061035
-    created: "2021-03-26T05:23:48.916177+08:00"
+    created: "2021-03-26T05:28:14.044005+08:00"
     description: DokuWiki is a standards-compliant, simple to use wiki optimized for
       creating documentation. It is targeted at developer teams, workgroups, and small
       companies. All data is stored in plain text files, so no database is required.
@@ -844,12 +844,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-dokuwiki
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/dokuwiki-4.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/dokuwiki-4.2.0.tgz
     version: 4.2.0
   drone:
   - apiVersion: v1
     appVersion: 1.0.0-rc.5
-    created: "2021-03-26T05:23:48.917268+08:00"
+    created: "2021-03-26T05:28:14.045043+08:00"
     description: Drone is a Continuous Delivery system built on container technology
     digest: 2538cf2053374c45c733b6cfb700e1ea734208a23d165a19e9315400e67b1f54
     home: https://drone.io/
@@ -873,12 +873,12 @@ entries:
     sources:
     - https://github.com/drone/drone
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/drone-2.0.0-rc.13.tgz
+    - https://cloudnativeapp.github.io/charts/curated/drone-2.0.0-rc.13.tgz
     version: 2.0.0-rc.13
   efs-provisioner:
   - apiVersion: v1
     appVersion: v2.1.0-k8s1.11
-    created: "2021-03-26T05:23:48.918312+08:00"
+    created: "2021-03-26T05:28:14.045742+08:00"
     description: A Helm chart for the AWS EFS external storage provisioner
     digest: abcc22300363e305e8809a98ee36f9d7e8416db43f5925522495e6ddf33ce060
     home: https://github.com/kubernetes-incubator/external-storage/tree/master/aws/efs
@@ -890,12 +890,12 @@ entries:
     - https://github.com/kubernetes-incubator/external-storage/tree/master/aws/efs
     - https://github.com/mirror/busybox
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/efs-provisioner-0.4.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/efs-provisioner-0.4.0.tgz
     version: 0.4.0
   elastabot:
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2021-03-26T05:23:48.919603+08:00"
+    created: "2021-03-26T05:28:14.047198+08:00"
     description: A Helm chart for Elastabot - a Slack bot companion for Elasticsearch
       and ElastAlert
     digest: 632980e02ecdea8652225d95f8537ac69782679edbce0a281cd80f054567a51e
@@ -907,12 +907,12 @@ entries:
     sources:
     - https://github.com/jertel/elastabot
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/elastabot-1.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/elastabot-1.2.0.tgz
     version: 1.2.0
   elastalert:
   - apiVersion: v1
     appVersion: 0.1.39
-    created: "2021-03-26T05:23:48.920269+08:00"
+    created: "2021-03-26T05:28:14.047769+08:00"
     description: ElastAlert is a simple framework for alerting on anomalies, spikes,
       or other patterns of interest from data in Elasticsearch.
     digest: f628e42f9cf9f4080aafadb795199f4d95a6f4e33757761c191de66a583bae9d
@@ -928,12 +928,12 @@ entries:
     - https://github.com/jertel/elastalert-docker
     - https://github.com/Yelp/elastalert
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/elastalert-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/elastalert-1.0.0.tgz
     version: 1.0.0
   elasticsearch:
   - apiVersion: v1
     appVersion: 7.0.1
-    created: "2021-03-26T05:23:48.92172+08:00"
+    created: "2021-03-26T05:28:14.048935+08:00"
     description: A highly scalable open-source full-text search and analytics engine
     digest: bc49645842add6968b3cc8332b970f8dcb3292ce0c96a36c8a3d88a1efc22a94
     home: https://www.elastic.co/products/elasticsearch
@@ -947,12 +947,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-elasticsearch
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/elasticsearch-5.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/elasticsearch-5.1.0.tgz
     version: 5.1.0
   elasticsearch-curator:
   - apiVersion: v1
     appVersion: 5.5.4
-    created: "2021-03-26T05:23:48.922434+08:00"
+    created: "2021-03-26T05:28:14.049691+08:00"
     description: A Helm chart for Elasticsearch Curator
     digest: 57248149502b5938db012af9dc14807e933d3f1c85c6b226ab5dd6288648807a
     home: https://github.com/elastic/curator
@@ -970,12 +970,12 @@ entries:
     - https://github.com/kubernetes/charts/elasticsearch-curator
     - https://github.com/pires/docker-elasticsearch-curator
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/elasticsearch-curator-1.5.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/elasticsearch-curator-1.5.0.tgz
     version: 1.5.0
   elasticsearch-exporter:
   - apiVersion: v1
     appVersion: 1.0.2
-    created: "2021-03-26T05:23:48.923057+08:00"
+    created: "2021-03-26T05:28:14.050244+08:00"
     description: Elasticsearch stats exporter for Prometheus
     digest: d82f0bfd85e61e818566bd89c3179b2f63acb61915edcb8d01d040bba6748697
     home: https://github.com/justwatchcom/elasticsearch_exporter
@@ -990,12 +990,12 @@ entries:
     sources:
     - https://github.com/justwatchcom/elasticsearch_exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/elasticsearch-exporter-1.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/elasticsearch-exporter-1.2.0.tgz
     version: 1.2.0
   envoy:
   - apiVersion: v1
     appVersion: 1.9.0
-    created: "2021-03-26T05:23:48.923939+08:00"
+    created: "2021-03-26T05:28:14.05109+08:00"
     description: Envoy is an open source edge and service proxy, designed for cloud-native
       applications.
     digest: 53d98579a36234ef0867c62c77d73ca355a4e86b41b753d9871dc9707e70f7bd
@@ -1013,12 +1013,12 @@ entries:
     sources:
     - https://github.com/envoyproxy/envoy
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/envoy-1.5.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/envoy-1.5.0.tgz
     version: 1.5.0
   etcd:
   - apiVersion: v1
     appVersion: 3.3.13
-    created: "2021-03-26T05:23:48.924892+08:00"
+    created: "2021-03-26T05:28:14.052085+08:00"
     description: etcd is a distributed key value store that provides a reliable way
       to store data across a cluster of machines
     digest: 260c906a5ba15e7ec2405fe57608755dce1f17ac9a10ae6152369283df6460f9
@@ -1037,12 +1037,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-etcd
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/etcd-2.2.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/etcd-2.2.3.tgz
     version: 2.2.3
   etcd-operator:
   - apiVersion: v1
     appVersion: 0.9.3
-    created: "2021-03-26T05:23:48.925849+08:00"
+    created: "2021-03-26T05:28:14.053465+08:00"
     description: CoreOS etcd-operator Helm chart for Kubernetes
     digest: b63311848b4b97c0ac4f470430ebcf472d4e597dde88eed8ffbf4328f9d8900b
     home: https://github.com/coreos/etcd-operator
@@ -1056,12 +1056,12 @@ entries:
     sources:
     - https://github.com/coreos/etcd-operator
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/etcd-operator-0.8.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/etcd-operator-0.8.3.tgz
     version: 0.8.3
   ethereum:
   - apiVersion: v1
     appVersion: v1.7.3
-    created: "2021-03-26T05:23:48.926548+08:00"
+    created: "2021-03-26T05:28:14.054311+08:00"
     description: private Ethereum network Helm chart for Kubernetes
     digest: fb1fbe2f74b7c48701ac6d9d87d8a5483a349a2fb47161329dcb0251bdaf9d05
     home: https://www.ethereum.org/
@@ -1076,12 +1076,12 @@ entries:
     sources:
     - https://github.com/ethereum/go-ethereum
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/ethereum-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/ethereum-1.0.0.tgz
     version: 1.0.0
   eventrouter:
   - apiVersion: v1
     appVersion: "0.2"
-    created: "2021-03-26T05:23:48.927634+08:00"
+    created: "2021-03-26T05:28:14.055114+08:00"
     description: A Helm chart for eventruter (https://github.com/heptiolabs/eventrouter)
     digest: 2efc50279fa4bf00b96cb4c30cce6cabcb372820a34db3b872df0495a321fb0d
     home: https://github.com/heptiolabs/eventrouter
@@ -1094,12 +1094,12 @@ entries:
     sources:
     - https://github.com/heptiolabs/eventrouter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/eventrouter-0.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/eventrouter-0.2.0.tgz
     version: 0.2.0
   external-dns:
   - apiVersion: v1
     appVersion: 0.5.14
-    created: "2021-03-26T05:23:48.928596+08:00"
+    created: "2021-03-26T05:28:14.056041+08:00"
     description: ExternalDNS is a Kubernetes addon that configures public DNS servers
       with information about exposed Kubernetes services to make them discoverable.
     digest: 4e148f5775da935f7e4c4115895d9aa62de952291e030bf85d7746e141b14e7d
@@ -1116,12 +1116,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-external-dns
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/external-dns-1.5.4.tgz
+    - https://cloudnativeapp.github.io/charts/curated/external-dns-1.5.4.tgz
     version: 1.5.4
   factorio:
   - apiVersion: v1
     appVersion: 0.15.39
-    created: "2021-03-26T05:23:48.929179+08:00"
+    created: "2021-03-26T05:28:14.056609+08:00"
     description: Factorio dedicated server.
     digest: e756bf729f4aafd294f085525155096d15e8b8702ba11827a3cfa1a63ad4bb5f
     home: https://www.factorio.com/
@@ -1136,12 +1136,12 @@ entries:
     sources:
     - https://github.com/games-on-k8s/docker-factorio
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/factorio-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/factorio-1.0.0.tgz
     version: 1.0.0
   falco:
   - apiVersion: v1
     appVersion: 0.15.0
-    created: "2021-03-26T05:23:48.931057+08:00"
+    created: "2021-03-26T05:28:14.058788+08:00"
     description: Sysdig Falco
     digest: 1f0c935c6123c9345acc413b1be7da9a6179abe18101282c3ce1f8766dfc73af
     home: https://falco.org
@@ -1160,12 +1160,12 @@ entries:
     sources:
     - https://github.com/falcosecurity/falco
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/falco-0.7.6.tgz
+    - https://cloudnativeapp.github.io/charts/curated/falco-0.7.6.tgz
     version: 0.7.6
   filebeat:
   - apiVersion: v1
     appVersion: 6.7.0
-    created: "2021-03-26T05:23:48.931953+08:00"
+    created: "2021-03-26T05:28:14.059665+08:00"
     description: A Helm chart to collect Kubernetes logs with filebeat
     digest: 38f7ff5e4b120b6e90f7699fdba0331fc6cc8a958cf02c5dfa3699a9b396c684
     home: https://www.elastic.co/products/beats/filebeat
@@ -1179,12 +1179,12 @@ entries:
     sources:
     - https://www.elastic.co/guide/en/beats/filebeat/current/index.html
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/filebeat-1.7.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/filebeat-1.7.0.tgz
     version: 1.7.0
   fluent-bit:
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2021-03-26T05:23:48.933107+08:00"
+    created: "2021-03-26T05:28:14.060738+08:00"
     description: Fast and Lightweight Log/Data Forwarder for Linux, BSD and OSX
     digest: 90c60d31d8aa787b6bc4670a65b1efd98d9880def084cf3d9ff0594b3a4f9eb4
     home: http://fluentbit.io
@@ -1203,12 +1203,12 @@ entries:
     sources:
     - http://fluentbit.io
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/fluent-bit-2.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/fluent-bit-2.0.1.tgz
     version: 2.0.1
   fluentd:
   - apiVersion: v1
     appVersion: v2.4.0
-    created: "2021-03-26T05:23:48.934354+08:00"
+    created: "2021-03-26T05:28:14.061461+08:00"
     description: A Fluentd Elasticsearch Helm chart for Kubernetes.
     digest: f9ea18d7b6b0ff90b946e23d9f1b4820a691062e6f1d8999becbb50e95964107
     home: https://www.fluentd.org/
@@ -1225,12 +1225,12 @@ entries:
     - https://github.com/coreos/fluentd-kubernetes-daemonset
     - https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/fluentd-1.9.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/fluentd-1.9.0.tgz
     version: 1.9.0
   fluentd-cloudwatch:
   - apiVersion: v1
     appVersion: v1.3.3-debian-cloudwatch-1.0
-    created: "2021-03-26T05:23:48.93547+08:00"
+    created: "2021-03-26T05:28:14.062125+08:00"
     description: A Fluentd CloudWatch Helm chart for Kubernetes.
     digest: 45db3a234993dc0303e70b04348c44a1dcdaedb9a98c0908f66e5cc26a3aed20
     home: https://www.fluentd.org/
@@ -1251,12 +1251,12 @@ entries:
     - https://github.com/kubernetes/charts
     - https://github.com/fluent/fluentd-kubernetes-daemonset
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/fluentd-cloudwatch-0.9.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/fluentd-cloudwatch-0.9.0.tgz
     version: 0.9.0
   fluentd-elasticsearch:
   - apiVersion: v1
     appVersion: 2.3.2
-    created: "2021-03-26T05:23:48.937003+08:00"
+    created: "2021-03-26T05:28:14.063941+08:00"
     deprecated: true
     description: DEPRECATED! - A Fluentd Helm chart for Kubernetes with Elasticsearch
       output
@@ -1276,12 +1276,12 @@ entries:
     - https://github.com/GoogleCloudPlatform/fluent-plugin-detect-exceptions
     - https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/fluentd-elasticsearch/fluentd-es-image
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/fluentd-elasticsearch-2.0.7.tgz
+    - https://cloudnativeapp.github.io/charts/curated/fluentd-elasticsearch-2.0.7.tgz
     version: 2.0.7
   g2:
   - apiVersion: v1
     appVersion: 0.5.0
-    created: "2021-03-26T05:23:48.937582+08:00"
+    created: "2021-03-26T05:28:14.064415+08:00"
     deprecated: true
     description: DEPRECATED G2 by AppsCode - Gearman in Golang
     digest: 7c1948c7582a297a9be42ab36d93ee50aac97db644a82fd9af42dc8537769be9
@@ -1291,12 +1291,12 @@ entries:
     sources:
     - https://github.com/appscode/g2
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/g2-0.3.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/g2-0.3.3.tgz
     version: 0.3.3
   gangway:
   - apiVersion: v1
     appVersion: 3.0.0
-    created: "2021-03-26T05:23:48.938399+08:00"
+    created: "2021-03-26T05:28:14.065092+08:00"
     description: An application that can be used to easily enable authentication flows
       via OIDC for a kubernetes cluster.
     digest: 7ad87e4569be35a0b15eea906dc45b1598381680cdd9d419e7f222967559fb49
@@ -1308,12 +1308,12 @@ entries:
     sources:
     - https://github.com/heptiolabs/gangway
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/gangway-0.0.5.tgz
+    - https://cloudnativeapp.github.io/charts/curated/gangway-0.0.5.tgz
     version: 0.0.5
   gce-ingress:
   - apiVersion: v1
     appVersion: 1.4.0
-    created: "2021-03-26T05:23:48.939236+08:00"
+    created: "2021-03-26T05:28:14.065735+08:00"
     description: A GCE Ingress Controller
     digest: 01d10e1b5ca1f52892cf5b7d51594e4c13e4413026dcd64fa25d0e2e4fe0499a
     home: https://github.com/kubernetes/ingress-gce
@@ -1327,12 +1327,12 @@ entries:
     sources:
     - https://github.com/kubernetes/ingress-gce
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/gce-ingress-1.1.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/gce-ingress-1.1.2.tgz
     version: 1.1.2
   gcloud-endpoints:
   - apiVersion: v1
     appVersion: "1"
-    created: "2021-03-26T05:23:48.939736+08:00"
+    created: "2021-03-26T05:28:14.066199+08:00"
     deprecated: true
     description: DEPRECATED Develop, deploy, protect and monitor your APIs with Google
       Cloud Endpoints.
@@ -1351,12 +1351,12 @@ entries:
     - open api
     name: gcloud-endpoints
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/gcloud-endpoints-0.1.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/gcloud-endpoints-0.1.2.tgz
     version: 0.1.2
   gcloud-sqlproxy:
   - apiVersion: v1
     appVersion: "1.11"
-    created: "2021-03-26T05:23:48.940387+08:00"
+    created: "2021-03-26T05:28:14.066846+08:00"
     deprecated: true
     description: DEPRECATED Google Cloud SQL Proxy
     digest: 2181f366ae8851ff30f1e50fa53bd6dbbc9e40c5c29e18e72bd547641875dfac
@@ -1372,12 +1372,12 @@ entries:
     sources:
     - https://github.com/rimusz/charts
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/gcloud-sqlproxy-0.6.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/gcloud-sqlproxy-0.6.1.tgz
     version: 0.6.1
   gcp-night-king:
   - apiVersion: v1
     appVersion: "1"
-    created: "2021-03-26T05:23:48.940797+08:00"
+    created: "2021-03-26T05:28:14.067228+08:00"
     description: A Helm chart for GCP Night King
     digest: 63bc810971913771d54a4703637f22eb2309d7d9add3c789fdb4e841f1bd018d
     home: https://hub.docker.com/r/itamarost/gcp-night-king/
@@ -1389,12 +1389,12 @@ entries:
     - https://github.com/itamaro/gcp-go-night-king
     - https://github.com/itamaro/gcp-night-king
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/gcp-night-king-1.0.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/gcp-night-king-1.0.2.tgz
     version: 1.0.2
   gocd:
   - apiVersion: v1
     appVersion: 19.3.0
-    created: "2021-03-26T05:23:48.942525+08:00"
+    created: "2021-03-26T05:28:14.06885+08:00"
     description: GoCD is an open-source continuous delivery server to model and visualize
       complex workflows with ease.
     digest: 6ad541125b14c0bc6552252eacc8524e0f0ecb2a046418862a0257195c8e5da7
@@ -1420,12 +1420,12 @@ entries:
     sources:
     - https://github.com/gocd/gocd
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/gocd-1.9.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/gocd-1.9.2.tgz
     version: 1.9.2
   goldfish:
   - apiVersion: v1
     appVersion: 0.9.0
-    created: "2021-03-26T05:23:48.943169+08:00"
+    created: "2021-03-26T05:28:14.069376+08:00"
     description: A Helm chart for Goldfish - Vault UI
     digest: a7df367ae8f607e3bdd441afa8b031a7ad7582416642a7fb79200a1d56a94902
     home: https://vault-ui.io
@@ -1442,12 +1442,12 @@ entries:
     sources:
     - https://github.com/Caiyeon/goldfish
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/goldfish-0.2.7.tgz
+    - https://cloudnativeapp.github.io/charts/curated/goldfish-0.2.7.tgz
     version: 0.2.7
   goldpinger:
   - apiVersion: v1
     appVersion: 1.5.0
-    created: "2021-03-26T05:23:48.943912+08:00"
+    created: "2021-03-26T05:28:14.069948+08:00"
     description: Goldpinger makes calls between its instances for visibility and alerting.
     digest: 80dbc31218e853f28a0aa4f6bcab77e7030b410c744132257d5589c519d6b12b
     home: https://github.com/bloomberg/goldpinger
@@ -1460,12 +1460,12 @@ entries:
     sources:
     - https://github.com/bloomberg/goldpinger
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/goldpinger-1.1.4.tgz
+    - https://cloudnativeapp.github.io/charts/curated/goldpinger-1.1.4.tgz
     version: 1.1.4
   grafana:
   - apiVersion: v1
     appVersion: 6.1.6
-    created: "2021-03-26T05:23:48.945862+08:00"
+    created: "2021-03-26T05:28:14.071385+08:00"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 4de6baeda772928bf610b9c8c9b4d83a366ca566d67d3a2023643d0eb31dc416
     home: https://grafana.net
@@ -1482,12 +1482,12 @@ entries:
     sources:
     - https://github.com/grafana/grafana
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/grafana-3.3.8.tgz
+    - https://cloudnativeapp.github.io/charts/curated/grafana-3.3.8.tgz
     version: 3.3.8
   graphite:
   - apiVersion: v1
     appVersion: 1.1.5-3
-    created: "2021-03-26T05:23:48.948201+08:00"
+    created: "2021-03-26T05:28:14.074224+08:00"
     deprecated: true
     description: DEPRECATED! - Graphite metrics server
     digest: fd9a477db3ea342c1c8c7a996e03de20dcb2c959e50b489e50d15a27eb82628e
@@ -1500,23 +1500,23 @@ entries:
     - https://github.com/graphite-project
     - https://github.com/graphite-project/docker-graphite-statsd
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/graphite-0.2.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/graphite-0.2.2.tgz
     version: 0.2.2
   guestbook:
   - apiVersion: v1
     appVersion: 1.0.0
-    created: "2021-03-26T05:23:48.948764+08:00"
+    created: "2021-03-26T05:28:14.074808+08:00"
     description: A Helm chart to deploy Guestbook three tier web application.
     digest: c589ed98a1d0a42c63b338ccdee7a7c5d234bae698e8c55e9ed8e83f91c3d617
     icon: http://www.iconarchive.com/download/i87534/ampeross/smooth/Apple-Books.ico
     name: guestbook
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/guestbook-0.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/guestbook-0.2.0.tgz
     version: 0.2.0
   hadoop:
   - apiVersion: v1
     appVersion: 2.9.0
-    created: "2021-03-26T05:23:48.949592+08:00"
+    created: "2021-03-26T05:28:14.075656+08:00"
     description: The Apache Hadoop software library is a framework that allows for
       the distributed processing of large data sets across clusters of computers using
       simple programming models.
@@ -1530,12 +1530,12 @@ entries:
     sources:
     - https://github.com/apache/hadoop
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/hadoop-1.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/hadoop-1.1.0.tgz
     version: 1.1.0
   haproxy-ingress:
   - apiVersion: v1
     appVersion: 0.7.1
-    created: "2021-03-26T05:23:48.952174+08:00"
+    created: "2021-03-26T05:28:14.077615+08:00"
     description: Ingress controller implementation for haproxy loadbalancer.
     digest: 74b80f7abb345c97c8ddd6b96ee044113ece633762f17827bdeeb5d50f4f86b1
     home: https://github.com/jcmoraisjr/haproxy-ingress
@@ -1550,12 +1550,12 @@ entries:
     sources:
     - https://github.com/jcmoraisjr/haproxy-ingress
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/haproxy-ingress-0.0.13.tgz
+    - https://cloudnativeapp.github.io/charts/curated/haproxy-ingress-0.0.13.tgz
     version: 0.0.13
   hazelcast:
   - apiVersion: v1
     appVersion: 3.11.2
-    created: "2021-03-26T05:23:48.953778+08:00"
+    created: "2021-03-26T05:28:14.078405+08:00"
     description: Hazelcast IMDG is the most widely used in-memory data grid with hundreds
       of thousands of installed clusters around the world. It offers caching solutions
       ensuring that data is in the right place when it’s needed for optimal performance.
@@ -1579,12 +1579,12 @@ entries:
     sources:
     - https://github.com/hazelcast/hazelcast
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/hazelcast-1.3.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/hazelcast-1.3.1.tgz
     version: 1.3.1
   hazelcast-jet:
   - apiVersion: v1
     appVersion: "3.0"
-    created: "2021-03-26T05:23:48.954691+08:00"
+    created: "2021-03-26T05:28:14.079836+08:00"
     description: Hazelcast Jet is an application embeddable, distributed computing
       engine built on top of Hazelcast In-Memory Data Grid (IMDG). With Hazelcast
       IMDG providing storage functionality, Hazelcast Jet performs parallel execution
@@ -1609,12 +1609,12 @@ entries:
     sources:
     - https://github.com/hazelcast/hazelcast-jet
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/hazelcast-jet-1.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/hazelcast-jet-1.1.0.tgz
     version: 1.1.0
   heapster:
   - apiVersion: v1
     appVersion: 1.5.2
-    created: "2021-03-26T05:23:48.955535+08:00"
+    created: "2021-03-26T05:28:14.08068+08:00"
     description: Heapster enables Container Cluster Monitoring and Performance Analysis.
     digest: 68618cf983922de252480a1a95e971b4621db5138e513386e3cd7bec28e7b2d2
     home: https://github.com/kubernetes/heapster
@@ -1630,12 +1630,12 @@ entries:
     - https://github.com/kubernetes/heapster
     - https://github.com/kubernetes/contrib/tree/master/addon-resizer
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/heapster-0.3.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/heapster-0.3.3.tgz
     version: 0.3.3
   heartbeat:
   - apiVersion: v1
     appVersion: 6.7.0
-    created: "2021-03-26T05:23:48.956132+08:00"
+    created: "2021-03-26T05:28:14.081238+08:00"
     description: A Helm chart to periodically check the status of your services with
       heartbeat
     digest: 5a2a48c7443150151692f70f9ed69eba9600450157ed1fe20925aab99bac58ce
@@ -1648,12 +1648,12 @@ entries:
     sources:
     - https://www.elastic.co/guide/en/beats/heartbeat/current/index.html
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/heartbeat-1.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/heartbeat-1.2.0.tgz
     version: 1.2.0
   helm-exporter:
   - apiVersion: v1
     appVersion: 0.4.0
-    created: "2021-03-26T05:23:48.956692+08:00"
+    created: "2021-03-26T05:28:14.081801+08:00"
     description: Exports helm release stats to prometheus
     digest: 4590fceff0eb630b239a388d32b9a7e5ac9a3ef63020def526dcab07f5b1a12a
     home: https://github.com/sstarcher/helm-exporter
@@ -1664,12 +1664,12 @@ entries:
     sources:
     - https://github.com/sstarcher/helm-exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/helm-exporter-0.2.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/helm-exporter-0.2.3.tgz
     version: 0.2.3
   hl-composer:
   - apiVersion: v1
     appVersion: 0.20.0
-    created: "2021-03-26T05:23:48.95762+08:00"
+    created: "2021-03-26T05:28:14.082596+08:00"
     description: Hyperledger Composer REST Server chart
     digest: 330119480534ec2990fa7b3a45246838e3ed19ff7f36151083f9869c2066e64f
     home: https://hyperledger.github.io/composer
@@ -1688,12 +1688,12 @@ entries:
     sources:
     - https://github.com/hyperledger/composer
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/hl-composer-1.0.11.tgz
+    - https://cloudnativeapp.github.io/charts/curated/hl-composer-1.0.11.tgz
     version: 1.0.11
   hlf-couchdb:
   - apiVersion: v1
     appVersion: 0.4.10
-    created: "2021-03-26T05:23:48.958256+08:00"
+    created: "2021-03-26T05:28:14.083176+08:00"
     description: CouchDB instance for Hyperledger Fabric (these charts are created
       by AID:Tech and are currently not directly associated with the Hyperledger project)
     digest: 01daafb20e2518e74782ea65b073e8689bc7cb68d4625dc04ef452427355f742
@@ -1713,12 +1713,12 @@ entries:
     sources:
     - https://github.com/hyperledger/fabric
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/hlf-couchdb-1.0.6.tgz
+    - https://cloudnativeapp.github.io/charts/curated/hlf-couchdb-1.0.6.tgz
     version: 1.0.6
   hlf-ord:
   - apiVersion: v1
     appVersion: 1.3.0
-    created: "2021-03-26T05:23:48.959147+08:00"
+    created: "2021-03-26T05:28:14.084028+08:00"
     description: Hyperledger Fabric Orderer chart (these charts are created by AID:Tech
       and are currently not directly associated with the Hyperledger project)
     digest: 7734ecdf29855dd7d7aaf5e6105299205613d100ee008da0d40d63aaa7e4da7c
@@ -1737,12 +1737,12 @@ entries:
     sources:
     - https://github.com/hyperledger/fabric
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/hlf-ord-1.2.5.tgz
+    - https://cloudnativeapp.github.io/charts/curated/hlf-ord-1.2.5.tgz
     version: 1.2.5
   hlf-peer:
   - apiVersion: v1
     appVersion: 1.3.0
-    created: "2021-03-26T05:23:48.96003+08:00"
+    created: "2021-03-26T05:28:14.084925+08:00"
     description: Hyperledger Fabric Peer chart (these charts are created by AID:Tech
       and are currently not directly associated with the Hyperledger project)
     digest: abeed35dee82e4a2b6dd19462aa1a0295b8f2aa7f10462979e2e09759ca1daff
@@ -1761,12 +1761,12 @@ entries:
     sources:
     - https://github.com/hyperledger/fabric
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/hlf-peer-1.2.6.tgz
+    - https://cloudnativeapp.github.io/charts/curated/hlf-peer-1.2.6.tgz
     version: 1.2.6
   hoard:
   - apiVersion: v1
     appVersion: 3.0.1
-    created: "2021-03-26T05:23:48.960759+08:00"
+    created: "2021-03-26T05:28:14.085606+08:00"
     description: Hoard is a stateless, deterministically encrypted, content-addressed
       object store
     digest: 8109433a1cb6e4ebb97c17dba6a4933fcc6e4cdb36e278310cb1d2599620bd76
@@ -1790,12 +1790,12 @@ entries:
     sources:
     - https://github.com/monax/hoard
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/hoard-0.7.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/hoard-0.7.0.tgz
     version: 0.7.0
   home-assistant:
   - apiVersion: v1
     appVersion: 0.92.2
-    created: "2021-03-26T05:23:48.961758+08:00"
+    created: "2021-03-26T05:28:14.086584+08:00"
     description: Home Assistant
     digest: a70c5b4791fd7ebc321b5e8bffe97120acd257a9f16efc4da9ebc26ca9bb62f3
     home: https://github.com/home-assistant/home-assistant
@@ -1815,12 +1815,12 @@ entries:
     - https://github.com/danielperna84/hass-configurator
     - https://github.com/cdr/code-server
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/home-assistant-0.9.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/home-assistant-0.9.1.tgz
     version: 0.9.1
   horovod:
   - apiVersion: v1
     appVersion: 0.12.1
-    created: "2021-03-26T05:23:48.962291+08:00"
+    created: "2021-03-26T05:28:14.087431+08:00"
     description: A Helm chart for deploying Horovod
     digest: ed2411b302585d1f33b627ed6b5f64073accc0ae56adaa8f766b6a7b0e547e14
     home: https://eng.uber.com/horovod/
@@ -1832,12 +1832,12 @@ entries:
     - https://github.com/uber/horovod
     - https://github.com/uber/horovod/blob/master/docs/docker.md
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/horovod-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/horovod-1.0.0.tgz
     version: 1.0.0
   hoverfly:
   - apiVersion: v1
     appVersion: 1.0.0-rc.2
-    created: "2021-03-26T05:23:48.962711+08:00"
+    created: "2021-03-26T05:28:14.088047+08:00"
     description: Hoverfly is a lightweight, open source API simulation tool. Using
       Hoverfly, you can create realistic simulations of the APIs your application
       depends on.
@@ -1856,12 +1856,12 @@ entries:
     sources:
     - https://github.com/SpectoLabs/hoverfly
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/hoverfly-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/hoverfly-0.1.0.tgz
     version: 0.1.0
   hubot:
   - apiVersion: v1
     appVersion: 0.1.9
-    created: "2021-03-26T05:23:48.963904+08:00"
+    created: "2021-03-26T05:28:14.088573+08:00"
     description: Hubot chatbot for Slack
     digest: a94437a953f467bb9b07e4e4aaa7073afc5dd6cf0049c91ad26f06b07a108d49
     home: https://github.com/mind-doc/hubot
@@ -1877,12 +1877,12 @@ entries:
     sources:
     - https://github.com/mind-doc/hubot
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/hubot-0.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/hubot-0.0.1.tgz
     version: 0.0.1
   ignite:
   - apiVersion: v1
     appVersion: 2.7.0
-    created: "2021-03-26T05:23:48.964622+08:00"
+    created: "2021-03-26T05:28:14.089133+08:00"
     description: Apache Ignite is an open-source distributed database, caching and
       processing platform designed to store and compute on large volumes of data across
       a cluster of nodes.
@@ -1905,12 +1905,12 @@ entries:
     sources:
     - https://github.com/apache/ignite
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/ignite-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/ignite-1.0.0.tgz
     version: 1.0.0
   inbucket:
   - apiVersion: v1
     appVersion: 2.0.0
-    created: "2021-03-26T05:23:48.965281+08:00"
+    created: "2021-03-26T05:28:14.089749+08:00"
     description: Inbucket is an email testing application
     digest: f7add8ec31deae054242fd2eb1ce3045a9f682f18efa2ff0bcc17e7883bb9571
     home: https://www.inbucket.org/
@@ -1931,12 +1931,12 @@ entries:
     sources:
     - https://github.com/jhillyerd/inbucket
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/inbucket-3.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/inbucket-3.1.0.tgz
     version: 3.1.0
   influxdb:
   - apiVersion: v1
     appVersion: 1.7.3
-    created: "2021-03-26T05:23:48.967292+08:00"
+    created: "2021-03-26T05:28:14.090867+08:00"
     description: Scalable datastore for metrics, events, and real-time analytics.
     digest: 6d0667fe8b88b3bd1752fc064e7f133ac96425545b0bb3e7dc19c8e105ecaa1f
     home: https://www.influxdata.com/time-series-platform/influxdb/
@@ -1951,12 +1951,12 @@ entries:
     sources:
     - https://github.com/influxdata/influxdb
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/influxdb-1.1.6.tgz
+    - https://cloudnativeapp.github.io/charts/curated/influxdb-1.1.6.tgz
     version: 1.1.6
   ingressmonitorcontroller:
   - apiVersion: v1
     appVersion: 1.0.47
-    created: "2021-03-26T05:23:48.967913+08:00"
+    created: "2021-03-26T05:28:14.091462+08:00"
     description: IngressMonitorController chart that runs on kubernetes
     digest: 0ae27ebe18009363e242ca2c9a82317bcb1597a62704b63a22032228e8b6ef51
     home: https://github.com/stakater/IngressMonitorController
@@ -1981,12 +1981,12 @@ entries:
     sources:
     - https://github.com/stakater/IngressMonitorController
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/ingressmonitorcontroller-1.0.48.tgz
+    - https://cloudnativeapp.github.io/charts/curated/ingressmonitorcontroller-1.0.48.tgz
     version: 1.0.48
   instana-agent:
   - apiVersion: v1
     appVersion: "1"
-    created: "2021-03-26T05:23:48.968567+08:00"
+    created: "2021-03-26T05:28:14.092078+08:00"
     description: Instana Agent for Kubernetes
     digest: 8d1ed879c618ebf2ddb50940e965d897b4aaea5b8a4150dbdaa3ce402e07e96c
     home: https://www.instana.com/
@@ -2008,12 +2008,12 @@ entries:
     sources:
     - https://github.com/instana/instana-agent-docker
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/instana-agent-1.0.7.tgz
+    - https://cloudnativeapp.github.io/charts/curated/instana-agent-1.0.7.tgz
     version: 1.0.7
   ipfs:
   - apiVersion: v1
     appVersion: v0.4.9
-    created: "2021-03-26T05:23:48.969039+08:00"
+    created: "2021-03-26T05:28:14.092483+08:00"
     description: A Helm chart for the Interplanetary File System
     digest: b5e959d5b863f141c8e68bf7d35437ea9b7bd3bfc7afeba46039357e87bbd7d5
     home: https://ipfs.io/
@@ -2028,12 +2028,12 @@ entries:
     sources:
     - https://github.com/ipfs/go-ipfs
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/ipfs-0.2.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/ipfs-0.2.2.tgz
     version: 0.2.2
   istio:
   - apiVersion: v1
     appVersion: 0.2.12
-    created: "2021-03-26T05:23:48.970492+08:00"
+    created: "2021-03-26T05:28:14.093896+08:00"
     deprecated: true
     description: Istio Helm chart for Kubernetes
     digest: 9208de9e4deb1f6db6070856e93d7d1922ae391a51548949f19e372365c75fb7
@@ -2046,12 +2046,12 @@ entries:
     sources:
     - https://github.com/istio/istio
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/istio-0.2.13-chart4.tgz
+    - https://cloudnativeapp.github.io/charts/curated/istio-0.2.13-chart4.tgz
     version: 0.2.13-chart4
   jaeger-operator:
   - apiVersion: v1
     appVersion: 1.11.0
-    created: "2021-03-26T05:23:48.971039+08:00"
+    created: "2021-03-26T05:28:14.094345+08:00"
     description: jaeger-operator Helm chart for Kubernetes
     digest: ff031b236e30fc69839493b705f1a3fd76016243f001d02b3bf3b022844a683d
     home: https://www.jaegertracing.io/
@@ -2063,12 +2063,12 @@ entries:
       name: batazor
     name: jaeger-operator
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/jaeger-operator-2.4.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/jaeger-operator-2.4.2.tgz
     version: 2.4.2
   jenkins:
   - apiVersion: v1
     appVersion: 2.164.3
-    created: "2021-03-26T05:23:48.972451+08:00"
+    created: "2021-03-26T05:28:14.095103+08:00"
     description: The leading open source automation server
     digest: f7cd361efb7215ea7b3005c344f57940f164658354f308d4b1f33f578832cd41
     home: https://jenkins.io/
@@ -2087,12 +2087,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-jenkins
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/jenkins-2.3.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/jenkins-2.3.2.tgz
     version: 2.3.2
   jenkins-operator:
   - apiVersion: v1
     appVersion: 0.1.12
-    created: "2021-03-26T05:23:48.972996+08:00"
+    created: "2021-03-26T05:28:14.096304+08:00"
     description: A Helm chart for Kubernetes Jenkins Operator
     digest: 6c88ec1b8a4d12515acacc1777b6c02285b4cd84670cd8599f154cf233d06e40
     home: https://github.com/samsung-cnct/jenkins-operator
@@ -2108,12 +2108,12 @@ entries:
     - https://github.com/samsung-cnct/jenkins-operator
     - https://github.com/jenkinsci/jenkins
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/jenkins-operator-0.1.12.tgz
+    - https://cloudnativeapp.github.io/charts/curated/jenkins-operator-0.1.12.tgz
     version: 0.1.12
   k8s-spot-rescheduler:
   - apiVersion: v1
     appVersion: v0.2.0
-    created: "2021-03-26T05:23:48.973511+08:00"
+    created: "2021-03-26T05:28:14.096859+08:00"
     description: A k8s-spot-rescheduler Helm chart for Kubernetes
     digest: d72acc3b330a9189d625125cc082a812a2786240085ecbbca0b18eb8414c0840
     home: https://github.com/pusher/k8s-spot-rescheduler
@@ -2127,12 +2127,12 @@ entries:
     sources:
     - https://github.com/pusher/k8s-spot-rescheduler
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/k8s-spot-rescheduler-0.4.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/k8s-spot-rescheduler-0.4.0.tgz
     version: 0.4.0
   k8s-spot-termination-handler:
   - apiVersion: v1
     appVersion: 1.13.0-1
-    created: "2021-03-26T05:23:48.973989+08:00"
+    created: "2021-03-26T05:28:14.097333+08:00"
     description: The K8s Spot Termination handler handles draining AWS Spot Instances
       in response to termination requests.
     digest: 11d8cffbabf21101fa872a65021d1a3685e454b55cb4b41094eba5d176ebae65
@@ -2147,12 +2147,12 @@ entries:
     sources:
     - https://github.com/kube-aws/kube-spot-termination-notice-handler
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/k8s-spot-termination-handler-1.2.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/k8s-spot-termination-handler-1.2.1.tgz
     version: 1.2.1
   kanister-operator:
   - apiVersion: v1
     appVersion: 0.10.0
-    created: "2021-03-26T05:23:48.974649+08:00"
+    created: "2021-03-26T05:28:14.097929+08:00"
     description: Kanister-operator Helm chart for Kubernetes
     digest: 6573bad35e5289d3e1e6bb9330a089232d8c9adcdc8716e2ecd766a6f41985de
     home: https://kanister.io/
@@ -2164,12 +2164,12 @@ entries:
       name: tdmanv
     name: kanister-operator
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kanister-operator-0.3.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kanister-operator-0.3.0.tgz
     version: 0.3.0
   kapacitor:
   - apiVersion: v1
     appVersion: 1.5.2
-    created: "2021-03-26T05:23:48.975191+08:00"
+    created: "2021-03-26T05:28:14.098384+08:00"
     description: InfluxDB's native data processing engine. It can process both stream
       and batch data from InfluxDB.
     digest: 31a003b652d0aaec53db4e45308c7ccd397bc2a78264f95d855481d2be81af43
@@ -2186,12 +2186,12 @@ entries:
     sources:
     - https://github.com/influxdata/kapacitor
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kapacitor-1.1.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kapacitor-1.1.2.tgz
     version: 1.1.2
   karma:
   - apiVersion: v1
     appVersion: v0.34
-    created: "2021-03-26T05:23:48.975828+08:00"
+    created: "2021-03-26T05:28:14.099014+08:00"
     description: A Helm chart for Karma - an UI for Prometheus Alertmanager
     digest: 7763cfd736959ef06980a9cd004eff91bb984a57a574dd65581db10d29f576ac
     home: https://github.com/prymitive/karma
@@ -2205,12 +2205,12 @@ entries:
     - https://hub.docker.com/r/lmierzwa/karma/
     - https://github.com/prymitive/karma
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/karma-1.1.13.tgz
+    - https://cloudnativeapp.github.io/charts/curated/karma-1.1.13.tgz
     version: 1.1.13
   katafygio:
   - apiVersion: v1
     appVersion: 0.7.1
-    created: "2021-03-26T05:23:48.976427+08:00"
+    created: "2021-03-26T05:28:14.099611+08:00"
     description: Continuously backup Kubernetes objets as YAML files in git
     digest: ec08953897f21075689c440f03da19a3266991aeccf1ef0cc21477b1672b449d
     home: https://github.com/bpineau/katafygio
@@ -2227,12 +2227,12 @@ entries:
     sources:
     - https://github.com/bpineau/katafygio
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/katafygio-0.4.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/katafygio-0.4.0.tgz
     version: 0.4.0
   keel:
   - apiVersion: v1
     appVersion: 0.9.5
-    created: "2021-03-26T05:23:48.976993+08:00"
+    created: "2021-03-26T05:28:14.100161+08:00"
     deprecated: true
     description: DEPRECATED Open source, tool for automating Kubernetes deployment
       updates. Keel is stateless, robust and lightweight.
@@ -2246,12 +2246,12 @@ entries:
     sources:
     - https://github.com/keel-hq/keel
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/keel-0.6.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/keel-0.6.1.tgz
     version: 0.6.1
   keycloak-proxy:
   - apiVersion: v1
     appVersion: 3.4.2.Final
-    created: "2021-03-26T05:23:48.977533+08:00"
+    created: "2021-03-26T05:28:14.100701+08:00"
     description: Keycloak Proxy supports Single Sign-On with Keycloak
     digest: 1184dee2c5055566cc14a8a93d2582da050d8c7bba49a9c4fffb7e887f8a604d
     home: https://www.keycloak.org/docs/3.3/server_installation/topics/proxy.html
@@ -2267,12 +2267,12 @@ entries:
     sources:
     - https://github.com/jboss-dockerfiles/keycloak/tree/master/proxy
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/keycloak-proxy-0.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/keycloak-proxy-0.0.1.tgz
     version: 0.0.1
   kiam:
   - apiVersion: v1
     appVersion: "3.2"
-    created: "2021-03-26T05:23:48.978642+08:00"
+    created: "2021-03-26T05:28:14.101761+08:00"
     description: Integrate AWS IAM with Kubernetes
     digest: 6a7fd3cc642f9c0951d1c6d2c0da2756bd2b14213aadb5932c4f17d058161b93
     home: https://github.com/uswitch/kiam
@@ -2288,12 +2288,12 @@ entries:
     sources:
     - https://github.com/uswitch/kiam
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kiam-2.3.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kiam-2.3.0.tgz
     version: 2.3.0
   kibana:
   - apiVersion: v1
     appVersion: 6.7.0
-    created: "2021-03-26T05:23:48.979741+08:00"
+    created: "2021-03-26T05:28:14.102827+08:00"
     description: Kibana is an open source data visualization plugin for Elasticsearch
     digest: 2a1f069ef5562a9df5f7b348a9f9e73fbb4c2feb2bca6ef967ac89da2b523933
     home: https://www.elastic.co/products/kibana
@@ -2310,12 +2310,12 @@ entries:
     sources:
     - https://github.com/elastic/kibana
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kibana-3.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kibana-3.0.0.tgz
     version: 3.0.0
   kube-hunter:
   - apiVersion: v1
     appVersion: "195"
-    created: "2021-03-26T05:23:48.980174+08:00"
+    created: "2021-03-26T05:28:14.103253+08:00"
     description: A Helm chart for Kube-hunter
     digest: c6e4ae0f4440af3a8410af58a0bda8465d5b6cd3f047bd5f7038e847f749dd97
     home: https://github.com/aquasecurity/kube-hunter
@@ -2333,12 +2333,12 @@ entries:
     sources:
     - https://github.com/aquasecurity/kube-hunter/blob/master/job.yaml
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kube-hunter-1.0.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kube-hunter-1.0.2.tgz
     version: 1.0.2
   kube-janitor:
   - apiVersion: v1
     appVersion: v0.1.0
-    created: "2021-03-26T05:23:48.980799+08:00"
+    created: "2021-03-26T05:28:14.103647+08:00"
     description: A Helm chart for running kube-janitor
     digest: 184e6a834a8ffad4d6d80dadc813e41d526ecf62ba1dfe5e437b9239c4a4d06a
     home: https://github.com/themagicalkarp/kube-janitor
@@ -2351,12 +2351,12 @@ entries:
     sources:
     - https://github.com/themagicalkarp/kube-janitor
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kube-janitor-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kube-janitor-0.1.0.tgz
     version: 0.1.0
   kube-lego:
   - apiVersion: v1
     appVersion: v0.1.6
-    created: "2021-03-26T05:23:48.981552+08:00"
+    created: "2021-03-26T05:28:14.104701+08:00"
     deprecated: true
     description: DEPRECATED Automatically requests certificates from Let's Encrypt
     digest: f81e3731dd9bf5391df6c2dc35d274d663094053b4919a280abb501508d022ee
@@ -2368,23 +2368,23 @@ entries:
     sources:
     - https://github.com/jetstack/kube-lego/tree/master/examples/nginx
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kube-lego-0.4.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kube-lego-0.4.2.tgz
     version: 0.4.2
   kube-registry-proxy:
   - apiVersion: v1
     appVersion: "0.4"
-    created: "2021-03-26T05:23:48.981882+08:00"
+    created: "2021-03-26T05:28:14.105022+08:00"
     description: Installs the kubernetes-registry-proxy cluster addon.
     digest: 2a4b40645144943e671802068241041956c78cda1f3fc069443cf19f29ec6014
     home: https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/registry
     name: kube-registry-proxy
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kube-registry-proxy-0.3.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kube-registry-proxy-0.3.0.tgz
     version: 0.3.0
   kube-slack:
   - apiVersion: v1
     appVersion: v4.1.1
-    created: "2021-03-26T05:23:48.98237+08:00"
+    created: "2021-03-26T05:28:14.105514+08:00"
     description: Chart for kube-slack, a monitoring service for Kubernetes
     digest: 6583faaf54567d224922dd6f09bf0a5f22fe6ffd84a3cc6a00e7d515733f3b7f
     home: https://github.com/wongnai/kube-slack
@@ -2400,12 +2400,12 @@ entries:
     sources:
     - https://github.com/wongnai/kube-slack
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kube-slack-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kube-slack-1.0.0.tgz
     version: 1.0.0
   kube-state-metrics:
   - apiVersion: v1
     appVersion: 1.6.0
-    created: "2021-03-26T05:23:48.983067+08:00"
+    created: "2021-03-26T05:28:14.106208+08:00"
     description: Install kube-state-metrics to generate and expose cluster-level metrics
     digest: d9148f3107c9b63e88bf0e90da0ece7de2c8bf07a50838551d19bd0b9dc392d0
     home: https://github.com/kubernetes/kube-state-metrics/
@@ -2422,12 +2422,12 @@ entries:
     sources:
     - https://github.com/kubernetes/kube-state-metrics/
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kube-state-metrics-1.6.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kube-state-metrics-1.6.1.tgz
     version: 1.6.1
   kube2iam:
   - apiVersion: v1
     appVersion: 0.10.4
-    created: "2021-03-26T05:23:48.98367+08:00"
+    created: "2021-03-26T05:28:14.106762+08:00"
     description: Provide IAM credentials to pods based on annotations.
     digest: 5f75da4adebac0454f006c7de1cf2d201a6801979a95481c74d3d58cad8b9ba3
     home: https://github.com/jtblin/kube2iam
@@ -2447,12 +2447,12 @@ entries:
     sources:
     - https://github.com/jtblin/kube2iam
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kube2iam-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kube2iam-1.0.0.tgz
     version: 1.0.0
   kubed:
   - apiVersion: v1
     appVersion: 0.4.0
-    created: "2021-03-26T05:23:48.984114+08:00"
+    created: "2021-03-26T05:28:14.10719+08:00"
     deprecated: true
     description: DEPRECATED Kubed by AppsCode - Kubernetes daemon
     digest: b337ed82470345993f230cc695363e68d07e15232d1aa4c6aedee78509d6b1c3
@@ -2462,12 +2462,12 @@ entries:
     sources:
     - https://github.com/appscode/kubed
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kubed-0.3.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kubed-0.3.3.tgz
     version: 0.3.3
   kubedb:
   - apiVersion: v1
     appVersion: 0.8.0-beta.2
-    created: "2021-03-26T05:23:48.984663+08:00"
+    created: "2021-03-26T05:28:14.107714+08:00"
     deprecated: true
     description: DEPRECATED KubeDB by AppsCode - Making running production-grade databases
       easy on Kubernetes
@@ -2481,12 +2481,12 @@ entries:
     sources:
     - https://github.com/kubedb/cli
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kubedb-0.1.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kubedb-0.1.3.tgz
     version: 0.1.3
   kubeless:
   - apiVersion: v1
     appVersion: v1.0.3
-    created: "2021-03-26T05:23:48.985919+08:00"
+    created: "2021-03-26T05:28:14.109449+08:00"
     description: Kubeless is a Kubernetes-native serverless framework. It runs on
       top of your Kubernetes cluster and allows you to deploy small unit of code without
       having to build container images.
@@ -2505,12 +2505,12 @@ entries:
     sources:
     - https://github.com/kubeless/kubeless
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kubeless-2.0.5.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kubeless-2.0.5.tgz
     version: 2.0.5
   kuberhealthy:
   - apiVersion: v1
     appVersion: v1.0.2
-    created: "2021-03-26T05:23:48.986548+08:00"
+    created: "2021-03-26T05:28:14.110138+08:00"
     description: The official Helm chart for Kuberhealthy.
     digest: 193d336a312ff5750aabb9826a80290c97b00773e21ab59d4f777f25c1e149f3
     home: https://comcast.github.io/kuberhealthy/
@@ -2536,12 +2536,12 @@ entries:
     - https://github.com/Comcast/kuberhealthy
     - https://github.com/helm/charts/tree/master/stable/kuberhealthy
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kuberhealthy-1.2.5.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kuberhealthy-1.2.5.tgz
     version: 1.2.5
   kubernetes-dashboard:
   - apiVersion: v1
     appVersion: 1.10.1
-    created: "2021-03-26T05:23:48.987319+08:00"
+    created: "2021-03-26T05:28:14.110981+08:00"
     description: General-purpose web UI for Kubernetes clusters
     digest: 6df9530c9352752a06c3c9de4d2ce48eb7bbb924fc1682adaaf1c690945e8186
     home: https://github.com/kubernetes/dashboard
@@ -2558,12 +2558,12 @@ entries:
     sources:
     - https://github.com/kubernetes/dashboard
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kubernetes-dashboard-1.5.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kubernetes-dashboard-1.5.2.tgz
     version: 1.5.2
   kubernetes-vault:
   - apiVersion: v1
     appVersion: 0.5.2
-    created: "2021-03-26T05:23:48.987829+08:00"
+    created: "2021-03-26T05:28:14.11145+08:00"
     description: The Kubernetes-Vault project allows pods to automatically receive
       a Vault token using Vaults AppRole auth backend.
     digest: 69794903d36c7cc54763d86e8a6a8e705605051978ccbbf94ea7defe6f750bce
@@ -2575,12 +2575,12 @@ entries:
     sources:
     - https://github.com/Boostport/kubernetes-vault
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kubernetes-vault-0.2.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kubernetes-vault-0.2.1.tgz
     version: 0.2.1
   kuberos:
   - apiVersion: v1
     appVersion: "2018-07-03"
-    created: "2021-03-26T05:23:48.989+08:00"
+    created: "2021-03-26T05:28:14.112295+08:00"
     description: An OIDC authentication helper for Kubernetes
     digest: c8ffd508c1ab56e4edfabc0c5572a7892e94def6a618ee8a41218dd9d3d0f443
     home: https://github.com/negz/kuberos
@@ -2591,12 +2591,12 @@ entries:
     sources:
     - https://github.com/negz/kuberos
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kuberos-0.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kuberos-0.2.0.tgz
     version: 0.2.0
   kubewatch:
   - apiVersion: v1
     appVersion: 0.0.4
-    created: "2021-03-26T05:23:48.989802+08:00"
+    created: "2021-03-26T05:28:14.113152+08:00"
     description: Kubewatch notifies your slack rooms when changes to your cluster
       occur
     digest: 7e37f7ddbe00169372cd5e1735b0dac147ad36bd4e779cb2e622dfbd6a0660e4
@@ -2617,12 +2617,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-kubewatch
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kubewatch-0.8.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kubewatch-0.8.0.tgz
     version: 0.8.0
   kured:
   - apiVersion: v1
     appVersion: 1.2.0
-    created: "2021-03-26T05:23:48.990272+08:00"
+    created: "2021-03-26T05:28:14.113615+08:00"
     description: A Helm chart for kured
     digest: d2a662228538b55df618cc0fc564596695b1e9b4909bbcf8ffbefe7fbd609405
     home: https://github.com/weaveworks/kured
@@ -2636,12 +2636,12 @@ entries:
     sources:
     - https://github.com/weaveworks/kured
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/kured-1.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/kured-1.2.0.tgz
     version: 1.2.0
   lamp:
   - apiVersion: v1
     appVersion: "7"
-    created: "2021-03-26T05:23:48.991753+08:00"
+    created: "2021-03-26T05:28:14.115059+08:00"
     description: Modular and transparent LAMP stack chart supporting PHP-FPM, Release
       Cloning, LoadBalancer, Ingress, SSL and lots more!
     digest: 25e91d9bb9588f414c746716c28ab0cabe76cd0e0519a5069b162cb9b737a840
@@ -2650,12 +2650,12 @@ entries:
     - name: lead4good
     name: lamp
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/lamp-1.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/lamp-1.1.0.tgz
     version: 1.1.0
   linkerd:
   - apiVersion: v1
     appVersion: 1.1.2
-    created: "2021-03-26T05:23:48.992347+08:00"
+    created: "2021-03-26T05:28:14.115531+08:00"
     description: Service mesh for cloud native apps
     digest: 9dfd3148ffa38714789dda5edfcf611e893ebee08f2945f1f9e60f4a2d6c0e50
     home: https://linkerd.io/
@@ -2667,12 +2667,12 @@ entries:
     sources:
     - https://github.com/BuoyantIO/linkerd
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/linkerd-0.4.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/linkerd-0.4.1.tgz
     version: 0.4.1
   locust:
   - apiVersion: v1
     appVersion: 0.9.0
-    created: "2021-03-26T05:23:48.992887+08:00"
+    created: "2021-03-26T05:28:14.116036+08:00"
     description: A modern load testing framework
     digest: 734e39c67ab779e13c3ee3bf508f3a615cc2a5355f90d998c9bc325948f31097
     home: http://locust.io
@@ -2686,12 +2686,12 @@ entries:
     sources:
     - https://github.com/greenbird/locust
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/locust-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/locust-1.0.0.tgz
     version: 1.0.0
   logdna-agent:
   - apiVersion: v1
     appVersion: 1.5.6
-    created: "2021-03-26T05:23:48.993311+08:00"
+    created: "2021-03-26T05:28:14.116425+08:00"
     description: Run this, get logs. All cluster containers. LogDNA collector agent
       daemonset for Kubernetes.
     digest: d77baeadb5bd6371c294ed66791fc4e8e786ec587a0c3a274f6c40b6e7d952f8
@@ -2714,12 +2714,12 @@ entries:
     sources:
     - https://github.com/logdna/logdna-agent
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/logdna-agent-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/logdna-agent-1.0.0.tgz
     version: 1.0.0
   logstash:
   - apiVersion: v1
     appVersion: 6.7.0
-    created: "2021-03-26T05:23:48.99436+08:00"
+    created: "2021-03-26T05:28:14.117494+08:00"
     description: Logstash is an open source, server-side data processing pipeline
     digest: 6c2f24a07dbc47ab5ffa7cb018a639e36e9c818409221360e187918cc84892f6
     home: https://www.elastic.co/products/logstash
@@ -2736,12 +2736,12 @@ entries:
     - https://www.docker.elastic.co
     - https://www.elastic.co/guide/en/logstash/current/index.html
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/logstash-1.10.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/logstash-1.10.0.tgz
     version: 1.10.0
   magic-ip-address:
   - apiVersion: v1
     appVersion: 0.9.0
-    created: "2021-03-26T05:23:48.994838+08:00"
+    created: "2021-03-26T05:28:14.117991+08:00"
     description: A Helm chart to assign static IP addresses for node-local services
     digest: 883b9def031b227f0487080168a8c3fb1cfc78ad1301ff499aa481c1c4a1622f
     home: https://github.com/mumoshu/kube-magic-ip-address
@@ -2752,12 +2752,12 @@ entries:
     sources:
     - https://github.com/mumoshu/kube-magic-ip-address
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/magic-ip-address-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/magic-ip-address-0.1.0.tgz
     version: 0.1.0
   magic-namespace:
   - apiVersion: v1
     appVersion: 2.8.1
-    created: "2021-03-26T05:23:48.995456+08:00"
+    created: "2021-03-26T05:28:14.118594+08:00"
     description: Elegantly enables a Tiller per namespace in RBAC-enabled clusters
     digest: 000825f1808c4d4292c641cad6868d0a184205b57b8d9990a9dc18bd4e8e6530
     home: https://github.com/kubernetes/charts/tree/master/stable/magic-namespace
@@ -2766,12 +2766,12 @@ entries:
       name: krancour
     name: magic-namespace
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/magic-namespace-0.5.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/magic-namespace-0.5.2.tgz
     version: 0.5.2
   mailhog:
   - apiVersion: v1
     appVersion: 1.0.0
-    created: "2021-03-26T05:23:48.995997+08:00"
+    created: "2021-03-26T05:28:14.119082+08:00"
     deprecated: true
     description: DEPRECATED - An e-mail testing tool for developers
     digest: 7e8b93cc62c35aec4736f23ed0006aaaaeae9b8312771cdac8abb87bbf6765c7
@@ -2788,12 +2788,12 @@ entries:
     sources:
     - https://github.com/mailhog/MailHog
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/mailhog-2.3.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/mailhog-2.3.1.tgz
     version: 2.3.1
   mariadb:
   - apiVersion: v1
     appVersion: 10.3.15
-    created: "2021-03-26T05:23:48.998057+08:00"
+    created: "2021-03-26T05:28:14.120381+08:00"
     description: Fast, reliable, scalable, and easy to use open-source relational
       database system. MariaDB Server is intended for mission-critical, heavy-load
       production systems as well as for embedding into mass-deployed software. Highly
@@ -2815,12 +2815,12 @@ entries:
     - https://github.com/bitnami/bitnami-docker-mariadb
     - https://github.com/prometheus/mysqld_exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/mariadb-6.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/mariadb-6.1.0.tgz
     version: 6.1.0
   memcached:
   - apiVersion: v1
     appVersion: 1.5.15
-    created: "2021-03-26T05:23:48.998723+08:00"
+    created: "2021-03-26T05:28:14.121596+08:00"
     description: Chart for Memcached
     digest: 653bd26f077d1d9e6278a2b0908d25fc02cec165bc8080b9a1f74dd00dd901b3
     home: http://memcached.org/
@@ -2835,12 +2835,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-memcached
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/memcached-1.5.4.tgz
+    - https://cloudnativeapp.github.io/charts/curated/memcached-1.5.4.tgz
     version: 1.5.4
   mercure:
   - apiVersion: v1
     appVersion: 0.5.0
-    created: "2021-03-26T05:23:48.99933+08:00"
+    created: "2021-03-26T05:28:14.122194+08:00"
     description: The Mercure hub allows to push data updates using the Mercure protocol
       to web browsers and other HTTP clients in a convenient, fast, reliable and battery-efficient
       way
@@ -2858,12 +2858,12 @@ entries:
     sources:
     - https://github.com/dunglas/mercure
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/mercure-1.0.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/mercure-1.0.2.tgz
     version: 1.0.2
   metabase:
   - apiVersion: v1
     appVersion: v0.31.2
-    created: "2021-03-26T05:23:48.999913+08:00"
+    created: "2021-03-26T05:28:14.122811+08:00"
     description: The easy, open source way for everyone in your company to ask questions
       and learn from data.
     digest: 038aa5031ca103a541ac70b55725de7cef22b5a4a22b853313e3cd9d8dbe73ad
@@ -2876,12 +2876,12 @@ entries:
     sources:
     - https://github.com/metabase/metabase
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/metabase-0.5.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/metabase-0.5.0.tgz
     version: 0.5.0
   metallb:
   - apiVersion: v1
     appVersion: 0.7.3
-    created: "2021-03-26T05:23:49.0005+08:00"
+    created: "2021-03-26T05:28:14.123405+08:00"
     description: MetalLB is a load-balancer implementation for bare metal Kubernetes
       clusters
     digest: a0472d170dd217d6de8caf65274f3271011fbf632cefb8d84a8e40a70d555e0d
@@ -2900,12 +2900,12 @@ entries:
       name: danderson
     name: metallb
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/metallb-0.9.5.tgz
+    - https://cloudnativeapp.github.io/charts/curated/metallb-0.9.5.tgz
     version: 0.9.5
   metricbeat:
   - apiVersion: v1
     appVersion: 6.7.0
-    created: "2021-03-26T05:23:49.001884+08:00"
+    created: "2021-03-26T05:28:14.124336+08:00"
     description: A Helm chart to collect Kubernetes logs with metricbeat
     digest: 704599a24d5161ceb367a3408fc3c6393a7319ba5a7d00650efcb3a58feab90c
     home: https://www.elastic.co/products/beats/metricbeat
@@ -2919,12 +2919,12 @@ entries:
     sources:
     - https://www.elastic.co/guide/en/beats/metricbeat/current/index.html
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/metricbeat-1.6.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/metricbeat-1.6.1.tgz
     version: 1.6.1
   metrics-server:
   - apiVersion: v1
     appVersion: 0.3.3
-    created: "2021-03-26T05:23:49.002511+08:00"
+    created: "2021-03-26T05:28:14.124891+08:00"
     description: Metrics Server is a cluster-wide aggregator of resource usage data.
       Metrics Server collects metrics from the Summary API, exposed by Kubelet on
       each node.
@@ -2942,12 +2942,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-metrics-server
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/metrics-server-2.3.4.tgz
+    - https://cloudnativeapp.github.io/charts/curated/metrics-server-2.3.4.tgz
     version: 2.3.4
   minecraft:
   - apiVersion: v1
     appVersion: 1.13.1
-    created: "2021-03-26T05:23:49.00331+08:00"
+    created: "2021-03-26T05:28:14.125612+08:00"
     description: Minecraft server
     digest: cbeb99a835b3d5a46af1162b170ac4fdf5de1e4dd64b78ce9c3551a17299a2e4
     home: https://minecraft.net/
@@ -2962,12 +2962,12 @@ entries:
     - https://hub.docker.com/r/itzg/minecraft-server/~/dockerfile/
     - https://github.com/itzg/dockerfiles
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/minecraft-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/minecraft-1.0.0.tgz
     version: 1.0.0
   minio:
   - apiVersion: v1
     appVersion: 2019.5.14
-    created: "2021-03-26T05:23:49.004566+08:00"
+    created: "2021-03-26T05:28:14.126658+08:00"
     description: MinIO is an object storage server, compatible with Amazon S3 cloud
       storage service, mainly used for storing unstructured data (such as photos,
       videos, log files, etc.)
@@ -2987,12 +2987,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-minio
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/minio-0.1.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/minio-0.1.3.tgz
     version: 0.1.3
   mongodb:
   - apiVersion: v1
     appVersion: 4.0.9
-    created: "2021-03-26T05:23:49.006082+08:00"
+    created: "2021-03-26T05:28:14.128108+08:00"
     description: NoSQL document-oriented database that stores JSON-like documents
       with dynamic schemas, simplifying the integration of data in content-driven
       applications.
@@ -3013,12 +3013,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-mongodb
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/mongodb-5.17.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/mongodb-5.17.0.tgz
     version: 5.17.0
   mongodb-replicaset:
   - apiVersion: v1
     appVersion: "3.6"
-    created: "2021-03-26T05:23:49.008063+08:00"
+    created: "2021-03-26T05:28:14.129829+08:00"
     description: NoSQL document-oriented database that stores JSON-like documents
       with dynamic schemas, simplifying the integration of data in content-driven
       applications.
@@ -3035,12 +3035,12 @@ entries:
     - https://github.com/mongodb/mongo
     - https://github.com/percona/mongodb_exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/mongodb-replicaset-3.9.4.tgz
+    - https://cloudnativeapp.github.io/charts/curated/mongodb-replicaset-3.9.4.tgz
     version: 3.9.4
   msoms:
   - apiVersion: v1
     appVersion: 1.0.0-30
-    created: "2021-03-26T05:23:49.008568+08:00"
+    created: "2021-03-26T05:28:14.130342+08:00"
     description: A chart for deploying omsagent as a daemonset Kubernetes
     digest: 07b7a6879c8c3b35ebf17e3242366e1c9d17f6ebb189a8e6e647d2ea8f965581
     home: https://azure.microsoft.com/en-us/services/log-analytics/
@@ -3062,12 +3062,12 @@ entries:
     - https://github.com/Microsoft/OMS-Agent-for-Linux
     - https://github.com/Microsoft/Docker-Provider
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/msoms-0.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/msoms-0.2.0.tgz
     version: 0.2.0
   mssql-linux:
   - apiVersion: v1
     appVersion: 14.0.3023.8
-    created: "2021-03-26T05:23:49.009233+08:00"
+    created: "2021-03-26T05:28:14.131556+08:00"
     description: SQL Server 2017 Linux Helm Chart
     digest: 3f111af961555f734abeeea12f8c75c7512e85a6081dd1c10dc215b9a9cacfd9
     home: https://hub.docker.com/r/microsoft/mssql-server-linux/
@@ -3079,12 +3079,12 @@ entries:
     sources:
     - https://hub.docker.com/r/microsoft/mssql-server-linux/
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/mssql-linux-0.7.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/mssql-linux-0.7.0.tgz
     version: 0.7.0
   mysql:
   - apiVersion: v1
     appVersion: 8.0.16
-    created: "2021-03-26T05:23:49.010269+08:00"
+    created: "2021-03-26T05:28:14.132721+08:00"
     description: Chart to create a Highly available MySQL cluster
     digest: 21bd77f0ff68840fbcdac2deb4f7d7aec3589a88a7e7490715088e9400e461bc
     home: https://mysql.com
@@ -3102,12 +3102,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-mysql
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/mysql-5.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/mysql-5.0.1.tgz
     version: 5.0.1
   mysqldump:
   - apiVersion: v1
     appVersion: 2.4.0
-    created: "2021-03-26T05:23:49.011089+08:00"
+    created: "2021-03-26T05:28:14.133515+08:00"
     description: A Helm chart to help backup MySQL databases using mysqldump
     digest: 8895bd374960f0b87b49660c814e684e6600191a72367c7cd941857d8463cc60
     home: https://www.mysql.com/
@@ -3128,12 +3128,12 @@ entries:
     - https://github.com/kubernetes/charts
     - https://dev.mysql.com/doc/refman/5.7/en/mysqldump.html
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/mysqldump-2.4.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/mysqldump-2.4.0.tgz
     version: 2.4.0
   mysqlha:
   - apiVersion: v1
     appVersion: 5.7.13
-    created: "2021-03-26T05:23:49.011717+08:00"
+    created: "2021-03-26T05:28:14.134172+08:00"
     description: MySQL cluster with a single master and zero or more slave replicas
     digest: 7a7d092fd7210d95fadfdf29e3f48d62848a77f1aa93aef0d216531bf4949f94
     home: https://www.mysql.com/
@@ -3149,11 +3149,11 @@ entries:
       name: jonhoare
     name: mysqlha
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/mysqlha-0.5.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/mysqlha-0.5.1.tgz
     version: 0.5.1
   namerd:
   - apiVersion: v1
-    created: "2021-03-26T05:23:49.012189+08:00"
+    created: "2021-03-26T05:28:14.134622+08:00"
     description: Service that manages routing for multiple linkerd instances
     digest: e1c442ef353b2b867f9ed4466692053f0c8c81ca2db2a82a8d2d024abed35f11
     home: https://linkerd.io/in-depth/namerd/
@@ -3165,12 +3165,12 @@ entries:
     sources:
     - https://github.com/linkerd/linkerd
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/namerd-0.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/namerd-0.2.0.tgz
     version: 0.2.0
   nats:
   - apiVersion: v1
     appVersion: 1.4.1
-    created: "2021-03-26T05:23:49.013317+08:00"
+    created: "2021-03-26T05:28:14.135743+08:00"
     description: An open-source, cloud-native messaging system
     digest: 259e1f86639f0bc380790ba86f578555a8da7f132776db5c672e48b47e3b8763
     home: https://nats.io/
@@ -3187,12 +3187,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-nats
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/nats-2.5.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/nats-2.5.1.tgz
     version: 2.5.1
   neo4j:
   - apiVersion: v1
     appVersion: 3.4.5
-    created: "2021-03-26T05:23:49.013997+08:00"
+    created: "2021-03-26T05:28:14.136352+08:00"
     description: Neo4j is the world's leading graph database
     digest: 981df3ca5c95ce3531745ea0ed60fb70f22d9fb956e5daebd8427ba95a7ac15d
     home: https://www.neo4j.com
@@ -3206,12 +3206,12 @@ entries:
     - https://github.com/neo4j/docker-neo4j
     - https://github.com/mneedham/k8s-kubectl
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/neo4j-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/neo4j-1.0.0.tgz
     version: 1.0.0
   newrelic-infrastructure:
   - apiVersion: v1
     appVersion: 1.8.0
-    created: "2021-03-26T05:23:49.014639+08:00"
+    created: "2021-03-26T05:28:14.136918+08:00"
     description: A Helm chart to deploy the New Relic Infrastructure Agent as a DaemonSet
     digest: 42f5d6a7c6edbf73a9cfd3ae3dbcbb7e4b7f39c169fb061489a813875ad56f23
     home: https://hub.docker.com/r/newrelic/infrastructure-k8s/
@@ -3231,12 +3231,12 @@ entries:
     - name: rk295
     name: newrelic-infrastructure
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/newrelic-infrastructure-0.11.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/newrelic-infrastructure-0.11.0.tgz
     version: 0.11.0
   nfs-client-provisioner:
   - apiVersion: v1
     appVersion: 3.1.0
-    created: "2021-03-26T05:23:49.015191+08:00"
+    created: "2021-03-26T05:28:14.137473+08:00"
     description: nfs-client is an automatic provisioner that used your *already configured*
       NFS server, automatically creating Persistent Volumes.
     digest: 84ee99c023845a0bb59232f53fa6dfcd44b0cb81a91d9cc2188a26e4b9b9c786
@@ -3251,12 +3251,12 @@ entries:
     sources:
     - https://github.com/kubernetes-incubator/external-storage/tree/master/nfs-client
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/nfs-client-provisioner-1.2.5.tgz
+    - https://cloudnativeapp.github.io/charts/curated/nfs-client-provisioner-1.2.5.tgz
     version: 1.2.5
   nfs-server-provisioner:
   - apiVersion: v1
     appVersion: 2.2.1-k8s1.12
-    created: "2021-03-26T05:23:49.016553+08:00"
+    created: "2021-03-26T05:28:14.138169+08:00"
     description: nfs-server-provisioner is an out-of-tree dynamic provisioner for
       Kubernetes. You can use it to quickly & easily deploy shared storage that works
       almost anywhere.
@@ -3274,12 +3274,12 @@ entries:
     sources:
     - https://github.com/kubernetes-incubator/external-storage/tree/master/nfs
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/nfs-server-provisioner-0.3.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/nfs-server-provisioner-0.3.0.tgz
     version: 0.3.0
   nginx:
   - apiVersion: v1
     appVersion: 1.16.0
-    created: "2021-03-26T05:23:49.017195+08:00"
+    created: "2021-03-26T05:28:14.139186+08:00"
     description: Chart for the nginx server
     digest: b39a60f5410a4629bb1c076e1077d9581283f58e753fcf36a33fd3ec05dfc8ec
     home: http://www.nginx.org
@@ -3297,12 +3297,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-nginx
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/nginx-3.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/nginx-3.2.0.tgz
     version: 3.2.0
   nginx-ingress:
   - apiVersion: v1
     appVersion: 0.24.1
-    created: "2021-03-26T05:23:49.019126+08:00"
+    created: "2021-03-26T05:28:14.141472+08:00"
     description: An nginx Ingress controller that uses ConfigMap to store the nginx
       configuration.
     digest: 33ba0a410c14a651ff33a58f1cdc06cbc8555126358f5e3d0977f646759b5685
@@ -3321,12 +3321,12 @@ entries:
     sources:
     - https://github.com/kubernetes/ingress-nginx
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/nginx-ingress-1.6.11.tgz
+    - https://cloudnativeapp.github.io/charts/curated/nginx-ingress-1.6.11.tgz
     version: 1.6.11
   nginx-ingress-controller:
   - apiVersion: v1
     appVersion: 0.24.1
-    created: "2021-03-26T05:23:49.020558+08:00"
+    created: "2021-03-26T05:28:14.14302+08:00"
     description: Chart for the nginx Ingress controller
     digest: 4db1465159df4f738c7afeb4b3b41b474f2be432c2611a509cef89735df7c970
     home: https://github.com/kubernetes/ingress-nginx
@@ -3345,12 +3345,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-nginx-ingress-controller
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/nginx-ingress-controller-3.4.5.tgz
+    - https://cloudnativeapp.github.io/charts/curated/nginx-ingress-controller-3.4.5.tgz
     version: 3.4.5
   nginx-ldapauth-proxy:
   - apiVersion: v1
     appVersion: 1.13.5
-    created: "2021-03-26T05:23:49.021143+08:00"
+    created: "2021-03-26T05:28:14.143545+08:00"
     description: nginx proxy with ldapauth
     digest: f5389c2d9a901c619e5f31bab82a820e20077e554245882e667fb667ca4b6e11
     icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
@@ -3364,11 +3364,11 @@ entries:
     - https://github.com/dweomer/dockerfiles-nginx-auth-ldap
     - https://github.com/kvspb/nginx-auth-ldap
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/nginx-ldapauth-proxy-0.1.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/nginx-ldapauth-proxy-0.1.2.tgz
     version: 0.1.2
   nginx-lego:
   - apiVersion: v1
-    created: "2021-03-26T05:23:49.021917+08:00"
+    created: "2021-03-26T05:28:14.144227+08:00"
     deprecated: true
     description: Chart for nginx-ingress-controller and kube-lego
     digest: 8611950bbe542119d3efce0322da4fa35d968095b434315d01e91071b84d6dc6
@@ -3385,12 +3385,12 @@ entries:
     - https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx
     - https://github.com/jetstack/kube-lego/tree/master/examples/nginx
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/nginx-lego-0.3.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/nginx-lego-0.3.1.tgz
     version: 0.3.1
   node-problem-detector:
   - apiVersion: v1
     appVersion: v0.6.1
-    created: "2021-03-26T05:23:49.023111+08:00"
+    created: "2021-03-26T05:28:14.144764+08:00"
     description: Installs the node-problem-detector daemonset for monitoring extra
       attributes on nodes
     digest: e0da0e6315aad3f52d3782d4faadf6495e9c7a090f7c448d4676eea2df41fc9c
@@ -3416,12 +3416,12 @@ entries:
     - https://github.com/kubernetes/node-problem-detector
     - https://kubernetes.io/docs/concepts/architecture/nodes/#condition
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/node-problem-detector-1.4.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/node-problem-detector-1.4.2.tgz
     version: 1.4.2
   node-red:
   - apiVersion: v1
     appVersion: 0.19.6
-    created: "2021-03-26T05:23:49.02394+08:00"
+    created: "2021-03-26T05:28:14.145377+08:00"
     description: Node-RED is flow-based programming for the Internet of Things
     digest: c038ad564dc9ce34246fc3744b1d4869ae807e51a68b7847ebcd13b74145da77
     home: https://github.com/node-red/node-red-docker
@@ -3439,12 +3439,12 @@ entries:
     - https://github.com/node-red/node-red-docker
     - https://github.com/kubernetes/charts/stable/node-red
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/node-red-1.2.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/node-red-1.2.2.tgz
     version: 1.2.2
   oauth-proxy:
   - apiVersion: v1
     appVersion: "2.2"
-    created: "2021-03-26T05:23:49.024491+08:00"
+    created: "2021-03-26T05:28:14.146135+08:00"
     deprecated: true
     description: A reverse proxy that provides authentication with Google, Github
       or other providers
@@ -3459,12 +3459,12 @@ entries:
     sources:
     - https://github.com/bitly/oauth2_proxy
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/oauth-proxy-0.1.8.tgz
+    - https://cloudnativeapp.github.io/charts/curated/oauth-proxy-0.1.8.tgz
     version: 0.1.8
   oauth2-proxy:
   - apiVersion: v1
     appVersion: 3.1.0
-    created: "2021-03-26T05:23:49.025341+08:00"
+    created: "2021-03-26T05:28:14.146885+08:00"
     description: A reverse proxy that provides authentication with Google, Github
       or other providers
     digest: f362849ca2f491cb626823ed3e0a88b093c93099b005a6299107d8af9d593a5c
@@ -3483,12 +3483,12 @@ entries:
     sources:
     - https://github.com/pusher/oauth2_proxy
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/oauth2-proxy-0.12.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/oauth2-proxy-0.12.2.tgz
     version: 0.12.2
   opa:
   - apiVersion: v1
     appVersion: 0.10.2
-    created: "2021-03-26T05:23:49.026592+08:00"
+    created: "2021-03-26T05:28:14.14884+08:00"
     description: Open source, general-purpose policy engine. Enforce fine-grained
       invariants over arbitrary Kubernetes resources.
     digest: 4c7aafb0223e46400ff9b6897f9a1ad08d0c12bc85745955037052a69fc4dc98
@@ -3505,12 +3505,12 @@ entries:
     sources:
     - https://github.com/open-policy-agent/opa
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/opa-1.4.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/opa-1.4.2.tgz
     version: 1.4.2
   openebs:
   - apiVersion: v1
     appVersion: 0.8.2
-    created: "2021-03-26T05:23:49.029034+08:00"
+    created: "2021-03-26T05:28:14.151289+08:00"
     description: Containerized Storage for Containers
     digest: 365e66b013a7fd70067028ce263a78807a15adcf3165dca8c3e20b7704348eaa
     home: http://www.openebs.io/
@@ -3529,12 +3529,12 @@ entries:
     sources:
     - https://github.com/openebs/openebs
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/openebs-0.8.6.tgz
+    - https://cloudnativeapp.github.io/charts/curated/openebs-0.8.6.tgz
     version: 0.8.6
   openiban:
   - apiVersion: v1
     appVersion: 1.0.1
-    created: "2021-03-26T05:23:49.029591+08:00"
+    created: "2021-03-26T05:28:14.151858+08:00"
     description: OpenIBAN is a self-hosted, free and open-source IBAN validation API.
     digest: cfc80c66832d4f9093ddbcecc30c65e9d4e7cbc5faba2edefcb43b864a3615c1
     home: https://openiban.com
@@ -3548,12 +3548,12 @@ entries:
     sources:
     - https://github.com/fourcube/goiban-service
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/openiban-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/openiban-1.0.0.tgz
     version: 1.0.0
   openldap:
   - apiVersion: v1
     appVersion: 2.4.44
-    created: "2021-03-26T05:23:49.030271+08:00"
+    created: "2021-03-26T05:28:14.152551+08:00"
     description: Community developed LDAP software
     digest: d0b6f184f54573b235f1ee6ad3bc2142a2fc8c674f85a73143d2bb8c32f26351
     home: https://www.openldap.org
@@ -3568,12 +3568,12 @@ entries:
     sources:
     - https://github.com/kubernetes/charts
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/openldap-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/openldap-1.0.0.tgz
     version: 1.0.0
   openvpn:
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2021-03-26T05:23:49.030948+08:00"
+    created: "2021-03-26T05:28:14.153276+08:00"
     description: A Helm chart to install an openvpn server inside a kubernetes cluster.  Certificate
       generation is also part of the deployment, and this chart will generate client
       keys as needed.
@@ -3597,12 +3597,12 @@ entries:
     - https://github.com/kubernetes/charts/tree/master/stable/openvpn
     - https://github.com/jfelten/helm-charts
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/openvpn-3.12.4.tgz
+    - https://cloudnativeapp.github.io/charts/curated/openvpn-3.12.4.tgz
     version: 3.12.4
   orientdb:
   - apiVersion: v1
     appVersion: 3.0.13
-    created: "2021-03-26T05:23:49.031593+08:00"
+    created: "2021-03-26T05:28:14.153997+08:00"
     description: A Helm chart for Distributed OrientDB
     digest: f0c9ca04821c61717cf6ae005b8228d0a5320ad146730175f4808bce7cd6e669
     home: https://orientdb.com
@@ -3615,12 +3615,12 @@ entries:
       name: soujiro32167
     name: orientdb
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/orientdb-0.1.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/orientdb-0.1.2.tgz
     version: 0.1.2
   pachyderm:
   - apiVersion: v1
     appVersion: 1.8.6
-    created: "2021-03-26T05:23:49.032361+08:00"
+    created: "2021-03-26T05:28:14.154741+08:00"
     description: |
       Pachyderm is a large-scale container-based workflow engine that offers complete version control for data and reproducible data processing
     digest: 60e930532b9b11f0b42649ecfd787524eaf061614297c92d267c833344da63de
@@ -3643,12 +3643,12 @@ entries:
     sources:
     - https://github.com/pachyderm/pachyderm
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/pachyderm-0.2.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/pachyderm-0.2.1.tgz
     version: 0.2.1
   percona:
   - apiVersion: v1
     appVersion: 5.7.17
-    created: "2021-03-26T05:23:49.032856+08:00"
+    created: "2021-03-26T05:28:14.155248+08:00"
     description: free, fully compatible, enhanced, open source drop-in replacement
       for MySQL
     digest: 4e14d20390301e537d6cbfa6448829866f6b0d08f7672954fd89e6798c2a83f8
@@ -3667,12 +3667,12 @@ entries:
     - https://github.com/kubernetes/charts
     - https://github.com/docker-library/percona
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/percona-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/percona-1.0.0.tgz
     version: 1.0.0
   percona-xtradb-cluster:
   - apiVersion: v1
     appVersion: 5.7.19
-    created: "2021-03-26T05:23:49.033749+08:00"
+    created: "2021-03-26T05:28:14.156182+08:00"
     description: free, fully compatible, enhanced, open source drop-in replacement
       for MySQL with Galera Replication (xtradb)
     digest: c425c2f20745e2095d24f94ae9ff4c3400b32c7bd1b6817f1c3787be48716399
@@ -3694,12 +3694,12 @@ entries:
     - https://github.com/kubernetes/charts
     - https://github.com/percona-lab/percona-docker/
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/percona-xtradb-cluster-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/percona-xtradb-cluster-1.0.0.tgz
     version: 1.0.0
   postgresql:
   - apiVersion: v1
     appVersion: 11.3.0
-    created: "2021-03-26T05:23:49.035449+08:00"
+    created: "2021-03-26T05:28:14.158234+08:00"
     description: Chart for PostgreSQL, an object-relational database management system
       (ORDBMS) with an emphasis on extensibility and on standards-compliance.
     digest: dffe4c390a6caac7f631121d46d451d33670bd62341c077bf48d4cac0c81f4f0
@@ -3721,12 +3721,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-postgresql
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/postgresql-5.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/postgresql-5.0.0.tgz
     version: 5.0.0
   presto:
   - apiVersion: v1
     appVersion: "0.196"
-    created: "2021-03-26T05:23:49.036307+08:00"
+    created: "2021-03-26T05:28:14.158858+08:00"
     description: Distributed SQL query engine for running interactive analytic queries
     digest: b8bd63f5737a467b4b24b31b2502a467ce9b766889037d77bf06f9c43dae3cbb
     home: https://prestodb.io
@@ -3738,12 +3738,12 @@ entries:
     sources:
     - https://github.com/facebook/presto
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/presto-0.1.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/presto-0.1.1.tgz
     version: 0.1.1
   prometheus:
   - apiVersion: v1
     appVersion: 2.9.2
-    created: "2021-03-26T05:23:49.03944+08:00"
+    created: "2021-03-26T05:28:14.161769+08:00"
     description: Prometheus is a monitoring system and time series database.
     digest: 475d958984613fee0cf836a3a281597fdb1cb1f6738382b170f2cfd787578ac9
     home: https://prometheus.io/
@@ -3761,12 +3761,12 @@ entries:
     - https://github.com/prometheus/node_exporter
     - https://github.com/kubernetes/kube-state-metrics
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-8.11.4.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-8.11.4.tgz
     version: 8.11.4
   prometheus-adapter:
   - apiVersion: v1
     appVersion: v0.5.0
-    created: "2021-03-26T05:23:49.040136+08:00"
+    created: "2021-03-26T05:28:14.162433+08:00"
     description: A Helm chart for k8s prometheus adapter
     digest: c7aaf414afa360b3295f1d67b83b7e54fc7720797984e1a124fe9d3357e04964
     home: https://github.com/DirectXMan12/k8s-prometheus-adapter
@@ -3784,12 +3784,12 @@ entries:
     - https://github.com/kubernetes/charts
     - https://github.com/DirectXMan12/k8s-prometheus-adapter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-adapter-1.0.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-adapter-1.0.2.tgz
     version: 1.0.2
   prometheus-blackbox-exporter:
   - apiVersion: v1
     appVersion: 0.14.0
-    created: "2021-03-26T05:23:49.040741+08:00"
+    created: "2021-03-26T05:28:14.162995+08:00"
     description: Prometheus Blackbox Exporter
     digest: cf1bb65cc8f19434db43d289c4fcfaeb50806c3b8fd7f84cda2001c75f60b27a
     home: https://github.com/prometheus/blackbox_exporter
@@ -3804,12 +3804,12 @@ entries:
     sources:
     - https://github.com/prometheus/blackbox_exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-blackbox-exporter-0.3.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-blackbox-exporter-0.3.0.tgz
     version: 0.3.0
   prometheus-cloudwatch-exporter:
   - apiVersion: v1
     appVersion: 0.5.0
-    created: "2021-03-26T05:23:49.041504+08:00"
+    created: "2021-03-26T05:28:14.163697+08:00"
     description: A Helm chart for prometheus cloudwatch-exporter
     digest: 8f45b4bcd636d4b87d808896738983bdd8590f5c02c4600ea2ee0880a5a421eb
     home: https://github.com/prometheus/cloudwatch_exporter
@@ -3825,12 +3825,12 @@ entries:
     sources:
     - https://github.com/prometheus/cloudwatch_exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-cloudwatch-exporter-0.4.5.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-cloudwatch-exporter-0.4.5.tgz
     version: 0.4.5
   prometheus-consul-exporter:
   - apiVersion: v1
     appVersion: 0.4.0
-    created: "2021-03-26T05:23:49.042067+08:00"
+    created: "2021-03-26T05:28:14.164204+08:00"
     description: A Helm chart for the Prometheus Consul Exporter
     digest: 3c86e726478ded9d8bafbd61d3a8261a7c0c095f46f6176443ad8308d69415a0
     home: https://github.com/prometheus/consul_exporter
@@ -3843,12 +3843,12 @@ entries:
       name: timm088
     name: prometheus-consul-exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-consul-exporter-0.1.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-consul-exporter-0.1.3.tgz
     version: 0.1.3
   prometheus-couchdb-exporter:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-03-26T05:23:49.042708+08:00"
+    created: "2021-03-26T05:28:14.164742+08:00"
     description: A Helm chart to export the metrics from couchdb in Prometheus format.
     digest: 0b3b217a5a6e757fd0e6ea8cda01545503232f9a29f70253ccad4e570747ab0f
     home: https://github.com/gesellix/couchdb-prometheus-exporter
@@ -3861,12 +3861,12 @@ entries:
     sources:
     - https://github.com/gesellix/couchdb-prometheus-exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-couchdb-exporter-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-couchdb-exporter-0.1.0.tgz
     version: 0.1.0
   prometheus-mongodb-exporter:
   - apiVersion: v1
     appVersion: v0.7.0
-    created: "2021-03-26T05:23:49.043279+08:00"
+    created: "2021-03-26T05:28:14.165564+08:00"
     description: A Prometheus exporter for MongoDB metrics
     digest: 01b70d07634a8d6514babb879ee65d8dbfed786147edeaf0d910f1304d883f53
     home: https://github.com/percona/mongodb_exporter
@@ -3882,12 +3882,12 @@ entries:
     sources:
     - https://github.com/percona/mongodb_exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-mongodb-exporter-2.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-mongodb-exporter-2.1.0.tgz
     version: 2.1.0
   prometheus-mysql-exporter:
   - apiVersion: v1
     appVersion: v0.11.0
-    created: "2021-03-26T05:23:49.044777+08:00"
+    created: "2021-03-26T05:28:14.166484+08:00"
     description: A Helm chart for prometheus mysql exporter with cloudsqlproxy
     digest: c9bf2d4926f91884a275de13752a47bc2591196296a5cc34ba80ff372d278c63
     home: https://github.com/prometheus/mysqld_exporter
@@ -3898,12 +3898,12 @@ entries:
     sources:
     - https://github.com/prometheus/mysqld_exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-mysql-exporter-0.3.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-mysql-exporter-0.3.2.tgz
     version: 0.3.2
   prometheus-nats-exporter:
   - apiVersion: v1
     appVersion: 0.17.0
-    created: "2021-03-26T05:23:49.045384+08:00"
+    created: "2021-03-26T05:28:14.166923+08:00"
     description: A Helm chart for prometheus-nats-exporter
     digest: 84c496057cf6f11caabc6ea80a30d10ec474faa20246814f2f5c397cc8c68728
     home: https://github.com/nats-io/prometheus-nats-exporter
@@ -3918,12 +3918,12 @@ entries:
     sources:
     - https://github.com/nats-io/prometheus-nats-exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-nats-exporter-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-nats-exporter-1.0.0.tgz
     version: 1.0.0
   prometheus-node-exporter:
   - apiVersion: v1
     appVersion: 0.18.0
-    created: "2021-03-26T05:23:49.046035+08:00"
+    created: "2021-03-26T05:28:14.16756+08:00"
     description: A Helm chart for prometheus node-exporter
     digest: 5cefec13b20e08401c56a4e4b2d9b880a92fa88913f636710d12b892d7b96a9c
     home: https://github.com/prometheus/node_exporter/
@@ -3938,12 +3938,12 @@ entries:
     sources:
     - https://github.com/prometheus/node_exporter/
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-node-exporter-1.5.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-node-exporter-1.5.0.tgz
     version: 1.5.0
   prometheus-operator:
   - apiVersion: v1
     appVersion: 0.31.1
-    created: "2021-03-26T05:23:49.056401+08:00"
+    created: "2021-03-26T05:28:14.178349+08:00"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -3975,12 +3975,12 @@ entries:
     - https://github.com/coreos/prometheus-operator
     - https://coreos.com/operators/prometheus
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-operator-6.4.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-operator-6.4.0.tgz
     version: 6.4.0
   prometheus-postgres-exporter:
   - apiVersion: v1
     appVersion: 0.4.7
-    created: "2021-03-26T05:23:49.057508+08:00"
+    created: "2021-03-26T05:28:14.179131+08:00"
     description: A Helm chart for prometheus postgres-exporter
     digest: 4ceb66ddbfa15749e183926718bddb1e5c67eca7e8fb52efab95fd0a86000fd6
     home: https://github.com/wrouesnel/postgres_exporter
@@ -3995,12 +3995,12 @@ entries:
     sources:
     - https://github.com/wrouesnel/postgres_exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-postgres-exporter-0.6.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-postgres-exporter-0.6.2.tgz
     version: 0.6.2
   prometheus-pushgateway:
   - apiVersion: v1
     appVersion: 0.8.0
-    created: "2021-03-26T05:23:49.058183+08:00"
+    created: "2021-03-26T05:28:14.179697+08:00"
     description: A Helm chart for prometheus pushgateway
     digest: 94fbc8d6381d50477049b7c6d93d4099623717ffbcc7dbf75389b7ec9a6fadc1
     home: https://github.com/prometheus/pushgateway
@@ -4014,12 +4014,12 @@ entries:
     sources:
     - https://github.com/prometheus/pushgateway
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-pushgateway-0.4.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-pushgateway-0.4.0.tgz
     version: 0.4.0
   prometheus-rabbitmq-exporter:
   - apiVersion: v1
     appVersion: v0.29.0
-    created: "2021-03-26T05:23:49.058764+08:00"
+    created: "2021-03-26T05:28:14.18029+08:00"
     description: Rabbitmq metrics exporter for prometheus
     digest: f98c21f691bf3764bcdff83d7d790ed687b62569883302fbd53d25656bf0954b
     home: https://github.com/kbudde/rabbitmq_exporter
@@ -4030,12 +4030,12 @@ entries:
     sources:
     - https://github.com/kbudde/rabbitmq_exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-rabbitmq-exporter-0.4.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-rabbitmq-exporter-0.4.1.tgz
     version: 0.4.1
   prometheus-redis-exporter:
   - apiVersion: v1
     appVersion: 0.28.0
-    created: "2021-03-26T05:23:49.059324+08:00"
+    created: "2021-03-26T05:28:14.180802+08:00"
     description: Prometheus exporter for Redis metrics
     digest: befea53f7b8cfed098cfeff194914bc2a34eb8d0e2703fff42ee73e70e24fec7
     home: https://github.com/oliver006/redis_exporter
@@ -4049,12 +4049,12 @@ entries:
     sources:
     - https://github.com/oliver006/redis_exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-redis-exporter-1.0.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-redis-exporter-1.0.2.tgz
     version: 1.0.2
   prometheus-snmp-exporter:
   - apiVersion: v1
     appVersion: 0.14.0
-    created: "2021-03-26T05:23:49.06005+08:00"
+    created: "2021-03-26T05:28:14.181413+08:00"
     description: Prometheus SNMP Exporter
     digest: 2567d0b53409bf490425c2f9d6bb18020ba932e064d448cb7127b45925a30c9d
     home: https://github.com/prometheus/snmp_exporter
@@ -4069,12 +4069,12 @@ entries:
     sources:
     - https://github.com/prometheus/snmp_exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-snmp-exporter-0.0.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-snmp-exporter-0.0.2.tgz
     version: 0.0.2
   prometheus-to-sd:
   - apiVersion: v1
     appVersion: 0.2.2
-    created: "2021-03-26T05:23:49.060762+08:00"
+    created: "2021-03-26T05:28:14.1818+08:00"
     description: Scrape metrics stored in prometheus format and push them to the Stackdriver
     digest: d0adc25a22052f0508ca4bbc5416a8b2ca406312a43e3d85c8e15935ee5a0d90
     home: https://github.com/GoogleCloudPlatform/k8s-stackdriver/tree/master/prometheus-to-sd
@@ -4086,12 +4086,12 @@ entries:
       name: acondrat
     name: prometheus-to-sd
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/prometheus-to-sd-0.1.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/prometheus-to-sd-0.1.1.tgz
     version: 0.1.1
   puppet-forge:
   - apiVersion: v1
     appVersion: 1.10.0
-    created: "2021-03-26T05:23:49.061457+08:00"
+    created: "2021-03-26T05:28:14.182358+08:00"
     description: Distribute locally developed Puppet modules and proxy to the official
       Puppet Forge server
     digest: 7397a7936878f6c82070ff4fdf2fba2c74061a180b285e9b976478f8713697a9
@@ -4105,12 +4105,12 @@ entries:
       name: Gerard Hickey
     name: puppet-forge
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/puppet-forge-0.1.8.tgz
+    - https://cloudnativeapp.github.io/charts/curated/puppet-forge-0.1.8.tgz
     version: 0.1.8
   pytorch:
   - apiVersion: v1
     appVersion: 1.1.0
-    created: "2021-03-26T05:23:49.062513+08:00"
+    created: "2021-03-26T05:28:14.183202+08:00"
     description: Deep learning platform that accelerates the transition from research
       prototyping to production deployment
     digest: 0662df4d40c1ec26a64ba51010e0255d6edc375ce045a1d13cff59cd1ff2257e
@@ -4128,12 +4128,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-pytorch
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/pytorch-0.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/pytorch-0.0.1.tgz
     version: 0.0.1
   rabbitmq:
   - apiVersion: v1
     appVersion: 3.7.15
-    created: "2021-03-26T05:23:49.064033+08:00"
+    created: "2021-03-26T05:28:14.184713+08:00"
     description: Open source message broker software that implements the Advanced
       Message Queuing Protocol (AMQP)
     digest: b248be813c286d8f3833185f8ce418697f8d956000891ae22c0e84d0670fe4c7
@@ -4152,12 +4152,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-rabbitmq
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/rabbitmq-5.5.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/rabbitmq-5.5.2.tgz
     version: 5.5.2
   rabbitmq-ha:
   - apiVersion: v1
     appVersion: 3.7.12
-    created: "2021-03-26T05:23:49.066068+08:00"
+    created: "2021-03-26T05:28:14.188178+08:00"
     description: Highly available RabbitMQ cluster, the open source message broker
       software that implements the Advanced Message Queuing Protocol (AMQP).
     digest: 14a9ca831a5178ee3e0e712fc231e18c56a8b98377919f110793fe2380d6a24e
@@ -4178,12 +4178,12 @@ entries:
     - https://github.com/rabbitmq/rabbitmq
     - https://github.com/docker-library/rabbitmq
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/rabbitmq-ha-1.27.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/rabbitmq-ha-1.27.1.tgz
     version: 1.27.1
   raw:
   - apiVersion: v1
     appVersion: 0.2.3
-    created: "2021-03-26T05:23:49.066861+08:00"
+    created: "2021-03-26T05:28:14.188591+08:00"
     description: A place for all the Kubernetes resources which don't already have
       a home.
     digest: 253b31270558807195f0b9de0b5121f83e4fa1c65ea83d8c1feeedeb2b83c3fc
@@ -4195,12 +4195,12 @@ entries:
       name: mumoshu
     name: raw
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/raw-0.2.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/raw-0.2.3.tgz
     version: 0.2.3
   redis:
   - apiVersion: v1
     appVersion: 5.0.5
-    created: "2021-03-26T05:23:49.068825+08:00"
+    created: "2021-03-26T05:28:14.190508+08:00"
     description: Open source, advanced key-value store. It is often referred to as
       a data structure server since keys can contain strings, hashes, lists, sets
       and sorted sets.
@@ -4220,12 +4220,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-redis
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/redis-8.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/redis-8.0.1.tgz
     version: 8.0.1
   redis-cache:
   - apiVersion: v1
     appVersion: 4.0.12-alpine
-    created: "2021-03-26T05:23:49.069397+08:00"
+    created: "2021-03-26T05:28:14.191081+08:00"
     description: A pure in-memory redis cache, using statefulset and redis-sentinel-micro
     digest: 6a9c3e68a327d1d2d505ef659048f5e34cf6fd506c7af23c98116357aad24499
     home: https://redis.io/
@@ -4240,12 +4240,12 @@ entries:
     - https://github.com/antirez/redis
     - https://github.com/dhilipkumars/redis-sentinel-micro/tree/k8s
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/redis-cache-0.4.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/redis-cache-0.4.1.tgz
     version: 0.4.1
   redis-ha:
   - apiVersion: v1
     appVersion: 5.0.3
-    created: "2021-03-26T05:23:49.070352+08:00"
+    created: "2021-03-26T05:28:14.19218+08:00"
     description: Highly available Kubernetes implementation of Redis
     digest: dd68106960c09b1cf87b96e88ba48f9c4fd94d327a60947ae3a454e5601af43f
     home: http://redis.io/
@@ -4263,12 +4263,12 @@ entries:
     - https://github.com/scality/Zenko/tree/development/1.0/kubernetes/zenko/charts/redis-ha
     - https://github.com/oliver006/redis_exporter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/redis-ha-3.4.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/redis-ha-3.4.2.tgz
     version: 3.4.2
   reloader:
   - apiVersion: v1
     appVersion: v0.0.25
-    created: "2021-03-26T05:23:49.07094+08:00"
+    created: "2021-03-26T05:28:14.192757+08:00"
     description: Reloader chart that runs on kubernetes
     digest: 0ca708f72cf7fb318fdb96c263b93e54c2e9dbf61d4cd048e235da733c4e73fb
     home: https://github.com/stakater/Reloader
@@ -4293,12 +4293,12 @@ entries:
     sources:
     - https://github.com/stakater/Reloader
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/reloader-1.0.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/reloader-1.0.2.tgz
     version: 1.0.2
   rethinkdb:
   - apiVersion: v1
     appVersion: 0.1.0
-    created: "2021-03-26T05:23:49.071721+08:00"
+    created: "2021-03-26T05:28:14.193467+08:00"
     description: The open-source database for the realtime web
     digest: 2680b09f1d1255e94e1729e201cc529a37f593a83eb042ccab1db64589a071e9
     home: https://www.rethinkdb.com
@@ -4314,12 +4314,12 @@ entries:
     sources:
     - https://hub.docker.com/r/codylundquist/helm-rethinkdb-cluster/
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/rethinkdb-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/rethinkdb-1.0.0.tgz
     version: 1.0.0
   riemann:
   - apiVersion: v1
     appVersion: 0.2.14
-    created: "2021-03-26T05:23:49.072228+08:00"
+    created: "2021-03-26T05:28:14.193901+08:00"
     description: Riemann monitors distributed systems. Riemann aggregates events from
       your servers and applications with a powerful stream processing language.
     digest: 23151b2f02707a8e1ce49a65e945bfd73f01aaedb2e8e0683662477d342460dc
@@ -4335,12 +4335,12 @@ entries:
     sources:
     - https://github.com/raykrueger/riemann-docker
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/riemann-0.1.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/riemann-0.1.2.tgz
     version: 0.1.2
   risk-advisor:
   - apiVersion: v1
     appVersion: 1.0.0
-    created: "2021-03-26T05:23:49.072668+08:00"
+    created: "2021-03-26T05:28:14.1943+08:00"
     description: Risk Advisor add-on module for Kubernetes
     digest: 26aa7a76822634e97503888237c5d0fdb56f731844781319158d2e043a143559
     home: https://www.riskadvisory.net/
@@ -4358,12 +4358,12 @@ entries:
     sources:
     - https://github.com/Prytu/risk-advisor/
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/risk-advisor-2.0.4.tgz
+    - https://cloudnativeapp.github.io/charts/curated/risk-advisor-2.0.4.tgz
     version: 2.0.4
   rookout:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-03-26T05:23:49.073072+08:00"
+    created: "2021-03-26T05:28:14.195276+08:00"
     description: A Helm chart for Rookout agent on Kubernetes
     digest: 37035618a008b6096422792755957e655851643db6784b7dca8ac641889a4b84
     home: http://rookout.com/
@@ -4373,12 +4373,12 @@ entries:
       name: Zohar
     name: rookout
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/rookout-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/rookout-0.1.0.tgz
     version: 0.1.0
   rundeck:
   - apiVersion: v1
     appVersion: 3.0.16
-    created: "2021-03-26T05:23:49.073619+08:00"
+    created: "2021-03-26T05:28:14.195852+08:00"
     description: A Rundeck chart for Kubernetes
     digest: 7fc0b47bbf4dff5a437744ede507cebfa194600c4f6a5740809a662cbee0cc71
     home: https://github.com/rundeck/rundeck
@@ -4394,12 +4394,12 @@ entries:
     sources:
     - https://github.com/rundeck/rundeck
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/rundeck-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/rundeck-0.1.0.tgz
     version: 0.1.0
   satisfy:
   - apiVersion: v1
     appVersion: 3.0.4
-    created: "2021-03-26T05:23:49.074173+08:00"
+    created: "2021-03-26T05:28:14.196511+08:00"
     description: Composer repo hosting with Satisfy
     digest: fbc9119259e1b3438ff5d204b5017a1607d2cf652ab8d208155524d0f67f6c9c
     home: https://github.com/anapsix/docker-satisfy
@@ -4414,12 +4414,12 @@ entries:
     - https://github.com/composer/satis
     - https://unit.nginx.org/
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/satisfy-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/satisfy-1.0.0.tgz
     version: 1.0.0
   schema-registry-ui:
   - apiVersion: v1
     appVersion: v0.9.5
-    created: "2021-03-26T05:23:49.075253+08:00"
+    created: "2021-03-26T05:28:14.197017+08:00"
     description: This is a web tool for the confluentinc/schema-registry in order
       to create / view / search / evolve / view history & configure Avro schemas of
       your Kafka cluster.
@@ -4437,12 +4437,12 @@ entries:
       name: cristian04
     name: schema-registry-ui
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/schema-registry-ui-0.4.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/schema-registry-ui-0.4.0.tgz
     version: 0.4.0
   sealed-secrets:
   - apiVersion: v1
     appVersion: 0.7.0
-    created: "2021-03-26T05:23:49.075773+08:00"
+    created: "2021-03-26T05:28:14.197511+08:00"
     description: A Helm chart for Sealed Secrets
     digest: fccfe38c968728e4577c09d77ed0288e553cfb7c27f5a84468b05bf8ac91cf0a
     home: https://github.com/bitnami-labs/sealed-secrets
@@ -4454,12 +4454,12 @@ entries:
       name: olib963
     name: sealed-secrets
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/sealed-secrets-1.0.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/sealed-secrets-1.0.2.tgz
     version: 1.0.2
   searchlight:
   - apiVersion: v1
     appVersion: 5.0.0
-    created: "2021-03-26T05:23:49.076361+08:00"
+    created: "2021-03-26T05:28:14.198055+08:00"
     deprecated: true
     description: DEPRECATED Searchlight by AppsCode - Alerts for Kubernetes
     digest: 2f667c2a31843f33d4f2d11d223286c77db3c87b56c8a851ddeea76817aaf510
@@ -4469,12 +4469,12 @@ entries:
     sources:
     - https://github.com/appscode/searchlight
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/searchlight-0.3.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/searchlight-0.3.3.tgz
     version: 0.3.3
   selenium:
   - apiVersion: v1
     appVersion: 3.141.59
-    created: "2021-03-26T05:23:49.077596+08:00"
+    created: "2021-03-26T05:28:14.199088+08:00"
     description: Chart for selenium grid
     digest: 3028ba6be5df83eee0216d3dcabbae324ed75d631f9bc2bb245be482d798b86a
     home: http://www.seleniumhq.org/
@@ -4492,12 +4492,12 @@ entries:
     sources:
     - https://github.com/SeleniumHQ/docker-selenium
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/selenium-1.0.8.tgz
+    - https://cloudnativeapp.github.io/charts/curated/selenium-1.0.8.tgz
     version: 1.0.8
   sematext-agent:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-03-26T05:23:49.078349+08:00"
+    created: "2021-03-26T05:28:14.199771+08:00"
     description: Helm chart for deploying Sematext Agent to Kubernetes
     digest: 80cd466e160b899440a36a9b382938752934870af43c96075c67058a0906e5c1
     home: https://sematext.com/cloud
@@ -4514,12 +4514,12 @@ entries:
       name: komljen
     name: sematext-agent
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/sematext-agent-1.0.7.tgz
+    - https://cloudnativeapp.github.io/charts/curated/sematext-agent-1.0.7.tgz
     version: 1.0.7
   sematext-docker-agent:
   - apiVersion: v1
     appVersion: 1.31.53
-    created: "2021-03-26T05:23:49.078797+08:00"
+    created: "2021-03-26T05:28:14.200198+08:00"
     deprecated: true
     description: DEPRECATED Sematext Docker Agent
     digest: 93da666e01694cb49e8c78cb554b45c8f5fe13137cca3b1d0d5dbdf31c57c058
@@ -4534,12 +4534,12 @@ entries:
     sources:
     - https://github.com/sematext/sematext-agent-docker
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/sematext-docker-agent-1.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/sematext-docker-agent-1.0.1.tgz
     version: 1.0.1
   sentry-kubernetes:
   - apiVersion: v1
     appVersion: latest
-    created: "2021-03-26T05:23:49.07923+08:00"
+    created: "2021-03-26T05:28:14.200603+08:00"
     description: A Helm chart for sentry-kubernetes (https://github.com/getsentry/sentry-kubernetes)
     digest: 066dafd0a2473bdba7293fe84d3e1b27c1e9e3679a18747ab1e959c3d7d72612
     home: https://github.com/getsentry/sentry-kubernetes
@@ -4554,12 +4554,12 @@ entries:
     sources:
     - https://github.com/getsentry/sentry-kubernetes
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/sentry-kubernetes-0.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/sentry-kubernetes-0.2.0.tgz
     version: 0.2.0
   seq:
   - apiVersion: v1
     appVersion: 5.0.832-pre
-    created: "2021-03-26T05:23:49.079841+08:00"
+    created: "2021-03-26T05:28:14.201143+08:00"
     description: Seq is the easiest way for development teams to capture, search and
       visualize structured log events! This page will walk you through the very quick
       setup process.
@@ -4581,12 +4581,12 @@ entries:
     sources:
     - https://github.com/datalust/seq-tickets
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/seq-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/seq-1.0.0.tgz
     version: 1.0.0
   signalfx-agent:
   - apiVersion: v1
     appVersion: 3.6.1
-    created: "2021-03-26T05:23:49.080737+08:00"
+    created: "2021-03-26T05:28:14.202046+08:00"
     deprecated: true
     description: DEPRECATED The SignalFx Kubernetes agent
     digest: fda3aead8fa170ab0d6b5c5d72a5671b4810dc53581c7ed49c7ebdac0e47dd28
@@ -4601,12 +4601,12 @@ entries:
     sources:
     - https://github.com/signalfx/signalfx-agent
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/signalfx-agent-0.3.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/signalfx-agent-0.3.1.tgz
     version: 0.3.1
   signalsciences:
   - apiVersion: v1
     appVersion: 3.12.1
-    created: "2021-03-26T05:23:49.081218+08:00"
+    created: "2021-03-26T05:28:14.202505+08:00"
     description: SignalSciences is a web application firewall. This chart is the installable
       agent.
     digest: 6344b00872a9af6cfb7e20f3376e35f059d50953c58f89074d2bb56570504961
@@ -4626,12 +4626,12 @@ entries:
     sources:
     - https://github.com/marccampbell/docker-sigsci
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/signalsciences-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/signalsciences-1.0.0.tgz
     version: 1.0.0
   socat-tunneller:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-03-26T05:23:49.08161+08:00"
+    created: "2021-03-26T05:28:14.202869+08:00"
     description: A Helm chart for socat-tunneller
     digest: 6974ff484da6d0d90fdef3b8b4dcf013b28e4208fbf3c909b36f11aeca25c3d7
     home: http://www.dest-unreach.org/socat/
@@ -4640,12 +4640,12 @@ entries:
       name: plumdog
     name: socat-tunneller
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/socat-tunneller-0.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/socat-tunneller-0.1.0.tgz
     version: 0.1.0
   sonatype-nexus:
   - apiVersion: v1
     appVersion: 3.15.2-01
-    created: "2021-03-26T05:23:49.083215+08:00"
+    created: "2021-03-26T05:28:14.205012+08:00"
     description: Sonatype Nexus is an open source repository manager
     digest: c10a723b0736fa4c86ac2fc5bb537a14f4742ed20cf6cf22e83da074050b9905
     home: https://www.sonatype.com/nexus-repository-oss
@@ -4669,12 +4669,12 @@ entries:
     - https://github.com/travelaudience/kubernetes-nexus
     - https://github.com/travelaudience/docker-nexus-backup
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/sonatype-nexus-1.18.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/sonatype-nexus-1.18.2.tgz
     version: 1.18.2
   spark:
   - apiVersion: v1
     appVersion: 1.5.1
-    created: "2021-03-26T05:23:49.084325+08:00"
+    created: "2021-03-26T05:28:14.205697+08:00"
     description: Fast and general-purpose cluster computing system.
     digest: cec4720a4d84d5d80b32f5b3537b8ff262abcd75790f780c1896cb43e454d414
     home: http://spark.apache.org
@@ -4687,12 +4687,12 @@ entries:
     - https://github.com/kubernetes/kubernetes/tree/master/examples/spark
     - https://github.com/apache/spark
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/spark-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/spark-1.0.0.tgz
     version: 1.0.0
   spark-history-server:
   - apiVersion: v1
     appVersion: 2.4.0
-    created: "2021-03-26T05:23:49.085688+08:00"
+    created: "2021-03-26T05:28:14.206965+08:00"
     description: A Helm chart for Spark History Server
     digest: 99a0645486ef6e1f4ce37fd89924fb4ce4062540062733a6bc1785c1f13c6e97
     home: https://spark.apache.org
@@ -4707,12 +4707,12 @@ entries:
     - https://github.com/apache/spark
     - https://github.com/lightbend/spark-history-server-docker
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/spark-history-server-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/spark-history-server-1.0.0.tgz
     version: 1.0.0
   sparkoperator:
   - apiVersion: v1
     appVersion: v2.4.0-v1beta1-0.8.2
-    created: "2021-03-26T05:23:49.086199+08:00"
+    created: "2021-03-26T05:28:14.207474+08:00"
     description: A Helm chart for Spark on Kubernetes operator
     digest: aa07bb80971f465c8327e8f3ca58dc8c81a5896e64aeba78eb3478becace8322
     home: https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
@@ -4724,12 +4724,12 @@ entries:
       name: yuchaoran2011
     name: sparkoperator
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/sparkoperator-0.2.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/sparkoperator-0.2.3.tgz
     version: 0.2.3
   spartakus:
   - apiVersion: v1
     appVersion: 1.0.0
-    created: "2021-03-26T05:23:49.086609+08:00"
+    created: "2021-03-26T05:28:14.207823+08:00"
     description: Collect information about Kubernetes clusters to help improve the
       project.
     digest: 127d4dc3c76df00797ab0bdbaf6b5d9b61af9acdb705cae800f3c31c1710ad24
@@ -4741,12 +4741,12 @@ entries:
     sources:
     - https://github.com/kubernetes-incubator/spartakus
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/spartakus-1.1.6.tgz
+    - https://cloudnativeapp.github.io/charts/curated/spartakus-1.1.6.tgz
     version: 1.1.6
   spotify-docker-gc:
   - apiVersion: v1
     appVersion: latest
-    created: "2021-03-26T05:23:49.087018+08:00"
+    created: "2021-03-26T05:28:14.208209+08:00"
     description: A simple Docker container and image garbage collection script.
     digest: 36a4df9ab5e86c839f0d9e7f7ab306b1e27c55a2e7c43bab0b186b8e35006eac
     home: https://github.com/spotify/docker-gc
@@ -4757,12 +4757,12 @@ entries:
     sources:
     - https://github.com/spotify/docker-gc
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/spotify-docker-gc-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/spotify-docker-gc-1.0.0.tgz
     version: 1.0.0
   stackdriver-exporter:
   - apiVersion: v1
     appVersion: 0.6.0
-    created: "2021-03-26T05:23:49.087542+08:00"
+    created: "2021-03-26T05:28:14.208761+08:00"
     description: Stackdriver exporter for Prometheus
     digest: 99e13dde8d84f144ce1e04a25adcf5e1f00bde4d25a54be70a67584c4236e5f9
     home: https://www.stackdriver.com/
@@ -4777,12 +4777,12 @@ entries:
     sources:
     - https://github.com/frodenas/stackdriver_exporter/releases
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/stackdriver-exporter-1.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/stackdriver-exporter-1.1.0.tgz
     version: 1.1.0
   stash:
   - apiVersion: v1
     appVersion: 0.7.0-rc.1
-    created: "2021-03-26T05:23:49.088095+08:00"
+    created: "2021-03-26T05:28:14.209292+08:00"
     deprecated: true
     description: DEPRECATED Stash by AppsCode - Backup your Kubernetes Volumes
     digest: 241cf3d665977da8d5ee09c3a462535b9085477174fc89bd45967dff737bc144
@@ -4792,12 +4792,12 @@ entries:
     sources:
     - https://github.com/appscode/stash
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/stash-0.5.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/stash-0.5.3.tgz
     version: 0.5.3
   stolon:
   - apiVersion: v1
     appVersion: 0.13.0
-    created: "2021-03-26T05:23:49.089199+08:00"
+    created: "2021-03-26T05:28:14.210168+08:00"
     description: Stolon - PostgreSQL cloud native High Availability.
     digest: 97e18308c29e2a2100404197e71e873ec6873cb2a150b6746bbe4b44bb2448f3
     home: https://github.com/sorintlab/stolon
@@ -4812,12 +4812,12 @@ entries:
     - https://github.com/sorintlab/stolon
     - https://github.com/lwolf/stolon-chart
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/stolon-1.1.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/stolon-1.1.1.tgz
     version: 1.1.1
   sumokube:
   - apiVersion: v1
     appVersion: latest
-    created: "2021-03-26T05:23:49.090035+08:00"
+    created: "2021-03-26T05:28:14.210947+08:00"
     description: Sumologic Log Collector
     digest: 93c855933e9209c71feca9b6ff9ad67227028ed7216aa79ef74e9187003ecb2b
     home: https://www.sumologic.com/
@@ -4833,12 +4833,12 @@ entries:
     sources:
     - https://github.com/SumoLogic/sumologic-collector-docker
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/sumokube-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/sumokube-1.0.0.tgz
     version: 1.0.0
   sumologic-fluentd:
   - apiVersion: v1
     appVersion: 2.3.0
-    created: "2021-03-26T05:23:49.091253+08:00"
+    created: "2021-03-26T05:28:14.212636+08:00"
     description: Sumologic Log Collector
     digest: 676a9ea519be61c607dc2d311b091048bbc27e5f9a82bafaf6f04765706eb75a
     home: https://github.com/SumoLogic/fluentd-kubernetes-sumologic
@@ -4859,12 +4859,12 @@ entries:
     sources:
     - https://github.com/SumoLogic/fluentd-kubernetes-sumologic
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/sumologic-fluentd-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/sumologic-fluentd-1.0.0.tgz
     version: 1.0.0
   superset:
   - apiVersion: v1
     appVersion: 0.28.1
-    created: "2021-03-26T05:23:49.092064+08:00"
+    created: "2021-03-26T05:28:14.213588+08:00"
     description: Apache Superset (incubating) is a modern, enterprise-ready business
       intelligence web application
     digest: 8f972c1916273c273c81aa950a36c879b512c2e6d7fb4573d978fd0663700d9f
@@ -4879,12 +4879,12 @@ entries:
     sources:
     - https://github.com/apache/incubator-superset
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/superset-1.1.6.tgz
+    - https://cloudnativeapp.github.io/charts/curated/superset-1.1.6.tgz
     version: 1.1.6
   swift:
   - apiVersion: v1
     appVersion: 0.7.3
-    created: "2021-03-26T05:23:49.092509+08:00"
+    created: "2021-03-26T05:28:14.214044+08:00"
     deprecated: true
     description: DEPRECATED swift by AppsCode - Ajax friendly Helm Tiller Proxy
     digest: 1af35b5ef2da3810e8c9ad1b00b599cd23cb0fca518b665b7ed7c83fffeedd05
@@ -4894,12 +4894,12 @@ entries:
     sources:
     - https://github.com/appscode/swift
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/swift-0.6.3.tgz
+    - https://cloudnativeapp.github.io/charts/curated/swift-0.6.3.tgz
     version: 0.6.3
   sysdig:
   - apiVersion: v1
     appVersion: 0.89.5
-    created: "2021-03-26T05:23:49.093859+08:00"
+    created: "2021-03-26T05:28:14.214759+08:00"
     description: Sysdig Monitor and Secure agent
     digest: ef69b5767fad747eae9b55f2a23a4e602035883a14d3c6499e690017469f5b2b
     home: https://www.sysdig.com/
@@ -4923,12 +4923,12 @@ entries:
     - https://app.sysdigcloud.com/#/settings/user
     - https://github.com/draios/sysdig
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/sysdig-1.4.7.tgz
+    - https://cloudnativeapp.github.io/charts/curated/sysdig-1.4.7.tgz
     version: 1.4.7
   telegraf:
   - apiVersion: v1
     appVersion: "1.9"
-    created: "2021-03-26T05:23:49.094438+08:00"
+    created: "2021-03-26T05:28:14.215337+08:00"
     description: Telegraf is an agent written in Go for collecting, processing, aggregating,
       and writing metrics.
     digest: 9857310d7602c68bc50473063716240f592956d0cce3c6e4ec2e81dace6be297
@@ -4943,12 +4943,12 @@ entries:
       name: naseemkullah
     name: telegraf
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/telegraf-1.1.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/telegraf-1.1.1.tgz
     version: 1.1.1
   tensorflow-inception:
   - apiVersion: v1
     appVersion: 1.4.0
-    created: "2021-03-26T05:23:49.09502+08:00"
+    created: "2021-03-26T05:28:14.215732+08:00"
     description: Open source software library for numerical computation using data
       flow graphs.
     digest: d0f820e5d762d0aaf2bba79ac0c531d726f9d38f8bcc55cf965cacc8c03a04b4
@@ -4964,12 +4964,12 @@ entries:
     - https://github.com/tensorflow/
     - https://tensorflow.github.io/serving/serving_inception.html
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/tensorflow-inception-0.4.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/tensorflow-inception-0.4.1.tgz
     version: 0.4.1
   tensorflow-notebook:
   - apiVersion: v1
     appVersion: 1.6.0
-    created: "2021-03-26T05:23:49.095448+08:00"
+    created: "2021-03-26T05:28:14.216288+08:00"
     description: A Helm chart for tensorflow notebook and tensorboard
     digest: b7064ffff727462e7ed7e6c304831a3832db0880b200a637be04bdca1e96d289
     home: https://www.tensorflow.org
@@ -4981,12 +4981,12 @@ entries:
     - https://github.com/tensorflow/tensorflow
     - https://github.com/jupyter
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/tensorflow-notebook-0.1.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/tensorflow-notebook-0.1.2.tgz
     version: 0.1.2
   tensorflow-resnet:
   - apiVersion: v1
     appVersion: 1.13.0
-    created: "2021-03-26T05:23:49.096134+08:00"
+    created: "2021-03-26T05:28:14.216991+08:00"
     description: Open-source software library serving the ResNet machine learning
       model.
     digest: 90f9e55f50d624c38f9ddf10df6a5e30441598c2d69c71323e20b24908dea5f9
@@ -5007,12 +5007,12 @@ entries:
     - https://github.com/bitnami/bitnami-docker-tensorflow-serving
     - https://github.com/bitnami/bitnami-docker-tensorflow-resnet
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/tensorflow-resnet-0.1.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/tensorflow-resnet-0.1.2.tgz
     version: 0.1.2
   tensorflow-serving:
   - apiVersion: v1
     appVersion: 1.14.0
-    created: "2021-03-26T05:23:49.096919+08:00"
+    created: "2021-03-26T05:28:14.217761+08:00"
     description: TensorFlow Serving is an open-source software library for serving
       machine learning models.
     digest: 4113951519d60617825139c08bf400c5f5130ddefee908cdfb8c57553a81763e
@@ -5024,12 +5024,12 @@ entries:
     sources:
     - https://github.com/tensorflow/serving
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/tensorflow-serving-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/tensorflow-serving-1.0.0.tgz
     version: 1.0.0
   terracotta:
   - apiVersion: v1
     appVersion: 5.5.1
-    created: "2021-03-26T05:23:49.097505+08:00"
+    created: "2021-03-26T05:28:14.218313+08:00"
     description: Terracotta Ehcache is an improved version of Java's de facto caching
       API, Ehcache. It has a powerful, streamlined, modernized caching API taking
       advantage of newer Java features as well as the capability to be used via the
@@ -5049,12 +5049,12 @@ entries:
     sources:
     - https://github.com/Terracotta-OSS
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/terracotta-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/terracotta-1.0.0.tgz
     version: 1.0.0
   tomcat:
   - apiVersion: v1
     appVersion: 9.0.20
-    created: "2021-03-26T05:23:49.098119+08:00"
+    created: "2021-03-26T05:28:14.218875+08:00"
     description: Chart for Apache Tomcat
     digest: 0277a2a86cc6ac24a570b37b4e1f65a57968443ac3d490400260b24820e4a250
     home: http://tomcat.apache.org
@@ -5073,12 +5073,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-tomcat
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/tomcat-3.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/tomcat-3.0.1.tgz
     version: 3.0.1
   traefik:
   - apiVersion: v1
     appVersion: 1.7.9
-    created: "2021-03-26T05:23:49.100189+08:00"
+    created: "2021-03-26T05:28:14.221225+08:00"
     description: A Traefik based Kubernetes ingress controller with Let's Encrypt
       support
     digest: ca6dfae1072101ca75d6fbcd8e628245f99706d4473684828e98107e590c0417
@@ -5103,12 +5103,12 @@ entries:
     - https://github.com/containous/traefik
     - https://github.com/helm/charts/tree/master/stable/traefik
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/traefik-1.68.4.tgz
+    - https://cloudnativeapp.github.io/charts/curated/traefik-1.68.4.tgz
     version: 1.68.4
   unbound:
   - apiVersion: v1
     appVersion: 1.6.7
-    created: "2021-03-26T05:23:49.100707+08:00"
+    created: "2021-03-26T05:28:14.222069+08:00"
     description: Unbound is a fast caching DNS resolver
     digest: fab3644fe77a2ec547a7c578561880d479a6d9794705583cb9806651b6ec9cc7
     home: https://www.unbound.net/
@@ -5121,12 +5121,12 @@ entries:
     - https://github.com/Markbnj/unbound-docker
     - https://github.com/kubernetes/contrib/tree/master/exec-healthz
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/unbound-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/unbound-1.0.0.tgz
     version: 1.0.0
   unifi:
   - apiVersion: v1
     appVersion: 5.10.19
-    created: "2021-03-26T05:23:49.101528+08:00"
+    created: "2021-03-26T05:28:14.223203+08:00"
     description: Ubiquiti Network's Unifi Controller
     digest: b265e55a0467abd60019f2131a12162b45fe3021908cdf3a15751f851e347d90
     home: https://github.com/jacobalberty/unifi-docker
@@ -5145,12 +5145,12 @@ entries:
     - https://github.com/jacobalberty/unifi-docker
     - https://github.com/helm/charts/tree/master/stable/unifi
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/unifi-0.4.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/unifi-0.4.2.tgz
     version: 0.4.2
   vault:
   - apiVersion: v1
     appVersion: 1.0.1
-    created: "2021-03-26T05:23:49.103047+08:00"
+    created: "2021-03-26T05:28:14.2241+08:00"
     description: A Helm chart for Vault, a tool for managing secrets
     digest: 595d67858c84abc2cbcc9cf1095f1e2badaf63a50eb74c394263319c1d9a88de
     home: https://www.vaultproject.io/
@@ -5163,24 +5163,24 @@ entries:
     - https://github.com/hashicorp/vault
     - https://github.com/hashicorp/docker-vault
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/vault-0.18.7.tgz
+    - https://cloudnativeapp.github.io/charts/curated/vault-0.18.7.tgz
     version: 0.18.7
   vaultingkube:
   - apiVersion: v1
     appVersion: 0.1.1
-    created: "2021-03-26T05:23:49.103506+08:00"
+    created: "2021-03-26T05:28:14.224524+08:00"
     description: vaultingkube takes config maps and secrets stored inside Hashicorp
       Vault and syncs them to your Kubernetes cluster.
     digest: 5d786f3ce1a0fd0fa9dcb8596ec30562b778fc8e1de519130de5568cd61d77cd
     home: https://github.com/sunshinekitty/vaultingkube
     name: vaultingkube
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/vaultingkube-0.1.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/vaultingkube-0.1.2.tgz
     version: 0.1.2
   velero:
   - apiVersion: v1
     appVersion: 1.0.0
-    created: "2021-03-26T05:23:49.10435+08:00"
+    created: "2021-03-26T05:28:14.22546+08:00"
     description: A Helm chart for velero
     digest: 34bf8a5d979e624db642d82875dcc9160e655d46a95f8c5e596e41511f91c5a5
     home: https://github.com/heptio/velero
@@ -5196,12 +5196,12 @@ entries:
     sources:
     - https://github.com/heptio/velero
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/velero-2.0.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/velero-2.0.1.tgz
     version: 2.0.1
   verdaccio:
   - apiVersion: v1
     appVersion: 3.11.6
-    created: "2021-03-26T05:23:49.105118+08:00"
+    created: "2021-03-26T05:28:14.226137+08:00"
     description: A lightweight private npm proxy registry (sinopia fork)
     digest: fce93a5e97ee1bff53c53decab7e6c3a6c4b9dfb8a8be95ed5d0a65af5eae4ff
     home: http://www.verdaccio.org
@@ -5217,12 +5217,12 @@ entries:
     - http://www.verdaccio.org
     - https://github.com/verdaccio/verdaccio
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/verdaccio-0.7.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/verdaccio-0.7.0.tgz
     version: 0.7.0
   voyager:
   - apiVersion: v1
     appVersion: 6.0.0
-    created: "2021-03-26T05:23:49.106+08:00"
+    created: "2021-03-26T05:28:14.226717+08:00"
     deprecated: true
     description: DEPRECATED Voyager by AppsCode - Secure Ingress Controller for Kubernetes
     digest: 4a725bd40a6a9cfebf33441dda09611a1a1cc22c5eccbc326ae9ce573b16ffa0
@@ -5232,12 +5232,12 @@ entries:
     sources:
     - https://github.com/appscode/voyager
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/voyager-3.2.4.tgz
+    - https://cloudnativeapp.github.io/charts/curated/voyager-3.2.4.tgz
     version: 3.2.4
   weave-cloud:
   - apiVersion: v1
     appVersion: 1.2.0
-    created: "2021-03-26T05:23:49.106585+08:00"
+    created: "2021-03-26T05:28:14.227128+08:00"
     description: |
       Weave Cloud is a add-on to Kubernetes which provides Continuous Delivery, along with hosted Prometheus Monitoring and a visual dashboard for exploring & debugging microservices
     digest: 42bd45d6c49c35dcf1c8fd64cbb6dcfe1b5755d17632b44af2c1d4c97e0c7e5d
@@ -5250,12 +5250,12 @@ entries:
       name: stefanprodan
     name: weave-cloud
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/weave-cloud-0.3.2.tgz
+    - https://cloudnativeapp.github.io/charts/curated/weave-cloud-0.3.2.tgz
     version: 0.3.2
   weave-scope:
   - apiVersion: v1
     appVersion: 1.10.1
-    created: "2021-03-26T05:23:49.10741+08:00"
+    created: "2021-03-26T05:28:14.227855+08:00"
     description: A Helm chart for the Weave Scope cluster visualizer.
     digest: 35918229479d52bd241b0c016f4c7fdfa5050e2726cf7155ac470fa732b62dc0
     home: https://www.weave.works/oss/scope/
@@ -5271,12 +5271,12 @@ entries:
     sources:
     - https://github.com/weaveworks/scope
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/weave-scope-1.0.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/weave-scope-1.0.0.tgz
     version: 1.0.0
   webpagetest-agent:
   - apiVersion: v1
     appVersion: "2018-01-23"
-    created: "2021-03-26T05:23:49.107834+08:00"
+    created: "2021-03-26T05:28:14.22825+08:00"
     description: A Helm chart for Kubernetes
     digest: 73cb153e3ffe7d4b0365a25c764acb56bbbf9f7b09f534b0e45c0fbbcfd192dc
     home: https://www.webpagetest.org/
@@ -5290,12 +5290,12 @@ entries:
     sources:
     - https://github.com/WPO-Foundation/webpagetest
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/webpagetest-agent-0.2.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/webpagetest-agent-0.2.0.tgz
     version: 0.2.0
   webpagetest-server:
   - apiVersion: v1
     appVersion: "2018-03-08"
-    created: "2021-03-26T05:23:49.108512+08:00"
+    created: "2021-03-26T05:28:14.228875+08:00"
     description: A Helm chart for Kubernetes
     digest: 50c704cf4c28d6b63bdb793edea75e1dede5ba624dc737470b6ce0be37929d99
     home: https://www.webpagetest.org/
@@ -5309,12 +5309,12 @@ entries:
     sources:
     - https://github.com/WPO-Foundation/webpagetest
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/webpagetest-server-0.2.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/webpagetest-server-0.2.1.tgz
     version: 0.2.1
   wildfly:
   - apiVersion: v1
     appVersion: 16.0.0
-    created: "2021-03-26T05:23:49.109117+08:00"
+    created: "2021-03-26T05:28:14.229442+08:00"
     description: Chart for Wildfly
     digest: 4e6ab7d4fde73be2ea57b835a1d7eb86b871882ac064247de02a6b81f9ee1e4f
     home: http://wildfly.org
@@ -5333,12 +5333,12 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-wildfly
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/wildfly-2.2.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/wildfly-2.2.1.tgz
     version: 2.2.1
   zeppelin:
   - apiVersion: v1
     appVersion: 0.7.2
-    created: "2021-03-26T05:23:49.109583+08:00"
+    created: "2021-03-26T05:28:14.22987+08:00"
     description: Web-based notebook that enables data-driven, interactive data analytics
       and collaborative documents with SQL, Scala and more.
     digest: 17c7d244e0a60f34ec4d04500aafe6e82417d31afc5fbc303f0e0da37b8dd493
@@ -5351,12 +5351,12 @@ entries:
     sources:
     - https://github.com/apache/zeppelin
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/zeppelin-1.1.0.tgz
+    - https://cloudnativeapp.github.io/charts/curated/zeppelin-1.1.0.tgz
     version: 1.1.0
   zookeeper:
   - apiVersion: v1
     appVersion: 3.4.14
-    created: "2021-03-26T05:23:49.110527+08:00"
+    created: "2021-03-26T05:28:14.231494+08:00"
     description: A centralized service for maintaining configuration information,
       naming, providing distributed synchronization, and providing group services
       for distributed applications.
@@ -5372,6 +5372,6 @@ entries:
     sources:
     - https://github.com/bitnami/bitnami-docker-zookeeper
     urls:
-    - https://cloudnativeapp.github.io/charts/docs/curated/zookeeper-2.2.1.tgz
+    - https://cloudnativeapp.github.io/charts/curated/zookeeper-2.2.1.tgz
     version: 2.2.1
-generated: "2021-03-26T05:23:48.881505+08:00"
+generated: "2021-03-26T05:28:14.006141+08:00"
