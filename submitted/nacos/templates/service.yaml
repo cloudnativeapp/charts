@@ -3,14 +3,19 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nacos-hs
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
 spec:
-  type: ClusterIP
   clusterIP: None
   ports:
     - port: {{ .Values.service.port }}
       targetPort: http
       protocol: TCP
       name: http
+    - port: 7848
+      name: rpc
+      targetPort: 7848
+      protocol: TCP
   selector:
     app.kubernetes.io/name: {{ include "nacos.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
