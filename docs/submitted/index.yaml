@@ -674,8 +674,8 @@ entries:
     digest: a27657171e8d995be2cbaa511c9204f60274af9d7334d2107aee05467d01f0b6
     icon: http://s1.51cto.com/oss/201711/06/d2af296e2e07468e42ddd8237f72b1b8.jpg-wh_651x-s_2831311669.jpg
     maintainers:
-    - email: shih5@chinaunicom.cn
-      name: 史浩(shih5@chinaunicom.cn)
+    - email: 1761032600@qq.com
+      name: shihao
     name: zookeeper-3Nodes
     urls:
     - https://cloudnativeapp.github.io/charts/submitted/zookeeper-3Nodes-0.1.tgz
