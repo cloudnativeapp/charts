@@ -8,7 +8,7 @@ keywords:
 - monitoring
 maintainers:
 - email: dongjiang1989@126.com
-  name: dongjiang
+  name: dongjiang1989
 name: prometheus-pingmesh-exporter
 sources:
 - https://github.com/kubeservice-stack/pingmesh-agent
