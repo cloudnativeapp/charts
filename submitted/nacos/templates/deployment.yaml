@@ -24,7 +24,7 @@ spec:
 {{- if eq .Values.global.mode "cluster" }}
       initContainers:
         - name: peer-finder-plugin-install
-          image: nacos/nacos-peer-finder-plugin:latest
+          image: nacos/nacos-peer-finder-plugin:1.0
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /home/nacos/plugins/peer-finder
@@ -38,20 +38,9 @@ spec:
             - name: http
               containerPort: {{ .Values.env.serverPort }}
               protocol: TCP
-{{- if .Values.health.enabled }}
-          livenessProbe:
-            httpGet:
-              path: /nacos/v1/console/health/readiness
-              port: http
-            initialDelaySeconds: 60
-            timeoutSeconds: 3
-          readinessProbe:
-            httpGet:
-              path: /nacos/v1/console/health/readiness
-              port: http
-            initialDelaySeconds: 60
-            timeoutSeconds: 3
-{{- end }}
+            - name: rpc
+              containerPort: 7848
+              protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 {{- if eq .Values.global.mode "quickstart" }}
@@ -68,32 +57,29 @@ spec:
             value: "standalone"
           - name: SPRING_DATASOURCE_PLATFORM
             value: "mysql"
-          - name: MYSQL_MASTER_SERVICE_DB_NAME
+          - name: MYSQL_SERVICE_DB_NAME
             valueFrom:
                configMapKeyRef:
                  name: nacos-cm
-                 key: mysql.master.db.name
-          - name: MYSQL_MASTER_SERVICE_PORT
+                 key: mysql.db.name
+          - name: MYSQL_SERVICE_PORT
             valueFrom:
               configMapKeyRef:
                  name: nacos-cm
-                 key: mysql.master.port
-          - name: MYSQL_SLAVE_SERVICE_PORT
+                 key: mysql.port
+          - name: MYSQL_SERVICE_USER
             valueFrom:
               configMapKeyRef:
                  name: nacos-cm
-                 key: mysql.slave.port
-          - name: MYSQL_MASTER_SERVICE_USER
+                 key: mysql.user
+          - name: MYSQL_SERVICE_PASSWORD
             valueFrom:
               configMapKeyRef:
                  name: nacos-cm
-                 key: mysql.master.user
-          - name: MYSQL_MASTER_SERVICE_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                 name: nacos-cm
-                 key: mysql.master.password
+                 key: mysql.password
           - name: NACOS_SERVER_PORT
+            value: {{ .Values.env.serverPort | quote }}
+          - name: NACOS_APPLICATION_PORT
             value: {{ .Values.env.serverPort | quote }}
           volumeMounts:
           - name: datadir
@@ -109,6 +95,8 @@ spec:
             value: "3"
           - name: SERVICE_NAME
             value: "nacos-hs"
+          - name: DOMAIN_NAME
+            value: {{ .Values.env.domainName | quote }}
           - name: POD_NAMESPACE
             valueFrom:
               fieldRef:
@@ -116,32 +104,33 @@ spec:
                 fieldPath: metadata.namespace
           - name: PREFER_HOST_MODE
             value: {{ .Values.env.preferhostmode | quote }}
-          - name: MYSQL_MASTER_SERVICE_DB_NAME
+            {{- if .Values.env.dbHost  }}
+          - name: MYSQL_SERVICE_HOST
+            value: {{ .Values.env.dbHost | quote }}
+            {{- end }}
+          - name: MYSQL_SERVICE_DB_NAME
             valueFrom:
               configMapKeyRef:
                 name: nacos-cm
-                key: mysql.master.db.name
-          - name: MYSQL_MASTER_SERVICE_PORT
+                key: mysql.db.name
+          - name: MYSQL_SERVICE_PORT
             valueFrom:
               configMapKeyRef:
                  name: nacos-cm
-                 key: mysql.master.port
-          - name: MYSQL_SLAVE_SERVICE_PORT
+                 key: mysql.port
+          - name: MYSQL_SERVICE_USER
             valueFrom:
               configMapKeyRef:
                  name: nacos-cm
-                 key: mysql.slave.port
-          - name: MYSQL_MASTER_SERVICE_USER
+                 key: mysql.user
+          - name: MYSQL_SERVICE_PASSWORD
             valueFrom:
               configMapKeyRef:
                  name: nacos-cm
-                 key: mysql.master.user
-          - name: MYSQL_MASTER_SERVICE_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                 name: nacos-cm
-                 key: mysql.master.password
+                 key: mysql.password
           - name: NACOS_SERVER_PORT
+            value: {{ .Values.env.serverPort | quote }}
+          - name: NACOS_APPLICATION_PORT
             value: {{ .Values.env.serverPort | quote }}
           volumeMounts:
             - name: plugindir
